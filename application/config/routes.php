@@ -54,6 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['home'] = 'Public/Home_controller/view';
+$route['login'] = 'Public/Login_controller/login_page';
 //$route['pagina/(:any)'] = '/pages/view/$1';
 //$route['pagina/(:any)/(:num)'] = '/pages/view/$1';
 //$route['news/index'] = 'news_controller/index';
