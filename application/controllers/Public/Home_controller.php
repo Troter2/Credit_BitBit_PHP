@@ -9,6 +9,9 @@ class Home_controller extends Public_controller
 
     public function view()
     {
+
+        $this->load->library('ion_auth');
+        
         $this->load->view('templates/header');
         $this->load->view('home/index');
         $this->load->view('templates/footer');
