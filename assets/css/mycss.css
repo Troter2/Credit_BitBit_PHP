@@ -1,0 +1,14 @@
+.login-div {
+    background-color: #fecba1;
+    border-radius: 25px;
+    padding: 50px;
+}
+
+.news_title {
+    font-weight: bold;
+}
+
+.paginator {
+    color: black;
+    text-decoration: none !important;
+}
