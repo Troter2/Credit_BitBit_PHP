@@ -13,11 +13,30 @@
     <body id="page-top" data-spy="scroll" data-target=".navbar">
         <script src="<?= base_url('assets/js/bootstrap.js') ?>"></script>
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+        <div class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark " id="mainNav">
             <div class="container">
                 <a class="nav-link" href="<?php echo base_url(); ?>"><i class="fa fa-home"></i>Home</a>
             </div>
         </nav>
+        <div class="container-fluid ">
+            <div class="row">
+                <div class=" col col-sm-1 bg-success bg-success justify-content-center ">
+                        <div class=" row align-middle py-2 justify-content-center menu-item">
+                            <i class="fa fa-camera " style="font-size: 30px;"></i>
+                        </div>
+                        <div class=" row align-middle py-2 justify-content-center menu-item">
+                            <i class="fa fa-camera " style="font-size: 30px;"></i>
+                        </div><div class=" row align-middle py-2 justify-content-center menu-item">
+                            <i class="fa fa-camera " style="font-size: 30px;"></i>
+                        </div><div class=" row align-middle py-2 justify-content-center menu-item">
+                            <i class="fa fa-camera " style="font-size: 30px;"></i>
+                        </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
         <div class="container" style="padding-top: .5rem; padding-bottom: .5rem;">
             <a class="nav-link" href="<?php echo base_url(); ?>"><i class="fa fa-home"></i>Home</a>
         </div>
@@ -25,23 +44,18 @@
         //   foreach($fondos as $colors){
         //   echo "<h1>". $colors . "</h1>"; }
         ?>
-        <div class="container-fluid">
-            <div class="row sidebar">
-                <div class="col col-sm-1 bg-success">
-                    <div class=" align-middle my-2 justify-content-center menu-item">
-                        <i class="fa fa-camera " style="font-size: 30px;"></i>
-                    </div>
-                    <div class=" align-middle my-2 justify-content-center">
-                        <i class="fa fa-camera " style="font-size: 30px;"></i>
-                    </div>
-                    <div class=" align-middle my-2 justify-content-center">
-                        <i class="fa fa-camera " style="font-size: 30px;"></i>
-                    </div>
-                    <div class=" align-middle my-2 justify-content-center">
-                        <i class="fa fa-camera " style="font-size: 30px;"></i>
-                    </div>
+        <div class="container-fluid ">
+            <div class="row">
+                <div class=" col col-sm-1 bg-success bg-success justify-content-center ">
+                        <div class=" row align-middle py-2 justify-content-center menu-item">
+                            <i class="fa fa-camera " style="font-size: 30px;"></i>
+                        </div>
+                        <div class=" row align-middle py-2 justify-content-center menu-item">
+                            <i class="fa fa-camera " style="font-size: 30px;"></i>
+                        </div><div class=" row align-middle py-2 justify-content-center menu-item">
+                            <i class="fa fa-camera " style="font-size: 30px;"></i>
+                        </div><div class=" row align-middle py-2 justify-content-center menu-item">
+                            <i class="fa fa-camera " style="font-size: 30px;"></i>
+                        </div>
                 </div>
                 <div class="col col-sm-11 bg-secondary">
-                    a<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                    a<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                    a<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
