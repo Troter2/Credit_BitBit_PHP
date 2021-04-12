@@ -18,6 +18,10 @@
             <div class="container">
                 <a class="nav-link" href="<?php echo base_url(); ?>"><i class="fa fa-home"></i>Home</a>
             </div>
+
+            <div class="container ; justify-content-end">
+                <a class="nav-link" href="<?php echo base_url(); ?>"><i class="fa fa-user"></i>Profile</a>
+            </div>
         </nav>
         <div class="container-fluid ">
             <div class="row">
