@@ -24,5 +24,15 @@ class Home_controller extends Public_controller
         $this->load->view('pages/about');
         $this->load->view('templates/footer');
     }
+
+    public function contact(){
+        
+        $this->load->library('ion_auth');
+        $this->load->library('form_validation');
+        
+        $this->load->view('templates/header');
+        $this->load->view('pages/contact');
+        $this->load->view('templates/footer');
+    }
     
 }

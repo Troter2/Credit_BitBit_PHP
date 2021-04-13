@@ -12,6 +12,7 @@
 
 <body>
     </head>
+
     <body id="page-top" data-spy="scroll" data-target=".navbar">
         <script src="<?= base_url('assets/js/bootstrap.js') ?>"></script>
         <?php $this->load->library('session'); ?>
@@ -60,7 +61,7 @@
                                 <li class="nav-item active">
                                     <a class="nav-link" href="<?php echo base_url('/home') ?>">Home</a>
                                 </li>
-                                <?php if (!$this->session->has_userdata('logged_user')) { ?>
+                                <?php if (!$this->ion_auth->logged_in()) { ?>
                                     <li class="nav-item ">
                                         <a class="nav-link" href="<?php echo base_url('/login') ?>">Login</a>
                                     </li>
@@ -69,14 +70,15 @@
                                     <a class="nav-link" href="<?php echo base_url('/about') ?>">About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Portfolio</a>
+                                    <a class="nav-link" href="<?php echo base_url('/contact') ?>">Contact</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Contact</a>
-                                </li>
-                                <?php if ($this->session->has_userdata('logged_user')) { ?>
+                                <?php if ($this->ion_auth->logged_in()) { ?>
                                     <li class="nav-item ">
-                                        <span class="nav-link"><?php echo $this->session->userdata("logged_user"); ?></span>
+                                        <a class="nav-link" href="#">
+                                            <?php
+                                            $user = $this->ion_auth->user()->row();
+                                            echo $user->username; ?>
+                                        </a>
                                     </li>
                                     <li class="nav-item ">
                                         <a class="nav-link" href="<?php echo base_url('/logout') ?>">Logout</a>

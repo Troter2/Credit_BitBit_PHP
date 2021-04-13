@@ -3,14 +3,6 @@
     text-decoration: none !important;
 }
 
-.menu-item:hover {
-    background: #3f3f3f !important;
-}
-
-.sidebar {
-    position: fixed;
-}
-
-.scroll-y {
-    overflow-y: auto;
+.about_img {
+    height: 50px;
 }
