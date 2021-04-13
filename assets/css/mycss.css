@@ -10,3 +10,7 @@
 .sidebar {
     position: fixed;
 }
+
+.scroll-y {
+    overflow-y: auto;
+}
