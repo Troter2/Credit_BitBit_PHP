@@ -1,5 +1,4 @@
-<div style="min-height: auto;">
-
+<div>
   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -26,19 +25,9 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-  <br><br><br>
-
-
-
-
-
-
-
-
-
-  <div class="row  g-4">
+  <div class="row mt-4">
     <div class="col col-sm-9 row">
-      <div class="col col-sm-4">
+      <div class="col col-sm-12 col-md-6 col-lg-4">
         <div class="card">
           <img src="https://mdbootstrap.com/img/new/standard/city/041.jpg" class="card-img-top" alt="Sample image" />
           <div class="card-body">
@@ -50,7 +39,7 @@
           </div>
         </div>
       </div>
-      <div class="col col-sm-4">
+      <div class="col col-sm-12 col-md-6 col-lg-4">
         <div class="card">
           <img src="https://mdbootstrap.com/img/new/standard/city/042.jpg" class="card-img-top" alt="Sample image" />
           <div class="card-body">
@@ -62,7 +51,7 @@
           </div>
         </div>
       </div>
-      <div class="col col-sm-4">
+      <div class="col col-sm-12 col-md-6 col-lg-4">
         <div class="card">
           <img src="https://mdbootstrap.com/img/new/standard/city/043.jpg" class="card-img-top" alt="Sample image" />
           <div class="card-body">
@@ -74,7 +63,7 @@
           </div>
         </div>
       </div>
-      <div class="col col-sm-4">
+      <div class="col col-sm-12 col-md-6 col-lg-4">
         <div class="card">
           <img src="https://mdbootstrap.com/img/new/standard/city/041.jpg" class="card-img-top" alt="Sample image" />
           <div class="card-body">
@@ -86,7 +75,7 @@
           </div>
         </div>
       </div>
-      <div class="col col-sm-4">
+      <div class="col col-sm-12 col-md-6 col-lg-4">
         <div class="card">
           <img src="https://mdbootstrap.com/img/new/standard/city/042.jpg" class="card-img-top" alt="Sample image" />
           <div class="card-body">
@@ -98,7 +87,7 @@
           </div>
         </div>
       </div>
-      <div class="col col-sm-4">
+      <div class="col col-sm-12 col-md-6 col-lg-4">
         <div class="card">
           <img src="https://mdbootstrap.com/img/new/standard/city/043.jpg" class="card-img-top" alt="Sample image" />
           <div class="card-body">
@@ -111,12 +100,11 @@
         </div>
       </div>
     </div>
-    <div class="col col-sm-3 card" >
-    <div class="d-grid gap-3">
-  <div class="p-2 bg-light border">New alert</div>
-  <div class="p-2 bg-light border">New alert</div>
-  <div class="p-2 bg-light border">New alert</div>
-</div>
-
+    <div class="col col-sm-3 card pt-1">
+      <div class="d-grid gap-3">
+        <div class="my-1 p-2 bg-light border">New alert</div>
+        <div class="my-1 p-2 bg-light border">New alert</div>
+        <div class="my-1 p-2 bg-light border">New alert</div>
+      </div>
     </div>
   </div>

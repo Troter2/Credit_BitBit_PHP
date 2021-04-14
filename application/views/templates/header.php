@@ -46,7 +46,7 @@
                 </div>
             </nav>
             <!-- Page Content  -->
-            <div id="content" class="pt-4 pb-5 px-4 ">
+            <div id="content" class="pt-4  px-4 ">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="container-fluid">
                         <button type="button" id="sidebarCollapse" class="btn btn-primary">
