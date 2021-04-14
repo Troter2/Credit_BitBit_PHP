@@ -7,13 +7,13 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active ">
-        <img src="https://fujifilm-x.com/wp-content/uploads/2019/08/x-t3_sample-images02.jpg" class="d-block w-100 h-25" alt="Sample image">
+        <img src="https://fujifilm-x.com/wp-content/uploads/2019/08/x-t3_sample-images02.jpg" class="d-block w-100 h-25 img-fluid" alt="Sample image">
       </div>
       <div class="carousel-item">
-        <img src="https://fujifilm-x.com/wp-content/uploads/2019/08/x-t30_sample-images02.jpg" class="d-block w-100 h-25" alt="Sample image">
+        <img src="https://fujifilm-x.com/wp-content/uploads/2019/08/x-t30_sample-images02.jpg" class="d-block w-100 h-25 img-fluid" alt="Sample image">
       </div>
       <div class="carousel-item">
-        <img src="https://www.phe.es/wp-content/uploads/2017/03/mt-sample-background-e1496164073121.jpg" class="d-block w-100 h-25" alt="Sample image">
+        <img src="https://www.phe.es/wp-content/uploads/2017/03/mt-sample-background-e1496164073121.jpg" class="d-block w-100 h-25 img-fluid" alt="Sample image">
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
