@@ -31,7 +31,7 @@
                         <a href="#"><span class="fa fa-sticky-note"></span> Blog</a>
                     </li>
                     <li>
-                        <a href="#"><span class="fa fa-paper-plane"></span> Contacts</a>
+                        <a href="<?php echo base_url('/contact') ?>"><span class="fa fa-paper-plane"></span> Contacts</a>
                     </li>
                     <li style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
                         <div class="btn-group dropright">
