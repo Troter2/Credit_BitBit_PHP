@@ -31,10 +31,24 @@
                         <a href="#"><span class="fa fa-sticky-note"></span> Blog</a>
                     </li>
                     <li>
-                        <a href="#"><span class="fa fa-cogs"></span> Services</a>
+                        <a href="#"><span class="fa fa-paper-plane"></span> Contacts</a>
                     </li>
                     <li>
-                        <a href="#"><span class="fa fa-paper-plane"></span> Contacts</a>
+                        <div class="btn-group dropright">
+                            <a type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="fa fa-user"></span>Admin
+                            </a>
+                            <div class="dropdown-menu">
+                                <!-- Dropdown menu links -->
+                                <ul class="pl-1">
+                                    <li class="dropdown-item"><a class="text-dark" href="#">Usuaris</a></li>
+                                    <li class="dropdown-item"><a class="text-dark" href="#">Correu</a></li>
+                                    <li class="dropdown-item"><a class="text-dark" href="#">Modificar Home</a></li>
+                                    <li class="dropdown-item"><a class="text-dark" href="#">MODIFICAR OPCIONS CONTACTE</a></li>
+                                    <li class="dropdown-item"><a class="text-dark" href="#">dasboard</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </li>
                 </ul>
                 <div class="footer">
