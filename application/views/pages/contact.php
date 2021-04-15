@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <button id="changeInfoButton" type="button" class="btn btn-info col col-sm-10 col-md-12 m-auto" onclick="switchVisible();">Info</button>
+                <button id="changeInfoButton" type="button" class="btn btn-info col col-sm-10 col-md-12 m-auto" onclick="switchVisible();">Show location map</button>
             </div>
         </div>
     </div>
