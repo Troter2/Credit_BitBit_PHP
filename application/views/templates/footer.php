@@ -7,6 +7,8 @@
     <script src="<?php echo base_url('assets/js/popper.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/main.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/myContact.js'); ?>"></script>
+
 </body>
 
 </html>

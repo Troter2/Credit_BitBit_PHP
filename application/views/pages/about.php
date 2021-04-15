@@ -6,7 +6,8 @@
 <br/>
 <div class="card p-4 col col-sm-12 col-md-10 m-auto">
 <div class="row">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Una empresa dedicada a la reparació d’equips informàtics per a centres educatius,
+demana disposar d’una plataforma per gestionar totes les seves reparacions.</p>
 </div>
 </div>
 <br/>
