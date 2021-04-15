@@ -33,9 +33,9 @@
                     <li>
                         <a href="#"><span class="fa fa-paper-plane"></span> Contacts</a>
                     </li>
-                    <li>
+                    <li style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
                         <div class="btn-group dropright">
-                            <a type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a type="button" class="dropdown-toggle " style="width: 100%;border-bottom: 0px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="fa fa-user"></span>Admin
                             </a>
                             <div class="dropdown-menu">
@@ -55,7 +55,7 @@
                     <p>
                         Copyright &copy;<script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+                        </script>
                     </p>
                 </div>
             </nav>
