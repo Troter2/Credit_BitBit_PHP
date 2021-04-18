@@ -88,7 +88,7 @@
                                 </li>
                                 <?php if ($this->ion_auth->logged_in()) { ?>
                                     <li class="nav-item ">
-                                        <a class="nav-link" href="#">
+                                        <a class="nav-link" href="<?php echo base_url('/userProfile') ?>">
                                             <?php
                                             $user = $this->ion_auth->user()->row();
                                             echo $user->username; ?>

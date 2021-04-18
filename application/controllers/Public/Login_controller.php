@@ -5,13 +5,13 @@ class Login_controller extends Public_controller
     {
         parent::__construct();
         $this->load->helper('url_helper');
+        $this->load->library('ion_auth');
     }
 
     public function login_page()
     {
         $this->load->library('session');
         $this->load->library('form_validation');
-        $this->load->library('ion_auth');
         $this->load->helper('url');
         $this->load->helper('form');
 
@@ -27,7 +27,6 @@ class Login_controller extends Public_controller
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->library('form_validation');
-        $this->load->library('ion_auth');
 
         $identity = $this->input->post('user');
         $password = $this->input->post('userpass');
@@ -48,7 +47,6 @@ class Login_controller extends Public_controller
     {
         $this->load->library('session');
         $this->load->helper('url');
-        $this->load->library('ion_auth');
 
         $this->ion_auth->logout();
         $this->session->unset_userdata('logged_user');

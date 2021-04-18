@@ -5,6 +5,7 @@ class Home_controller extends Public_controller
     {
         parent::__construct();
         $this->load->helper('url_helper');
+        $this->load->library('ion_auth');
     }
 
     public function view()
@@ -43,5 +44,7 @@ class Home_controller extends Public_controller
         $this->load->view('pages/status');
         $this->load->view('templates/footer');
     }
+
+    
 
 }
