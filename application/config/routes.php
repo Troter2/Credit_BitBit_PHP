@@ -61,6 +61,7 @@ $route['contact'] = 'Public/Home_controller/contact';
 $route['status'] = 'Public/Home_controller/status';
 $route['userProfile'] = 'Public/User_controller/user_profile';
 $route['userEdit'] = 'Public/User_controller/user_edit_page';
+$route['updateUser'] = 'Public/User_controller/update';
 $route['login/login'] = 'Public/Login_controller/login';
 //$route['pagina/(:any)'] = '/pages/view/$1';
 //$route['pagina/(:any)/(:num)'] = '/pages/view/$1';

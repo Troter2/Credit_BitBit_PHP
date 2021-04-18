@@ -4,18 +4,18 @@
             <img src="https://www.xatobaxestion.com/wp-content/uploads/2016/09/default-user-img.jpg" class="w-100" alt="">
         </div>
         <div class="col col-sm-12 col-md-8 col-lg-9 row">
-            <div class="font-weight-bold container" style="font-size:26px;">Antonieta</div>
+            <div class="font-weight-bold container" style="font-size:26px;"><?php echo $user->username ?></div>
             <div class="font-weight-bold mt-0 text-primary font-weight-bold container" style="font-size:22px;">Tecnic</div>
 
 
-            <?php echo form_open('login/login'); ?>
+            <?php echo form_open('updateUser'); ?>
             <div class="row container">
                 <div class="col col-sm-6 font-weight-bold align-middle">
                     <span class="">Username</span>
                 </div>
 
                 <div class="col col-sm-6 text-primary font-weight-bold py-1" style="font-size:18px;">
-                    <input type="text"  class="form-control" name="user" id="user">
+                    <input type="text"  class="form-control" name="username" id="username" value="<?php echo $user->username ?>">
                 </div>
 
                 <div class="col col-sm-6 font-weight-bold">
@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="col col-sm-6 text-primary font-weight-bold py-1" style="font-size:18px;">
-                    <input type="text"  class="form-control" name="username" id="username">
+                    <input type="text"  class="form-control" name="first_name" id="first_name" value="<?php echo $user->first_name ?>">
                 </div>
 
                 <div class="col col-sm-6 font-weight-bold">
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="col col-sm-6 text-primary font-weight-bold py-1" style="font-size:18px;">
-                    <input type="text" class="form-control"  name="lastUserName" id="lastUserName">
+                    <input type="text" class="form-control"  name="last_name" id="last_name" value="<?php echo $user->last_name ?>">
                 </div>
 
                 <div class="col col-sm-6 font-weight-bold">
@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="col col-sm-6 text-primary font-weight-bold py-1" style="font-size:18px;">
-                    <input type="text" class="form-control" name="email" id="email">
+                    <input type="text" class="form-control" name="email" id="email" value="<?php echo $user->email ?>">
                 </div>
 
                 <div class="col col-sm-6 font-weight-bold">
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="col col-sm-6 text-primary font-weight-bold py-1" style="font-size:18px;">
-                    <input type="text" class="form-control"  name="email" id="email">
+                    <input type="text" class="form-control"  name="phone" id="phone" value="<?php echo $user->phone ?>">
                 </div>
                 <input class="btn btn btn-primary mt-3" type="submit" name="submit" value="Enviar" />
 
