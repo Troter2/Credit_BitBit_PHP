@@ -1,7 +1,6 @@
-var contentMap = document.getElementById('contentMap');
-var contentForm = document.getElementById('contentForm');
-
 function switchVisible() {
+    let contentMap = document.getElementById('contentMap');
+    let contentForm = document.getElementById('contentForm');
     if (contentMap.hidden == false) {
         contentMap.hidden = true;
         contentForm.hidden = false;

@@ -108,6 +108,13 @@
             <div class="mb-1 p-2 bg-light border"><span class="fa fa-envelope mr-3"></span>New message click to open</div>
             <div class="mb-1 p-2 bg-light border"><span class="fa fa-envelope mr-3"></span>New message click to open</div>
             <div class="mb-1 p-2 bg-light border"><span class="fa fa-envelope mr-3"></span>New message click to open</div>
+            <div class="mb-1 p-2 bg-light border"><span class="fa fa-envelope mr-3"></span>New message click to open</div>
+            <div class="mb-1 p-2 bg-light border"><span class="fa fa-envelope mr-3"></span>New message click to open</div>
+            <div class="mb-1 p-2 bg-light border"><span class="fa fa-envelope mr-3"></span>New message click to open</div>
+            <div class="mb-1 p-2 bg-light border"><span class="fa fa-envelope mr-3"></span>New message click to open</div>
+            <div class="mb-1 p-2 bg-light border"><span class="fa fa-envelope mr-3"></span>New message click to open</div>
+            <div class="mb-1 p-2 bg-light border"><span class="fa fa-envelope mr-3"></span>New message click to open</div>
+            <div class="mb-1 p-2 bg-light border"><span class="fa fa-envelope mr-3"></span>New message click to open</div>
         </div>
     </div>
 </div>

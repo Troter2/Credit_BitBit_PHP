@@ -11,8 +11,10 @@ class User_controller extends Public_controller
     public function user_profile()
     {
 
+        $user=$this->ion_auth->user()->row();
+        $data["user"]=$user;
         $this->load->view('templates/header');
-        $this->load->view('pages/user_profile');
+        $this->load->view('pages/user_profile',$data);
         $this->load->view('templates/footer');
     }
     public function user_edit_page()
