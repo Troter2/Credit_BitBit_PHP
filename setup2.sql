@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.4.14-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         10.4.17-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             11.1.0.6116
+-- HeidiSQL Versión:             11.2.0.6213
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -53,11 +53,29 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   `login` varchar(100) NOT NULL,
   `time` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bitbit.login_attempts: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `login_attempts` DISABLE KEYS */;
 /*!40000 ALTER TABLE `login_attempts` ENABLE KEYS */;
+
+-- Volcando estructura para tabla bitbit.messages
+CREATE TABLE IF NOT EXISTS `messages` (
+  `id_msg` int(11) NOT NULL AUTO_INCREMENT,
+  `from` varchar(50) NOT NULL,
+  `to` varchar(50) NOT NULL,
+  `about` varchar(50) NOT NULL,
+  `content` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_msg`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+-- Volcando datos para la tabla bitbit.messages: ~3 rows (aproximadamente)
+/*!40000 ALTER TABLE `messages` DISABLE KEYS */;
+INSERT INTO `messages` (`id_msg`, `from`, `to`, `about`, `content`) VALUES
+	(1, 'test', 'administrator', 'jslkdjflaskjfñlsdkjfñlkafsdj', '12313212313123'),
+	(2, 'test', 'administrator', 'test', '12313212313123'),
+	(3, 'prova', 'administrator', 'prova', 'jhsdagfjkashglkjhjkg');
+/*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -87,10 +105,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `uc_remember_selector` (`remember_selector`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.users: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.users: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-	(1, '127.0.0.1', 'administrator', '$2y$08$200Z6ZZbp3RAEXoaWcMA6uJOFicwNZaqk4oDhqTUiFXFe63MG.Daa', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1268889823, 1, 'Admin', 'istrator', 'ADMIN', '0');
+	(1, '127.0.0.1', 'administrator', '$2y$10$gpGtuiacEw4AbP8tgx7Z2exNOoiP/IgW24vJZWZXIQrEQMG7HJQ4q', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1619016825, 1, 'Admin', 'istrator', 'ADMIN', '123456789');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.users_groups
@@ -119,13 +137,13 @@ CREATE TABLE IF NOT EXISTS `usuaris` (
   `userpass` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.usuaris: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.usuaris: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuaris` DISABLE KEYS */;
 INSERT INTO `usuaris` (`username`, `userpass`) VALUES
 	('test', '$2y$10$ROFP9uDvSfiT2N80F7xCke4eyPT3RF2oxErOVJtoIzgwht8fQCR3G');
 /*!40000 ALTER TABLE `usuaris` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

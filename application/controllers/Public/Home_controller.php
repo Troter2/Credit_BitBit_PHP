@@ -6,45 +6,50 @@ class Home_controller extends Public_controller
         parent::__construct();
         $this->load->helper('url_helper');
         $this->load->library('ion_auth');
+        $this->load->model('msg_model');
     }
 
     public function view()
     {
+        if ($this->ion_auth->logged_in()) {
+            $userinfo = $this->ion_auth->user()->row();
+            $user = $userinfo->username;
 
-        $this->load->library('ion_auth');
-        
+            $msg = $this->msg_model->getMsg($user);
+            $data['messages'] = $msg;
+        }
         $this->load->view('templates/header');
-        $this->load->view('pages/home');
+        $this->load->view('pages/home', $data);
         $this->load->view('templates/footer');
     }
-    public function about(){
-        
+    public function about()
+    {
+
         $this->load->library('ion_auth');
-        
+
         $this->load->view('templates/header');
         $this->load->view('pages/about');
         $this->load->view('templates/footer');
     }
 
-    public function contact(){
-        
+    public function contact()
+    {
+
         $this->load->library('ion_auth');
         $this->load->library('form_validation');
-        
+
         $this->load->view('templates/header');
         $this->load->view('pages/contact');
         $this->load->view('templates/footer');
     }
-    
-    public function status(){
-        
+
+    public function status()
+    {
+
         $this->load->library('ion_auth');
-        
+
         $this->load->view('templates/header');
         $this->load->view('pages/status');
         $this->load->view('templates/footer');
     }
-
-    
-
 }
