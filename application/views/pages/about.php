@@ -13,7 +13,7 @@ en el sector de la informática, especialitzats en hardware i reparació d'equip
 </div>
 </div>
 
-
+ 
 
 
 
