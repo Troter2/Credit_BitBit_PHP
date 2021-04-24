@@ -66,6 +66,7 @@ $route['login/login'] = 'Public/Login_controller/login';
 $route['mail/view/(:num)'] = 'Public/Mail_controller/view/$1';
 $route['mail/send'] = 'Public/Mail_controller/send';
 $route['mail/sendMail'] = 'Public/Mail_controller/sendMail';
+$route['details'] = 'Public/Home_controller/details';
 //$route['pagina/(:any)'] = '/pages/view/$1';
 //$route['pagina/(:any)/(:num)'] = '/pages/view/$1';
 //$route['news/index'] = 'news_controller/index';

@@ -55,4 +55,15 @@ class Home_controller extends Public_controller
         $this->load->view('pages/status');
         $this->load->view('templates/footer');
     }
+
+    public function details()
+    {
+
+        $this->load->library('ion_auth');
+
+        $this->load->view('templates/header');
+        $this->load->view('pages/detail_status');
+        $this->load->view('templates/footer');
+    }
+
 }
