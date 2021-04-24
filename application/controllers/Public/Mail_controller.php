@@ -15,6 +15,9 @@ class Mail_controller extends Public_controller
 
 
         $msg = $this->msg_model->getMsgId($id);
+        if($msg->recive_date==NULL){
+            $this->msg_model->setMsgRecived($id);
+        }
         $data['message'] = $msg;
         $this->load->view('templates/header');
         $this->load->view('mail/view_mail', $data);

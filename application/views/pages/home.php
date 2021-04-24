@@ -110,9 +110,15 @@
             <?php
             if (isset($messages)) {
                 foreach ($messages as $msg) {
+                    if ($msg['recive_date'] != NULL) {
             ?>
-                    <div class="mb-1 p-2 bg-light border text-truncate" style="cursor: pointer;"onclick=" location.href='<?php echo base_url('mail/view/' . $msg['id_msg']) ?>'"><span class="fa fa-envelope mr-3"></span> <?php echo $msg['about']; ?></div>
+                        <div class="mb-1 p-2 bg-light border text-truncate" style="cursor: pointer;" onclick=" location.href='<?php echo base_url('mail/view/' . $msg['id_msg']) ?>'"><span class="fa fa-envelope-open-o  mr-3"></span> <?php echo $msg['about']; ?></div>
+                    <?php
+                    } else { ?>
+
+                        <div class="mb-1 p-2 bg-light border text-truncate" style="cursor: pointer;" onclick=" location.href='<?php echo base_url('mail/view/' . $msg['id_msg']) ?>'"><span class="fa fa-envelope  mr-3"></span> <?php echo $msg['about']; ?></div>
             <?php
+                    }
                 }
             }
             ?>
