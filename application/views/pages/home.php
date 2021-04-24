@@ -101,15 +101,17 @@
             </div>
         </div>
     </div>
-    <div class="col col-sm-3 card p-0 container-fluid">
+    <div class="col col-sm-3 card p-0 container-fluid row">
 
-        <div class=" border p-3">Missatges</div>
+        <div class=" border p-3 ">Missatges</div>
+        <div class=" border  " style="cursor: pointer;" onclick=" location.href='<?php echo base_url('mail/send') ?>'">Missatge nou</div>
         <div class="py-3 px-2">
+
             <?php
             if (isset($messages)) {
                 foreach ($messages as $msg) {
             ?>
-                    <div class="mb-1 p-2 bg-light border text-truncate" onclick=" location.href='<?php echo base_url('mail/view/' . $msg['id_msg']) ?>'"><span class="fa fa-envelope mr-3"></span> <?php echo $msg['about']; ?></div>
+                    <div class="mb-1 p-2 bg-light border text-truncate" style="cursor: pointer;"onclick=" location.href='<?php echo base_url('mail/view/' . $msg['id_msg']) ?>'"><span class="fa fa-envelope mr-3"></span> <?php echo $msg['about']; ?></div>
             <?php
                 }
             }

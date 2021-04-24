@@ -17,7 +17,7 @@ class Mail_controller extends Public_controller
         $msg = $this->msg_model->getMsgId($id);
         $data['message'] = $msg;
         $this->load->view('templates/header');
-        $this->load->view('mail/view_mail',$data);
+        $this->load->view('mail/view_mail', $data);
         $this->load->view('templates/footer');
     }
 
@@ -30,5 +30,24 @@ class Mail_controller extends Public_controller
         $this->load->view('templates/header');
         $this->load->view('mail/create_mail');
         $this->load->view('templates/footer');
+    }
+    public function sendMail()
+    {
+
+        $this->load->library('ion_auth');
+        $this->load->helper('url');
+        $this->load->helper('form');
+
+        $userinfo = $this->ion_auth->user()->row();
+        $user = $userinfo->username;
+
+        $this->msg_model->setMsg($user);
+
+
+        $this->load->view('templates/header');
+        $this->load->view('mail/create_mail');
+        $this->load->view('templates/footer');
+
+        redirect(base_url('/home'));
     }
 }
