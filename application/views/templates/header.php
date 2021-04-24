@@ -28,7 +28,7 @@
                         <a href="<?php echo base_url('/about') ?>"><span class="fa fa-user"></span> About</a>
                     </li>
                     <li>
-                        <a href="#"><span class="fa fa-sticky-note"></span> Blog</a>
+                        <a href="<?php echo base_url('/status') ?>"><span class="fa fa-sticky-note"></span>Status</a>
                     </li>
                     <li>
                         <a href="<?php echo base_url('/contact') ?>"><span class="fa fa-paper-plane"></span> Contacts</a>
