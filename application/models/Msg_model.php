@@ -13,7 +13,7 @@ class Msg_model extends CI_Model
         $query = $this->db->get_where('messages', array('id_msg' => $id));
         return $query->row();
     }
-    public function setMsg()
+    public function setMsg($from)
     {
         $this->load->helper('url');
 
@@ -21,7 +21,7 @@ class Msg_model extends CI_Model
             'to' => $this->input->post('to'),
             'about' => $this->input->post('about'),
             'content' => $this->input->post('content'),
-            'from' => $this->input->post('content'),
+            'from' => $from,
             'send_date' => date("Y-m-d"),
             'send_hour' => date("H:i:sa")
         );

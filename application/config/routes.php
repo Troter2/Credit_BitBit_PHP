@@ -55,6 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['home'] = 'Public/Home_controller/view';
 $route['login'] = 'Public/Login_controller/login_page';
+$route['register'] = 'Public/Login_controller/register_page';
 $route['logout'] = 'Public/Login_controller/logout';
 $route['about'] = 'Public/Home_controller/about';
 $route['contact'] = 'Public/Home_controller/contact';
@@ -63,6 +64,7 @@ $route['userProfile'] = 'Public/User_controller/user_profile';
 $route['userEdit'] = 'Public/User_controller/user_edit_page';
 $route['updateUser'] = 'Public/User_controller/update';
 $route['login/login'] = 'Public/Login_controller/login';
+$route['login/register'] = 'Public/Login_controller/register';
 $route['mail/view/(:num)'] = 'Public/Mail_controller/view/$1';
 $route['mail/send'] = 'Public/Mail_controller/send';
 $route['mail/sendMail'] = 'Public/Mail_controller/sendMail';

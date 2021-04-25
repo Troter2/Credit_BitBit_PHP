@@ -21,6 +21,19 @@ class Login_controller extends Public_controller
         $this->load->view('templates/footer');
     }
 
+    public function register_page()
+    {
+        $this->load->library('session');
+        $this->load->library('form_validation');
+        $this->load->helper('url');
+        $this->load->helper('form');
+
+
+        $this->load->view('templates/header');
+        $this->load->view('pages/register');
+        $this->load->view('templates/footer');
+    }
+
     public function login()
     {
         $this->load->library('session');
@@ -42,6 +55,40 @@ class Login_controller extends Public_controller
             redirect(base_url('login'));
         }
         $this->load->view('templates/footer');
+    }
+    public function register()
+    {
+        $this->load->library('session');
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('username', 'Username', 'required|is_unique[users.username]');
+        $this->form_validation->set_rules('pass', 'pass', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required|is_unique[users.email]');
+        $this->form_validation->set_rules('first_name', 'first_name', 'required');
+        $this->form_validation->set_rules('last_name', 'last_name', 'required');
+
+        $username = $this->input->post('username');
+        $password = $this->input->post('pass');
+        $email = $this->input->post('email');
+        $additional_data = array(
+            'first_name' => $this->input->post('name'),
+            'last_name' => $this->input->post('lastname'),
+        );
+
+        if ($this->input->post('company')) {
+            $additional_data['company'] = $this->input->post('company');
+        }
+        if ($this->input->post('phone')) {
+            $additional_data['phone'] = $this->input->post('phone');
+        }
+
+        $additional_data['company'] = $this->input->post('company');
+        $additional_data['phone'] = $this->input->post('phone');
+
+        $this->ion_auth->register($username, $password, $email, $additional_data);
+        redirect(base_url('/home'));
     }
     public function logout()
     {
