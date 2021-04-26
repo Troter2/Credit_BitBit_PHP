@@ -19,7 +19,7 @@
         <!-- Navigation -->
         <div class="wrapper d-flex align-items-stretch">
             <nav id="sidebar" class="active">
-                <h1><a href="index.html" class="logo">M.</a></h1>
+                <h1><a href="<?php echo base_url('/home') ?>" class="logo">M.</a></h1>
                 <ul class="list-unstyled components mb-5">
                     <li class="active">
                         <a href="<?php echo base_url('/home') ?>"><span class="fa fa-home"></span> Home</a>
@@ -41,11 +41,11 @@
                             <div class="dropdown-menu">
                                 <!-- Dropdown menu links -->
                                 <ul class="pl-1">
-                                    <li class="dropdown-item"><a class="text-dark" href="#">Usuaris</a></li>
-                                    <li class="dropdown-item"><a class="text-dark" href="#">Correu</a></li>
-                                    <li class="dropdown-item"><a class="text-dark" href="#">Modificar Home</a></li>
-                                    <li class="dropdown-item"><a class="text-dark" href="#">MODIFICAR OPCIONS CONTACTE</a></li>
-                                    <li class="dropdown-item"><a class="text-dark" href="#">dasboard</a></li>
+                                    <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('/contact') ?>">Gestor Usuaris</a></li>
+                                    <li class="dropdown-item"><a class="text-dark" href="#">Gestor </a></li>
+                                    <li class="dropdown-item"><a class="text-dark" href="#">Gestor </a></li>
+                                    <li class="dropdown-item"><a class="text-dark" href="#">Gestor </a></li>
+                                    <li class="dropdown-item"><a class="text-dark" href="#">Gestor </a></li>
                                 </ul>
                             </div>
                         </div>
