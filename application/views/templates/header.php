@@ -42,7 +42,7 @@
                                 <!-- Dropdown menu links -->
                                 <ul class="pl-1">
                                     <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('/contact') ?>">Gestor Usuaris</a></li>
-                                    <li class="dropdown-item"><a class="text-dark" href="#">Gestor </a></li>
+                                    <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('/news_admin') ?>">Gestor de noticies </a></li>
                                     <li class="dropdown-item"><a class="text-dark" href="#">Gestor </a></li>
                                     <li class="dropdown-item"><a class="text-dark" href="#">Gestor </a></li>
                                     <li class="dropdown-item"><a class="text-dark" href="#">Gestor </a></li>
