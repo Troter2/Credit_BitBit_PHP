@@ -57,18 +57,29 @@ $route['home'] = 'Public/Home_controller/view';
 $route['login'] = 'Public/Login_controller/login_page';
 $route['register'] = 'Public/Login_controller/register_page';
 $route['logout'] = 'Public/Login_controller/logout';
+
 $route['about'] = 'Public/Home_controller/about';
 $route['contact'] = 'Public/Home_controller/contact';
+
 $route['status'] = 'Public/Home_controller/status';
+
 $route['userProfile'] = 'Public/User_controller/user_profile';
 $route['userEdit'] = 'Public/User_controller/user_edit_page';
 $route['updateUser'] = 'Public/User_controller/update';
+
 $route['login/login'] = 'Public/Login_controller/login';
 $route['login/register'] = 'Public/Login_controller/register';
+
 $route['mail/view/(:num)'] = 'Public/Mail_controller/view/$1';
 $route['mail/send'] = 'Public/Mail_controller/send';
 $route['mail/sendMail'] = 'Public/Mail_controller/sendMail';
+
 $route['details'] = 'Public/Home_controller/details';
+
+
+$route['admin/index'] = 'Private/Grocery_controller/index';
+$route['admin/index/(:any)'] = 'Private/Grocery_controller/index/$1';
+$route['admin/index/(:any)/(:any)'] = 'Private/Grocery_controller/index/$1/$2';
 //$route['pagina/(:any)'] = '/pages/view/$1';
 //$route['pagina/(:any)/(:num)'] = '/pages/view/$1';
 //$route['news/index'] = 'news_controller/index';

@@ -31,9 +31,6 @@ class Msg_model extends CI_Model
     }
     public function setMsgRecived($id)
     {
-        
-        $data = array('recive_date' => date("Y-m-d"), 'recive_hour' => date("H:i:sa"));
-        $where = "id_msg = ".$id;
         return $this->db->query('UPDATE messages SET recive_date = "'.date("Y-m-d").'", recive_hour = "'.date("H:i:sa").'" WHERE id_msg ='. $id);
     }
 }
