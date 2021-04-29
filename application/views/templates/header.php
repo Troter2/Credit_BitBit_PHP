@@ -6,6 +6,17 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <?php if (isset($css_files)) :
+
+        foreach ($css_files as $file) : ?>
+            <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
+    <?php endforeach;
+    endif; ?>
+    <?php
+    if (isset($grocery)) { ?>
+        <script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/js/popper.js'); ?>"></script>
+    <?php } ?>
 
     <title>CodeIgniter Tutorial</title>
 </head>

@@ -4,6 +4,7 @@ class Msg_model extends CI_Model
 
     public function getMsg($user)
     {
+        $this->db->order_by("send_date DESC, send_hour DESC");
         $query = $this->db->get_where('messages', array('to' => $user));
         return $query->result_array();
     }

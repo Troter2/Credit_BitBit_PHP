@@ -13,22 +13,28 @@ class Grocery_controller extends CI_Controller
 
 	public function index()
 	{
-        $this->load->library('session');
-        $this->load->library('ion_auth');
-        if ($this->ion_auth->logged_in()) {
+		$this->load->library('session');
+		$this->load->library('ion_auth');
+		if ($this->ion_auth->logged_in()) {
 
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('tablestrap');
+			$crud->set_theme('adminlte');
 			$crud->set_table('users');
+
+			$crud->set_crud_url_path(base_url('admin/index'));
 			$crud->change_field_type('slug', 'invisible');
-			$crud->columns(['username','email','first_name','last_name','company','phone']);
+			$crud->columns(['username', 'email', 'first_name', 'last_name', 'company', 'phone']);
 			$output = $crud->render();
-			//$this->load->view('templates/header');
-			$this->_render_output($output);
-			//$this->load->view('templates/footer');
-		}else{
-			redirect(base_url('news'));
+
+			$data["css_files"] = $output->css_files;
+			$data["grocery"] = true;
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('grocery/index.php', (array)$output);
+			$this->load->view('templates/footer', $data);
+		} else {
+			redirect(base_url('home'));
 		}
 	}
 
@@ -46,6 +52,11 @@ class Grocery_controller extends CI_Controller
 		$post_array["slug"] = strtr($post_array['title'], " ", "-") . "-" . $post_array['date'];
 
 		return $post_array;
+	}
+
+	protected function _render_output2($output = null)
+	{
+		$this->load->view('grocery/index-pelat.php', (array)$output);
 	}
 
 	protected function _render_output($output = null)
