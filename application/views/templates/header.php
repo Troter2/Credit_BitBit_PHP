@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="icon" type="image/png" href="<?php echo base_url('/assets/img/logo/favIcon.svg') ?>">
 
     <?php if (isset($css_files)) :
 
@@ -17,7 +18,7 @@
         <script src="<?php echo base_url('assets/js/popper.js'); ?>"></script>
     <?php } ?>
 
-    <title>CodeIgniter Tutorial</title>
+    <title>BitBit</title>
 </head>
 
 <body>
