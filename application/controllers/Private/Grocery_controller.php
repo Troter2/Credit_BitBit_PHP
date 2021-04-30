@@ -38,6 +38,56 @@ class Grocery_controller extends CI_Controller
 		}
 	}
 
+	public function user()
+	{
+		$this->load->library('session');
+		$this->load->library('ion_auth');
+		if ($this->ion_auth->logged_in()) {
+
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('adminlte');
+			$crud->set_table('users');
+
+			$crud->change_field_type('slug', 'invisible');
+			$crud->columns(['username', 'email', 'first_name', 'last_name', 'company', 'phone']);
+			$output = $crud->render();
+
+			$data["css_files"] = $output->css_files;
+			$data["grocery"] = true;
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('grocery/index.php', (array)$output);
+			$this->load->view('templates/footer', $data);
+		} else {
+			redirect(base_url('home'));
+		}
+	}
+	public function mail()
+	{
+		$this->load->library('session');
+		$this->load->library('ion_auth');
+		if ($this->ion_auth->logged_in()) {
+
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('adminlte');
+			$crud->set_table('messages');
+
+			$crud->change_field_type('slug', 'invisible');
+			$output = $crud->render();
+
+			$data["css_files"] = $output->css_files;
+			$data["grocery"] = true;
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('grocery/index.php', (array)$output);
+			$this->load->view('templates/footer', $data);
+		} else {
+			redirect(base_url('home'));
+		}
+	}
+
 	function news_before_insert($post_array)
 	{
 
