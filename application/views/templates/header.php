@@ -24,7 +24,6 @@
     </head>
 
     <body id="page-top" data-spy="scroll" data-target=".navbar">
-        <!-- <script src="<?= base_url('assets/js/bootstrap.js') ?>"></script> -->
         <?php $this->load->library('session'); ?>
         <!-- Navigation -->
         <div class="wrapper d-flex align-items-stretch">
