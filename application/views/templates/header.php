@@ -1,10 +1,9 @@
 <head>
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css'); ?>">
+    <!-- <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css'); ?>"> -->
     <link rel="stylesheet" href="<?php echo base_url('assets/css/mycss.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <?php if (isset($css_files)) :
 
@@ -25,7 +24,7 @@
     </head>
 
     <body id="page-top" data-spy="scroll" data-target=".navbar">
-        <script src="<?= base_url('assets/js/bootstrap.js') ?>"></script>
+        <!-- <script src="<?= base_url('assets/js/bootstrap.js') ?>"></script> -->
         <?php $this->load->library('session'); ?>
         <!-- Navigation -->
         <div class="wrapper d-flex align-items-stretch">

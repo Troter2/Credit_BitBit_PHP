@@ -1,5 +1,5 @@
 <?php
-    $this->set_css($this->default_theme_path.'/adminlte/css/bootstrap/bootstrap.min.css');
+    // $this->set_css($this->default_theme_path.'/adminlte/css/bootstrap/bootstrap.min.css');
     $this->set_css($this->default_theme_path.'/adminlte/css/font-awesome/css/font-awesome.min.css');
     $this->set_css($this->default_theme_path.'/adminlte/css/common.css');
     $this->set_css($this->default_theme_path.'/adminlte/css/general.css');

@@ -1,5 +1,5 @@
 <?php
-    $this->set_css($this->default_theme_path.'/adminlte/css/bootstrap/bootstrap.min.css');
+    // $this->set_css($this->default_theme_path.'/adminlte/css/bootstrap/bootstrap.min.css');
     $this->set_css($this->default_theme_path.'/adminlte/css/font-awesome/css/font-awesome.min.css');
     $this->set_css($this->default_theme_path.'/adminlte/css/common.css');
     $this->set_css($this->default_theme_path.'/adminlte/css/general.css');
@@ -37,7 +37,7 @@
             <?php echo form_open( $insert_url, 'method="post" id="crudForm"  enctype="multipart/form-data" class="form-horizontal"'); ?>
 
                 <?php foreach($fields as $field) { ?>
-                    <div class="form-group <?php echo $field->field_name; ?>_form_group">
+                    <div class="form-group <?php echo $field->field_name; ?>_form_group row">
                         <label class="col-sm-2 control-label">
                             <?php echo $input_fields[$field->field_name]->display_as; ?><?php echo ($input_fields[$field->field_name]->required) ? "<span class='required'>*</span> " : ""; ?>
                         </label>

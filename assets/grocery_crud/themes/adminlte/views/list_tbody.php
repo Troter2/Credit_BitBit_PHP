@@ -31,9 +31,6 @@
     <tr>
         <td <?php if ($unset_delete) { ?> style="border-right: none;"<?php } ?>
             <?php if ($buttons_counter === 0) {?>class="hidden"<?php }?>>
-            <?php if (!$unset_delete) { ?>
-                <input type="checkbox" class="select-row" data-id="<?php echo $row->primary_key_value; ?>" />
-            <?php } ?>
         </td>
         <td style="width: 142px;" <?php if ($buttons_counter === 0) {?>class="hidden"<?php }?>>
                 <div class="only-desktops"  style="white-space: nowrap">
@@ -49,14 +46,14 @@
                                     <!-- <?php echo $more_string; ?> -->
                                     <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu pl-3">
                                         <?php
                                             if(!empty($row->action_urls)){
                                                 foreach($row->action_urls as $action_unique_id => $action_url){
                                                     $action = $actions[$action_unique_id];
                                                     ?>
-                                                    <li>
-                                                        <a href="<?php echo $action_url; ?>">
+                                                    <li class="">
+                                                        <a href="<?php echo $action_url; ?>" >
                                                             <i class="fa <?php echo $action->css_class; ?>"></i> <?php echo $action->label?>
                                                         </a>
                                                     </li>

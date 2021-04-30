@@ -1,5 +1,5 @@
 <?php
-    $this->set_css($this->default_theme_path.'/adminlte/css/bootstrap/bootstrap.min.css');
+    // $this->set_css($this->default_theme_path.'/adminlte/css/bootstrap/bootstrap.min.css');
     $this->set_css($this->default_theme_path.'/adminlte/css/font-awesome/css/font-awesome.min.css');    
     $this->set_css($this->default_theme_path.'/adminlte/css/common.css');    
     $this->set_css($this->default_theme_path.'/adminlte/css/list.css');
@@ -111,7 +111,7 @@ if($success_message !== null){?>
                     </a>
                 <?php }?>
 
-                <a class="btn btn-primary search-button">
+                <a class="btn btn-primary search-button row">
                     <i class="fa fa-search"></i>
                     <input type="text" name="search" class="search-input" />
                 </a>
@@ -134,11 +134,7 @@ if($success_message !== null){?>
                     
                     <tr class="filter-row gc-search-row">
                         <td class="no-border-right <?php if ($buttons_counter === 0) {?>hidden<?php }?>">
-                            <?php if (!$unset_delete) { ?>
-                                 <div class="floatL t5">
-                                     <input type="checkbox" class="select-all-none" />
-                                 </div>
-                             <?php } ?>
+                            
                          </td>
                         <td class="no-border-left <?php if ($buttons_counter === 0) {?>hidden<?php }?>">
                             <div class="floatL">

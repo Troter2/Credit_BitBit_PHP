@@ -1,5 +1,5 @@
 <?php
-$this->set_css($this->default_theme_path.'/bootstrap/css/bootstrap/bootstrap.min.css');
+// $this->set_css($this->default_theme_path.'/bootstrap/css/bootstrap/bootstrap.min.css');
 $this->set_css($this->default_theme_path.'/bootstrap/css/font-awesome/css/font-awesome.min.css');
 $this->set_css($this->default_theme_path.'/bootstrap/css/common.css');
 $this->set_css($this->default_theme_path.'/bootstrap/css/general.css');
@@ -35,7 +35,7 @@ if ($this->config->environment == 'production') {
                     <?php echo form_open( $update_url, 'method="post" id="crudForm"  enctype="multipart/form-data" class="form-horizontal"'); ?>
 
                     <?php foreach($fields as $field) { ?>
-                        <div class="form-group">
+                        <div class="form-group row">
                             <label class="col-sm-3 control-label">
                                 <?php echo $input_fields[$field->field_name]->display_as?>:
                             </label>
