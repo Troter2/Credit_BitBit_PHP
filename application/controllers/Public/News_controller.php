@@ -9,22 +9,31 @@ class News_controller extends Public_controller
         $this->load->model('news_model');
     }
 
-    public function view($id)
+    public function view_new($id)
     {
         $this->load->helper('url');
 
 
-        $msg = $this->msg_model->getMsgId($id);
-        if($msg->recive_date==NULL){
-            $this->msg_model->setMsgRecived($id);
-        }
-        $data['new'] = $msg;
+        $new = $this->news_model->getNewId($id);
+        $data['new'] = $new;
         $this->load->view('templates/header');
-        $this->load->view('mail/view_mail', $data);
+        $this->load->view('new/view_new', $data);
         $this->load->view('templates/footer');
     }
 
-    public function send()
+    public function view_all_new()
+    {
+        $this->load->helper('url');
+
+
+        $new = $this->news_model->getNew();
+        $data['news'] = $new;
+        $this->load->view('templates/header');
+        $this->load->view('pages/home', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function view_create_news()
     {
         $this->load->helper('url');
         $this->load->helper('form');
@@ -34,22 +43,14 @@ class News_controller extends Public_controller
         $this->load->view('news/create_news');
         $this->load->view('templates/footer');
     }
-    public function sendMail()
+    public function create_news()
     {
-
         $this->load->library('ion_auth');
         $this->load->helper('url');
         $this->load->helper('form');
 
-        $userinfo = $this->ion_auth->user()->row();
-        $user = $userinfo->username;
 
-        $this->msg_model->setMsg($user);
-
-
-        $this->load->view('templates/header');
-        $this->load->view('news/create_news');
-        $this->load->view('templates/footer');
+        $this->news_model->setNew();
 
         redirect(base_url('/home'));
     }

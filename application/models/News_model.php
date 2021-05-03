@@ -2,9 +2,12 @@
 class News_model extends CI_Model
 {
 
-    public function getNew($user)
+    public function getNew()
     {
-        $query = $this->db->get_where('news', array('to' => $user));
+        $query = $this->db->get('news', 10, 0);
+
+        //echo $this->db->last_query();
+        
         return $query->result_array();
     }
 
@@ -12,8 +15,9 @@ class News_model extends CI_Model
     {
         $query = $this->db->get_where('news', array('id_new' => $id));
         return $query->row();
+
     }
-    public function setNew($from)
+    public function setNew()
     {
         $this->load->helper('url');
 
@@ -21,6 +25,7 @@ class News_model extends CI_Model
             'title' => $this->input->post('title'),
             'content' => $this->input->post('content'),
             'image' => $this->input->post('image'),
+            'date' => date("Y-m-d")
         );
 
         return $this->db->insert('news', $data);

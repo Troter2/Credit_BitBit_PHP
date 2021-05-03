@@ -28,18 +28,40 @@
         </div>
     </div>
     <div class="col col-sm-9 row">
-        <div class="col col-sm-12 col-md-6 col-lg-4">
-            <div class="card m-2">
-                <img src="https://mdbootstrap.com/img/new/standard/city/042.jpg" class="card-img-top" alt="Sample image" />
-                <div class="p-2">
-                    <h5 class="">Card title</h5>
-                    <p class="">
-                        This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.
-                    </p>
-                </div>
-            </div>
-        </div>
+
+
+
+    <?php
+            if (isset($news)) {
+                foreach ($news as $new) {
+            ?>
+                    <div class="col col-sm-12 col-md-6 col-lg-4">
+                        <div class="card m-2">
+                            <img src="<?php echo $new['image']; ?>" class="card-img-top" alt="Sample image" />
+                            <div class="p-2">
+                                <h5 class=""><?php echo $new['title']; ?></h5>
+                                <p class="">
+                                <?php echo $new['content']; ?>
+                                </p>
+                            </div>
+                            <p class="">
+                                <?php echo $new['date']; ?>
+                            </p>
+                        </div>
+                    </div>   
+                     <?php
+                }
+            }
+            ?>
+
+
+
+
+
+
+
+
+        
         <div class="col col-sm-12 col-md-6 col-lg-4">
             <div class="card m-2">
                 <img src="https://mdbootstrap.com/img/new/standard/city/042.jpg" class="card-img-top" alt="Sample image" />

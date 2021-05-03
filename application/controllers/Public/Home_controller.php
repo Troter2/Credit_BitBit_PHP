@@ -7,20 +7,32 @@ class Home_controller extends Public_controller
         $this->load->helper('url_helper');
         $this->load->library('ion_auth');
         $this->load->model('msg_model');
+        
+        $this->load->model('news_model');
     }
 
     public function view()
     {
+        
         $this->load->view('templates/header');
+        
+
+        $new = $this->news_model->getNew();
+        $data['news'] = $new;
+        
         if ($this->ion_auth->logged_in()) {
             $userinfo = $this->ion_auth->user()->row();
             $user = $userinfo->username;
 
+
             $msg = $this->msg_model->getMsg($user);
-            $data['messages'] = $msg;
+            $data['message'] = $msg;
+
             $this->load->view('pages/home', $data);
         }else{
-            $this->load->view('pages/home');
+           
+            $this->load->view('pages/home',$data);
+
 
         }
         $this->load->view('templates/footer');
