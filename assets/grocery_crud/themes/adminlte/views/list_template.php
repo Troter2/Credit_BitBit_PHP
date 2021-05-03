@@ -1,83 +1,83 @@
 <?php
-    // $this->set_css($this->default_theme_path.'/adminlte/css/bootstrap/bootstrap.min.css');
-    $this->set_css($this->default_theme_path.'/adminlte/css/font-awesome/css/font-awesome.min.css');    
-    $this->set_css($this->default_theme_path.'/adminlte/css/common.css');    
-    $this->set_css($this->default_theme_path.'/adminlte/css/list.css');
-    $this->set_css($this->default_theme_path.'/adminlte/css/general.css');
-    $this->set_css($this->default_theme_path.'/adminlte/css/plugins/animate.min.css');
+// $this->set_css($this->default_theme_path.'/adminlte/css/bootstrap/bootstrap.min.css');
+$this->set_css($this->default_theme_path . '/adminlte/css/font-awesome/css/font-awesome.min.css');
+$this->set_css($this->default_theme_path . '/adminlte/css/common.css');
+$this->set_css($this->default_theme_path . '/adminlte/css/list.css');
+$this->set_css($this->default_theme_path . '/adminlte/css/general.css');
+$this->set_css($this->default_theme_path . '/adminlte/css/plugins/animate.min.css');
 
 
-    if ($this->config->environment == 'production') {
-        $this->set_js_lib($this->default_javascript_path.'/'.grocery_CRUD::JQUERY);
-        $this->set_js_lib($this->default_theme_path.'/adminlte/build/js/global-libs.min.js');
-    } else {
-        $this->set_js_lib($this->default_javascript_path.'/'.grocery_CRUD::JQUERY);
-        $this->set_js_lib($this->default_theme_path.'/adminlte/js/jquery-plugins/jquery.form.js');
-        $this->set_js_lib($this->default_theme_path.'/adminlte/js/common/cache-library.js');
-        $this->set_js_lib($this->default_theme_path.'/adminlte/js/common/common.js');
-    }
+if ($this->config->environment == 'production') {
+    $this->set_js_lib($this->default_javascript_path . '/' . grocery_CRUD::JQUERY);
+    $this->set_js_lib($this->default_theme_path . '/adminlte/build/js/global-libs.min.js');
+} else {
+    $this->set_js_lib($this->default_javascript_path . '/' . grocery_CRUD::JQUERY);
+    $this->set_js_lib($this->default_theme_path . '/adminlte/js/jquery-plugins/jquery.form.js');
+    $this->set_js_lib($this->default_theme_path . '/adminlte/js/common/cache-library.js');
+    $this->set_js_lib($this->default_theme_path . '/adminlte/js/common/common.js');
+}
 
-    //section libs
-    // $this->set_js_lib($this->default_theme_path.'/adminlte/js/bootstrap/dropdown.min.js');
-    $this->set_js_lib($this->default_theme_path.'/adminlte/js/bootstrap/modal.min.js');
-    $this->set_js_lib($this->default_theme_path.'/adminlte/js/jquery-plugins/bootstrap-growl.min.js');
-    $this->set_js_lib($this->default_theme_path.'/adminlte/js/jquery-plugins/jquery.print-this.js');
+//section libs
+// $this->set_js_lib($this->default_theme_path.'/adminlte/js/bootstrap/dropdown.min.js');
+$this->set_js_lib($this->default_theme_path . '/adminlte/js/bootstrap/modal.min.js');
+$this->set_js_lib($this->default_theme_path . '/adminlte/js/jquery-plugins/bootstrap-growl.min.js');
+$this->set_js_lib($this->default_theme_path . '/adminlte/js/jquery-plugins/jquery.print-this.js');
 
 
-    //page js
-    $this->set_js_lib($this->default_theme_path.'/adminlte/js/datagrid/gcrud.datagrid.js');
-    $this->set_js_lib($this->default_theme_path.'/adminlte/js/datagrid/list.js');
+//page js
+$this->set_js_lib($this->default_theme_path . '/adminlte/js/datagrid/gcrud.datagrid.js');
+$this->set_js_lib($this->default_theme_path . '/adminlte/js/datagrid/list.js');
 
-    $colspans = (count($columns) + 2);
+$colspans = (count($columns) + 2);
 
-    //Start counting the buttons that we have:
-    $buttons_counter = 0;
+//Start counting the buttons that we have:
+$buttons_counter = 0;
 
-    if (!$unset_edit) {
-        $buttons_counter++;
-    }
+if (!$unset_edit) {
+    $buttons_counter++;
+}
 
-    if (!$unset_read) {
-        $buttons_counter++;
-    }
+if (!$unset_read) {
+    $buttons_counter++;
+}
 
-    if (!$unset_delete) {
-        $buttons_counter++;
-    }
+if (!$unset_delete) {
+    $buttons_counter++;
+}
 
-    if (!empty($list[0]) && !empty($list[0]->action_urls)) {
-        $buttons_counter = $buttons_counter +  count($list[0]->action_urls);
-    }
+if (!empty($list[0]) && !empty($list[0]->action_urls)) {
+    $buttons_counter = $buttons_counter +  count($list[0]->action_urls);
+}
 
-    $list_displaying = str_replace(
-        array(
-            '{start}',
-            '{end}',
-            '{results}'
-        ),
-        array(
-            '<span class="paging-starts">1</span>',
-            '<span class="paging-ends">10</span>',
-            '<span class="current-total-results">'. $this->get_total_results() . '</span>'
-        ),
-        $this->l('list_displaying'));
+$list_displaying = str_replace(
+    array(
+        '{start}',
+        '{end}',
+        '{results}'
+    ),
+    array(
+        '<span class="paging-starts">1</span>',
+        '<span class="paging-ends">10</span>',
+        '<span class="current-total-results">' . $this->get_total_results() . '</span>'
+    ),
+    $this->l('list_displaying')
+);
 ?>
 <script type='text/javascript'>
-    var base_url = '<?php echo base_url();?>';
+    var base_url = '<?php echo base_url(); ?>';
 
-    var subject = '<?php echo $subject?>';
+    var subject = '<?php echo $subject ?>';
     var ajax_list_info_url = '<?php echo $ajax_list_info_url; ?>';
-    var ajax_list_url = '<?php echo $ajax_list_url;?>';
+    var ajax_list_url = '<?php echo $ajax_list_url; ?>';
     var unique_hash = '<?php echo $unique_hash; ?>';
 
     var message_alert_delete = "<?php echo $this->l('alert_delete'); ?>";
-
 </script>
 <div class="success-message hidden"><?php
-if($success_message !== null){?>
-   <?php echo $success_message; ?> &nbsp; &nbsp;
-<?php }
-?></div>
+                                    if ($success_message !== null) { ?>
+        <?php echo $success_message; ?> &nbsp; &nbsp;
+    <?php }
+    ?></div>
 
 <div class="box gc-container">
     <div class="box-header">
@@ -87,29 +87,29 @@ if($success_message !== null){?>
     <div class="box-body table-container">
         <div class="row">
             <div class="col-md-2 col-xs-4">
-                <?php if(!$unset_add){?>
-                        <a class="btn btn-primary btn-flat" href="<?php echo $add_url?>"><i class="fa fa-plus"></i> &nbsp; <?php echo $this->l('list_add'); ?> <?php echo $subject?></a>
+                <?php if (!$unset_add) { ?>
+                    <a class="btn btn-primary btn-flat" href="<?php echo $add_url ?>"><i class="fa fa-plus"></i> &nbsp; <?php echo $this->l('list_add'); ?> <?php echo $subject ?></a>
                 <?php } ?>
             </div>
             <div class="col-md-10 col-xs-8 text-right">
-                <?php if(!$unset_export) { ?>
+                <?php if (!$unset_export) { ?>
                     <a class="btn btn-default btn-flat gc-export" data-url="<?php echo $export_url; ?>">
                         <i class="fa fa-cloud-download"></i>
                         <span class="hidden-xs">
-                            <?php echo $this->l('list_export');?>
+                            <?php echo $this->l('list_export'); ?>
                         </span>
                         <div class="clear"></div>
                     </a>
                 <?php } ?>
-                <?php if(!$unset_print) { ?>
+                <?php if (!$unset_print) { ?>
                     <a class="btn btn-default btn-flat gc-print" data-url="<?php echo $print_url; ?>">
                         <i class="fa fa-print"></i>
                         <span class="hidden-xs">
-                            <?php echo $this->l('list_print');?>
+                            <?php echo $this->l('list_print'); ?>
                         </span>
                         <div class="clear"></div>
                     </a>
-                <?php }?>
+                <?php } ?>
 
                 <a class="btn btn-primary search-button row">
                     <i class="fa fa-search"></i>
@@ -124,24 +124,23 @@ if($success_message !== null){?>
             <table class="table table-bordered grocery-crud-table table-hover" style="margin-top:10px;">
                 <thead>
                     <tr>
-                        <th colspan="2" <?php if ($buttons_counter === 0) {?>class="hidden"<?php }?>>
+                        <th colspan="2" <?php if ($buttons_counter === 0) { ?>class="hidden" <?php } ?>>
                             <?php echo $this->l('list_actions'); ?>
                         </th>
-                        <?php foreach($columns as $column){?>
+                        <?php foreach ($columns as $column) { ?>
                             <th class="column-with-ordering" data-order-by="<?php echo $column->field_name; ?>"><?php echo $column->display_as; ?></th>
-                        <?php }?>
+                        <?php } ?>
                     </tr>
-                    
+
                     <tr class="filter-row gc-search-row">
-                        <td class="no-border-right <?php if ($buttons_counter === 0) {?>hidden<?php }?>">
-                            
-                         </td>
-                        <td class="no-border-left <?php if ($buttons_counter === 0) {?>hidden<?php }?>">
+                        <td class="no-border-right <?php if ($buttons_counter === 0) { ?>hidden<?php } ?>">
+                        
+                        </td>
+                        <td class="no-border-left <?php if ($buttons_counter === 0) { ?>hidden<?php } ?>">
                             <div class="floatL">
-                                <a href="javascript:void(0);" title="<?php echo $this->l('list_delete')?>"
-                                   class="hidden btn btn-default delete-selected-button">
+                                <a href="javascript:void(0);" title="<?php echo $this->l('list_delete') ?>" class="hidden btn btn-default delete-selected-button">
                                     <i class="fa fa-trash-o text-danger"></i>
-                                    <span class="text-danger"><?php echo $this->l('list_delete')?></span>
+                                    <span class="text-danger"><?php echo $this->l('list_delete') ?></span>
                                 </a>
                             </div>
                             <div class="floatR l5">
@@ -149,76 +148,76 @@ if($success_message !== null){?>
                                     <i class="fa fa-refresh"></i>
                                 </a>
                             </div>
-                            </div>
-                            <div class="clear"></div>
-                        </td>
-                        <?php foreach($columns as $column){?>
-                            <td>
-                                <input type="text" class="form-control searchable-input floatL" placeholder="Search <?php echo $column->display_as; ?>" name="<?php echo $column->field_name; ?>" />
-                            </td>
-                        <?php }?>
-                    </tr>
-
-                </thead>
-                <tbody>
-                    <?php include(__DIR__."/list_tbody.php"); ?>
-                </tbody>
-            </table>
-
         </div>
-        <?php echo form_close(); ?>
+        <div class="clear"></div>
+        </td>
+        <?php foreach ($columns as $column) { ?>
+            <td>
+                <input type="text" class="form-control searchable-input floatL" placeholder="Search <?php echo $column->display_as; ?>" name="<?php echo $column->field_name; ?>" />
+            </td>
+        <?php } ?>
+        </tr>
+
+        </thead>
+        <tbody>
+            <?php include(__DIR__ . "/list_tbody.php"); ?>
+        </tbody>
+        </table>
+
     </div>
-    <div class="box-footer clear-fix">
-        <div class="row">
-            <div class="col-md-3 col-xs-12">
-                    <div class="floatL t10">
-                        <?php list($show_lang_string, $entries_lang_string) = explode('{paging}', $this->l('list_show_entries')); ?>
-                        <?php echo $show_lang_string; ?>
-                    </div>
-                    <div class="floatL r5 l5 t3">
-                        <select name="per_page" class="per_page form-control">
-                            <?php foreach($paging_options as $option){?>
-                                <option value="<?php echo $option; ?>"
-                                        <?php if($option == $default_per_page){?>selected="selected"<?php }?>>
-                                            <?php echo $option; ?>&nbsp;&nbsp;
-                                </option>
-                            <?php }?>
-                        </select>
-                    </div>
-                    <div class="floatL t10">
-                        <?php echo $entries_lang_string; ?>
-                    </div>
-                    <div class="clear"></div>
+    <?php echo form_close(); ?>
+</div>
+<div class="box-footer clear-fix">
+    <div class="row">
+        <div class="col-md-3 col-xs-12">
+            <div class="floatL t10">
+                <?php list($show_lang_string, $entries_lang_string) = explode('{paging}', $this->l('list_show_entries')); ?>
+                <?php echo $show_lang_string; ?>
             </div>
-            <div class="col-md-4 col-xs-12" style="padding-top: 10px;">
-                <?php echo $list_displaying; ?>
-                <span class="full-total-container hidden">
-                    <?php echo str_replace(
-                                "{total_results}",
-                                "<span class='full-total'>" . $this->get_total_results() . "</span>",
-                                $this->l('list_filtered_from'));
-                    ?>
-                </span>
+            <div class="floatL r5 l5 t3">
+                <select name="per_page" class="per_page form-control">
+                    <?php foreach ($paging_options as $option) { ?>
+                        <option value="<?php echo $option; ?>" <?php if ($option == $default_per_page) { ?>selected="selected" <?php } ?>>
+                            <?php echo $option; ?>&nbsp;&nbsp;
+                        </option>
+                    <?php } ?>
+                </select>
             </div>
-            <div class="col-md-5 col-xs-12">
-                <!-- Buttons - First,Previous,Next,Last Page -->
-                <ul class="pagination no-margin pull-right">
-                    <li class="disabled paging-first"><a href="#"><i class="fa fa-step-backward"></i></a></li>
-                    <li class="prev disabled paging-previous"><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-                    <li>
-                        <span class="page-number-input-container">
-                            <input type="number" value="1" class="form-control page-number-input" />
-                        </span>
-                    </li>
-                    <li class="next paging-next"><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-                    <li class="paging-last"><a href="#"><i class="fa fa-step-forward"></i></a></li>
-                </ul>
-                <!-- End of Buttons - First,Previous,Next,Last Page -->
+            <div class="floatL t10">
+                <?php echo $entries_lang_string; ?>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="col-md-4 col-xs-12" style="padding-top: 10px;">
+            <?php echo $list_displaying; ?>
+            <span class="full-total-container hidden">
+                <?php echo str_replace(
+                    "{total_results}",
+                    "<span class='full-total'>" . $this->get_total_results() . "</span>",
+                    $this->l('list_filtered_from')
+                );
+                ?>
+            </span>
+        </div>
+        <div class="col-md-5 col-xs-12">
+            <!-- Buttons - First,Previous,Next,Last Page -->
+            <ul class="pagination no-margin pull-right">
+                <li class="disabled paging-first"><a href="#"><i class="fa fa-step-backward"></i></a></li>
+                <li class="prev disabled paging-previous"><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+                <li>
+                    <span class="page-number-input-container">
+                        <input type="number" value="1" class="form-control page-number-input" />
+                    </span>
+                </li>
+                <li class="next paging-next"><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+                <li class="paging-last"><a href="#"><i class="fa fa-step-forward"></i></a></li>
+            </ul>
+            <!-- End of Buttons - First,Previous,Next,Last Page -->
 
-                    <input type="hidden" name="page_number" class="page-number-hidden" value="1" />
+            <input type="hidden" name="page_number" class="page-number-hidden" value="1" />
 
-                    <!-- Start of: Settings button -->
-                    <!-- <div class="btn-group floatR t20 l10 settings-button-container">
+            <!-- Start of: Settings button -->
+            <!-- <div class="btn-group floatR t20 l10 settings-button-container">
                         <button type="button" class="btn btn-default dropdown-toggle settings-button" data-toggle="dropdown">
                             <i class="fa fa-cog r5"></i>
                             <span class="caret"></span>
@@ -232,11 +231,11 @@ if($success_message !== null){?>
                             </li>
                         </ul>
                     </div> -->
-                    <!-- End of: Settings button -->
-                    
-            </div>
+            <!-- End of: Settings button -->
+
         </div>
     </div>
+</div>
 </div>
 
 <!-- Delete confirmation dialog -->
@@ -274,8 +273,7 @@ if($success_message !== null){?>
                 <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">
                     <?php echo $this->l('form_cancel'); ?>
                 </button>
-                <button type="button" class="btn btn-danger delete-multiple-confirmation-button btn-flat"
-                        data-target="<?php echo $delete_multiple_url; ?>">
+                <button type="button" class="btn btn-danger delete-multiple-confirmation-button btn-flat" data-target="<?php echo $delete_multiple_url; ?>">
                     <?php echo $this->l('list_delete'); ?>
                 </button>
             </div>

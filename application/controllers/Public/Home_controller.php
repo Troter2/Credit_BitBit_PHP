@@ -26,7 +26,7 @@ class Home_controller extends Public_controller
 
 
             $msg = $this->msg_model->getMsg($user);
-            $data['message'] = $msg;
+            $data['messages'] = $msg;
 
             $this->load->view('pages/home', $data);
         }else{
