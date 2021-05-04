@@ -95,6 +95,10 @@ $route['admin/mail/(:any)/(:any)'] = 'Private/Grocery_controller/mail/$1/$2';
 $route['admin/news'] = 'Private/Grocery_controller/news';
 $route['admin/news/(:any)'] = 'Private/Grocery_controller/news/$1';
 $route['admin/news/(:any)/(:any)'] = 'Private/Grocery_controller/news/$1/$2';
+
+$route['admin/tipus_consulta'] = 'Private/Grocery_controller/tipus_consulta';
+$route['admin/tipus_consulta/(:any)'] = 'Private/Grocery_controller/tipus_consulta/$1';
+$route['admin/tipus_consulta/(:any)/(:any)'] = 'Private/Grocery_controller/tipus_consulta/$1/$2';
 //$route['pagina/(:any)'] = '/pages/view/$1';
 //$route['pagina/(:any)/(:num)'] = '/pages/view/$1';
 //$route['news/index'] = 'news_controller/index';
