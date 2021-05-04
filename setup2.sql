@@ -73,9 +73,9 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `recive_date` date DEFAULT NULL,
   `recive_hour` time DEFAULT NULL,
   PRIMARY KEY (`id_msg`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.messages: ~11 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.messages: ~12 rows (aproximadamente)
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
 INSERT INTO `messages` (`id_msg`, `from`, `to`, `about`, `content`, `send_date`, `send_hour`, `recive_date`, `recive_hour`) VALUES
 	(4, 'test', 'administrator', 'prova missatge', 'shfjksldhfksljdhflksjahdfljksadf', '2021-04-23', '00:00:00', '2021-04-24', '16:43:08'),
@@ -88,7 +88,8 @@ INSERT INTO `messages` (`id_msg`, `from`, `to`, `about`, `content`, `send_date`,
 	(16, 'heloo', 'administrator', 'test nou usuari', 'heloo', '2021-04-24', '21:12:09', '2021-04-24', '21:12:25'),
 	(17, 'test', 'administrator', 'test 1234', 'asd', '2021-04-24', '21:17:27', '2021-04-24', '21:17:43'),
 	(18, 'administrator', 'test', 'prova primer mail', 'test alksjd', '2021-04-24', '21:18:11', '2021-04-24', '21:18:22'),
-	(19, 'estudillo', 'test', 'Missatge de estudillo', 'hljkasdf.jbk asdjksdjk hfsdkljhf aksljdh fkj', '2021-04-24', '22:49:42', '2021-04-24', '22:50:02');
+	(19, 'estudillo', 'test', 'Missatge de estudillo', 'hljkasdf.jbk asdjksdjk hfsdkljhf aksljdh fkj', '2021-04-24', '22:49:42', '2021-04-24', '22:50:02'),
+	(20, 'test', 'test', 'sad', 'dasd', '2021-05-03', '17:16:24', NULL, NULL);
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.news
@@ -100,19 +101,35 @@ CREATE TABLE IF NOT EXISTS `news` (
   `date` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.news: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.news: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `news` DISABLE KEYS */;
 INSERT INTO `news` (`id`, `title`, `content`, `image`, `date`) VALUES
 	(0, 'a', 's', 'S', '2021-04-29'),
-	(1, 'q', 'q', 'q', '2021-05-01'),
+	(1, 'aa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaa bb', 'https://mdbootstrap.', '0000-00-00'),
 	(2, 'a', 's', 'S', '2021-04-29'),
 	(3, 'a', 's', 'S', '2021-04-29'),
 	(4, 'a', 's', 'S', '2021-04-29'),
 	(5, 'a', 'a', 'a', '2021-05-03'),
-	(6, 'w', 'w', 'w', '2021-05-01');
+	(6, 'w', 'w', 'w', '2021-05-01'),
+	(7, 'q', 'q', 'q', '2021-05-01');
 /*!40000 ALTER TABLE `news` ENABLE KEYS */;
+
+-- Volcando estructura para tabla bitbit.tipus_consulta
+CREATE TABLE IF NOT EXISTS `tipus_consulta` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `consulta` varchar(60) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+-- Volcando datos para la tabla bitbit.tipus_consulta: ~3 rows (aproximadamente)
+/*!40000 ALTER TABLE `tipus_consulta` DISABLE KEYS */;
+INSERT INTO `tipus_consulta` (`id`, `consulta`) VALUES
+	(0, 'Solicitar nova reparació'),
+	(1, 'Problemes amb la visualització del stat de reparació'),
+	(2, 'Solicitar una reunió');
+/*!40000 ALTER TABLE `tipus_consulta` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -147,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
 	(1, '127.0.0.1', 'administrator', '$2y$10$gpGtuiacEw4AbP8tgx7Z2exNOoiP/IgW24vJZWZXIQrEQMG7HJQ4q', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1619291859, 1, 'Admin', 'istrator', 'ADMIN', '123456789'),
-	(2, '::1', 'test', '$2y$10$aECvrHC6nBjUg8vP8IYMjuFhUP10ABVeGZ0n7c41XOlKDDULt5vae', 'test@test.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619291471, 1619297392, 1, '', '', '', NULL),
+	(2, '::1', 'test', '$2y$10$aECvrHC6nBjUg8vP8IYMjuFhUP10ABVeGZ0n7c41XOlKDDULt5vae', 'test@test.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619291471, 1620054973, 1, '', '', '', NULL),
 	(3, '::1', 'usuari1', '$2y$10$WPxZ5HrQVjPhbSwXbyQ54.4Q6COstkQR0x/r0UKteL1xbf.qjXPUG', 'usuari1@usuari1.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619296588, 1619296636, 1, 'usuari 1', 'test', '', NULL),
 	(4, '::1', 'estudillo', '$2y$10$0eV9d2OXh01UTkThhnDeuOebo8/n81svDd2p5ukn0J3qNMVBTLMqK', 'estudillo@estudillo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619297343, 1619297359, 1, 'Noel', 'Estudillo', 'BOBO S.L.', NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
