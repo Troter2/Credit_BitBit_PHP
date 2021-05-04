@@ -47,9 +47,9 @@ en el sector de la informática, especialitzats en hardware i reparació d'equip
                                         </div>
                                     </div>
                                     <div class="timeline-content">
-                                        <h5 class="title">Contracte amb la generalitat</h5>
+                                        <h5 class="title">Canvi d'oficina</h5>
                                         <p class="description">
-                                           Aquest any va ser molt important, ja que a partir de un contracte amb la generalitat, ens va coneixer i ficar en contacte amb nosaltres moltes persones y entitats que estaben interesades.
+                                           Ens varem traslladar al viver de empreses situat al costat del centra educatiu Caparrella.
                                         </p>
                                     </div>
                                 </div>
@@ -64,10 +64,11 @@ en el sector de la informática, especialitzats en hardware i reparació d'equip
                                             </span>
                                         </div>
                                     </div>
+                                    
                                     <div class="timeline-content">
-                                        <h5 class="title">Canvi d'oficina</h5>
+                                        <h5 class="title">Contracte amb la generalitat</h5>
                                         <p class="description">
-                                           Ens varem traslladar al viver de empreses situat al costat del centra educatiu Caparrella.
+                                           Aquest any va ser molt important, ja que a partir de un contracte amb la generalitat, ens va coneixer i ficar en contacte amb nosaltres moltes persones y entitats que estaben interesades.
                                         </p>
                                     </div>
                                 </div>

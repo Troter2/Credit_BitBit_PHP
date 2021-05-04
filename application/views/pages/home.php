@@ -28,15 +28,12 @@
         </div>
     </div>
     <div class="col col-sm-9 row">
-
-
-
     <?php
             if (isset($news)) {
                 foreach ($news as $new) {
             ?>
                     <div class="col col-sm-12 col-md-6 col-lg-4">
-                        <div class="card m-2">
+                        <div class="card m-2 cutNews">
                             <img src="<?php echo $new['image']; ?>" class="card-img-top" alt="Sample image" />
                             <div class="p-2">
                                 <h5 class=""><?php echo $new['title']; ?></h5>
@@ -44,7 +41,7 @@
                                 <?php echo $new['content']; ?>
                                 </p>
                             </div>
-                            <p class="">
+                            <p class="pl-2">
                                 <?php echo $new['date']; ?>
                             </p>
                         </div>

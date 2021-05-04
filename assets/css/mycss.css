@@ -10,7 +10,13 @@
 
 
 
-
+.cutNews {
+display:inline-block;
+height: 30%;
+white-space: nowrap;
+overflow: hidden !important;
+text-overflow: ellipsis;
+}
 
 
 

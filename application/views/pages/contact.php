@@ -12,13 +12,24 @@
             <label for="user">Contingut</label>
             <textarea class="form-control" type="text" name="user"></textarea><br />
             <label for="remember">Tipus de consulta</label>
+            
             <select class="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            
+            <?php
+            if (isset($reasons)) {
+                foreach ($reasons as $reason) {
+            ?>
+                <option value="<?php echo $reason['id']; ?>"><?php echo $reason['consulta']; ?></option>
+                     <?php
+                }
+            }
+            ?>
             </select>
+
+            
+
+
+
             <br>
             <div class="d-flex justify-content-center">
                 <input class="btn btn-outline-dark" type="submit" name="submit" value="Enviar" />

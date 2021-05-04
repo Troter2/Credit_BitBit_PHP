@@ -4,7 +4,7 @@ class News_model extends CI_Model
 
     public function getNew()
     {
-        $query = $this->db->get('news', 10, 0);
+        $query = $this->db->get('news', 6, 0);
 
         //echo $this->db->last_query();
         

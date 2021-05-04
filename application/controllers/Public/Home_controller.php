@@ -7,6 +7,7 @@ class Home_controller extends Public_controller
         $this->load->helper('url_helper');
         $this->load->library('ion_auth');
         $this->load->model('msg_model');
+        $this->load->model('contact_model');
         
         $this->load->model('news_model');
     }
@@ -53,8 +54,11 @@ class Home_controller extends Public_controller
         $this->load->library('ion_auth');
         $this->load->library('form_validation');
 
+        $reason = $this->contact_model->getContactReason();
+        $data['reasons'] = $reason;
+
         $this->load->view('templates/header');
-        $this->load->view('pages/contact');
+        $this->load->view('pages/contact', $data);
         $this->load->view('templates/footer');
     }
 
