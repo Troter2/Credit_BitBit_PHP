@@ -27,51 +27,69 @@
             </a>
         </div>
     </div>
-    <div class="col col-sm-7 col-md-8 row">
-        <?php
-        if (isset($news)) {
-            foreach ($news as $new) {
-        ?>
-                <div class="col col-sm-12 col-md-6 col-lg-4">
-                    <div class="card m-2 cutNews">
-                        <img src="<?php echo base_url('assets/uploads/files/' . $new['image']); ?>" class="card-img-top" alt="Sample image" />
-                        <div class="p-2">
-                            <h5 class="mt-2" style="font-weight: 800;"><?php echo $new['title']; ?></h5>
-                            <p class="">
-                                <?php echo character_limiter($new['content'], 400); ?>
-                            </p>
-                        </div>
-                        <p class="pl-2">
-                            <?php echo $new['date']; ?>
-                        </p>
-                    </div>
-                </div>
-        <?php
+    <?php if ($this->ion_auth->logged_in()) { ?>
+        <div class="col col-sm-6 col-md-8 row">
+
+        <?php } else { ?>
+            <div class="col col-sm-12 col-md-12 row">
+                <?php
             }
-        }
-        ?>
-    </div>
-    <div class="col col-sm-6 col-md-4 ml-1 card p-0 container-fluid row">
+            if (isset($news)) {
+                foreach ($news as $new) {
+                ?>
+                    <?php if ($this->ion_auth->logged_in()) { ?>
 
-        <div class=" border p-3 ">Missatges</div>
-        <div class=" border  " style="cursor: pointer;" onclick=" location.href='<?php echo base_url('mail/send') ?>'">Missatge nou</div>
-        <div class="py-3 px-2">
+                    <div class="col col-sm-12 col-md-6 col-lg-4">
 
-            <?php
-            if (isset($messages)) {
-                foreach ($messages as $msg) {
-                    if ($msg['recive_date'] != NULL) {
-            ?>
-                        <div class="mb-1 p-2 bg-light border text-truncate" style="cursor: pointer;" onclick=" location.href='<?php echo base_url('mail/view/' . $msg['id_msg']) ?>'"><span class="fa fa-envelope-open-o  mr-3"></span> <?php echo $msg['about']; ?></div>
+                        <?php } else { ?>
+
+                        <div class="col col-sm-12 col-md-4 col-lg-3">
+
+                            <?php
+                        } ?>
+
+                            <div class="card m-2 ">
+                                <img src="<?php echo base_url('assets/uploads/files/' . $new['image']); ?>" class="card-img-top" alt="Sample image" />
+                                <div class="p-2">
+                                    <h5 class="mt-2" style="font-weight: 800;"><?php echo $new['title']; ?></h5>
+                                    <p class="">
+                                        <?php echo character_limiter($new['content'], 400); ?>
+                                    </p>
+                                </div>
+                                <p class="pl-2">
+                                    <?php echo $new['date']; ?>
+                                </p>
+                            </div>
+                            </div>
                     <?php
-                    } else { ?>
-
-                        <div class="mb-1 p-2 bg-light border text-truncate" style="cursor: pointer;" onclick=" location.href='<?php echo base_url('mail/view/' . $msg['id_msg']) ?>'"><span class="fa fa-envelope  mr-3"></span> <?php echo $msg['about']; ?></div>
-            <?php
-                    }
                 }
             }
-            ?>
+                    ?>
+                        </div>
+                        <?php if ($this->ion_auth->logged_in()) { ?>
+                            <div class="col col-sm-6 col-md-4 ml-1 card p-0 container-fluid row">
+
+                                <div class=" border p-3 ">Missatges</div>
+                                <div class=" border  " style="cursor: pointer;" onclick=" location.href='<?php echo base_url('mail/send') ?>'">Missatge nou</div>
+                                <div class="py-3 px-2">
+
+                                    <?php
+                                    if (isset($messages)) {
+                                        foreach ($messages as $msg) {
+                                            if ($msg['recive_date'] != NULL) {
+                                    ?>
+                                                <div class="mb-1 p-2 bg-light border text-truncate" style="cursor: pointer;" onclick=" location.href='<?php echo base_url('mail/view/' . $msg['id_msg']) ?>'"><span class="fa fa-envelope-open-o  mr-3"></span> <?php echo $msg['about']; ?></div>
+                                            <?php
+                                            } else { ?>
+
+                                                <div class="mb-1 p-2 bg-light border text-truncate" style="cursor: pointer;" onclick=" location.href='<?php echo base_url('mail/view/' . $msg['id_msg']) ?>'"><span class="fa fa-envelope  mr-3"></span> <?php echo $msg['about']; ?></div>
+                                    <?php
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        <?php }  ?>
+            </div>
         </div>
-    </div>
-</div>
