@@ -16,32 +16,7 @@ class Grocery_controller extends Private_controller
 		}
 	}
 
-	public function index()
-	{
-		$this->load->library('session');
-		$this->load->library('ion_auth');
-		if ($this->ion_auth->logged_in()) {
 
-			$crud = new grocery_CRUD();
-
-			$crud->set_theme('adminlte');
-			$crud->set_table('users');
-
-			$crud->set_crud_url_path(base_url('admin/index'));
-			$crud->change_field_type('slug', 'invisible');
-			$crud->columns(['username', 'email', 'first_name', 'last_name', 'company', 'phone']);
-			$output = $crud->render();
-
-			$data["css_files"] = $output->css_files;
-			$data["grocery"] = true;
-
-			$this->load->view('templates/header', $data);
-			$this->load->view('grocery/index.php', (array)$output);
-			$this->load->view('templates/footer', $data);
-		} else {
-			redirect(base_url('home'));
-		}
-	}
 	public function news()
 	{
 		$this->load->library('session');

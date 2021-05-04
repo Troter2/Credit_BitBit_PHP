@@ -83,9 +83,6 @@ $route['news/sendMail'] = 'Public/News_controller/sendMail';
 $route['details'] = 'Public/Home_controller/details';
 
 
-$route['admin/index'] = 'Private/Grocery_controller/index';
-$route['admin/index/(:any)'] = 'Private/Grocery_controller/index/$1';
-$route['admin/index/(:any)/(:any)'] = 'Private/Grocery_controller/index/$1/$2';
 
 $route['admin/user'] = 'Private/Grocery_controller/user';
 $route['admin/user/(:any)'] = 'Private/Grocery_controller/user/$1';
@@ -94,6 +91,10 @@ $route['admin/user/(:any)/(:any)'] = 'Private/Grocery_controller/user/$1/$2';
 $route['admin/mail'] = 'Private/Grocery_controller/mail';
 $route['admin/mail/(:any)'] = 'Private/Grocery_controller/mail/$1';
 $route['admin/mail/(:any)/(:any)'] = 'Private/Grocery_controller/mail/$1/$2';
+
+$route['admin/news'] = 'Private/Grocery_controller/news';
+$route['admin/news/(:any)'] = 'Private/Grocery_controller/news/$1';
+$route['admin/news/(:any)/(:any)'] = 'Private/Grocery_controller/news/$1/$2';
 //$route['pagina/(:any)'] = '/pages/view/$1';
 //$route['pagina/(:any)/(:num)'] = '/pages/view/$1';
 //$route['news/index'] = 'news_controller/index';
