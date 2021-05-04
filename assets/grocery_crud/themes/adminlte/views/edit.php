@@ -38,10 +38,10 @@
             <?php echo form_open( $update_url, 'method="post" id="crudForm"  enctype="multipart/form-data" class="form-horizontal"'); ?>
                 <?php foreach($fields as $field) { ?>
                     <div class="form-group <?php echo $field->field_name; ?>_form_group">
-                        <label class="col-sm-2 control-label">
+                        <label class="col-sm-3 control-label">
                             <?php echo $input_fields[$field->field_name]->display_as?><?php echo ($input_fields[$field->field_name]->required)? "<span class='required'>*</span> " : ""?>
                         </label>
-                        <div class="col-sm-5">
+                        <div class="col-sm-11">
                             <?php echo $input_fields[$field->field_name]->input; ?>
                         </div>
                     </div>

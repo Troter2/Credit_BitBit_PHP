@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Grocery_controller extends CI_Controller
+class Grocery_controller extends Private_controller
 {
 
 	public function __construct()
@@ -9,6 +9,11 @@ class Grocery_controller extends CI_Controller
 		$this->load->database();
 		$this->load->helper('url');
 		$this->load->library('grocery_CRUD');
+		$this->load->library('ion_auth');
+		if (!$this->ion_auth->is_admin()) {
+			$this->session->set_flashdata('message', 'You must be an admin to view this page');
+			redirect('home');
+		}
 	}
 
 	public function index()
@@ -37,6 +42,35 @@ class Grocery_controller extends CI_Controller
 			redirect(base_url('home'));
 		}
 	}
+	public function news()
+	{
+		$this->load->library('session');
+		$this->load->library('ion_auth');
+		if ($this->ion_auth->logged_in()) {
+
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('adminlte');
+			$crud->set_table('news');
+
+			$crud->change_field_type('date', 'invisible');
+
+			$crud->callback_before_insert(array($this, 'news_before_insert'));
+
+			$crud->set_crud_url_path(base_url('admin/news'));
+			$output = $crud->render();
+
+			$data["css_files"] = $output->css_files;
+			$data["grocery"] = true;
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('grocery/index.php', (array)$output);
+			$this->load->view('templates/footer', $data);
+		} else {
+			redirect(base_url('home'));
+		}
+	}
+
 
 	public function user()
 	{
@@ -91,7 +125,7 @@ class Grocery_controller extends CI_Controller
 	function news_before_insert($post_array)
 	{
 
-		$post_array["slug"] = strtr($post_array['title'], " ", "-") . "-" . $post_array['date'];
+		$post_array["date"] = date("Y-m-d");
 
 		return $post_array;
 	}

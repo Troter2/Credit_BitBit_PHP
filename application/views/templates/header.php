@@ -29,7 +29,7 @@
         <!-- Navigation -->
         <div class="wrapper d-flex align-items-stretch">
             <nav id="sidebar" class="active">
-                <h1><a href="<?php echo base_url('/home') ?>" class=""><img class="col col-sm-12 mt-0 -b-2" src = "<?php echo base_url('/assets/img/logo/logo.svg') ?>" alt="My Happy SVG"/></a></h1>
+                <h1><a href="<?php echo base_url('/home') ?>" class=""><img class="col col-sm-12 mt-0 -b-2" src="<?php echo base_url('/assets/img/logo/logo.svg') ?>" alt="My Happy SVG" /></a></h1>
                 <ul class="list-unstyled components mb-5">
                     <li class="active">
                         <a href="<?php echo base_url('/home') ?>"><span class="fa fa-home"></span> Home</a>
@@ -43,23 +43,28 @@
                     <li>
                         <a href="<?php echo base_url('/contact') ?>"><span class="fa fa-paper-plane"></span> Contacts</a>
                     </li>
-                    <li style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-                        <div class="btn-group dropright">
-                            <a type="button" class="dropdown-toggle " style="width: 100%;border-bottom: 0px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="fa fa-user"></span>Admin
-                            </a>
-                            <div class="dropdown-menu">
-                                <!-- Dropdown menu links -->
-                                <ul class="pl-1">
-                                    <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('/admin/user') ?>">Gestor Usuaris</a></li>
-                                    <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('/admin/news') ?>">Gestor de noticies </a></li>
-                                    <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('/admin/mail') ?>">Gestor de mail </a></li>
-                                    <li class="dropdown-item"><a class="text-dark" href="#">Gestor </a></li>
-                                    <li class="dropdown-item"><a class="text-dark" href="#">Gestor </a></li>
-                                </ul>
+                    <?php
+                    if ($this->ion_auth->is_admin()) { ?>
+                        <li style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div class="btn-group dropright">
+                                <a type="button" class="dropdown-toggle " style="width: 100%;border-bottom: 0px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="fa fa-user"></span>Admin
+                                </a>
+                                <div class="dropdown-menu">
+                                    <!-- Dropdown menu links -->
+                                    <ul class="pl-1">
+                                        <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('/admin/user') ?>">Gestor Usuaris</a></li>
+                                        <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('/admin/news') ?>">Gestor de noticies </a></li>
+                                        <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('/admin/mail') ?>">Gestor de mail </a></li>
+                                        <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('/admin/news') ?>">Gestor de noticies </a></li>
+                                        <li class="dropdown-item"><a class="text-dark" href="#">Gestor </a></li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    <?php
+                    }
+                    ?>
                 </ul>
                 <div class="footer">
                     <p>
@@ -80,7 +85,7 @@
                         <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <i class="fa fa-bars"></i>
                         </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="nav navbar-nav ml-auto">
                                 <li class="nav-item active">
                                     <a class="nav-link" href="<?php echo base_url('/home') ?>">Home</a>
