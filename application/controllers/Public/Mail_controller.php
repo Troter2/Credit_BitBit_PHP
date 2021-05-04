@@ -46,11 +46,6 @@ class Mail_controller extends Public_controller
 
         $this->msg_model->setMsg($user);
 
-
-        $this->load->view('templates/header');
-        $this->load->view('mail/create_mail');
-        $this->load->view('templates/footer');
-
         redirect(base_url('/home'));
     }
 }

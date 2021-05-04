@@ -4,16 +4,18 @@
     <div class="card p-4 col col-sm-10 col-md-8 m-auto">
                 <button id="changeInfoButton" type="button" class="btn btn-info col col-sm-10 col-md-12 mx-auto mb-5" onclick="switchVisible();">Show location map</button>
         <div id="contentForm">
-            <?php echo form_open('login/login'); ?>
-            <label for="userpass">Correu electronic</label>
-            <input class="form-control" type="text" name="userpass" value="" /><br />
-            <label for="user">Assumpte</label>
-            <input class="form-control" type="text" name="user" value="" /><br />
-            <label for="user">Contingut</label>
-            <textarea class="form-control" type="text" name="user"></textarea><br />
+            <?php echo form_open('contact/sendConsult'); ?>
+            <label for="nom">Nom</label>
+            <input id="nom" class="form-control" type="text" name="nom" /><br />
+            <label for="email">Correu electronic</label>
+            <input id="email" class="form-control" type="text" name="email" /><br />
+            <label for="assumpte">Assumpte</label>
+            <input id="assumpte" class="form-control" type="text" name="assumpte" /><br />
+            <label for="content">Contingut</label>
+            <textarea id="contingut" class="form-control" type="text" name="content"></textarea><br />
             <label for="remember">Tipus de consulta</label>
             
-            <select class="form-control" id="exampleFormControlSelect1">
+            <select class="form-control" id="id_consulta" name="id_consulta">
             
             <?php
             if (isset($reasons)) {
@@ -25,11 +27,6 @@
             }
             ?>
             </select>
-
-            
-
-
-
             <br>
             <div class="d-flex justify-content-center">
                 <input class="btn btn-outline-dark" type="submit" name="submit" value="Enviar" />

@@ -109,7 +109,7 @@ $route['admin/tipus_consulta/(:any)/(:any)'] = 'Private/Grocery_controller/tipus
 $route['upload'] = 'Upload_controller/index';
 $route['upload/do_upload'] = 'Upload_controller/do_upload';
 
-
+$route['contact/sendConsult'] = 'Public/Contact_controller/sendConsult';
 //$route['pagina/(:any)'] = '/pages/view/$1';
 //$route['pagina/(:any)/(:num)'] = '/pages/view/$1';
 //$route['news/index'] = 'news_controller/index';
