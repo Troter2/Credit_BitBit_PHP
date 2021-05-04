@@ -16,6 +16,7 @@ class Home_controller extends Public_controller
     {
         
         $this->load->view('templates/header');
+        $this->load->helper('text');
         
 
         $new = $this->news_model->getNew();

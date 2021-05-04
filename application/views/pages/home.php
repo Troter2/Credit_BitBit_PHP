@@ -36,9 +36,9 @@
                     <div class="card m-2 cutNews">
                         <img src="<?php echo base_url('assets/uploads/files/' . $new['image']); ?>" class="card-img-top" alt="Sample image" />
                         <div class="p-2">
-                            <h5 class=""><?php echo $new['title']; ?></h5>
+                            <h5 class="mt-2" style="font-weight: 800;"><?php echo $new['title']; ?></h5>
                             <p class="">
-                                <?php echo $new['content']; ?>
+                                <?php echo character_limiter($new['content'], 400); ?>
                             </p>
                         </div>
                         <p class="pl-2">
