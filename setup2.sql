@@ -31,6 +31,27 @@ CREATE TABLE IF NOT EXISTS `captcha` (
 /*!40000 ALTER TABLE `captcha` DISABLE KEYS */;
 /*!40000 ALTER TABLE `captcha` ENABLE KEYS */;
 
+-- Volcando estructura para tabla bitbit.consultes
+CREATE TABLE IF NOT EXISTS `consultes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(100) NOT NULL,
+  `id_consulta` int(11) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `assumpte` varchar(100) NOT NULL,
+  `contingut` varchar(150) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_consulta` (`id_consulta`),
+  CONSTRAINT `id_consulta` FOREIGN KEY (`id_consulta`) REFERENCES `tipus_consulta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+-- Volcando datos para la tabla bitbit.consultes: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `consultes` DISABLE KEYS */;
+INSERT INTO `consultes` (`id`, `nom`, `id_consulta`, `email`, `assumpte`, `contingut`, `date`) VALUES
+	(1, 'nom', 0, 'mail', 'topic', 'contiin', '2021-05-04'),
+	(2, 'sample', 2, 'sample@sample.com', 'sample ', 'sampleee', '2021-05-04');
+/*!40000 ALTER TABLE `consultes` ENABLE KEYS */;
+
 -- Volcando estructura para tabla bitbit.groups
 CREATE TABLE IF NOT EXISTS `groups` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
@@ -73,9 +94,9 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `recive_date` date DEFAULT NULL,
   `recive_hour` time DEFAULT NULL,
   PRIMARY KEY (`id_msg`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.messages: ~12 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.messages: ~14 rows (aproximadamente)
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
 INSERT INTO `messages` (`id_msg`, `from`, `to`, `about`, `content`, `send_date`, `send_hour`, `recive_date`, `recive_hour`) VALUES
 	(4, 'test', 'administrator', 'prova missatge', 'shfjksldhfksljdhflksjahdfljksadf', '2021-04-23', '00:00:00', '2021-04-24', '16:43:08'),
@@ -89,7 +110,9 @@ INSERT INTO `messages` (`id_msg`, `from`, `to`, `about`, `content`, `send_date`,
 	(17, 'test', 'administrator', 'test 1234', 'asd', '2021-04-24', '21:17:27', '2021-04-24', '21:17:43'),
 	(18, 'administrator', 'test', 'prova primer mail', 'test alksjd', '2021-04-24', '21:18:11', '2021-04-24', '21:18:22'),
 	(19, 'estudillo', 'test', 'Missatge de estudillo', 'hljkasdf.jbk asdjksdjk hfsdkljhf aksljdh fkj', '2021-04-24', '22:49:42', '2021-04-24', '22:50:02'),
-	(20, 'test', 'test', 'sad', 'dasd', '2021-05-03', '17:16:24', NULL, NULL);
+	(20, 'test', 'test', 'sad', 'dasd', '2021-05-03', '17:16:24', NULL, NULL),
+	(21, 'test', 'test', 'aaaa', 'eeeeee', '2021-05-04', '17:24:15', NULL, NULL),
+	(22, 'test', 'sample', 'sample', 'sample', '2021-05-04', '18:30:08', NULL, NULL);
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.news
@@ -97,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(20) NOT NULL,
   `content` varchar(100) NOT NULL,
-  `image` varchar(20) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `date` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
@@ -164,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
 	(1, '127.0.0.1', 'administrator', '$2y$10$gpGtuiacEw4AbP8tgx7Z2exNOoiP/IgW24vJZWZXIQrEQMG7HJQ4q', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1619291859, 1, 'Admin', 'istrator', 'ADMIN', '123456789'),
-	(2, '::1', 'test', '$2y$10$aECvrHC6nBjUg8vP8IYMjuFhUP10ABVeGZ0n7c41XOlKDDULt5vae', 'test@test.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619291471, 1620054973, 1, '', '', '', NULL),
+	(2, '::1', 'test', '$2y$10$aECvrHC6nBjUg8vP8IYMjuFhUP10ABVeGZ0n7c41XOlKDDULt5vae', 'test@test.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619291471, 1620141843, 1, '', '', '', NULL),
 	(3, '::1', 'usuari1', '$2y$10$WPxZ5HrQVjPhbSwXbyQ54.4Q6COstkQR0x/r0UKteL1xbf.qjXPUG', 'usuari1@usuari1.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619296588, 1619296636, 1, 'usuari 1', 'test', '', NULL),
 	(4, '::1', 'estudillo', '$2y$10$0eV9d2OXh01UTkThhnDeuOebo8/n81svDd2p5ukn0J3qNMVBTLMqK', 'estudillo@estudillo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619297343, 1619297359, 1, 'Noel', 'Estudillo', 'BOBO S.L.', NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
