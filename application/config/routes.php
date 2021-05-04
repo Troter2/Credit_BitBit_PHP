@@ -53,6 +53,11 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+
+
+
+
+
 $route['home'] = 'Public/Home_controller/view';
 $route['login'] = 'Public/Login_controller/login_page';
 $route['register'] = 'Public/Login_controller/register_page';
@@ -99,6 +104,12 @@ $route['admin/news/(:any)/(:any)'] = 'Private/Grocery_controller/news/$1/$2';
 $route['admin/tipus_consulta'] = 'Private/Grocery_controller/tipus_consulta';
 $route['admin/tipus_consulta/(:any)'] = 'Private/Grocery_controller/tipus_consulta/$1';
 $route['admin/tipus_consulta/(:any)/(:any)'] = 'Private/Grocery_controller/tipus_consulta/$1/$2';
+
+
+$route['upload'] = 'Upload_controller/index';
+$route['upload/do_upload'] = 'Upload_controller/do_upload';
+
+
 //$route['pagina/(:any)'] = '/pages/view/$1';
 //$route['pagina/(:any)/(:num)'] = '/pages/view/$1';
 //$route['news/index'] = 'news_controller/index';

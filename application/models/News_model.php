@@ -4,6 +4,8 @@ class News_model extends CI_Model
 
     public function getNew()
     {
+        
+        $this->db->order_by("date DESC");
         $query = $this->db->get('news', 6, 0);
 
         //echo $this->db->last_query();

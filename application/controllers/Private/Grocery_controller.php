@@ -32,6 +32,7 @@ class Grocery_controller extends Private_controller
 
 			$crud->callback_before_insert(array($this, 'news_before_insert'));
 
+			$crud->set_field_upload('image','assets/uploads/files');
 			$crud->set_crud_url_path(base_url('admin/news'));
 			$output = $crud->render();
 
@@ -72,6 +73,30 @@ class Grocery_controller extends Private_controller
 			redirect(base_url('home'));
 		}
 	}
+	public function tipus_consulta()
+	{
+		$this->load->library('session');
+		$this->load->library('ion_auth');
+		if ($this->ion_auth->logged_in()) {
+
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('adminlte');
+			$crud->set_table('tipus_consulta');
+
+			$output = $crud->render();
+
+			$data["css_files"] = $output->css_files;
+			$data["grocery"] = true;
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('grocery/index.php', (array)$output);
+			$this->load->view('templates/footer', $data);
+		} else {
+			redirect(base_url('home'));
+		}
+	}
+
 	public function mail()
 	{
 		$this->load->library('session');
