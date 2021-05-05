@@ -101,9 +101,17 @@ $route['admin/news'] = 'Private/Grocery_controller/news';
 $route['admin/news/(:any)'] = 'Private/Grocery_controller/news/$1';
 $route['admin/news/(:any)/(:any)'] = 'Private/Grocery_controller/news/$1/$2';
 
+$route['admin/consulta'] = 'Private/Grocery_controller/consulta';
+$route['admin/consulta/(:any)'] = 'Private/Grocery_controller/consulta/$1';
+$route['admin/consulta/(:any)/(:any)'] = 'Private/Grocery_controller/consulta/$1/$2';
+
 $route['admin/tipus_consulta'] = 'Private/Grocery_controller/tipus_consulta';
 $route['admin/tipus_consulta/(:any)'] = 'Private/Grocery_controller/tipus_consulta/$1';
 $route['admin/tipus_consulta/(:any)/(:any)'] = 'Private/Grocery_controller/tipus_consulta/$1/$2';
+
+$route['admin/group'] = 'Private/Grocery_controller/group';
+$route['admin/group/(:any)'] = 'Private/Grocery_controller/group/$1';
+$route['admin/group/(:any)/(:any)'] = 'Private/Grocery_controller/group/$1/$2';
 
 
 $route['upload'] = 'Upload_controller/index';

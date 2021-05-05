@@ -47,6 +47,32 @@ class Grocery_controller extends Private_controller
 		}
 	}
 
+	public function consulta()
+	{
+		$this->load->library('session');
+		$this->load->library('ion_auth');
+		if ($this->ion_auth->logged_in()) {
+
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('adminlte');
+			$crud->set_table('consultes');
+
+			$crud->callback_before_insert(array($this, 'news_before_insert'));
+
+			$output = $crud->render();
+
+			$data["css_files"] = $output->css_files;
+			$data["grocery"] = true;
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('grocery/index.php', (array)$output);
+			$this->load->view('templates/footer', $data);
+		} else {
+			redirect(base_url('home'));
+		}
+	}
+
 
 	public function user()
 	{
@@ -60,6 +86,7 @@ class Grocery_controller extends Private_controller
 			$crud->set_table('users');
 
 			$crud->change_field_type('slug', 'invisible');
+
 			$crud->columns(['username', 'email', 'first_name', 'last_name', 'company', 'phone']);
 			$output = $crud->render();
 
@@ -85,6 +112,38 @@ class Grocery_controller extends Private_controller
 			$crud->set_table('tipus_consulta');
 
 			$output = $crud->render();
+
+			$data["css_files"] = $output->css_files;
+			$data["grocery"] = true;
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('grocery/index.php', (array)$output);
+			$this->load->view('templates/footer', $data);
+		} else {
+			redirect(base_url('home'));
+		}
+	}
+
+
+	public function group()
+	{
+		$this->load->library('session');
+		$this->load->library('ion_auth');
+		if ($this->ion_auth->logged_in()) {
+
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('adminlte');
+			$crud->set_table('users_groups');
+			$crud->display_as('user_id',"Nom d'usuari");
+			$crud->display_as('group_id','Rol');
+			$crud->set_relation('user_id','users','username');
+			$crud->field_type("user_id", 'readonly');
+			$crud->set_relation('group_id','groups','description');
+
+
+			$output = $crud->render();
+
 
 			$data["css_files"] = $output->css_files;
 			$data["grocery"] = true;
