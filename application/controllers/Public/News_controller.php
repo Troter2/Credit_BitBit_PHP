@@ -17,7 +17,7 @@ class News_controller extends Public_controller
         $new = $this->news_model->getNewId($id);
         $data['new'] = $new;
         $this->load->view('templates/header');
-        $this->load->view('new/view_new', $data);
+        $this->load->view('pages/news_detail', $data);
         $this->load->view('templates/footer');
     }
 

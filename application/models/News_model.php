@@ -18,7 +18,7 @@ class News_model extends CI_Model
 
     public function getNewId($id)
     {
-        $query = $this->db->get_where('news', array('id_new' => $id));
+        $query = $this->db->get_where('news', array('id' => $id));
         return $query->row();
 
     }

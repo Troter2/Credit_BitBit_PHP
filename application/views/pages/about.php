@@ -1,6 +1,6 @@
-<div class="card p-4 col col-sm-12 col-md-10 m-auto">
+<div class="card p-4 col col-sm-8 col-md-9 m-auto">
 <div class="row">
-    <img src="https://www.insureon.com/-/media/blog/posts/2018/photo_computer-repair.jpg?h=370&iar=0&w=750&rev=8444837b5596473f82b6668742ff11a6" style="height: 400px;" alt="">
+    <img class="mx-auto" src="https://www.insureon.com/-/media/blog/posts/2018/photo_computer-repair.jpg?h=370&iar=0&w=750&rev=8444837b5596473f82b6668742ff11a6" style="height: 400px;" alt="">
 </div>
 </div>
 <br/>

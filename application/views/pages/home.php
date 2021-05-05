@@ -48,7 +48,7 @@
                             <?php
                         } ?>
 
-                            <div class="card m-2 ">
+                            <div class="card m-2 "  onclick=" location.href='<?php echo base_url('news/view/' . $new['id']) ?>'">
                                 <img src="<?php echo base_url('assets/uploads/files/' . $new['image']); ?>" class="card-img-top" alt="Sample image" />
                                 <div class="p-2">
                                     <h5 class="mt-2" style="font-weight: 800;"><?php echo $new['title']; ?></h5>
