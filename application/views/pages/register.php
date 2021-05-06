@@ -6,7 +6,12 @@
         }
         ?>
     </p>
-    <div class="card p-4 col col-sm-10 col-md-8 m-auto" >
+    <?php if (validation_errors() != null) { ?>
+        <div class="alert alert-danger" role="alert">
+            <?php echo validation_errors(); ?>
+        </div>
+    <?php } ?>
+    <div class="card p-4 col col-sm-10 col-md-8 m-auto">
         <?php echo form_open('login/register'); ?>
         <label for="username">Nom d'usuari*</label>
         <input class="form-control" type="text" name="username" value="" /><br />
@@ -28,3 +33,7 @@
         </form>
     </div>
 </div>
+
+<script>
+    $('#exampleModal').modal('show')
+</script>

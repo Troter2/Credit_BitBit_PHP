@@ -66,6 +66,28 @@
                         </li>
                     <?php
                     }
+                    if ($this->ion_auth->in_group('gestor')) { ?>
+                        <li style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div class="btn-group dropright">
+                                <a type="button" class="dropdown-toggle " style="width: 100%;border-bottom: 0px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="fa fa-user"></span>Gestor
+                                </a>
+                                <div class="dropdown-menu">
+                                    <!-- Dropdown menu links -->
+                                    <ul class="pl-1">
+                                        <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('/admin/user') ?>">Gestor Usuaris</a></li>
+                                        <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('/admin/news') ?>">Gestor de noticies </a></li>
+                                        <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('/admin/mail') ?>">Gestor de mail </a></li>
+                                        <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('/admin/tipus_consulta') ?>">Gestor de tipus consulta </a></li>
+                                        <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('admin/group') ?>">Gestor rols </a></li>
+                                        <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('admin/consulta') ?>">Consultes</a></li>
+                                        <li class="dropdown-item"><a class="text-dark" href="#">Gestor </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    <?php
+                    }
                     ?>
                 </ul>
                 <div class="footer">

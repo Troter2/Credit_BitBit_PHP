@@ -63,32 +63,69 @@ class Login_controller extends Public_controller
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('username', 'Username', 'required|is_unique[users.username]');
-        $this->form_validation->set_rules('pass', 'pass', 'required');
-        $this->form_validation->set_rules('email', 'email', 'required|is_unique[users.email]');
-        $this->form_validation->set_rules('first_name', 'first_name', 'required');
-        $this->form_validation->set_rules('last_name', 'last_name', 'required');
-
-        $username = $this->input->post('username');
-        $password = $this->input->post('pass');
-        $email = $this->input->post('email');
-        $additional_data = array(
-            'first_name' => $this->input->post('name'),
-            'last_name' => $this->input->post('lastname'),
+        $this->form_validation->set_rules(
+            'username',
+            "Nom d'usuari",
+            'required|is_unique[users.username]',
+            array('required' => 'Usuari existent')
         );
+        $this->form_validation->set_rules(
+            'email',
+            "Correu electronic",
+            'required|is_unique[users.email]',
+            array('required' => 'Usuari existent')
+        );
+        $this->form_validation->set_rules(
+            'pass',
+            "Contrasenya",
+            'required',
+            array('required' => 'Usuari existent')
+        );
+        $this->form_validation->set_rules(
+            'name',
+            "Nom d'usuari",
+            'required',
+            array('required' => 'Usuari existent')
+        );
+        $this->form_validation->set_rules(
+            'lastname',
+            "Nom d'usuari",
+            'required',
+            array('required' => 'Usuari existent')
+        );
+        if ($this->form_validation->run() === FALSE) {
 
-        if ($this->input->post('company')) {
+            redirect(base_url('register'));
+        } else {
+            $username = $this->input->post('username');
+            $password = $this->input->post('pass');
+            $email = $this->input->post('email');
+            $additional_data = array(
+                'first_name' => $this->input->post('name'),
+                'last_name' => $this->input->post('lastname'),
+            );
+
+            if ($this->input->post('company')) {
+                $additional_data['company'] = $this->input->post('company');
+            }
+            if ($this->input->post('phone')) {
+                $additional_data['phone'] = $this->input->post('phone');
+            }
+
             $additional_data['company'] = $this->input->post('company');
-        }
-        if ($this->input->post('phone')) {
             $additional_data['phone'] = $this->input->post('phone');
+            $this->ion_auth->register($username, $password, $email, $additional_data);
+            $is_logged = $this->ion_auth->login($username, $password);
+            redirect(base_url('/home'));
         }
-
-        $additional_data['company'] = $this->input->post('company');
-        $additional_data['phone'] = $this->input->post('phone');
-
-        $this->ion_auth->register($username, $password, $email, $additional_data);
-        redirect(base_url('/home'));
+        //if () != false) {
+        //} else {
+        //    $data['error'] = $this->ion_auth->errors();
+        //
+        //    $this->load->view('templates/header');
+        //    $this->load->view('pages/register', $data);
+        //    $this->load->view('templates/footer');
+        //}
     }
     public function logout()
     {
