@@ -14,7 +14,17 @@ class Mail_controller extends Public_controller
         $this->load->helper('url');
 
 
+        $userinfo = $this->ion_auth->user()->row();
+        $user = $userinfo->username;
+        
         $msg = $this->msg_model->getMsgId($id);
+        $to = $msg->to;
+
+        if($to != $user){
+            redirect(base_url('/home'));
+        }
+
+
         if($msg->recive_date==NULL){
             $this->msg_model->setMsgRecived($id);
         }
