@@ -8,49 +8,31 @@
             <div class="font-weight-bold mt-0 text-primary font-weight-bold container" style="font-size:22px;">Tecnic</div>
 
 
-            <?php echo form_open('updateUser'); ?>
+            <?php echo form_open('updatePass'); ?>
 
             <div class="row container">
-                <div class="col col-sm-6 font-weight-bold align-middle">
-                    <span class="">Nom d'usuari</span>
-                </div>
-
-                <div class="col col-sm-6 text-primary font-weight-bold py-1" style="font-size:18px;">
-                    <input type="text"  class="form-control" name="username" id="username" value="<?php echo $user->username ?>">
-                </div>
-
-                <div class="col col-sm-6 font-weight-bold">
-                    <span>Nom</span>
-                </div>
-
-                <div class="col col-sm-6 text-primary font-weight-bold py-1" style="font-size:18px;">
-                    <input type="text"  class="form-control" name="first_name" id="first_name" value="<?php echo $user->first_name ?>">
-                </div>
-
-
-                <div class="col col-sm-6 font-weight-bold">
-                    <span>User Last Name</span>
-                </div>
-
-                <div class="col col-sm-6 text-primary font-weight-bold py-1" style="font-size:18px;">
-                    <input type="text" class="form-control"  name="last_name" id="last_name" value="<?php echo $user->last_name ?>">
-                </div>
                 
 
                 <div class="col col-sm-6 font-weight-bold">
-                    <span>Email</span>
+                    <span>Contrasenya antiga</span>
                 </div>
 
                 <div class="col col-sm-6 text-primary font-weight-bold py-1" style="font-size:18px;">
-                    <input type="text" class="form-control" name="email" id="email" value="<?php echo $user->email ?>">
+                    <input type="password" class="form-control"  name="oldPass" id="oldPass" value="">
                 </div>
-
                 <div class="col col-sm-6 font-weight-bold">
-                    <span>Phone</span>
+                    <span>Contrasenya nova</span>
                 </div>
 
                 <div class="col col-sm-6 text-primary font-weight-bold py-1" style="font-size:18px;">
-                    <input type="text" class="form-control"  name="phone" id="phone" value="<?php echo $user->phone ?>">
+                    <input type="password" class="form-control"  name="newPass" id="newPass" value="">
+                </div>
+                <div class="col col-sm-6 font-weight-bold">
+                    <span>Repeteix la contrasenya</span>
+                </div>
+
+                <div class="col col-sm-6 text-primary font-weight-bold py-1" style="font-size:18px;">
+                    <input type="password" class="form-control"  name="repeatPass" id="repeatPass" value="">
                 </div>
                 <input class="btn btn btn-primary mt-3" type="submit" name="submit" value="Enviar" />
 

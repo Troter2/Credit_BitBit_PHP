@@ -70,7 +70,9 @@ $route['status'] = 'Public/Home_controller/status';
 
 $route['userProfile'] = 'Public/User_controller/user_profile';
 $route['userEdit'] = 'Public/User_controller/user_edit_page';
+$route['passEdit'] = 'Public/User_controller/pass_edit_page';
 $route['updateUser'] = 'Public/User_controller/update';
+$route['updatePass'] = 'Public/User_controller/update_pass';
 
 $route['login/login'] = 'Public/Login_controller/login';
 $route['login/register'] = 'Public/Login_controller/register';
@@ -89,9 +91,17 @@ $route['details'] = 'Public/Home_controller/details';
 
 
 
+$route['gestor/tasques'] = 'Private/Grocery_controller/tasques';
+$route['gestor/tasques/(:any)'] = 'Private/Grocery_controller/tasques/$1';
+$route['gestor/tasques/(:any)/(:any)'] = 'Private/Grocery_controller/tasques/$1/$2';
+
 $route['admin/user'] = 'Private/Grocery_controller/user';
 $route['admin/user/(:any)'] = 'Private/Grocery_controller/user/$1';
 $route['admin/user/(:any)/(:any)'] = 'Private/Grocery_controller/user/$1/$2';
+
+$route['gestor/inci'] = 'Private/Grocery_controller/incidencies';
+$route['gestor/inci/(:any)'] = 'Private/Grocery_controller/incidencies/$1';
+$route['gestor/inci/(:any)/(:any)'] = 'Private/Grocery_controller/incidencies/$1/$2';
 
 $route['admin/mail'] = 'Private/Grocery_controller/mail';
 $route['admin/mail/(:any)'] = 'Private/Grocery_controller/mail/$1';

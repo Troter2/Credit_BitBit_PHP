@@ -9,7 +9,7 @@
 
             <div class="row container">
                 <div class="col col-sm-6 font-weight-bold">
-                    <span>Username</span>
+                    <span>Nom d'usuari</span>
                 </div>
 
                 <div class="col col-sm-6 text-primary font-weight-bold" style="font-size:18px;">
@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="col col-sm-6 font-weight-bold">
-                    <span>User Name</span>
+                    <span>Nom</span>
                 </div>
 
                 <div class="col col-sm-6 text-primary font-weight-bold" style="font-size:18px;">
@@ -25,11 +25,19 @@
                 </div>
 
                 <div class="col col-sm-6 font-weight-bold">
-                    <span>User Last Name</span>
+                    <span>Cognoms</span>
                 </div>
 
                 <div class="col col-sm-6 text-primary font-weight-bold" style="font-size:18px;">
                     <span><?php echo $user->last_name ?></span>
+                </div>
+
+                <div class="col col-sm-6 font-weight-bold">
+                    <span>Contrasenya</span>
+                </div>
+
+                <div class="col col-sm-6 text-primary font-weight-bold" style="font-size:18px;">
+                    <a class="btn btn-primary text-white" href="<?php echo base_url('/passEdit') ?>">Modifica contrasenya</a>
                 </div>
 
                 <div class="col col-sm-6 font-weight-bold">
