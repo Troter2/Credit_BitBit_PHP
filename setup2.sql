@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.4.18-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         10.4.17-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             11.1.0.6116
+-- HeidiSQL Versión:             11.2.0.6213
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -69,22 +69,21 @@ CREATE TABLE IF NOT EXISTS `incidencies` (
   `diagnosis_prev` longtext NOT NULL,
   `entry_date` date NOT NULL,
   `out_date` date DEFAULT NULL,
+  `uuid` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`id_inci`),
   KEY `FK_status` (`id_estat`),
   KEY `FK_user` (`id_user_propietari`),
   CONSTRAINT `FK_user` FOREIGN KEY (`id_user_propietari`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.incidencies: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.incidencies: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `incidencies` DISABLE KEYS */;
-INSERT INTO `incidencies` (`id_inci`, `id_estat`, `id_user_propietari`, `nom_propietari`, `marca`, `numero_serie`, `tlf`, `desc_averia`, `diagnosis_prev`, `entry_date`, `out_date`) VALUES
-	(1, 1, 1, 'asd', 'XIAOMI', '123423411424', 'asd', '<p>\n	&nbsp;SHAH SDASH KJSH DKAH AKSH AKSDHJ AKDHJ AKSJDH ASKDH JASKD HSKJ DHASDK HJK JASKHJDKJHDKJASHDKAJSH&nbsp; HJKAS HD SAD AD AD&nbsp; DA D D ASDA DA D&nbsp; SDASDADFAS F SDFSD FSD FF SA FSD FSA FSAD FSF SD FS FSDF SD FSDF S SDFS ADFSD FS DFS DFS DFS DFSD FS DFS DFS FDSDF S</p>\n', '', '2021-05-19', '2021-05-11'),
-	(6, 1, 2, 'etafd', 'LENOVO', '1241243324', 'as198723', '<p>\n	ajshdkjfsh</p>\n', '<p>\n	akjhdakjsh</p>\n', '2021-05-17', '2021-05-02'),
-	(8, 1, 2, '1234', 'ASUS', '312412433124', '1234', '<p>\n	123</p>\n', '<p>\n	123</p>\n', '2021-05-17', '2021-05-08'),
-	(9, 0, 18, 'test', 'ACER', '1244214123', '1234', '<p>\n	1234</p>\n', '<p>\n	1234</p>\n', '2021-05-08', NULL),
-	(10, 0, 4, 'NOWEL', 'ASUS', '124124123421', '456', '', '', '2021-05-08', NULL),
-	(11, 0, NULL, 'NOWEL', 'MAC', '1234124324', '456', '', '', '2021-05-08', NULL),
-	(12, 0, NULL, 'TEST', 'MAC', '1242432414124', '2345234', '', '', '2021-05-08', NULL);
+INSERT INTO `incidencies` (`id_inci`, `id_estat`, `id_user_propietari`, `nom_propietari`, `marca`, `numero_serie`, `tlf`, `desc_averia`, `diagnosis_prev`, `entry_date`, `out_date`, `uuid`) VALUES
+	(1, 1, 1, 'asd', 'XIAOMI', '123423411424', 'asd', '<p>\n	&nbsp;SHAH SDASH KJSH DKAH AKSH AKSDHJ AKDHJ AKSJDH ASKDH JASKD HSKJ DHASDK HJK JASKHJDKJHDKJASHDKAJSH&nbsp; HJKAS HD SAD AD AD&nbsp; DA D D ASDA DA D&nbsp; SDASDADFAS F SDFSD FSD FF SA FSD FSA FSAD FSF SD FS FSDF SD FSDF S SDFS ADFSD FS DFS DFS DFS DFSD FS DFS DFS FDSDF S</p>\n', '', '2021-05-19', '2021-05-11', ''),
+	(6, 1, 2, 'etafd', 'LENOVO', '1241243324', 'as198723', '<p>\n	ajshdkjfsh</p>\n', '<p>\n	akjhdakjsh</p>\n', '2021-05-17', '2021-05-02', ''),
+	(8, 1, 2, '1234', 'ASUS', '312412433124', '1234', '<p>\n	123</p>\n', '<p>\n	123</p>\n', '2021-05-17', '2021-05-08', ''),
+	(17, 0, NULL, 'Sergi', 'HP', '2142144245343543', '564564', '<p>\n	ASD AFASF&nbsp;</p>\n', '<p>\n	ASD SAADS&nbsp;</p>\n', '2021-05-10', NULL, 'a2de7ff3c713430cb17c95782ea06203'),
+	(18, 0, 2, '123', '123', '123', '123', '<p>\n	123</p>\n', '<p>\n	13</p>\n', '2021-05-10', NULL, '5b850d8b39e545129986f8afb1128be0');
 /*!40000 ALTER TABLE `incidencies` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.login_attempts
@@ -94,13 +93,10 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   `login` varchar(100) NOT NULL,
   `time` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.login_attempts: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.login_attempts: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `login_attempts` DISABLE KEYS */;
-INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
-	(11, '::1', 'test1', 1620413189),
-	(12, '::1', 'test1', 1620413225);
 /*!40000 ALTER TABLE `login_attempts` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.materials
@@ -178,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.news: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.news: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `news` DISABLE KEYS */;
 INSERT INTO `news` (`id`, `title`, `content`, `image`, `date`) VALUES
 	(10, 'Noticia 1', '<p font-size:="" open="" style="margin: 0px 0px 15px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: ">\n	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris congue sem sed hendrerit gravida. Nunc dictum arcu at nisl hendrerit interdum et porta arcu. Integer viverra interdum egestas. Sed vitae rhoncus turpis. Vestibulum nec magna felis. Suspendisse sit amet malesuada nibh. Sed nunc metus, scelerisque non diam eu, tempus tincidunt nulla. Maecenas convallis convallis velit, in commodo nunc suscipit nec.</p>\n<p font-size:="" open="" style="margin: 0px 0px 15px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: ">\n	Quisque placerat suscipit augue a finibus. Morbi odio urna, maximus a gravida non, semper efficitur risus. Nulla facilisi. Nullam id fringilla dui. Aenean tempor lorem finibus, vehicula erat pretium, mollis erat. Vestibulum non iaculis sapien. Quisque id maximus arcu. Morbi blandit risus at lorem cursus posuere. Suspendisse semper tortor orci.</p>\n<p font-size:="" open="" style="margin: 0px 0px 15px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: ">\n	Pellentesque interdum pretium neque quis semper. Morbi non velit non odio tincidunt condimentum vitae ut odio. Quisque metus est, pulvinar eu convallis sit amet, dictum quis velit. Nunc luctus accumsan ipsum, non placerat enim accumsan nec. Nullam accumsan convallis nulla, vel porttitor dolor vehicula non. Nunc non rhoncus mi. Vestibulum tincidunt, nunc vel molestie suscipit, orci justo blandit sem, a malesuada neque dolor a risus.</p>\n<p font-size:="" open="" style="margin: 0px 0px 15px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: ">\n	Donec viverra finibus pellentesque. Vestibulum turpis diam, sagittis vel ante aliquam, placerat tristique sapien. Suspendisse a quam dolor. Donec posuere nec neque pretium luctus. Aliquam vel ex vestibulum, scelerisque nunc sit amet, efficitur lorem. Vestibulum sit amet tempor purus. Phasellus quis ornare magna. In sed cursus ante. Morbi vitae elementum urna.</p>\n<p font-size:="" open="" style="margin: 0px 0px 15px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: ">\n	Vivamus maximus nulla eu nulla volutpat euismod. Quisque varius aliquam nunc sed maximus. Proin pretium, arcu sed cursus sodales, mauris orci porttitor sapien, in tincidunt est ante vel mi. Fusce tristique malesuada viverra. Ut auctor at magna lacinia consequat. Aliquam luctus ut enim non ullamcorper. Maecenas vitae suscipit odio. Pellentesque vel tincidunt ex. Etiam dolor mi, porta tempor tempor ac, tempus sed tellus. Morbi nec laoreet tortor, in bibendum lacus. Donec vitae ante sit amet ante efficitur varius.</p>\n', '8e5cb-cpa-school-test.png', '2021-05-04'),
@@ -199,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `status` (
   PRIMARY KEY (`id_estatus`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.status: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.status: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
 INSERT INTO `status` (`id_estatus`, `desc`) VALUES
 	(1, 'En espera'),
@@ -221,14 +217,25 @@ CREATE TABLE IF NOT EXISTS `tasques` (
   KEY `id_inci` (`id_inci`),
   CONSTRAINT `FK_tasques_inci` FOREIGN KEY (`id_inci`) REFERENCES `incidencies` (`id_inci`),
   CONSTRAINT `FK_tasques_users` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.tasques: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.tasques: ~14 rows (aproximadamente)
 /*!40000 ALTER TABLE `tasques` DISABLE KEYS */;
 INSERT INTO `tasques` (`id_tasca`, `id_user`, `id_inci`, `desc`, `start_date`, `end_date`) VALUES
-	(3, 4, 6, '<p>\n	reparar pantalla</p>\n', '2021-05-07', NULL),
 	(4, 3, 1, '<p>\n	felicitats campeon a currar GOS</p>\n', '2021-05-07', NULL),
-	(5, 18, 6, '<p>\n	estreno</p>\n', '2021-05-07', NULL);
+	(5, 18, 6, '<p>\n	estreno</p>\n', '2021-05-07', NULL),
+	(6, 2, 1, '<p>\n	ASD</p>\n', '2021-05-18', NULL),
+	(7, 5, 1, '<p>\n	ASDASD</p>\n', '0000-00-00', NULL),
+	(8, 2, 1, '<p>\n	asd</p>\n', '2021-05-18', NULL),
+	(9, 2, 1, '<p>\n	asd</p>\n', '2021-05-18', NULL),
+	(11, 5, 1, '<p>\n	dsf</p>\n', '0000-00-00', NULL),
+	(12, 2, 1, '<p>\n	asd</p>\n', '0000-00-00', NULL),
+	(13, 2, 1, '<p>\n	asdasd</p>\n', '0000-00-00', NULL),
+	(14, 5, 1, '<p>\n	asdasdasdasd</p>\n', '0000-00-00', NULL),
+	(15, 15, 1, '<p>\n	asdasdasdasd</p>\n', '0000-00-00', NULL),
+	(16, 4, 1, '<p>\n	asd</p>\n', '0000-00-00', NULL),
+	(17, 2, 1, '<p>\n	asd</p>\n', '0000-00-00', NULL),
+	(19, 2, 1, '<p>\n	asd</p>\n', '0000-00-00', NULL);
 /*!40000 ALTER TABLE `tasques` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.tipus_consulta
@@ -238,7 +245,7 @@ CREATE TABLE IF NOT EXISTS `tipus_consulta` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.tipus_consulta: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.tipus_consulta: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tipus_consulta` DISABLE KEYS */;
 INSERT INTO `tipus_consulta` (`id`, `consulta`) VALUES
 	(0, 'Solicitar nova reparació'),
@@ -275,14 +282,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `uc_remember_selector` (`remember_selector`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.users: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.users: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
 	(1, '127.0.0.1', 'administrator', '$2y$10$gpGtuiacEw4AbP8tgx7Z2exNOoiP/IgW24vJZWZXIQrEQMG7HJQ4q', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1619291859, 1, 'Admin', 'istrator', 'ADMIN', '123456789'),
-	(2, '::1', 'test', '$2y$10$aECvrHC6nBjUg8vP8IYMjuFhUP10ABVeGZ0n7c41XOlKDDULt5vae', 'test@test.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619291471, 1620435948, 1, '', '', '', NULL),
+	(2, '::1', 'test', '$2y$10$0Bp.39JsZLy9Y9y/J2p86.72F0E.fQI8uMgJ8w9uaqVLgrcBSDHXy', 'test@test.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619291471, 1620657810, 1, '', '', '', NULL),
 	(3, '::1', 'usuari1', '$2y$10$WPxZ5HrQVjPhbSwXbyQ54.4Q6COstkQR0x/r0UKteL1xbf.qjXPUG', 'usuari1@usuari1.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619296588, 1619296636, 1, 'usuari 1', 'test', '', NULL),
 	(4, '::1', 'estudillo', '$2y$10$0eV9d2OXh01UTkThhnDeuOebo8/n81svDd2p5ukn0J3qNMVBTLMqK', 'estudillo@estudillo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619297343, 1619297359, 1, 'Noel', 'Estudillo', 'BOBO S.L.', NULL),
-	(5, '::1', 'test2', '$2y$10$uMzrdZjHVb8Veom7HXsdLODpBK5Ffvf16bGxQZLa6rdLykSvDAfcy', '1234', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620311820, 1620435821, 1, '1234', '1234', '1234', NULL),
+	(5, '::1', 'test2', '$2y$10$uMzrdZjHVb8Veom7HXsdLODpBK5Ffvf16bGxQZLa6rdLykSvDAfcy', '1234', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620311820, 1620652378, 1, '1234', '1234', '1234', NULL),
 	(15, '::1', 'test4', '$2y$10$X1.HVIEW1kLFMt9bak9wLOSI8ZRDizs7m5RuQfTyyOprpsB54shw2', 'test', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620324221, NULL, 1, '1234', '1234', '123', NULL),
 	(18, '::1', 'test6', '$2y$10$aA33Lpa3zLcJEkn50Owaw.ZJdIBtN6snitBZZMUKdIhGHyM2v1gSS', '1234567', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620325894, 1620325894, 1, '1234567', '1234567', '1234567', NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
@@ -300,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `users_groups` (
   CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.users_groups: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.users_groups: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `users_groups` DISABLE KEYS */;
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 	(1, 1, 1),
@@ -314,6 +321,6 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 /*!40000 ALTER TABLE `users_groups` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
