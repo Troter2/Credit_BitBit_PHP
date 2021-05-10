@@ -10,7 +10,7 @@ class Grocery_controller extends Private_controller
 		$this->load->helper('url');
 		$this->load->library('grocery_CRUD');
 		$this->load->library('ion_auth');
-		if (!$this->ion_auth->is_admin()&&!$this->ion_auth->in_group('gestor') ) {
+		if (!$this->ion_auth->is_admin() && !$this->ion_auth->in_group('gestor')) {
 			$this->session->set_flashdata('message', 'You must be an admin to view this page');
 			redirect('about');
 		}
@@ -81,25 +81,37 @@ class Grocery_controller extends Private_controller
 
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('adminlte');
+			$crud->set_theme('adminlte_task');
 			$crud->set_table('tasques');
-			$crud->unset_add();
+
+			$state = $crud->getState();
+			if ($state == 'add') {
+				if (!$this->session->has_userdata('id_incidencia')) {
+					redirect('gestor/inci');
+				}
+			}
 
 			$crud->callback_before_insert(array($this, 'tasques_before_insert'));
 			$crud->set_relation('id_user', 'users', 'username');
-			$crud->set_relation('id_inci', 'incidencies', 'marca');
+			$state = $crud->getState();
+			if ($state != 'add' && $state != 'edit') {
+				$crud->set_relation('id_inci', 'incidencies', 'marca');
+			}
 			$crud->change_field_type('id_inci', 'invisible');
 			$crud->display_as('id_user', 'Tecnic');
 			$crud->display_as('id_inci', 'Model portatil');
 			$crud->display_as('desc', 'Descripcio');
 			$crud->display_as('start_date', 'Data inici');
 			$crud->display_as('end_date', 'Data fi');
+			$crud->change_field_type('start_date', 'invisible');
+			$crud->change_field_type('end_date', 'invisible');
 			$output = $crud->render();
 
 			$data["css_files"] = $output->css_files;
 			$data["grocery"] = true;
 
 			$crud->callback_before_insert(array($this, 'tasques_before_insert'));
+
 
 			$this->load->view('templates/header', $data);
 			$this->load->view('grocery/index.php', (array)$output);
@@ -109,13 +121,17 @@ class Grocery_controller extends Private_controller
 		}
 	}
 
+
 	function tasques_before_insert($post_array)
 	{
 
 		$post_array["id_inci"] = $_SESSION['id_incidencia'];
+		unset($_SESSION['id_incidencia']);
 
 		return $post_array;
 	}
+
+
 
 
 	public function incidencies()
@@ -133,17 +149,19 @@ class Grocery_controller extends Private_controller
 			$crud->display_as('id_user_propietari', 'Usuari propietari');
 			$crud->display_as('id_estat', 'Estat');
 			$crud->display_as('tlf', 'Telefon');
-			$state=$crud->getState();
-			$crud->order_by('entry_date','desc');
-			if ($state == 'list'||$state == 'read') {
+			$crud->order_by('entry_date', 'desc');
+
+			$state = $crud->getState();
+			if ($state == 'list' || $state == 'read' || $state == 'success') {
 				$crud->set_relation('id_estat', 'status', 'desc');
 			}
-			$crud->callback_before_insert(array($this,'add_date_callback'));
+			$crud->callback_before_insert(array($this, 'add_date_callback'));
 			$crud->columns(['id_estat', 'id_user_propietari', 'nom', 'tlf', 'entry_date', 'out_date']);
 
 			$crud->change_field_type('out_date', 'invisible');
 			$crud->change_field_type('entry_date', 'invisible');
 			$crud->change_field_type('id_estat', 'invisible');
+			$crud->change_field_type('uuid', 'invisible');
 
 
 			$state = $crud->getState();
@@ -154,8 +172,6 @@ class Grocery_controller extends Private_controller
 			}
 
 			$output = $crud->render();
-			// print_r($output->id_incidencia);
-			// die;
 
 
 			$data["css_files"] = $output->css_files;
@@ -279,11 +295,9 @@ class Grocery_controller extends Private_controller
 
 	function add_date_callback($post_array)
 	{
-
+		$this->load->library('uuid');
+		$post_array['uuid'] = str_replace("-","",$this->uuid->v4());
 		$post_array["entry_date"] = date("Y-m-d");
-
 		return $post_array;
 	}
-
-	
 }

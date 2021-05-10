@@ -66,7 +66,7 @@ if ($this->config->environment == 'production') {
                                     <?php echo $this->l('form_back_to_list'); ?>
 
                                 </button>
-                                <button class="btn btn-primary" type="button" onclick="window.location = '<?php echo base_url('admin/tasques/add'); ?>'">
+                                <button class="btn btn-primary" type="button" onclick="window.location = '<?php echo base_url('gestor/tasques/add'); ?>'">
                                     <i class="fa fa-plus"></i>
                                     Afegir tasques
                                 </button>

@@ -8,20 +8,18 @@ class Home_controller extends Public_controller
         $this->load->library('ion_auth');
         $this->load->model('msg_model');
         $this->load->model('contact_model');
-        
+
         $this->load->model('news_model');
     }
 
     public function view()
     {
-        
+
         $this->load->view('templates/header');
         $this->load->helper('text');
-        
-
         $new = $this->news_model->getNew();
         $data['news'] = $new;
-        
+
         if ($this->ion_auth->logged_in()) {
             $userinfo = $this->ion_auth->user()->row();
             $user = $userinfo->username;
@@ -31,11 +29,8 @@ class Home_controller extends Public_controller
             $data['messages'] = $msg;
 
             $this->load->view('pages/home', $data);
-        }else{
-           
-            $this->load->view('pages/home',$data);
-
-
+        } else {
+            $this->load->view('pages/home', $data);
         }
         $this->load->view('templates/footer');
     }
@@ -82,5 +77,4 @@ class Home_controller extends Public_controller
         $this->load->view('pages/detail_status');
         $this->load->view('templates/footer');
     }
-
 }

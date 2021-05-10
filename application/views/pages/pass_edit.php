@@ -27,13 +27,6 @@
                 <div class="col col-sm-6 text-primary font-weight-bold py-1" style="font-size:18px;">
                     <input type="password" class="form-control"  name="newPass" id="newPass" value="">
                 </div>
-                <div class="col col-sm-6 font-weight-bold">
-                    <span>Repeteix la contrasenya</span>
-                </div>
-
-                <div class="col col-sm-6 text-primary font-weight-bold py-1" style="font-size:18px;">
-                    <input type="password" class="form-control"  name="repeatPass" id="repeatPass" value="">
-                </div>
                 <input class="btn btn btn-primary mt-3" type="submit" name="submit" value="Enviar" />
 
 
