@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.4.17-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         10.4.14-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
 -- HeidiSQL Versión:             11.2.0.6213
 -- --------------------------------------------------------
@@ -38,6 +38,19 @@ INSERT INTO `consultes` (`id`, `id_consulta`, `nom`, `email`, `assumpte`, `conti
 	(2, 2, 'sample', 'sample@sample.com', 'sample ', 'sampleee', '2021-05-04'),
 	(3, 2, 'bruno', 'bruno@bruno.com', 'helo', 'asd', '2021-05-05');
 /*!40000 ALTER TABLE `consultes` ENABLE KEYS */;
+
+-- Volcando estructura para tabla bitbit.datos_about
+CREATE TABLE IF NOT EXISTS `datos_about` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` year(4) NOT NULL,
+  `titol` varchar(50) NOT NULL,
+  `content` longtext NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Volcando datos para la tabla bitbit.datos_about: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `datos_about` DISABLE KEYS */;
+/*!40000 ALTER TABLE `datos_about` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.groups
 CREATE TABLE IF NOT EXISTS `groups` (
@@ -241,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `tipus_consulta` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.tipus_consulta: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.tipus_consulta: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `tipus_consulta` DISABLE KEYS */;
 INSERT INTO `tipus_consulta` (`id`, `consulta`) VALUES
 	(0, 'Solicitar nova reparació'),
@@ -278,7 +291,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `uc_remember_selector` (`remember_selector`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.users: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.users: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
 	(1, '127.0.0.1', 'administrator', '$2y$10$gpGtuiacEw4AbP8tgx7Z2exNOoiP/IgW24vJZWZXIQrEQMG7HJQ4q', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1619291859, 1, 'Admin', 'istrator', 'ADMIN', '123456789'),
@@ -303,7 +316,7 @@ CREATE TABLE IF NOT EXISTS `users_groups` (
   CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.users_groups: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.users_groups: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `users_groups` DISABLE KEYS */;
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 	(1, 1, 1),
