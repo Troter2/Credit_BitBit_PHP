@@ -83,13 +83,19 @@ class Login_controller extends Public_controller
         );
         $this->form_validation->set_rules(
             'name',
-            "Nom d'usuari",
+            "Nom ",
             'required',
             array('required' => 'Usuari existent')
         );
         $this->form_validation->set_rules(
             'lastname',
-            "Nom d'usuari",
+            "Cognom",
+            'required',
+            array('required' => 'Usuari existent')
+        );
+        $this->form_validation->set_rules(
+            'city',
+            "Ciutat",
             'required',
             array('required' => 'Usuari existent')
         );
@@ -103,6 +109,7 @@ class Login_controller extends Public_controller
             $additional_data = array(
                 'first_name' => $this->input->post('name'),
                 'last_name' => $this->input->post('lastname'),
+                'city' => $this->input->post('city'),
             );
 
             if ($this->input->post('company')) {

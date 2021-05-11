@@ -27,6 +27,8 @@
         <input class="form-control" type="text" name="company" value="" /><br />
         <label for="tlf">Numero telefon</label>
         <input class="form-control" type="text" name="tlf" value="" /><br />
+        <label for="tlf">Ciutat</label>
+        <input class="form-control" type="text" name="city" value="" /><br />
         <div class="d-flex justify-content-center">
             <input class="btn btn-outline-dark" type="submit" name="submit" value="Enviar" />
         </div>

@@ -95,13 +95,13 @@ $route['gestor/tasques'] = 'Private/Grocery_controller/tasques';
 $route['gestor/tasques/(:any)'] = 'Private/Grocery_controller/tasques/$1';
 $route['gestor/tasques/(:any)/(:any)'] = 'Private/Grocery_controller/tasques/$1/$2';
 
-$route['admin/user'] = 'Private/Grocery_controller/user';
-$route['admin/user/(:any)'] = 'Private/Grocery_controller/user/$1';
-$route['admin/user/(:any)/(:any)'] = 'Private/Grocery_controller/user/$1/$2';
-
 $route['gestor/inci'] = 'Private/Grocery_controller/incidencies';
 $route['gestor/inci/(:any)'] = 'Private/Grocery_controller/incidencies/$1';
 $route['gestor/inci/(:any)/(:any)'] = 'Private/Grocery_controller/incidencies/$1/$2';
+
+$route['admin/user'] = 'Private/Grocery_controller/user';
+$route['admin/user/(:any)'] = 'Private/Grocery_controller/user/$1';
+$route['admin/user/(:any)/(:any)'] = 'Private/Grocery_controller/user/$1/$2';
 
 $route['admin/mail'] = 'Private/Grocery_controller/mail';
 $route['admin/mail/(:any)'] = 'Private/Grocery_controller/mail/$1';
@@ -127,6 +127,10 @@ $route['admin/group/(:any)/(:any)'] = 'Private/Grocery_controller/group/$1/$2';
 $route['user/incidencies'] = 'Private/Grocery_controller/user_inci';
 $route['user/incidencies/(:any)'] = 'Private/Grocery_controller/user_inci/$1';
 $route['user/incidencies/(:any)/(:any)'] = 'Private/Grocery_controller/user_inci/$1/$2';
+
+
+$route['user/save_incidencia'] = 'Private/Incidencia_controller/save_incidencia_page';
+$route['user/save_incidencia_bd'] = 'Private/Incidencia_controller/save_incidencia';
 
 
 $route['upload'] = 'Upload_controller/index';
