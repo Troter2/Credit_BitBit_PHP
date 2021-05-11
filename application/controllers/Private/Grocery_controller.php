@@ -366,8 +366,6 @@ class Grocery_controller extends Private_controller
 		}
 	}
 
-
-
 	function add_date_callback($post_array)
 	{
 		$this->load->library('uuid');

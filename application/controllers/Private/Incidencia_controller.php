@@ -32,11 +32,11 @@ class Incidencia_controller extends Private_controller
         $this->load->library('ion_auth');
         $this->load->helper('url');
         $this->load->helper('form');
-        
+
         if ($this->inci_model->exist() == 0) {
             $this->session->set_userdata('error', 'Incidencia inexistent');
             redirect('user/save_incidencia');
-        } else if ($this->inci_model->has_owner()) {
+        } else if (!$this->inci_model->has_owner()) {
             $this->session->set_userdata('error', 'Ja te propietari');
             redirect('user/save_incidencia');
         } else {

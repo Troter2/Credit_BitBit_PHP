@@ -59,6 +59,7 @@
                         </li>
                     <?php
                     }
+
                     if ($this->ion_auth->in_group('gestor') || $this->ion_auth->is_admin()) { ?>
                         <li style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
                             <div class="btn-group dropright">
@@ -76,12 +77,29 @@
                         </li>
                     <?php
                     }
-                    if ($this->ion_auth->in_group('user') ) { ?>
+                    if ($this->ion_auth->in_group('tecnic') || $this->ion_auth->is_admin()) { ?>
+                        <li style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div class="btn-group dropright">
+                                <a type="button" class="dropdown-toggle " style="width: 100%;border-bottom: 0px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="fa fa-wrench"></span> Tecnic
+                                </a>
+                                <div class="dropdown-menu">
+                                    <!-- Dropdown menu links -->
+                                    <ul class="pl-1">
+                                        <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('gestor/inci') ?>">Gestor incidencies</a></li>
+                                        <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('gestor/tasques') ?>">Gestor de tasques </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    <?php
+                    }
+                    if ($this->ion_auth->in_group('user')) { ?>
 
                         <li>
                             <a href="<?php echo base_url('user/incidencies') ?>"><span class="fa fa-sticky-note"></span> Incidencias</a>
                         </li>
-                        
+
                     <?php
                     }
                     ?>
