@@ -52,6 +52,7 @@
                                         <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('/admin/mail') ?>">Gestor de mail </a></li>
                                         <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('/admin/tipus_consulta') ?>">Gestor de tipus consulta </a></li>
                                         <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('admin/group') ?>">Gestor rols </a></li>
+                                        <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('admin/about') ?>">About </a></li>
                                         <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('admin/consulta') ?>">Consultes</a></li>
                                     </ul>
                                 </div>

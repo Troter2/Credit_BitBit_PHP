@@ -115,6 +115,10 @@ $route['admin/consulta'] = 'Private/Grocery_controller/consulta';
 $route['admin/consulta/(:any)'] = 'Private/Grocery_controller/consulta/$1';
 $route['admin/consulta/(:any)/(:any)'] = 'Private/Grocery_controller/consulta/$1/$2';
 
+$route['admin/about'] = 'Private/Grocery_controller/about';
+$route['admin/about/(:any)'] = 'Private/Grocery_controller/about/$1';
+$route['admin/about/(:any)/(:any)'] = 'Private/Grocery_controller/about/$1/$2';
+
 $route['admin/tipus_consulta'] = 'Private/Grocery_controller/tipus_consulta';
 $route['admin/tipus_consulta/(:any)'] = 'Private/Grocery_controller/tipus_consulta/$1';
 $route['admin/tipus_consulta/(:any)/(:any)'] = 'Private/Grocery_controller/tipus_consulta/$1/$2';

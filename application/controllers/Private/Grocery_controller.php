@@ -251,6 +251,31 @@ class Grocery_controller extends Private_controller
 			redirect(base_url('home'));
 		}
 	}
+	public function about()
+	{
+		$this->load->library('session');
+		$this->load->library('ion_auth');
+		if ($this->ion_auth->is_admin()) {
+
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('adminlte');
+			$crud->set_table('datos_about');
+			$crud->set_language("catalan");
+			$crud->required_fields('date','titol','content');
+
+			$output = $crud->render();
+
+			$data["css_files"] = $output->css_files;
+			$data["grocery"] = true;
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('grocery/index.php', (array)$output);
+			$this->load->view('templates/footer', $data);
+		} else {
+			redirect(base_url('home'));
+		}
+	}
 
 	public function user_inci()
 	{
