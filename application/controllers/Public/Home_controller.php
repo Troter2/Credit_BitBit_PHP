@@ -8,7 +8,7 @@ class Home_controller extends Public_controller
         $this->load->library('ion_auth');
         $this->load->model('msg_model');
         $this->load->model('contact_model');
-
+        $this->load->model('about_model');
         $this->load->model('news_model');
     }
 
@@ -32,15 +32,6 @@ class Home_controller extends Public_controller
         } else {
             $this->load->view('pages/home', $data);
         }
-        $this->load->view('templates/footer');
-    }
-    public function about()
-    {
-
-        $this->load->library('ion_auth');
-
-        $this->load->view('templates/header');
-        $this->load->view('pages/about');
         $this->load->view('templates/footer');
     }
 

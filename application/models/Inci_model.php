@@ -30,6 +30,7 @@ class Inci_model extends CI_Model
         } catch (Exception $e) {
         }
         if ($row[0]['id_user_propietari'] != NULL) {
+            
             return false;
         }
         return true;

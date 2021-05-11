@@ -63,7 +63,7 @@ $route['login'] = 'Public/Login_controller/login_page';
 $route['register'] = 'Public/Login_controller/register_page';
 $route['logout'] = 'Public/Login_controller/logout';
 
-$route['about'] = 'Public/Home_controller/about';
+$route['about'] = 'Public/About_controller/view_about';
 $route['contact'] = 'Public/Home_controller/contact';
 
 $route['status'] = 'Public/Home_controller/status';
