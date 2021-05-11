@@ -63,6 +63,7 @@ CREATE TABLE IF NOT EXISTS `incidencies` (
   `id_user_propietari` int(10) unsigned DEFAULT NULL,
   `nom_propietari` varchar(50) NOT NULL,
   `marca` varchar(50) NOT NULL,
+  `model` varchar(50) NOT NULL,
   `numero_serie` varchar(50) NOT NULL,
   `tlf` varchar(50) NOT NULL,
   `desc_averia` longtext NOT NULL,
@@ -74,16 +75,19 @@ CREATE TABLE IF NOT EXISTS `incidencies` (
   KEY `FK_status` (`id_estat`),
   KEY `FK_user` (`id_user_propietari`),
   CONSTRAINT `FK_user` FOREIGN KEY (`id_user_propietari`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.incidencies: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.incidencies: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `incidencies` DISABLE KEYS */;
-INSERT INTO `incidencies` (`id_inci`, `id_estat`, `id_user_propietari`, `nom_propietari`, `marca`, `numero_serie`, `tlf`, `desc_averia`, `diagnosis_prev`, `entry_date`, `out_date`, `uuid`) VALUES
-	(1, 1, 1, 'asd', 'XIAOMI', '123423411424', 'asd', '<p>\n	&nbsp;SHAH SDASH KJSH DKAH AKSH AKSDHJ AKDHJ AKSJDH ASKDH JASKD HSKJ DHASDK HJK JASKHJDKJHDKJASHDKAJSH&nbsp; HJKAS HD SAD AD AD&nbsp; DA D D ASDA DA D&nbsp; SDASDADFAS F SDFSD FSD FF SA FSD FSA FSAD FSF SD FS FSDF SD FSDF S SDFS ADFSD FS DFS DFS DFS DFSD FS DFS DFS FDSDF S</p>\n', '', '2021-05-19', '2021-05-11', ''),
-	(6, 1, 2, 'etafd', 'LENOVO', '1241243324', 'as198723', '<p>\n	ajshdkjfsh</p>\n', '<p>\n	akjhdakjsh</p>\n', '2021-05-17', '2021-05-02', ''),
-	(8, 1, 2, '1234', 'ASUS', '312412433124', '1234', '<p>\n	123</p>\n', '<p>\n	123</p>\n', '2021-05-17', '2021-05-08', ''),
-	(17, 0, NULL, 'Sergi', 'HP', '2142144245343543', '564564', '<p>\n	ASD AFASF&nbsp;</p>\n', '<p>\n	ASD SAADS&nbsp;</p>\n', '2021-05-10', NULL, 'a2de7ff3c713430cb17c95782ea06203'),
-	(18, 0, 2, '123', '123', '123', '123', '<p>\n	123</p>\n', '<p>\n	13</p>\n', '2021-05-10', NULL, '5b850d8b39e545129986f8afb1128be0');
+INSERT INTO `incidencies` (`id_inci`, `id_estat`, `id_user_propietari`, `nom_propietari`, `marca`, `model`, `numero_serie`, `tlf`, `desc_averia`, `diagnosis_prev`, `entry_date`, `out_date`, `uuid`) VALUES
+	(1, 1, 1, 'asd', 'XIAOMI', 'model test', '123423411424', 'asd', '<p>\n	&nbsp;SHAH SDASH KJSH DKAH AKSH AKSDHJ AKDHJ AKSJDH ASKDH JASKD HSKJ DHASDK HJK JASKHJDKJHDKJASHDKAJSH&nbsp; HJKAS HD SAD AD AD&nbsp; DA D D ASDA DA D&nbsp; SDASDADFAS F SDFSD FSD FF SA FSD FSA FSAD FSF SD FS FSDF SD FSDF S SDFS ADFSD FS DFS DFS DFS DFSD FS DFS DFS FDSDF S</p>\n', '', '2021-05-19', '2021-05-11', ''),
+	(6, 1, 2, 'etafd', 'LENOVO', 'model test', '1241243324', 'as198723', '<p>\n	ajshdkjfsh</p>\n', '<p>\n	akjhdakjsh</p>\n', '2021-05-17', '2021-05-02', ''),
+	(8, 1, 2, '1234', 'ASUS', 'model test', '312412433124', '1234', '<p>\n	123</p>\n', '<p>\n	123</p>\n', '2021-05-17', '2021-05-08', ''),
+	(17, 1, 15, 'Sergi', 'HP', 'model test', '2142144245343543', '564564', '<p>\n	ASD AFASF&nbsp;</p>\n', '<p>\n	ASD SAADS&nbsp;</p>\n', '2021-05-10', NULL, 'a2de7ff3c713430cb17c95782ea06203'),
+	(18, 1, 2, '123', '123', 'model test', '123', '123', '<p>\n	123</p>\n', '<p>\n	13</p>\n', '2021-05-10', NULL, '5b850d8b39e545129986f8afb1128be0'),
+	(19, 1, 15, 'TEST', 'ACER', 'NITRO 5', 'JAISUDFASLJKH FKH F', '1235465343', '<p>\n	12354864645</p>\n', '<p>\n	123A5D6564AS65 456DA4&nbsp;</p>\n', '2021-05-11', NULL, 'b949b7131d3a49c3bb1e767f01d5281a'),
+	(20, 1, 15, 'JOEL', 'PATATA', 'FRITA', '123KJH31', '1325324', '<p>\n	123414HJKGK4JH12G3JH</p>\n', '<p>\n	12JH34G12JKH</p>\n', '2021-05-11', NULL, '9533382c95ee42d391a8e57a6594284e'),
+	(21, 1, 15, 'jkashf ', 'jskdhf a', 'kjhsa dkfj ', 'jkh', 'kj hkjh', '<p>\n	kjhsdfkjhasfkjh</p>\n', '<p>\n	lksjhadfkjhaf&nbsp;</p>\n', '2021-05-11', NULL, 'd6a39daf641b4679a87c2b6a691ef1ce');
 /*!40000 ALTER TABLE `incidencies` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.login_attempts
@@ -217,25 +221,17 @@ CREATE TABLE IF NOT EXISTS `tasques` (
   KEY `id_inci` (`id_inci`),
   CONSTRAINT `FK_tasques_inci` FOREIGN KEY (`id_inci`) REFERENCES `incidencies` (`id_inci`),
   CONSTRAINT `FK_tasques_users` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.tasques: ~14 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.tasques: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `tasques` DISABLE KEYS */;
 INSERT INTO `tasques` (`id_tasca`, `id_user`, `id_inci`, `desc`, `start_date`, `end_date`) VALUES
 	(4, 3, 1, '<p>\n	felicitats campeon a currar GOS</p>\n', '2021-05-07', NULL),
 	(5, 18, 6, '<p>\n	estreno</p>\n', '2021-05-07', NULL),
 	(6, 2, 1, '<p>\n	ASD</p>\n', '2021-05-18', NULL),
-	(7, 5, 1, '<p>\n	ASDASD</p>\n', '0000-00-00', NULL),
 	(8, 2, 1, '<p>\n	asd</p>\n', '2021-05-18', NULL),
 	(9, 2, 1, '<p>\n	asd</p>\n', '2021-05-18', NULL),
-	(11, 5, 1, '<p>\n	dsf</p>\n', '0000-00-00', NULL),
-	(12, 2, 1, '<p>\n	asd</p>\n', '0000-00-00', NULL),
-	(13, 2, 1, '<p>\n	asdasd</p>\n', '0000-00-00', NULL),
-	(14, 5, 1, '<p>\n	asdasdasdasd</p>\n', '0000-00-00', NULL),
-	(15, 15, 1, '<p>\n	asdasdasdasd</p>\n', '0000-00-00', NULL),
-	(16, 4, 1, '<p>\n	asd</p>\n', '0000-00-00', NULL),
-	(17, 2, 1, '<p>\n	asd</p>\n', '0000-00-00', NULL),
-	(19, 2, 1, '<p>\n	asd</p>\n', '0000-00-00', NULL);
+	(20, 3, 1, '<p>\n	test</p>\n', '2021-05-10', NULL);
 /*!40000 ALTER TABLE `tasques` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.tipus_consulta
@@ -286,11 +282,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
 	(1, '127.0.0.1', 'administrator', '$2y$10$gpGtuiacEw4AbP8tgx7Z2exNOoiP/IgW24vJZWZXIQrEQMG7HJQ4q', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1619291859, 1, 'Admin', 'istrator', 'ADMIN', '123456789'),
-	(2, '::1', 'test', '$2y$10$0Bp.39JsZLy9Y9y/J2p86.72F0E.fQI8uMgJ8w9uaqVLgrcBSDHXy', 'test@test.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619291471, 1620657810, 1, '', '', '', NULL),
+	(2, '::1', 'test', '$2y$10$0Bp.39JsZLy9Y9y/J2p86.72F0E.fQI8uMgJ8w9uaqVLgrcBSDHXy', 'test@test.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619291471, 1620725734, 1, '', '', '', NULL),
 	(3, '::1', 'usuari1', '$2y$10$WPxZ5HrQVjPhbSwXbyQ54.4Q6COstkQR0x/r0UKteL1xbf.qjXPUG', 'usuari1@usuari1.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619296588, 1619296636, 1, 'usuari 1', 'test', '', NULL),
 	(4, '::1', 'estudillo', '$2y$10$0eV9d2OXh01UTkThhnDeuOebo8/n81svDd2p5ukn0J3qNMVBTLMqK', 'estudillo@estudillo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619297343, 1619297359, 1, 'Noel', 'Estudillo', 'BOBO S.L.', NULL),
-	(5, '::1', 'test2', '$2y$10$uMzrdZjHVb8Veom7HXsdLODpBK5Ffvf16bGxQZLa6rdLykSvDAfcy', '1234', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620311820, 1620652378, 1, '1234', '1234', '1234', NULL),
-	(15, '::1', 'test4', '$2y$10$X1.HVIEW1kLFMt9bak9wLOSI8ZRDizs7m5RuQfTyyOprpsB54shw2', 'test', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620324221, NULL, 1, '1234', '1234', '123', NULL),
+	(5, '::1', 'test2', '$2y$10$uMzrdZjHVb8Veom7HXsdLODpBK5Ffvf16bGxQZLa6rdLykSvDAfcy', '1234', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620311820, 1620662888, 1, '1234', '1234', '1234', NULL),
+	(15, '::1', 'test4', '$2y$10$X1.HVIEW1kLFMt9bak9wLOSI8ZRDizs7m5RuQfTyyOprpsB54shw2', 'test', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620324221, 1620725693, 1, '1234', '1234', '123', NULL),
 	(18, '::1', 'test6', '$2y$10$aA33Lpa3zLcJEkn50Owaw.ZJdIBtN6snitBZZMUKdIhGHyM2v1gSS', '1234567', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620325894, 1620325894, 1, '1234567', '1234567', '1234567', NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 

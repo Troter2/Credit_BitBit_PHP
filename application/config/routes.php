@@ -124,6 +124,11 @@ $route['admin/group/(:any)'] = 'Private/Grocery_controller/group/$1';
 $route['admin/group/(:any)/(:any)'] = 'Private/Grocery_controller/group/$1/$2';
 
 
+$route['user/incidencies'] = 'Private/Grocery_controller/user_inci';
+$route['user/incidencies/(:any)'] = 'Private/Grocery_controller/user_inci/$1';
+$route['user/incidencies/(:any)/(:any)'] = 'Private/Grocery_controller/user_inci/$1/$2';
+
+
 $route['upload'] = 'Upload_controller/index';
 $route['upload/do_upload'] = 'Upload_controller/do_upload';
 

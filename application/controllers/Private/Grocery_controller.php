@@ -10,10 +10,7 @@ class Grocery_controller extends Private_controller
 		$this->load->helper('url');
 		$this->load->library('grocery_CRUD');
 		$this->load->library('ion_auth');
-		if (!$this->ion_auth->is_admin() && !$this->ion_auth->in_group('gestor')) {
-			$this->session->set_flashdata('message', 'You must be an admin to view this page');
-			redirect('about');
-		}
+		
 	}
 
 
@@ -21,6 +18,7 @@ class Grocery_controller extends Private_controller
 	{
 		$this->load->library('session');
 		$this->load->library('ion_auth');
+		
 		if ($this->ion_auth->is_admin()) {
 
 			$crud = new grocery_CRUD();
@@ -77,7 +75,7 @@ class Grocery_controller extends Private_controller
 	{
 		$this->load->library('session');
 		$this->load->library('ion_auth');
-		if ($this->ion_auth->logged_in()) {
+		if ($this->ion_auth->is_admin() || $this->ion_auth->in_group('gestor')) {
 
 			$crud = new grocery_CRUD();
 
@@ -139,7 +137,7 @@ class Grocery_controller extends Private_controller
 		$this->load->library('session');
 		$this->load->library('session');
 		$this->load->library('ion_auth');
-		if ($this->ion_auth->logged_in()) {
+		if ($this->ion_auth->is_admin() || $this->ion_auth->in_group('gestor')) {
 
 			$crud = new grocery_CRUD();
 
@@ -234,6 +232,47 @@ class Grocery_controller extends Private_controller
 			redirect(base_url('home'));
 		}
 	}
+	
+	public function user_inci()
+	{
+		$this->load->library('session');
+		$this->load->library('ion_auth');
+		if ($this->ion_auth->in_group('user')) {
+
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('adminlte');
+			$crud->set_table('incidencies');
+			$crud->set_relation('id_estat', 'status', 'desc');
+			$crud->columns(['id_estat','marca','model','numero_serie', 'entry_date']);
+			$crud->display_as('id_estat', 'Estat');
+			$crud->display_as('entry_date', "Data d'entrada");
+
+			$crud->unset_add();
+            $crud->unset_edit();
+            $crud->unset_delete();
+
+			$crud->change_field_type('out_date', 'invisible');
+			$crud->change_field_type('entry_date', 'invisible');
+			$crud->change_field_type('id_estat', 'invisible');
+			$crud->change_field_type('uuid', 'invisible');
+
+			$userinfo = $this->ion_auth->user()->row();
+            $id = $userinfo->id;
+			$crud->where('id_user_propietari',$id);
+
+			$output = $crud->render();
+
+			$data["css_files"] = $output->css_files;
+			$data["grocery"] = true;
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('grocery/index.php', (array)$output);
+			$this->load->view('templates/footer', $data);
+		} else {
+			redirect(base_url('home'));
+		}
+	}
 
 
 	public function group()
@@ -298,6 +337,7 @@ class Grocery_controller extends Private_controller
 		$this->load->library('uuid');
 		$post_array['uuid'] = str_replace("-","",$this->uuid->v4());
 		$post_array["entry_date"] = date("Y-m-d");
+		$post_array["id_estat"] = '1';
 		return $post_array;
 	}
 }

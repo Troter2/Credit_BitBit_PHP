@@ -32,23 +32,17 @@
                 <h1><a href="<?php echo base_url('/home') ?>" class=""><img class="col col-sm-12 mt-0 -b-2" src="<?php echo base_url('/assets/img/logo/logo.svg') ?>" alt="My Happy SVG" /></a></h1>
                 <ul class="list-unstyled components mb-5">
                     <li class="active">
-                        <a href="<?php echo base_url('/home') ?>"><span class="fa fa-home"></span> Home</a>
+                        <a href="<?php echo base_url('/home') ?>"><span class="fa fa-home"></span> Inici</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('/about') ?>"><span class="fa fa-user"></span> About</a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url('/status') ?>"><span class="fa fa-sticky-note"></span>Status</a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url('/contact') ?>"><span class="fa fa-paper-plane"></span> Contacts</a>
+                        <a href="<?php echo base_url('/contact') ?>"><span class="fa fa-paper-plane"></span> Contacto</a>
                     </li>
                     <?php
                     if ($this->ion_auth->is_admin()) { ?>
                         <li style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
                             <div class="btn-group dropright">
                                 <a type="button" class="dropdown-toggle " style="width: 100%;border-bottom: 0px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="fa fa-user"></span>Admin
+                                    <span class="fa fa-user"></span> Admin
                                 </a>
                                 <div class="dropdown-menu">
                                     <!-- Dropdown menu links -->
@@ -59,18 +53,17 @@
                                         <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('/admin/tipus_consulta') ?>">Gestor de tipus consulta </a></li>
                                         <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('admin/group') ?>">Gestor rols </a></li>
                                         <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('admin/consulta') ?>">Consultes</a></li>
-                                        <li class="dropdown-item"><a class="text-dark" href="#">Gestor </a></li>
                                     </ul>
                                 </div>
                             </div>
                         </li>
                     <?php
                     }
-                    if ($this->ion_auth->in_group('gestor')||$this->ion_auth->is_admin()) { ?>
+                    if ($this->ion_auth->in_group('gestor') || $this->ion_auth->is_admin()) { ?>
                         <li style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
                             <div class="btn-group dropright">
                                 <a type="button" class="dropdown-toggle " style="width: 100%;border-bottom: 0px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="fa fa-user"></span>Gestor
+                                    <span class="fa fa-user"></span> Gestor
                                 </a>
                                 <div class="dropdown-menu">
                                     <!-- Dropdown menu links -->
@@ -83,7 +76,18 @@
                         </li>
                     <?php
                     }
+                    if ($this->ion_auth->in_group('user') ) { ?>
+
+                        <li>
+                            <a href="<?php echo base_url('user/incidencies') ?>"><span class="fa fa-sticky-note"></span> Incidencias</a>
+                        </li>
+                        
+                    <?php
+                    }
                     ?>
+                    <li>
+                        <a href="<?php echo base_url('/about') ?>"><span class="fa fa-info-circle"></span> About</a>
+                    </li>
                 </ul>
                 <div class="footer">
                     <p>
