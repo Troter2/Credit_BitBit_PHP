@@ -211,6 +211,10 @@ class Grocery_controller extends Private_controller
 			$crud->order_by('entry_date', 'desc');
 			$crud->set_language("catalan");
 			$crud->required_fields('nom_propietari', 'marca', 'model', 'tlf', 'numero_serie', 'desc_averia', 'diagnosis_prev');
+			//$crud->add_action('PDF','' , "Pdf_controller/" . $this->inci_model->get_incidencia("uuid"),'fa fa-download');
+
+			//print_r($this);
+			//die;
 
 			$state = $crud->getState();
 			if ($state == 'list' || $state == 'read' || $state == 'success') {
