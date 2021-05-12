@@ -79,6 +79,7 @@ $route['details'] = 'Public/Home_controller/details';
 $route['login/login'] = 'Public/Login_controller/login';
 $route['login/register'] = 'Public/Login_controller/register';
 
+
 $route['mail/view/(:num)'] = 'Public/Mail_controller/view/$1';
 $route['mail/send'] = 'Public/Mail_controller/send';
 $route['mail/sendMail'] = 'Public/Mail_controller/sendMail';
@@ -94,13 +95,15 @@ $route['gestor/tasques'] = 'Private/Grocery_controller/tasques';
 $route['gestor/tasques/(:any)'] = 'Private/Grocery_controller/tasques/$1';
 $route['gestor/tasques/(:any)/(:any)'] = 'Private/Grocery_controller/tasques/$1/$2';
 
-$route['tecnic/tasques'] = 'Private/Grocery_controller/tasques_tecnic';
-$route['tecnic/tasques/(:any)'] = 'Private/Grocery_controller/tasques_tecnic/$1';
-$route['tecnic/tasques/(:any)/(:any)'] = 'Private/Grocery_controller/tasques_tecnic/$1/$2';
-
 $route['gestor/inci'] = 'Private/Grocery_controller/incidencies';
 $route['gestor/inci/(:any)'] = 'Private/Grocery_controller/incidencies/$1';
 $route['gestor/inci/(:any)/(:any)'] = 'Private/Grocery_controller/incidencies/$1/$2';
+
+$route['tecnic/update_inci'] = 'Private/Tecnic_controller/update_inci_page';
+
+$route['tecnic/tasques'] = 'Private/Grocery_controller/tasques_tecnic';
+$route['tecnic/tasques/(:any)'] = 'Private/Grocery_controller/tasques_tecnic/$1';
+$route['tecnic/tasques/(:any)/(:any)'] = 'Private/Grocery_controller/tasques_tecnic/$1/$2';
 
 $route['admin/user'] = 'Private/Grocery_controller/user';
 $route['admin/user/(:any)'] = 'Private/Grocery_controller/user/$1';

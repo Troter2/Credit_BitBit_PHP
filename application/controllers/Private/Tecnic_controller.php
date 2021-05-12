@@ -3,29 +3,23 @@ class Tecnic_controller extends Private_controller
 {
     public function __construct()
     {
-        $this->load->helper('url_helper');
-        $this->load->library('ion_auth');
-        $this->load->library('session');
         parent::__construct();
     }
 
-    public function save_incidencia_page()
+    public function update_inci_page()
     {
         $this->load->library('ion_auth');
         $this->load->library('form_validation');
-        $data = [];
-        if ($this->session->has_userdata('error')) {
-            $data['error'] = $this->session->userdata('error');
-            unset($_SESSION['error']);
-        }
+
+
 
         $this->load->view('templates/header');
-        $this->load->view('incidencies/add_inci', $data);
+        $this->load->view('tecnic/add_inci' );
         $this->load->view('templates/footer');
     }
 
 
-    public function save_incidencia()
+    public function update_incidencia()
     {
         $this->load->model('inci_model');
         $this->load->library('ion_auth');

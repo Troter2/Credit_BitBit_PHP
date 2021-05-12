@@ -134,7 +134,7 @@ class Grocery_controller extends Private_controller
 
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('adminlte_task');
+			$crud->set_theme('adminlte_tecnic');
 			$crud->set_table('tasques');
 
 			$state = $crud->getState();
@@ -270,7 +270,10 @@ class Grocery_controller extends Private_controller
 			$crud->display_as('phone', "Telefon");
 			$crud->display_as('city', "Ciutat");
 			$crud->columns(['username', 'email', 'first_name', 'last_name', 'company', 'phone', 'city']);
+			$crud->callback_after_insert(array($this, 'hash_pass'));
+			$crud->callback_after_update(array($this, 'hash_pass'));
 			$output = $crud->render();
+			//////////////////////////////////////////
 
 			$data["css_files"] = $output->css_files;
 			$data["grocery"] = true;
@@ -454,5 +457,14 @@ class Grocery_controller extends Private_controller
 		$post_array["entry_date"] = date("Y-m-d");
 		$post_array["id_estat"] = '1';
 		return $post_array;
+	}
+	function hash_pass($post_array, $primary_key)
+	{
+		$passwordHashed = $this->ion_auth_model->hash_password($post_array['password'],FALSE,FALSE);
+		$username=$post_array['username'];
+		$this->db->set('password', $passwordHashed);
+        $this->db->where('username', $username);
+        $this->db->update('users');
+		return true;
 	}
 }
