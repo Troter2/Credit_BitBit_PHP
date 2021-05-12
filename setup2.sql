@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `datos_about` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.datos_about: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.datos_about: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `datos_about` DISABLE KEYS */;
 INSERT INTO `datos_about` (`id`, `date`, `titol`, `content`) VALUES
 	(1, '2021', 'asd asd asd ', 'as dasdas dasd'),
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.login_attempts: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.login_attempts: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `login_attempts` DISABLE KEYS */;
 INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
 	(14, '::1', 'test3', 1620765941);
@@ -264,7 +264,7 @@ CREATE TABLE IF NOT EXISTS `tasques` (
 -- Volcando datos para la tabla bitbit.tasques: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `tasques` DISABLE KEYS */;
 INSERT INTO `tasques` (`id_tasca`, `id_user`, `id_inci`, `desc`, `start_date`, `end_date`) VALUES
-	(4, 3, 1, '<p>\n	felicitats campeon a currar GOS</p>\n', '2021-05-07', NULL),
+	(4, 19, 1, '<p>\n	EXEMPLE DESCRIPCIO</p>\n<p>\n	&nbsp;</p>\n', '2021-05-07', NULL),
 	(5, 18, 6, '<p>\n	estreno</p>\n', '2021-05-07', NULL),
 	(6, 2, 1, '<p>\n	ASD</p>\n', '2021-05-18', NULL),
 	(8, 2, 1, '<p>\n	asd</p>\n', '2021-05-18', NULL),
@@ -315,18 +315,22 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `uc_activation_selector` (`activation_selector`),
   UNIQUE KEY `uc_forgotten_password_selector` (`forgotten_password_selector`),
   UNIQUE KEY `uc_remember_selector` (`remember_selector`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bitbit.users: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `city`) VALUES
 	(1, '127.0.0.1', 'administrator', '$2y$10$gpGtuiacEw4AbP8tgx7Z2exNOoiP/IgW24vJZWZXIQrEQMG7HJQ4q', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1619291859, 1, 'Admin', 'istrator', 'ADMIN', '123456789', 'test'),
-	(2, '::1', 'test', '$2y$10$0Bp.39JsZLy9Y9y/J2p86.72F0E.fQI8uMgJ8w9uaqVLgrcBSDHXy', 'test@test.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619291471, 1620756606, 1, '', '', '', NULL, 'test'),
+	(2, '::1', 'test', '$2y$10$0Bp.39JsZLy9Y9y/J2p86.72F0E.fQI8uMgJ8w9uaqVLgrcBSDHXy', 'test@test.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619291471, 1620814566, 1, '', '', '', NULL, 'test'),
 	(3, '::1', 'usuari1', '$2y$10$WPxZ5HrQVjPhbSwXbyQ54.4Q6COstkQR0x/r0UKteL1xbf.qjXPUG', 'usuari1@usuari1.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619296588, 1619296636, 1, 'usuari 1', 'test', '', NULL, 'test'),
 	(4, '::1', 'estudillo', '$2y$10$0eV9d2OXh01UTkThhnDeuOebo8/n81svDd2p5ukn0J3qNMVBTLMqK', 'estudillo@estudillo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619297343, 1619297359, 1, 'Noel', 'Estudillo', 'BOBO S.L.', NULL, 'test'),
 	(5, '::1', 'test2', '$2y$10$uMzrdZjHVb8Veom7HXsdLODpBK5Ffvf16bGxQZLa6rdLykSvDAfcy', '1234', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620311820, 1620765946, 1, '1234', '1234', '1234', NULL, 'test'),
-	(15, '::1', 'test4', '$2y$10$X1.HVIEW1kLFMt9bak9wLOSI8ZRDizs7m5RuQfTyyOprpsB54shw2', 'test', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620324221, 1620749268, 1, '1234', '1234', '123', NULL, 'test'),
-	(18, '::1', 'test6', '$2y$10$aA33Lpa3zLcJEkn50Owaw.ZJdIBtN6snitBZZMUKdIhGHyM2v1gSS', '1234567', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620325894, 1620766014, 1, '1234567', '1234567', '1234567', NULL, 'test');
+	(15, '::1', 'test4', '$2y$10$X1.HVIEW1kLFMt9bak9wLOSI8ZRDizs7m5RuQfTyyOprpsB54shw2', 'test', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620324221, 1620814368, 1, '1234', '1234', '123', NULL, 'test'),
+	(18, '::1', 'test6', '$2y$10$aA33Lpa3zLcJEkn50Owaw.ZJdIBtN6snitBZZMUKdIhGHyM2v1gSS', '1234567', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620325894, 1620768492, 1, '1234567', '1234567', '1234567', NULL, 'test'),
+	(19, '::1', 'tecnic', '$2y$10$SlsYyAADqjHBf0K81nc/1ORtCfOyP4Xv/8xEsP.yNO.WeHgBrU5pG', 'tecnic@tecnic.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814433, 1620814679, 1, 'tecnic', 'tecnic', '', NULL, 'test'),
+	(20, '::1', 'admin', '$2y$10$kkhDR3aKoCUqxIUGPmI/cOk1aOFzSrUM6xd75oVY8VqoxLTkdRgrS', 'admin@admin.comm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814495, 1620814495, 1, 'admin', 'admin', 'admin', NULL, 'admin'),
+	(21, '::1', 'user', '$2y$10$6CYfjRdPmKkOZ3292WEMcugoWK13xFd6az2VW2Wr3heUm1jvkowW.', 'user@user.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814520, 1620814520, 1, 'user', 'user', 'user', NULL, 'user'),
+	(22, '::1', 'gestor', '$2y$10$9g65AByvczLx.4fK6ebFeej5/VcTHEjP3hndeSkFJin758YDf0kiy', 'gestor@gestor.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814555, 1620815670, 1, 'gestor', 'gestor', 'gestor', NULL, 'gesto');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.users_groups
@@ -340,9 +344,9 @@ CREATE TABLE IF NOT EXISTS `users_groups` (
   KEY `fk_users_groups_groups1_idx` (`group_id`),
   CONSTRAINT `fk_users_groups_groups1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.users_groups: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.users_groups: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `users_groups` DISABLE KEYS */;
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 	(1, 1, 1),
@@ -351,7 +355,11 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 	(5, 4, 2),
 	(6, 5, 2),
 	(7, 15, 4),
-	(8, 18, 4);
+	(8, 18, 4),
+	(9, 19, 3),
+	(10, 20, 1),
+	(11, 21, 4),
+	(12, 22, 2);
 /*!40000 ALTER TABLE `users_groups` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
