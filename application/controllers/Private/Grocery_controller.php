@@ -126,6 +126,58 @@ class Grocery_controller extends Private_controller
 		}
 	}
 
+	public function tasques_tecnic()
+	{
+		$this->load->library('session');
+		$this->load->library('ion_auth');
+		if ($this->ion_auth->in_group('gestor') || $this->ion_auth->in_group('tecnic')) {
+
+			$crud = new grocery_CRUD();
+
+			$crud->set_theme('adminlte_task');
+			$crud->set_table('tasques');
+
+			$state = $crud->getState();
+			if ($state == 'add') {
+				if (!$this->session->has_userdata('id_incidencia')) {
+					redirect('gestor/inci');
+				}
+			}
+
+			$crud->callback_before_insert(array($this, 'tasques_before_insert'));
+			$crud->set_relation('id_user', 'users', 'username');
+			$state = $crud->getState();
+			if ($state != 'add' && $state != 'edit') {
+				$crud->set_relation('id_inci', 'incidencies', 'marca');
+			}
+			$crud->set_language("catalan");
+			$crud->required_fields('desc', 'id_user');
+			$crud->change_field_type('id_inci', 'invisible');
+			$crud->display_as('id_user', 'Tecnic');
+			$crud->display_as('id_inci', 'Model portatil');
+			$crud->display_as('desc', 'Descripcio');
+			$crud->display_as('start_date', 'Data inici');
+			$crud->display_as('end_date', 'Data fi');
+			$crud->change_field_type('start_date', 'invisible');
+			$crud->change_field_type('end_date', 'invisible');
+			$userinfo = $this->ion_auth->user()->row();
+			$id = $userinfo->id;
+			$crud->where('id_user', $id);
+			$output = $crud->render();
+
+			$data["css_files"] = $output->css_files;
+			$data["grocery"] = true;
+
+			$crud->callback_before_insert(array($this, 'tasques_before_insert'));
+
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('grocery/index.php', (array)$output);
+			$this->load->view('templates/footer', $data);
+		} else {
+			redirect(base_url('home'));
+		}
+	}
 
 	function tasques_before_insert($post_array)
 	{
@@ -262,7 +314,7 @@ class Grocery_controller extends Private_controller
 			$crud->set_theme('adminlte');
 			$crud->set_table('datos_about');
 			$crud->set_language("catalan");
-			$crud->required_fields('date','titol','content');
+			$crud->required_fields('date', 'titol', 'content');
 
 			$output = $crud->render();
 

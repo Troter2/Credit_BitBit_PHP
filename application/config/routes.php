@@ -74,6 +74,8 @@ $route['passEdit'] = 'Public/User_controller/pass_edit_page';
 $route['updateUser'] = 'Public/User_controller/update';
 $route['updatePass'] = 'Public/User_controller/update_pass';
 
+$route['details'] = 'Public/Home_controller/details';
+
 $route['login/login'] = 'Public/Login_controller/login';
 $route['login/register'] = 'Public/Login_controller/register';
 
@@ -82,18 +84,19 @@ $route['mail/send'] = 'Public/Mail_controller/send';
 $route['mail/sendMail'] = 'Public/Mail_controller/sendMail';
 
 
+
+
 $route['news/view/(:num)'] = 'Public/News_controller/view_new/$1';
 $route['news/send'] = 'Public/News_controller/send';
 $route['news/sendMail'] = 'Public/News_controller/sendMail';
 
-
-$route['details'] = 'Public/Home_controller/details';
-
-
-
 $route['gestor/tasques'] = 'Private/Grocery_controller/tasques';
 $route['gestor/tasques/(:any)'] = 'Private/Grocery_controller/tasques/$1';
 $route['gestor/tasques/(:any)/(:any)'] = 'Private/Grocery_controller/tasques/$1/$2';
+
+$route['tecnic/tasques'] = 'Private/Grocery_controller/tasques_tecnic';
+$route['tecnic/tasques/(:any)'] = 'Private/Grocery_controller/tasques_tecnic/$1';
+$route['tecnic/tasques/(:any)/(:any)'] = 'Private/Grocery_controller/tasques_tecnic/$1/$2';
 
 $route['gestor/inci'] = 'Private/Grocery_controller/incidencies';
 $route['gestor/inci/(:any)'] = 'Private/Grocery_controller/incidencies/$1';
@@ -127,7 +130,6 @@ $route['admin/group'] = 'Private/Grocery_controller/group';
 $route['admin/group/(:any)'] = 'Private/Grocery_controller/group/$1';
 $route['admin/group/(:any)/(:any)'] = 'Private/Grocery_controller/group/$1/$2';
 
-
 $route['user/incidencies'] = 'Private/Grocery_controller/user_inci';
 $route['user/incidencies/(:any)'] = 'Private/Grocery_controller/user_inci/$1';
 $route['user/incidencies/(:any)/(:any)'] = 'Private/Grocery_controller/user_inci/$1/$2';
@@ -136,32 +138,7 @@ $route['user/incidencies/(:any)/(:any)'] = 'Private/Grocery_controller/user_inci
 $route['user/save_incidencia'] = 'Private/Incidencia_controller/save_incidencia_page';
 $route['user/save_incidencia_bd'] = 'Private/Incidencia_controller/save_incidencia';
 
-
 $route['upload'] = 'Upload_controller/index';
 $route['upload/do_upload'] = 'Upload_controller/do_upload';
 
 $route['contact/sendConsult'] = 'Public/Contact_controller/sendConsult';
-//$route['pagina/(:any)'] = '/pages/view/$1';
-//$route['pagina/(:any)/(:num)'] = '/pages/view/$1';
-//$route['news/index'] = 'news_controller/index';
-//$route['news/index/(:num)'] = 'news_controller/index/$1';
-//$route['news/update'] = 'news_controller/update';
-//$route['news/update/(:num)'] = 'news_controller/update/$1';
-//$route['news/delete'] = 'news_controller/delete';
-//$route['news/delete/(:num)'] = 'news_controller/delete/$1';
-//
-//$route['register'] = 'login_controller/register';
-//
-//$route['login'] = 'login_controller/login';
-//$route['login/index'] = 'login_controller/index';
-//$route['login/destroy'] = 'login_controller/destroy';
-//
-//
-//$route['news/create'] = 'news_controller/create';
-//$route['news'] = 'news_controller/index';
-//$route['news/delete/(:num)'] = 'news_controller/delete/$1';
-//$route['news/(:any)'] = 'news_controller/view/$1';
-//
-//
-//$route['Pdf'] = 'pdf_controller/index';
-
