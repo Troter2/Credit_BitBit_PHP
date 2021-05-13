@@ -38,18 +38,15 @@ class Pdf_controller extends Private_controller
         $pdf->setTextShadow(array('enabled' => false, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
 
         // Set some content to print
-
-
+  //      <link rel="icon" type="image/png" href="<?php echo base_url("/assets/img/logo/favIcon.svg")
         $html = '
         <h1 style="text-align: center;color:red;">' . $incidencia['nom_propietari'] . '</h1>
         <div><p>Nom del propietari: '. $incidencia['nom_propietari'] . '</p></div>
         <div><p>Marca del ordinador: '. $incidencia['marca'] . '</p></div>
         <div><p>Model del ordinador: '. $incidencia['model'] . '</p></div>
         <div><p>Numero de serie: '. $incidencia['numero_serie'] . '</p></div>
-        <div><p>Descripcio de la avaria: '. $incidencia['desc_avaria'] . '</p></div>
-        <div><p>Diagnosi previ: '. $incidencia['diagnosi_previ'] . '</p></div>
-        <div><p>Nom: '. $incidencia['nom_propietari'] . '</p></div>
-        <div><p>Nom: '. $incidencia['nom_propietari'] . '</p></div>
+        <div><p>Descripcio de la avaria: '. $incidencia['desc_averia'] . '</p></div>
+        <div><p>Diagnosi previ: '. $incidencia['diagnosis_prev'] . '</p></div>
 
         <h3>' . $incidencia['nom_propietari'] . '</h3>
         <p style="text-align: justify;text-justify: inter-word;">' . $incidencia['nom_propietari'] . '</p>';

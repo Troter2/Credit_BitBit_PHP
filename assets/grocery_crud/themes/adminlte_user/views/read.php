@@ -93,7 +93,7 @@ if ($this->config->environment == 'production') {
                             <a class="btn btn-default cancel-button" type="button" href='<?php echo base_url('incidencia/pdf/') . $input_fields['uuid']->input; ?>'>
                             <!--<a class=" btn btn-default cancel-button" type="button" href='<?php echo "roger" . $input_fields['uuid']->input; ?>'" >-->
                                     <i class=" fa fa-arrow-left"></i>
-                                Descargar PDF
+                                Descargar PDF 
                             </a>
                         </div>
                     </div>
