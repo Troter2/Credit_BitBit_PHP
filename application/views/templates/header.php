@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html>
+
 <head>
     <!-- <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css'); ?>"> -->
     <link rel="stylesheet" href="<?php echo base_url('assets/css/mycss.css'); ?>">
@@ -5,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     <link rel="icon" type="image/png" href="<?php echo base_url('/assets/img/logo/favIcon.svg') ?>">
+    <script src="https://cdn.tiny.cloud/1/o3f5tpc41bwlj1wxi93g2ihotm70fmmvyywirjrkqd8008ax/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
     <?php if (isset($css_files)) :
 

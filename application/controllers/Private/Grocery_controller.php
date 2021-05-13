@@ -136,6 +136,7 @@ class Grocery_controller extends Private_controller
 
 			$crud->set_theme('adminlte_tecnic');
 			$crud->set_table('tasques');
+			$crud->unset_delete();
 
 			$state = $crud->getState();
 			if ($state == 'add') {
@@ -147,7 +148,7 @@ class Grocery_controller extends Private_controller
 			$crud->callback_before_insert(array($this, 'tasques_before_insert'));
 			$crud->set_relation('id_user', 'users', 'username');
 			$state = $crud->getState();
-			if ($state != 'add' && $state != 'edit') {
+			if ($state != 'edit') {
 				$crud->set_relation('id_inci', 'incidencies', 'marca');
 			}
 			$crud->set_language("catalan");
@@ -163,6 +164,15 @@ class Grocery_controller extends Private_controller
 			$userinfo = $this->ion_auth->user()->row();
 			$id = $userinfo->id;
 			$crud->where('id_user', $id);
+			if ($state == 'read') {
+				$id=$this->grocery_crud->getStateInfo()->primary_key;
+				$tasca = $this->db->get_where('tasques', array('id_tasca' => $id));
+				$tasca=$tasca->row_array();
+				$inci = $this->db->get_where('incidencies', array('id_inci' => $tasca['id_inci']));
+				$inci=$inci->row_array();
+				$_SESSION['inci']=$inci;
+				$_SESSION['tasca']=$tasca;
+			}
 			$output = $crud->render();
 
 			$data["css_files"] = $output->css_files;
@@ -460,11 +470,11 @@ class Grocery_controller extends Private_controller
 	}
 	function hash_pass($post_array, $primary_key)
 	{
-		$passwordHashed = $this->ion_auth_model->hash_password($post_array['password'],FALSE,FALSE);
-		$username=$post_array['username'];
+		$passwordHashed = $this->ion_auth_model->hash_password($post_array['password'], FALSE, FALSE);
+		$username = $post_array['username'];
 		$this->db->set('password', $passwordHashed);
-        $this->db->where('username', $username);
-        $this->db->update('users');
+		$this->db->where('username', $username);
+		$this->db->update('users');
 		return true;
 	}
 }

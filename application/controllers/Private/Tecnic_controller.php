@@ -10,11 +10,16 @@ class Tecnic_controller extends Private_controller
     {
         $this->load->library('ion_auth');
         $this->load->library('form_validation');
+        $this->load->model('inci_model');
 
+        $data['status'] = $this->inci_model->get_status();
+        $data['tasca'] = $_SESSION['tasca'];
+        $data['inci'] = $_SESSION['inci'];
 
+        
 
         $this->load->view('templates/header');
-        $this->load->view('tecnic/add_inci' );
+        $this->load->view('tecnic/add_inci', $data);
         $this->load->view('templates/footer');
     }
 

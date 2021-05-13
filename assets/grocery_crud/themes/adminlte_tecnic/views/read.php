@@ -67,7 +67,7 @@ if ($this->config->environment == 'production') {
                                 </button>
                                 <button class="btn btn-default " type="button" onclick="window.location = '<?php echo base_url('tecnic/update_inci'); ?>'">
                                     <i class="fa fa-plus"></i>
-                                    Informar incidencia
+                                    Informar incidencia <?php  ?>
                                 </button>
                             <?php } ?>
                         </div>

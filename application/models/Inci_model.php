@@ -35,4 +35,15 @@ class Inci_model extends CI_Model
         }
         return true;
     }
+
+    public function get_status(){
+        
+        $query=$this->db->query("SELECT * FROM status");
+        return $query->result_array();
+    }
+    public function get_uuid(){
+        
+        $query=$this->db->query("SELECT * FROM status");
+        return $query->result_array();
+    }
 }
