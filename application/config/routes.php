@@ -145,3 +145,5 @@ $route['upload'] = 'Upload_controller/index';
 $route['upload/do_upload'] = 'Upload_controller/do_upload';
 
 $route['contact/sendConsult'] = 'Public/Contact_controller/sendConsult';
+$route['incidencia/pdf/(:any)'] = 'Private/Pdf_controller/generatePDF/$1';
+

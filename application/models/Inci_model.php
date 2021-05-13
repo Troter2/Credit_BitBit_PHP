@@ -46,4 +46,11 @@ class Inci_model extends CI_Model
         $query=$this->db->query("SELECT * FROM status");
         return $query->result_array();
     }
+
+    public function get_incidencia($uuid = FALSE)
+    {
+        //select * from news where news
+        $query = $this->db->get_where('incidencies', array('uuid' => $uuid));
+        return $query->row_array();
+    }
 }
