@@ -45,9 +45,9 @@ class Pdf_controller extends Private_controller
         <div><p>Nom del propietari: '. $incidencia['nom_propietari'] . '</p></div>
         <div><p>Marca del ordinador: '. $incidencia['marca'] . '</p></div>
         <div><p>Model del ordinador: '. $incidencia['model'] . '</p></div>
-        <div><p>Nom: '. $incidencia['nom_propietari'] . '</p></div>
-        <div><p>Nom: '. $incidencia['nom_propietari'] . '</p></div>
-        <div><p>Nom: '. $incidencia['nom_propietari'] . '</p></div>
+        <div><p>Numero de serie: '. $incidencia['numero_serie'] . '</p></div>
+        <div><p>Descripcio de la avaria: '. $incidencia['desc_avaria'] . '</p></div>
+        <div><p>Diagnosi previ: '. $incidencia['diagnosi_previ'] . '</p></div>
         <div><p>Nom: '. $incidencia['nom_propietari'] . '</p></div>
         <div><p>Nom: '. $incidencia['nom_propietari'] . '</p></div>
 
