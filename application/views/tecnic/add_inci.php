@@ -29,17 +29,44 @@
             </div>
             <div class="col col-sm-3 font-weight-bold">
                 <span>Accions</span>
-                
+
             </div>
 
             <div class="col col-sm-9 text-primary font-weight-bold py-1" style="font-size:18px;">
-            <textarea id="mytextarea" name="mytextarea"></textarea>
+                <textarea id="mytextarea" name="mytextarea"></textarea>
                 <script>
                     tinymce.init({
                         selector: '#mytextarea'
                     });
                 </script>
             </div>
+            <div class="col col-sm-3 font-weight-bold">
+                <span>Adjunta imatges</span>
+            </div>
+            <div class="col col-sm-9 text-primary font-weight-bold py-1" style="font-size:18px;">
+                <input type="file" name="doc1" id="doc1" size="20" />
+            </div>
+            <div class="col col-sm-3 font-weight-bold">
+
+            </div>
+            <div class="col col-sm-9 text-primary font-weight-bold py-1" style="font-size:18px;">
+                <input type="file" name="doc2" id="doc2" size="20" />
+            </div>
+            <div class="col col-sm-3 font-weight-bold">
+
+            </div>
+            <div class="col col-sm-9 text-primary font-weight-bold py-1" style="font-size:18px;">
+                <input type="file" name="doc3" id="doc3" size="20" />
+            </div>
+            
+            <div class="col col-sm-3 font-weight-bold">
+            
+            </div>
+            <div class="col col-sm-9 text-primary font-weight-bold py-1" style="font-size:18px;">
+                <input type="file" name="doc3" id="doc3" size="20" />
+            </div>
+
+
             <input class="btn btn btn-primary mt-3" type="submit" name="submit" value="Enviar" />
 
 
