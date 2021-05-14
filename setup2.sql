@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.4.17-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         10.4.18-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             11.2.0.6213
+-- HeidiSQL Versión:             11.1.0.6116
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `incidencies` (
 -- Volcando datos para la tabla bitbit.incidencies: ~11 rows (aproximadamente)
 /*!40000 ALTER TABLE `incidencies` DISABLE KEYS */;
 INSERT INTO `incidencies` (`id_inci`, `id_estat`, `id_user_propietari`, `nom_propietari`, `marca`, `model`, `numero_serie`, `tlf`, `desc_averia`, `diagnosis_prev`, `uuid`, `entry_date`, `entry_hour`, `out_date`, `out_hour`) VALUES
-	(1, 3, 15, 'asd', 'XIAOMI', 'model test', '123423411424', 'asd', '<p>\n	&nbsp;SHAH SDASH KJSH DKAH AKSH AKSDHJ AKDHJ AKSJDH ASKDH JASKD HSKJ DHASDK HJK JASKHJDKJHDKJASHDKAJSH&nbsp; HJKAS HD SAD AD AD&nbsp; DA D D ASDA DA D&nbsp; SDASDADFAS F SDFSD FSD FF SA FSD FSA FSAD FSF SD FS FSDF SD FSDF S SDFS ADFSD FS DFS DFS DFS DFSD FS DFS DFS FDSDF S</p>\n', '', 'd7a39daf641b4679a87c2b6a691ef1ce', '2021-05-19', '00:00:00', '2021-05-11', NULL),
+	(1, 1, 15, 'asd', 'XIAOMI', 'model test', '123423411424', 'asd', '<p>\n	&nbsp;SHAH SDASH KJSH DKAH AKSH AKSDHJ AKDHJ AKSJDH ASKDH JASKD HSKJ DHASDK HJK JASKHJDKJHDKJASHDKAJSH&nbsp; HJKAS HD SAD AD AD&nbsp; DA D D ASDA DA D&nbsp; SDASDADFAS F SDFSD FSD FF SA FSD FSA FSAD FSF SD FS FSDF SD FSDF S SDFS ADFSD FS DFS DFS DFS DFSD FS DFS DFS FDSDF S</p>\n', '', 'd7a39daf641b4679a87c2b6a691ef1ce', '2021-05-19', '00:00:00', '2021-05-11', NULL),
 	(6, 1, 15, 'etafd', 'LENOVO', 'model test', '1241243324', 'as198723', '<p>\n	ajshdkjfsh</p>\n', '<p>\n	akjhdakjsh</p>\n', '', '2021-05-17', '00:00:00', '2021-05-02', NULL),
 	(8, 1, 15, '1234', 'ASUS', 'model test', '312412433124', '1234', '<p>\n	123</p>\n', '<p>\n	123</p>\n', '', '2021-05-17', '00:00:00', '2021-05-08', NULL),
 	(17, 1, 15, 'Sergi', 'HP', 'model test', '2142144245343543', '564564', '<p>\n	ASD AFASF&nbsp;</p>\n', '<p>\n	ASD SAADS&nbsp;</p>\n', 'a2de7ff3c713430cb17c95782ea06203', '2021-05-10', '00:00:00', NULL, NULL),
@@ -252,20 +252,6 @@ INSERT INTO `status` (`id_estatus`, `desc`) VALUES
 	(4, 'A la espera de material');
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 
--- Volcando estructura para tabla bitbit.status_historial
-CREATE TABLE IF NOT EXISTS `status_historial` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_inci` int(11) NOT NULL,
-  `id_status` int(11) NOT NULL,
-  `start` datetime NOT NULL,
-  `finish` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Volcando datos para la tabla bitbit.status_historial: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `status_historial` DISABLE KEYS */;
-/*!40000 ALTER TABLE `status_historial` ENABLE KEYS */;
-
 -- Volcando estructura para tabla bitbit.tasques
 CREATE TABLE IF NOT EXISTS `tasques` (
   `id_tasca` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -386,6 +372,6 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 /*!40000 ALTER TABLE `users_groups` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
