@@ -28,6 +28,7 @@ class PhotoDAW {
         this.setSquareFill = this.setSquareFill.bind(this);
         this.setSquareClear = this.setSquareClear.bind(this);
         this.setText = this.setText.bind(this);
+        this.save = this.save.bind(this);
         this.clear = this.clear.bind(this);
         this.createDiv(base);
     }
@@ -98,6 +99,13 @@ class PhotoDAW {
         input.classList = "btn btn-primary ml-4";
         document.getElementById(this.divId).appendChild(input);
         document.getElementById("Cuadrat_clear").addEventListener('click', this.setSquareClear);
+
+        input = document.createElement("p");
+        input.innerHTML = "save";
+        input.id = "save";
+        input.classList = "btn btn-primary ml-4";
+        document.getElementById(this.divId).appendChild(input);
+        document.getElementById("save").addEventListener('click', this.save);
 
         input = document.createElement("p");
         input.innerHTML = '<i class="fa fa-eraser" aria-hidden="true"></i>';
@@ -270,6 +278,12 @@ class PhotoDAW {
 
     setLine() {
         this.forma = "linea";
+        this.firstOrSecond = true;
+    }
+    save() {
+        let img = this.canvas.toDataURL();
+        console.log(img);
+
         this.firstOrSecond = true;
     }
     setCircle() {

@@ -19,8 +19,6 @@ class Contact_model extends CI_Model
             'date' => date("Y-m-d")
         );
 
-        // print_r($data);die;
-
         return $this->db->insert('consultes', $data);
         redirect(base_url('/home'));
     }
