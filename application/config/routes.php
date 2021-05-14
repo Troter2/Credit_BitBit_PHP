@@ -100,6 +100,7 @@ $route['gestor/inci/(:any)'] = 'Private/Grocery_controller/incidencies/$1';
 $route['gestor/inci/(:any)/(:any)'] = 'Private/Grocery_controller/incidencies/$1/$2';
 
 $route['tecnic/update_inci'] = 'Private/Tecnic_controller/update_inci_page';
+$route['updateInci'] = 'Private/Tecnic_controller/update_inci';
 
 $route['tecnic/tasques'] = 'Private/Grocery_controller/tasques_tecnic';
 $route['tecnic/tasques/(:any)'] = 'Private/Grocery_controller/tasques_tecnic/$1';

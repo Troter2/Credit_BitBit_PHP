@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `datos_about` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.datos_about: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.datos_about: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `datos_about` DISABLE KEYS */;
 INSERT INTO `datos_about` (`id`, `date`, `titol`, `content`) VALUES
 	(1, '2021', 'asd asd asd ', 'as dasdas dasd'),
@@ -57,6 +57,20 @@ INSERT INTO `datos_about` (`id`, `date`, `titol`, `content`) VALUES
 	(4, '2021', 'asd asd asd ', 'as dasdas dasd'),
 	(5, '2021', 'asd asd asd ', 'as dasdas dasd');
 /*!40000 ALTER TABLE `datos_about` ENABLE KEYS */;
+
+-- Volcando estructura para tabla bitbit.documents_tasques
+CREATE TABLE IF NOT EXISTS `documents_tasques` (
+  `id_document` int(11) NOT NULL AUTO_INCREMENT,
+  `id_tasca` int(11) DEFAULT NULL,
+  `image` text DEFAULT NULL,
+  PRIMARY KEY (`id_document`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+-- Volcando datos para la tabla bitbit.documents_tasques: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `documents_tasques` DISABLE KEYS */;
+INSERT INTO `documents_tasques` (`id_document`, `id_tasca`, `image`) VALUES
+	(1, 4, '33698aa64c68452511dc13909adeeb9b.png');
+/*!40000 ALTER TABLE `documents_tasques` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.groups
 CREATE TABLE IF NOT EXISTS `groups` (
@@ -87,9 +101,11 @@ CREATE TABLE IF NOT EXISTS `incidencies` (
   `tlf` varchar(50) NOT NULL,
   `desc_averia` longtext NOT NULL,
   `diagnosis_prev` longtext NOT NULL,
-  `entry_date` date NOT NULL,
-  `out_date` date DEFAULT NULL,
   `uuid` varchar(50) NOT NULL DEFAULT '',
+  `entry_date` date NOT NULL DEFAULT curdate(),
+  `entry_hour` time NOT NULL DEFAULT curtime(),
+  `out_date` date DEFAULT NULL,
+  `out_hour` time DEFAULT NULL,
   PRIMARY KEY (`id_inci`),
   KEY `FK_status` (`id_estat`),
   KEY `FK_user` (`id_user_propietari`),
@@ -98,18 +114,18 @@ CREATE TABLE IF NOT EXISTS `incidencies` (
 
 -- Volcando datos para la tabla bitbit.incidencies: ~11 rows (aproximadamente)
 /*!40000 ALTER TABLE `incidencies` DISABLE KEYS */;
-INSERT INTO `incidencies` (`id_inci`, `id_estat`, `id_user_propietari`, `nom_propietari`, `marca`, `model`, `numero_serie`, `tlf`, `desc_averia`, `diagnosis_prev`, `entry_date`, `out_date`, `uuid`) VALUES
-	(1, 1, 15, 'asd', 'XIAOMI', 'model test', '123423411424', 'asd', '<p>\n	&nbsp;SHAH SDASH KJSH DKAH AKSH AKSDHJ AKDHJ AKSJDH ASKDH JASKD HSKJ DHASDK HJK JASKHJDKJHDKJASHDKAJSH&nbsp; HJKAS HD SAD AD AD&nbsp; DA D D ASDA DA D&nbsp; SDASDADFAS F SDFSD FSD FF SA FSD FSA FSAD FSF SD FS FSDF SD FSDF S SDFS ADFSD FS DFS DFS DFS DFSD FS DFS DFS FDSDF S</p>\n', '', '2021-05-19', '2021-05-11', 'd7a39daf641b4679a87c2b6a691ef1ce'),
-	(6, 1, 15, 'etafd', 'LENOVO', 'model test', '1241243324', 'as198723', '<p>\n	ajshdkjfsh</p>\n', '<p>\n	akjhdakjsh</p>\n', '2021-05-17', '2021-05-02', ''),
-	(8, 1, 15, '1234', 'ASUS', 'model test', '312412433124', '1234', '<p>\n	123</p>\n', '<p>\n	123</p>\n', '2021-05-17', '2021-05-08', ''),
-	(17, 1, 15, 'Sergi', 'HP', 'model test', '2142144245343543', '564564', '<p>\n	ASD AFASF&nbsp;</p>\n', '<p>\n	ASD SAADS&nbsp;</p>\n', '2021-05-10', NULL, 'a2de7ff3c713430cb17c95782ea06203'),
-	(18, 1, 15, '123', '123', 'model test', '123', '123', '<p>\n	123</p>\n', '<p>\n	13</p>\n', '2021-05-10', NULL, '5b850d8b39e545129986f8afb1128be0'),
-	(19, 1, 15, 'TEST', 'ACER', 'NITRO 5', 'JAISUDFASLJKH FKH F', '1235465343', '<p>\n	12354864645</p>\n', '<p>\n	123A5D6564AS65 456DA4&nbsp;</p>\n', '2021-05-11', NULL, 'b949b7131d3a49c3bb1e767f01d5281a'),
-	(20, 1, 18, 'JOEL', 'PATATA', 'FRITA', '123KJH31', '1325324', '<p>\n	123414HJKGK4JH12G3JH</p>\n', '<p>\n	12JH34G12JKH</p>\n', '2021-05-11', NULL, '9533382c95ee42d391a8e57a6594284e'),
-	(21, 1, 15, 'jkashf ', 'jskdhf a', 'kjhsa dkfj ', 'jkh', 'kj hkjh', '<p>\n	kjhsdfkjhasfkjh</p>\n', '<p>\n	lksjhadfkjhaf&nbsp;</p>\n', '2021-05-11', NULL, 'd6a39daf641b4679a87c2b6a691ef1ce'),
-	(22, 1, 15, 'dasd', 'asdasd', 'asdad', 'asdasdasd', 'asdasd', '<p>\n	asd</p>\n', '<p>\n	asd</p>\n', '2021-05-11', NULL, '5402b14d62f54cc087f62490e5fb28a8'),
-	(23, 1, 18, 'asd', 'asd', 'asd', 'asd', 'asd', '<p>\n	asd</p>\n', '<p>\n	asd</p>\n', '2021-05-11', NULL, 'b00cf224c3b04e69b309cc93a463e242'),
-	(24, 1, 18, 'asdasd a', 'asd ', ' asd', 'as d', 'as das d', '<p>\n	asd asd</p>\n', '<p>\n	as dasd&nbsp;</p>\n', '2021-05-11', NULL, '8571bf8c5a594ae5a1bc8a1d27665c7a');
+INSERT INTO `incidencies` (`id_inci`, `id_estat`, `id_user_propietari`, `nom_propietari`, `marca`, `model`, `numero_serie`, `tlf`, `desc_averia`, `diagnosis_prev`, `uuid`, `entry_date`, `entry_hour`, `out_date`, `out_hour`) VALUES
+	(1, 3, 15, 'asd', 'XIAOMI', 'model test', '123423411424', 'asd', '<p>\n	&nbsp;SHAH SDASH KJSH DKAH AKSH AKSDHJ AKDHJ AKSJDH ASKDH JASKD HSKJ DHASDK HJK JASKHJDKJHDKJASHDKAJSH&nbsp; HJKAS HD SAD AD AD&nbsp; DA D D ASDA DA D&nbsp; SDASDADFAS F SDFSD FSD FF SA FSD FSA FSAD FSF SD FS FSDF SD FSDF S SDFS ADFSD FS DFS DFS DFS DFSD FS DFS DFS FDSDF S</p>\n', '', 'd7a39daf641b4679a87c2b6a691ef1ce', '2021-05-19', '00:00:00', '2021-05-11', NULL),
+	(6, 1, 15, 'etafd', 'LENOVO', 'model test', '1241243324', 'as198723', '<p>\n	ajshdkjfsh</p>\n', '<p>\n	akjhdakjsh</p>\n', '', '2021-05-17', '00:00:00', '2021-05-02', NULL),
+	(8, 1, 15, '1234', 'ASUS', 'model test', '312412433124', '1234', '<p>\n	123</p>\n', '<p>\n	123</p>\n', '', '2021-05-17', '00:00:00', '2021-05-08', NULL),
+	(17, 1, 15, 'Sergi', 'HP', 'model test', '2142144245343543', '564564', '<p>\n	ASD AFASF&nbsp;</p>\n', '<p>\n	ASD SAADS&nbsp;</p>\n', 'a2de7ff3c713430cb17c95782ea06203', '2021-05-10', '00:00:00', NULL, NULL),
+	(18, 1, 15, '123', '123', 'model test', '123', '123', '<p>\n	123</p>\n', '<p>\n	13</p>\n', '5b850d8b39e545129986f8afb1128be0', '2021-05-10', '00:00:00', NULL, NULL),
+	(19, 1, 15, 'TEST', 'ACER', 'NITRO 5', 'JAISUDFASLJKH FKH F', '1235465343', '<p>\n	12354864645</p>\n', '<p>\n	123A5D6564AS65 456DA4&nbsp;</p>\n', 'b949b7131d3a49c3bb1e767f01d5281a', '2021-05-11', '00:00:00', NULL, NULL),
+	(20, 1, 18, 'JOEL', 'PATATA', 'FRITA', '123KJH31', '1325324', '<p>\n	123414HJKGK4JH12G3JH</p>\n', '<p>\n	12JH34G12JKH</p>\n', '9533382c95ee42d391a8e57a6594284e', '2021-05-11', '00:00:00', NULL, NULL),
+	(21, 1, 15, 'jkashf ', 'jskdhf a', 'kjhsa dkfj ', 'jkh', 'kj hkjh', '<p>\n	kjhsdfkjhasfkjh</p>\n', '<p>\n	lksjhadfkjhaf&nbsp;</p>\n', 'd6a39daf641b4679a87c2b6a691ef1ce', '2021-05-11', '00:00:00', NULL, NULL),
+	(22, 1, 15, 'dasd', 'asdasd', 'asdad', 'asdasdasd', 'asdasd', '<p>\n	asd</p>\n', '<p>\n	asd</p>\n', '5402b14d62f54cc087f62490e5fb28a8', '2021-05-11', '00:00:00', NULL, NULL),
+	(23, 1, 18, 'asd', 'asd', 'asd', 'asd', 'asd', '<p>\n	asd</p>\n', '<p>\n	asd</p>\n', 'b00cf224c3b04e69b309cc93a463e242', '2021-05-11', '00:00:00', NULL, NULL),
+	(24, 1, 18, 'asdasd a', 'asd ', ' asd', 'as d', 'as das d', '<p>\n	asd asd</p>\n', '<p>\n	as dasd&nbsp;</p>\n', '8571bf8c5a594ae5a1bc8a1d27665c7a', '2021-05-11', '00:00:00', NULL, NULL);
 /*!40000 ALTER TABLE `incidencies` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.login_attempts
@@ -123,22 +139,26 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
 
 -- Volcando datos para la tabla bitbit.login_attempts: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `login_attempts` DISABLE KEYS */;
-INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
-	(14, '::1', 'test3', 1620765941);
 /*!40000 ALTER TABLE `login_attempts` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.materials
 CREATE TABLE IF NOT EXISTS `materials` (
   `id_mat` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `nom` varchar(50) NOT NULL DEFAULT '0',
-  `desc` longtext NOT NULL,
+  `descri` longtext NOT NULL,
   `num_serie` varchar(50) NOT NULL,
   `amount` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_mat`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.materials: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.materials: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `materials` DISABLE KEYS */;
+INSERT INTO `materials` (`id_mat`, `nom`, `descri`, `num_serie`, `amount`) VALUES
+	(2, 'RAM CRUCIAL 16 GB 3200Mhz ', 'RAM CRUCIAL 16 GB 3200Mhz ', '65464321654', 20),
+	(3, 'RAM CRUCIAL 8 GB 3200Mhz ', 'RAM CRUCIAL 8 GB 3200Mhz ', '2342352', 20),
+	(4, 'RAM CRUCIAL 16 GB 4200Mhz ', 'RAM CRUCIAL 16 GB 4200Mhz ', '4564564345', 20),
+	(5, 'RAM CRUCIAL 8 GB 4200Mhz ', 'RAM CRUCIAL 8 GB 4200Mhz ', '6546432165412414', 20),
+	(6, 'i9 9900k', 'i9 9900k', '4352', 20);
 /*!40000 ALTER TABLE `materials` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.mat_inci
@@ -252,8 +272,11 @@ CREATE TABLE IF NOT EXISTS `tasques` (
   `id_user` int(11) unsigned NOT NULL,
   `id_inci` int(11) unsigned NOT NULL,
   `desc` longtext NOT NULL,
+  `accions` longtext DEFAULT NULL,
   `start_date` date NOT NULL DEFAULT curdate(),
+  `start_hour` time DEFAULT curtime(),
   `end_date` date DEFAULT NULL,
+  `end_hour` time DEFAULT NULL,
   PRIMARY KEY (`id_tasca`),
   KEY `id_user` (`id_user`),
   KEY `id_inci` (`id_inci`),
@@ -263,13 +286,13 @@ CREATE TABLE IF NOT EXISTS `tasques` (
 
 -- Volcando datos para la tabla bitbit.tasques: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `tasques` DISABLE KEYS */;
-INSERT INTO `tasques` (`id_tasca`, `id_user`, `id_inci`, `desc`, `start_date`, `end_date`) VALUES
-	(4, 19, 1, '<p>\n	EXEMPLE DESCRIPCIO</p>\n<p>\n	&nbsp;</p>\n', '2021-05-07', NULL),
-	(5, 18, 6, '<p>\n	estreno</p>\n', '2021-05-07', NULL),
-	(6, 2, 1, '<p>\n	ASD</p>\n', '2021-05-18', NULL),
-	(8, 2, 1, '<p>\n	asd</p>\n', '2021-05-18', NULL),
-	(9, 2, 1, '<p>\n	asd</p>\n', '2021-05-18', NULL),
-	(20, 3, 1, '<p>\n	test</p>\n', '2021-05-10', NULL);
+INSERT INTO `tasques` (`id_tasca`, `id_user`, `id_inci`, `desc`, `accions`, `start_date`, `start_hour`, `end_date`, `end_hour`) VALUES
+	(4, 19, 1, '<p>\n	EXEMPLE DESCRIPCIO</p>\n<p>\n	&nbsp;</p>\n', '', '2021-05-07', '21:59:09', NULL, NULL),
+	(5, 19, 6, '<p>\n	estreno</p>\n', NULL, '2021-05-07', '21:59:09', NULL, NULL),
+	(6, 19, 1, '<p>\n	ASD</p>\n', NULL, '2021-05-18', '21:59:09', NULL, NULL),
+	(8, 2, 1, '<p>\n	asd</p>\n', NULL, '2021-05-18', '21:59:09', NULL, NULL),
+	(9, 2, 1, '<p>\n	asd</p>\n', NULL, '2021-05-18', '21:59:09', NULL, NULL),
+	(20, 3, 1, '<p>\n	test</p>\n', NULL, '2021-05-10', '21:59:09', NULL, NULL);
 /*!40000 ALTER TABLE `tasques` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.tipus_consulta
@@ -317,18 +340,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `uc_remember_selector` (`remember_selector`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.users: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.users: ~11 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `city`) VALUES
 	(1, '127.0.0.1', 'administrator', '$2y$10$gpGtuiacEw4AbP8tgx7Z2exNOoiP/IgW24vJZWZXIQrEQMG7HJQ4q', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1619291859, 1, 'Admin', 'istrator', 'ADMIN', '123456789', 'test'),
-	(2, '::1', 'test', '$2y$10$0Bp.39JsZLy9Y9y/J2p86.72F0E.fQI8uMgJ8w9uaqVLgrcBSDHXy', 'test@test.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619291471, 1620814566, 1, '', '', '', NULL, 'test'),
+	(2, '::1', 'test', '$2y$10$QzY/nmSkBpNuDnampfG9ZOJv9Q0gxye.YFH60Aguc3.vzVp5siRtq', 'test@test.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619291471, 1620856568, 1, 'Admin', 'Admin', NULL, NULL, 'test'),
 	(3, '::1', 'usuari1', '$2y$10$WPxZ5HrQVjPhbSwXbyQ54.4Q6COstkQR0x/r0UKteL1xbf.qjXPUG', 'usuari1@usuari1.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619296588, 1619296636, 1, 'usuari 1', 'test', '', NULL, 'test'),
 	(4, '::1', 'estudillo', '$2y$10$0eV9d2OXh01UTkThhnDeuOebo8/n81svDd2p5ukn0J3qNMVBTLMqK', 'estudillo@estudillo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1619297343, 1619297359, 1, 'Noel', 'Estudillo', 'BOBO S.L.', NULL, 'test'),
 	(5, '::1', 'test2', '$2y$10$uMzrdZjHVb8Veom7HXsdLODpBK5Ffvf16bGxQZLa6rdLykSvDAfcy', '1234', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620311820, 1620765946, 1, '1234', '1234', '1234', NULL, 'test'),
 	(15, '::1', 'test4', '$2y$10$X1.HVIEW1kLFMt9bak9wLOSI8ZRDizs7m5RuQfTyyOprpsB54shw2', 'test', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620324221, 1620814368, 1, '1234', '1234', '123', NULL, 'test'),
 	(18, '::1', 'test6', '$2y$10$aA33Lpa3zLcJEkn50Owaw.ZJdIBtN6snitBZZMUKdIhGHyM2v1gSS', '1234567', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620325894, 1620768492, 1, '1234567', '1234567', '1234567', NULL, 'test'),
-	(19, '::1', 'tecnic', '$2y$10$SlsYyAADqjHBf0K81nc/1ORtCfOyP4Xv/8xEsP.yNO.WeHgBrU5pG', 'tecnic@tecnic.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814433, 1620814679, 1, 'tecnic', 'tecnic', '', NULL, 'test'),
-	(20, '::1', 'admin', '$2y$10$kkhDR3aKoCUqxIUGPmI/cOk1aOFzSrUM6xd75oVY8VqoxLTkdRgrS', 'admin@admin.comm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814495, 1620814495, 1, 'admin', 'admin', 'admin', NULL, 'admin'),
+	(19, '::1', 'tecnic', '$2y$10$SlsYyAADqjHBf0K81nc/1ORtCfOyP4Xv/8xEsP.yNO.WeHgBrU5pG', 'tecnic@tecnic.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814433, 1620973805, 1, 'tecnic', 'tecnic', '', NULL, 'test'),
+	(20, '::1', 'admin', '$2y$10$kkhDR3aKoCUqxIUGPmI/cOk1aOFzSrUM6xd75oVY8VqoxLTkdRgrS', 'admin@admin.comm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814495, 1620948681, 1, 'admin', 'admin', 'admin', NULL, 'admin'),
 	(21, '::1', 'user', '$2y$10$6CYfjRdPmKkOZ3292WEMcugoWK13xFd6az2VW2Wr3heUm1jvkowW.', 'user@user.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814520, 1620814520, 1, 'user', 'user', 'user', NULL, 'user'),
 	(22, '::1', 'gestor', '$2y$10$9g65AByvczLx.4fK6ebFeej5/VcTHEjP3hndeSkFJin758YDf0kiy', 'gestor@gestor.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814555, 1620815670, 1, 'gestor', 'gestor', 'gestor', NULL, 'gesto');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
@@ -346,7 +369,7 @@ CREATE TABLE IF NOT EXISTS `users_groups` (
   CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.users_groups: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.users_groups: ~11 rows (aproximadamente)
 /*!40000 ALTER TABLE `users_groups` DISABLE KEYS */;
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 	(1, 1, 1),

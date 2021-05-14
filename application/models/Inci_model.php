@@ -41,6 +41,12 @@ class Inci_model extends CI_Model
         $query=$this->db->query("SELECT * FROM status");
         return $query->result_array();
     }
+    
+    public function get_material(){
+        
+        $query=$this->db->query("SELECT * FROM materials");
+        return $query->result_array();
+    }
     public function get_uuid(){
         
         $query=$this->db->query("SELECT * FROM status");

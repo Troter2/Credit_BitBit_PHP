@@ -87,7 +87,6 @@ $list_displaying = str_replace(
     <div class="box-body table-container">
         <div class="row">
             <div class="col-md-2 col-xs-4">
-                    <a class="btn btn-primary btn-flat" href="<?php echo base_url('user/save_incidencia') ?>"><i class="fa fa-plus"></i> &nbsp; Afegir incidencia </a>
             </div>
             <div class="col-md-10 col-xs-8 text-right">
                 <?php if (!$unset_export) { ?>
