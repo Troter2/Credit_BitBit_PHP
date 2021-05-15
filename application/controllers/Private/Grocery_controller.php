@@ -52,18 +52,37 @@ class Grocery_controller extends Private_controller
 		$this->load->library('session');
 		$this->load->library('ion_auth');
 
-		if ($this->ion_auth->is_admin()) {
+		if ($this->ion_auth->in_group('gestor') || $this->ion_auth->in_group('tecnic')) {
 
 			$crud = new grocery_CRUD();
 
 			$crud->set_theme('adminlte');
+			$crud->unset_edit();
+			$crud->unset_list();
 			$crud->set_table('mat_inci');
 			$crud->set_language("catalan");
-			$crud->display_as('title', 'Titul');
-			$crud->required_fields('');
+			$crud->display_as('amount', 'Disponible');
+			$crud->display_as('id_mat', 'Material');
+			$crud->set_relation('id_mat', 'materials', 'nom');
+			$crud->change_field_type('id_mat_inci', 'invisible');
+			$crud->change_field_type('id_inci', 'invisible');
+			$crud->required_fields('nom', 'email', 'assumpte', 'contingut', 'date');
 
-			$crud->set_field_upload('image', 'assets/uploads/files');
-			$crud->set_crud_url_path(base_url('admin/news'));
+			$crud->callback_field('amount', array($this, 'field_callback_1'));
+			$crud->unset_back_to_list();
+
+			$crud->callback_before_insert(array($this, 'callback_insert_id_inci'));
+			//$crud->callback_after_insert(array($this, 'callback_insert_after_id_inci'));
+
+			$crud->set_lang_string(
+				'insert_success_message',
+				'Your data has been successfully stored into the database.<br/>Please wait while you are redirecting to the list page.
+			<script type="text/javascript">
+				window.location = "' . base_url('tecnic/update_inci') . '";
+			</script>
+			<div style="display:none">'
+			);
+
 			$output = $crud->render();
 
 			$data["css_files"] = $output->css_files;
@@ -75,6 +94,26 @@ class Grocery_controller extends Private_controller
 		} else {
 			redirect(base_url('home'));
 		}
+	}
+
+	function callback_insert_id_inci($post_array)
+	{
+		$post_array["id_inci"] = $_SESSION['inci']['id_inci'];
+
+
+		return $post_array;
+	}
+	function callback_insert_after_id_inci($post_array, $primary_key)
+	{
+		redirect(base_url('tecnic/update_inci'));
+		return true;
+	}
+
+
+
+	function field_callback_1($value = '', $primary_key = null)
+	{
+		return '<input type="number" min="0" maxlength="50"  value="0" class="form-control" name="amount" style="width:462px">';
 	}
 
 	public function consulta()
@@ -190,18 +229,20 @@ class Grocery_controller extends Private_controller
 			$crud->display_as('start_date', 'Data inici');
 			$crud->display_as('end_date', 'Data fi');
 			$crud->change_field_type('start_date', 'invisible');
+			$crud->change_field_type('start_date', 'invisible');
 			$crud->change_field_type('end_date', 'invisible');
+			$crud->columns(['id_user', 'desc', 'start_date', 'start_hour']);
 			$userinfo = $this->ion_auth->user()->row();
 			$id = $userinfo->id;
 			$crud->where('id_user', $id);
 			if ($state == 'read') {
-				$id=$this->grocery_crud->getStateInfo()->primary_key;
+				$id = $this->grocery_crud->getStateInfo()->primary_key;
 				$tasca = $this->db->get_where('tasques', array('id_tasca' => $id));
-				$tasca=$tasca->row_array();
+				$tasca = $tasca->row_array();
 				$inci = $this->db->get_where('incidencies', array('id_inci' => $tasca['id_inci']));
-				$inci=$inci->row_array();
-				$_SESSION['inci']=$inci;
-				$_SESSION['tasca']=$tasca;
+				$inci = $inci->row_array();
+				$_SESSION['inci'] = $inci;
+				$_SESSION['tasca'] = $tasca;
 			}
 			$output = $crud->render();
 
@@ -475,6 +516,73 @@ class Grocery_controller extends Private_controller
 			$crud->columns(['from', 'to', 'about', 'send_date', 'send_hour', 'recive_date', 'recive_hour']);
 			$crud->set_theme('adminlte');
 			$crud->set_table('messages');
+
+			$crud->set_language("catalan");
+			$output = $crud->render();
+
+			$data["css_files"] = $output->css_files;
+			$data["grocery"] = true;
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('grocery/index.php', (array)$output);
+			$this->load->view('templates/footer', $data);
+		} else {
+			redirect(base_url('home'));
+		}
+	}
+	public function material()
+	{
+		$this->load->library('session');
+		$this->load->library('ion_auth');
+		if ($this->ion_auth->is_admin()) {
+
+			$crud = new grocery_CRUD();
+
+			$crud->unset_delete();
+			$crud->unset_add();
+			$crud->unset_edit();
+
+			$crud->display_as('send_date', 'Dia envio');
+			$crud->display_as('send_hour', 'Hora envio');
+			$crud->display_as('recive_date', 'Recibido dia');
+			$crud->display_as('recive_hour', 'Recibido hora');
+			$crud->display_as('about', 'Assumpte');
+
+			$crud->columns(['from', 'to', 'about', 'send_date', 'send_hour', 'recive_date', 'recive_hour']);
+			$crud->set_theme('adminlte');
+			$crud->set_table('material');
+
+			$crud->set_language("catalan");
+			$output = $crud->render();
+
+			$data["css_files"] = $output->css_files;
+			$data["grocery"] = true;
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('grocery/index.php', (array)$output);
+			$this->load->view('templates/footer', $data);
+		} else {
+			redirect(base_url('home'));
+		}
+	}
+	public function material_admin()
+	{
+		$this->load->library('session');
+		$this->load->library('ion_auth');
+		if ($this->ion_auth->is_admin()) {
+
+			$crud = new grocery_CRUD();
+
+
+			$crud->display_as('send_date', 'Dia envio');
+			$crud->display_as('descri', 'Descripcio');
+			$crud->display_as('num_serie', 'Numero de serie');
+			$crud->display_as('amount', 'Cantitat disponible');
+			
+			$crud->required_fields('nom', 'descri', 'num_serie', 'amount');
+
+			$crud->set_theme('adminlte');
+			$crud->set_table('materials');
 
 			$crud->set_language("catalan");
 			$output = $crud->render();

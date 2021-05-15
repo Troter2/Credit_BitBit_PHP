@@ -14,7 +14,7 @@ class Tecnic_controller extends Private_controller
 
         $data['status'] = $this->inci_model->get_status();
         $data['material'] = $this->inci_model->get_material();
-        
+
         $data['tasca'] = $_SESSION['tasca'];
         $data['inci'] = $_SESSION['inci'];
 
@@ -32,7 +32,7 @@ class Tecnic_controller extends Private_controller
         $this->load->library('ion_auth');
         $this->load->helper('url');
         $this->load->helper('form');
-
+       
         $config['upload_path']          = './uploads/';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 100;
@@ -63,7 +63,7 @@ class Tecnic_controller extends Private_controller
         } else {
             $data = array('upload_data' => $this->upload->data());
         }
-        $idTasca=$_SESSION['tasca']['id_tasca'];
+        $idTasca = $_SESSION['tasca']['id_tasca'];
         $estatus = $this->input->post('estatus');
         $this->db->set('id_estat', $estatus);
         $this->db->where('id_inci', $_SESSION['inci']['id_inci']);
@@ -71,6 +71,11 @@ class Tecnic_controller extends Private_controller
 
         $action = $this->input->post('action');
         $this->db->set('accions', $action);
+        $this->db->where('id_tasca', $idTasca);
+        $this->db->update('tasques');
+
+        $canvas = $this->input->post('canvas');
+        $this->db->set('canvas', $canvas);
         $this->db->where('id_tasca', $idTasca);
         $this->db->update('tasques');
 

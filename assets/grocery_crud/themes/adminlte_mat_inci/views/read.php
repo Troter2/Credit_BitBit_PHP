@@ -65,14 +65,6 @@ if ($this->config->environment == 'production') {
                                     <i class="fa fa-arrow-left"></i>
                                     <?php echo $this->l('form_back_to_list'); ?>
                                 </button>
-                                <button class="btn btn-default " type="button" onclick="window.location = '<?php echo base_url('tecnic/update_inci'); ?>'">
-                                    <i class="fa fa-plus"></i>
-                                    Informar incidencia <?php  ?>
-                                </button>
-                                <button class="btn btn-default " type="button" onclick="window.location = '<?php echo base_url('tecnic/material/add'); ?>'">
-                                    <i class="fa fa-plus"></i>
-                                    Agregar material <?php  ?>
-                                </button>
                             <?php } ?>
                         </div>
                     </div>

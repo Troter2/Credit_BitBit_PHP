@@ -106,9 +106,17 @@ $route['tecnic/tasques'] = 'Private/Grocery_controller/tasques_tecnic';
 $route['tecnic/tasques/(:any)'] = 'Private/Grocery_controller/tasques_tecnic/$1';
 $route['tecnic/tasques/(:any)/(:any)'] = 'Private/Grocery_controller/tasques_tecnic/$1/$2';
 
+$route['tecnic/material'] = 'Private/Grocery_controller/mat_inci';
+$route['tecnic/material/(:any)'] = 'Private/Grocery_controller/mat_inci/$1';
+$route['tecnic/material/(:any)/(:any)'] = 'Private/Grocery_controller/mat_inci/$1/$2';
+
 $route['admin/user'] = 'Private/Grocery_controller/user';
 $route['admin/user/(:any)'] = 'Private/Grocery_controller/user/$1';
 $route['admin/user/(:any)/(:any)'] = 'Private/Grocery_controller/user/$1/$2';
+
+$route['admin/material'] = 'Private/Grocery_controller/material_admin';
+$route['admin/material/(:any)'] = 'Private/Grocery_controller/material_admin/$1';
+$route['admin/material/(:any)/(:any)'] = 'Private/Grocery_controller/material_admin/$1/$2';
 
 $route['admin/mail'] = 'Private/Grocery_controller/mail';
 $route['admin/mail/(:any)'] = 'Private/Grocery_controller/mail/$1';

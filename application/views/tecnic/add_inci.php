@@ -68,27 +68,17 @@
 
             <script>
                 var x = new PhotoDAW("divGeneral", true);
+
+                function saveCanvas() {
+                    document.getElementById("canvas").value=document.getElementById("canvas1").toDataURL();
+                }
             </script>
+            <textarea name="canvas"  hidden='true' id="canvas" cols="30" rows="10"></textarea>
 
             <div class="col col-sm-3 font-weight-bold">
-                <span>Material Utilitzat</span>
             </div>
 
-            <div class="col col-sm-9 text-primary font-weight-bold py-1 row" style="font-size:18px;">
-                <select class="form-control col col-sm-6 " name="material" id="material">
-                    <option value="" selected="selected">Selecciona material</option>
-                    <?php foreach ($material as $item) : ?>
-                        <option value="<?php echo $item['id_mat']; ?>" data-tokens="<?php echo $item['nom']; ?>"><?php echo $item['nom']; ?></option>
-                    <?php endforeach ?>
-                </select>
-                <div class="col col-sm-1 font-weight-bold">
-                </div>
-                <input class="form-control col col-sm-3" type="number" value="1" min="0">
-
-
-            </div>
-
-            <input class="btn btn btn-primary mt-3" type="submit" name="submit" value="Enviar" />
+            <input class="btn btn btn-primary mt-3" onclick="saveCanvas()" type="submit" name="submit" value="Enviar" />
 
 
         </div>
