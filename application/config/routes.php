@@ -156,3 +156,6 @@ $route['upload/do_upload'] = 'Upload_controller/do_upload';
 $route['contact/sendConsult'] = 'Public/Contact_controller/sendConsult';
 $route['incidencia/pdf/(:any)'] = 'Private/Pdf_controller/generatePDF/$1';
 
+$route['api/news'] = 'news_api/status'; 
+$route['privateApi/login'] = 'PrivateApi_controller/login'; 
+

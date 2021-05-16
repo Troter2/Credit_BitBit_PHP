@@ -32,6 +32,11 @@
     right: 0
 }
 
+.carousel-inner>.carousel-item>img {
+    width: 640px;
+    height: 360px;
+}
+
 .main-timeline .timeline {
     margin-bottom: 40px;
     position: relative
