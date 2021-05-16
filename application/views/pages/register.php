@@ -10,7 +10,8 @@
         <div class="alert alert-danger" role="alert">
             <?php echo validation_errors(); ?>
         </div>
-    <?php } ?>
+    <?php }?>
+    
     <div class="card p-4 col col-sm-10 col-md-8 m-auto">
         <?php echo form_open('login/register'); ?>
         <label for="username">Nom d'usuari*</label>

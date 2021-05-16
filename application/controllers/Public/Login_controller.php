@@ -66,42 +66,56 @@ class Login_controller extends Public_controller
         $this->form_validation->set_rules(
             'username',
             "Nom d'usuari",
-            'required|is_unique[users.username]',
-            array('required' => 'Usuari existent')
+            'is_unique[users.username]||required',
+            array('required' => 'usuari obligatori','is_unique[users.username]' => 'Usuari existent')
+        );
+        $this->form_validation->set_rules(
+            'username',
+            "Nom d'usuari",
+            'required',
+            array('required' => 'Usuari obligatori')
         );
         $this->form_validation->set_rules(
             'email',
             "Correu electronic",
-            'required|is_unique[users.email]',
-            array('required' => 'Usuari existent')
+            'is_unique[users.email]',
+            array('required' => 'Correu ja existent')
+        );
+        $this->form_validation->set_rules(
+            'email',
+            "Correu electronic",
+            'required',
+            array('required' => 'Correu obligatori')
         );
         $this->form_validation->set_rules(
             'pass',
             "Contrasenya",
             'required',
-            array('required' => 'Usuari existent')
+            array('required' => 'Contrasenya obligatoria')
         );
         $this->form_validation->set_rules(
             'name',
             "Nom ",
             'required',
-            array('required' => 'Usuari existent')
+            array('required' => 'Nom obligatori')
         );
         $this->form_validation->set_rules(
             'lastname',
             "Cognom",
             'required',
-            array('required' => 'Usuari existent')
+            array('required' => 'Cognom obligatori')
         );
         $this->form_validation->set_rules(
             'city',
             "Ciutat",
             'required',
-            array('required' => 'Usuari existent')
+            array('required' => 'Ciutat obligatori')
         );
         if ($this->form_validation->run() === FALSE) {
 
-            redirect(base_url('register'));
+            $this->load->view('templates/header');
+            $this->load->view('pages/register');
+            $this->load->view('templates/footer');
         } else {
             $username = $this->input->post('username');
             $password = $this->input->post('pass');
