@@ -74,7 +74,8 @@ class Tecnic_controller extends Private_controller
         $this->db->where('id_tasca', $idTasca);
         $this->db->update('tasques');
 
-        $canvas = $this->input->post('canvas');
+        $canvas = $this->input->post('CFILE');
+        
         $this->db->set('canvas', $canvas);
         $this->db->where('id_tasca', $idTasca);
         $this->db->update('tasques');

@@ -1,6 +1,7 @@
 <div class="shadow rounded p-4 col col-sm-12 col-md-10 mx-auto mt-3">
     <div class="row col col-sm-12">
         <script src="<?php echo base_url('assets/js/canvas.js'); ?>"></script>
+
         <?php echo form_open_multipart(base_url('updateInci')); ?>
 
         <div class="row col col-sm-12 container">
@@ -70,17 +71,17 @@
                 var x = new PhotoDAW("divGeneral", true);
 
                 function saveCanvas() {
-                    document.getElementById("canvas").value=document.getElementById("canvas1").toDataURL();
+                    var strData = document.getElementById("canvas1").toDataURL().replace("data:image/png;base64,", "");
+
+                    document.getElementById("CFILE").value = strData;
                 }
             </script>
-            <textarea name="canvas"  hidden='true' id="canvas" cols="30" rows="10"></textarea>
+            <input name="CFILE" type="hidden" id="CFILE" value="">
 
             <div class="col col-sm-3 font-weight-bold">
             </div>
 
-            <input class="btn btn btn-primary mt-3" onclick="saveCanvas()" type="submit" name="submit" value="Enviar" />
-
-
+            <input class="btn btn btn-primary mt-3" type="submit" onclick="saveCanvas()" name="submit" value="Enviar" />
         </div>
         </form>
     </div>
