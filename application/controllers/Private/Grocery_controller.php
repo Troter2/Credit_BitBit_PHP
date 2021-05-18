@@ -455,8 +455,11 @@ class Grocery_controller extends Private_controller
 			//print_r($this);
 			//die;
 
+			
 			//$data["uuid"] = $this->inci_model->get_uuidbyid($crud->primary_key);
 
+			//print_r($data);
+			//die;
 
 			$state = $crud->getState();
 			$state_info = $crud->getStateInfo();
