@@ -66,7 +66,7 @@ $route['logout'] = 'Public/Login_controller/logout';
 $route['about'] = 'Public/About_controller/view_about';
 $route['contact'] = 'Public/Home_controller/contact';
 
-$route['status'] = 'Public/Home_controller/status';
+$route['privacitat'] = 'Public/Home_controller/privacitat';
 
 $route['userProfile'] = 'Public/User_controller/user_profile';
 $route['userEdit'] = 'Public/User_controller/user_edit_page';
