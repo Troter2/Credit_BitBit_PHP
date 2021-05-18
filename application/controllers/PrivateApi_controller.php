@@ -20,6 +20,39 @@ class PrivateApi_controller extends JwtAPI_Controller
         // $this->init($config); // configuration + auth timeout is configured from JWT config file
     }
 
+
+    
+    public function about_get()
+    {
+        $this->load->model('About_model');
+
+        $query = $this->About_model->getEvent();
+
+        $this->response($query, RestController::HTTP_OK); // OK (200) being the HTTP response code
+    }
+
+
+
+    public function status_get()
+    {
+        $this->load->model('Inci_model');
+        $news = $this->Inci_model->get_status();
+
+        $this->response($news, RestController::HTTP_OK); // OK (200) being the HTTP response code
+    }
+
+
+
+    public function news_get()
+    {
+        $this->load->model('News_model');
+        $news = $this->News_model->getNew();
+
+        $this->response($news, RestController::HTTP_OK); // OK (200) being the HTTP response code
+    }
+
+
+
     public function login_post()
     {
         $user = $this->post('user');

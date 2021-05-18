@@ -67,14 +67,9 @@ class Login_controller extends Public_controller
             'username',
             "Nom d'usuari",
             'is_unique[users.username]||required',
-            array('required' => 'usuari obligatori','is_unique[users.username]' => 'Usuari existent')
+            array('required' => 'usuari obligatori','is_unique' => 'Usuari existent')
         );
-        $this->form_validation->set_rules(
-            'username',
-            "Nom d'usuari",
-            'required',
-            array('required' => 'Usuari obligatori')
-        );
+
         $this->form_validation->set_rules(
             'email',
             "Correu electronic",
