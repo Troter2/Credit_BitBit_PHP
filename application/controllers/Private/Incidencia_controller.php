@@ -45,4 +45,10 @@ class Incidencia_controller extends Private_controller
 
         redirect(base_url('/user/incidencies'));
     }
+
+    public function tasques_incidencia($uuid){
+        $incidencia = $this->model->get_incidencia($uuid);
+        $id_inci = $incidencia['id_inci'];
+        $tasca = $this->model->get_tasca($id_inci);
+    }
 }

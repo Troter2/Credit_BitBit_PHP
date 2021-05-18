@@ -24,8 +24,7 @@ class News_controller extends Public_controller
     public function view_all_new()
     {
         $this->load->helper('url');
-
-
+        
         $new = $this->news_model->getNew();
         $data['news'] = $new;
         $this->load->view('templates/header');

@@ -426,6 +426,7 @@ class Grocery_controller extends Private_controller
 			$crud = new grocery_CRUD();
 
 			$crud->set_language("catalan");
+			$this->load->model('inci_model');
 			$crud->set_theme('adminlte_user');
 			$crud->set_table('incidencies');
 			$crud->set_relation('id_estat', 'status', 'desc');
@@ -450,6 +451,24 @@ class Grocery_controller extends Private_controller
 
 			$data["css_files"] = $output->css_files;
 			$data["grocery"] = true;
+
+			//print_r($this);
+			//die;
+
+			//$data["uuid"] = $this->inci_model->get_uuidbyid($crud->primary_key);
+			
+
+			$state = $crud->getState();
+			$state_info = $crud->getStateInfo();
+
+		//	if ($state == 'read') {
+		//		$this->session->set_flashdata('id_incidencia', $state_info->primary_key);
+		//	}
+				//$data = $this->session->set_flashdata('incidencies', $state_info->primary_key);
+			
+		 	//$data["uuid"] = '1234';
+
+
 
 			$this->load->view('templates/header', $data);
 			$this->load->view('grocery/index.php', (array)$output);

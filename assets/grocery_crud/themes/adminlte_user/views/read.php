@@ -69,30 +69,35 @@ if ($this->config->environment == 'production') {
 
                             ?>
                             <?php
-                            print_r($input_fields['uuid']);
-                            echo "<br>";
-                            echo "roger" . $input_fields['uuid']->input;
-                            echo "<br>";
+                            // print_r($input_fields['uuid']);
+                            // echo "<br>";
+                            // echo "u: " . $input_fields['uuid']->input . "-";
+                            // echo "<br>";
+                            
+                            // if ('1234' != $input_fields['uuid']->input)
+                            // echo 'Diferent<br>';
+                            
+                            // echo 'base: '. base_url('incidencia/pdf/' . '1234');
+                            // echo "<br>";
+                            
+                            // $id= $input_fields['uuid']->input;
 
-                            if ('1234' != $input_fields['uuid']->input)
-                                echo 'Diferent<br>';
+                            //echo 'base3: '. base_url('incidencia/pdf/' . $uuid);
+//                             echo "<br>";
+                            
+//                             echo 'base2: '. base_url('incidencia/pdf/' . $input_fields['uuid']->input);
+//                             echo "<br>";
 
-                            echo base_url('incidencia/pdf/' . '1234');
-                            echo "<br>";
-
-                            echo base_url('incidencia/pdf/' . $input_fields['uuid']->input);
-                            echo "<br>";
-
-                            $str = $input_fields['uuid']->input;
-                            for ($i = 0; $i < strlen($str); $i++) {
-                                echo $str[$i] . '   ';
-                            }
-                            echo "<br>";
-
+//                             $str = $input_fields['uuid']->input;
+//                             for ($i = 0; $i < strlen($str); $i++) {
+//                                 $str[$i] . '   ';
+//                             }
+//                             echo "<br>";
+// //<?php echo base_url('incidencia/pdf/').$input_fields['uuid']->input; 
                             ?>
-                            <a class="btn btn-default cancel-button" type="button" href='<?php echo base_url('incidencia/pdf/') . $input_fields['uuid']->input; ?>'>
-                            <!--<a class=" btn btn-default cancel-button" type="button" href='<?php echo "roger" . $input_fields['uuid']->input; ?>'" >-->
-                                    <i class=" fa fa-arrow-left"></i>
+
+                            <a class="btn btn-default cancel-button" type="button" href='<?php echo base_url('incidencia/pdf/' . $input_fields['uuid']->input)?>'>
+                                    <i class=" fa fa-download"></i>
                                 Descargar PDF 
                             </a>
                         </div>
