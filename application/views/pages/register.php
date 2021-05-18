@@ -30,6 +30,8 @@
         <input class="form-control" type="text" name="tlf" value="" /><br />
         <label for="tlf">Ciutat</label>
         <input class="form-control" type="text" name="city" value="" /><br />
+        <label for="politica">Accepto la <a href="<?php echo base_url("privacitat") ?>">politica de privacitat</a></label>
+        <input class="" type="checkbox" name="politica" id="politica"  /><br />
         <div class="d-flex justify-content-center">
             <input class="btn btn-outline-dark" type="submit" name="submit" value="Enviar" />
         </div>

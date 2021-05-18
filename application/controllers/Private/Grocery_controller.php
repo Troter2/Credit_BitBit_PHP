@@ -30,6 +30,8 @@ class Grocery_controller extends Private_controller
 			$crud->display_as('image', 'Imatge');
 			$crud->display_as('date', 'Data');
 			$crud->required_fields('title', 'content', 'image', 'content');
+			$crud->callback_before_update(array($this, 'xss_clean'));
+			$crud->callback_before_insert(array($this, 'xss_clean'));
 
 
 			$crud->set_field_upload('image', 'assets/uploads/files');
@@ -96,47 +98,30 @@ class Grocery_controller extends Private_controller
 		}
 	}
 
-	function callback_insert_id_inci($post_array)
-	{
-		$post_array["id_inci"] = $_SESSION['inci']['id_inci'];
-
-
-		return $post_array;
-	}
-	function callback_insert_after_id_inci($post_array, $primary_key)
-	{
-		redirect(base_url('tecnic/update_inci'));
-		return true;
-	}
-
-
-
-	function field_callback_1($value = '', $primary_key = null)
-	{
-		return '<input type="number" min="0" maxlength="50"  value="0" class="form-control" name="amount" style="width:462px">';
-	}
-
+	
 	public function consulta()
 	{
 		$this->load->library('session');
 		$this->load->library('ion_auth');
 		if ($this->ion_auth->is_admin()) {
-
+			
 			$crud = new grocery_CRUD();
-
+			
 			$crud->set_theme('adminlte');
+			$crud->unset_add();
+			$crud->unset_edit();
 			$crud->set_table('consultes');
 			$crud->display_as('date', "Data");
 			$crud->columns(['nom', 'email', 'assumpte', 'contingut', 'date']);
 			$crud->set_language("catalan");
 			$crud->required_fields('nom', 'email', 'assumpte', 'contingut', 'date');
-
-
+			
+			
 			$output = $crud->render();
-
+			
 			$data["css_files"] = $output->css_files;
 			$data["grocery"] = true;
-
+			
 			$this->load->view('templates/header', $data);
 			$this->load->view('grocery/index.php', (array)$output);
 			$this->load->view('templates/footer', $data);
@@ -144,32 +129,33 @@ class Grocery_controller extends Private_controller
 			redirect(base_url('home'));
 		}
 	}
-
+	
 	public function tasques()
 	{
 		$this->load->library('session');
 		$this->load->library('ion_auth');
 		if ($this->ion_auth->is_admin() || $this->ion_auth->in_group('gestor')) {
-
+			
 			$crud = new grocery_CRUD();
-
+			
 			$crud->set_theme('adminlte_task');
 			$crud->set_table('tasques');
-
+			
 			$state = $crud->getState();
 			if ($state == 'add') {
 				if (!$this->session->has_userdata('id_incidencia')) {
 					redirect('gestor/inci');
 				}
 			}
-
-			$crud->callback_before_insert(array($this, 'tasques_before_insert'));
+			
 			$crud->set_relation('id_user', 'users', 'username');
 			$state = $crud->getState();
 			if ($state != 'add' && $state != 'edit') {
 				$crud->set_relation('id_inci', 'incidencies', 'marca');
 			}
 			$crud->set_language("catalan");
+			$crud->columns(['id_user', 'id_inci', 'desc', 'start_date', 'end_date']);
+			$crud->fields(['id_user', 'id_inci', 'desc', 'accions', 'start_date']);
 			$crud->required_fields('desc', 'id_user');
 			$crud->change_field_type('id_inci', 'invisible');
 			$crud->display_as('id_user', 'Tecnic');
@@ -179,14 +165,15 @@ class Grocery_controller extends Private_controller
 			$crud->display_as('end_date', 'Data fi');
 			$crud->change_field_type('start_date', 'invisible');
 			$crud->change_field_type('end_date', 'invisible');
+			$crud->callback_before_insert(array($this, 'tasques_before_insert'));
+			$crud->callback_before_update(array($this, 'xss_clean'));
 			$output = $crud->render();
-
+			
 			$data["css_files"] = $output->css_files;
 			$data["grocery"] = true;
-
-			$crud->callback_before_insert(array($this, 'tasques_before_insert'));
-
-
+			
+			
+			
 			$this->load->view('templates/header', $data);
 			$this->load->view('grocery/index.php', (array)$output);
 			$this->load->view('templates/footer', $data);
@@ -194,27 +181,27 @@ class Grocery_controller extends Private_controller
 			redirect(base_url('home'));
 		}
 	}
-
+	
 	public function tasques_tecnic()
 	{
 		$this->load->library('session');
 		$this->load->library('ion_auth');
 		if ($this->ion_auth->in_group('gestor') || $this->ion_auth->in_group('tecnic')) {
-
+			
 			$crud = new grocery_CRUD();
-
+			
 			$crud->set_theme('adminlte_tecnic');
 			$crud->set_table('tasques');
 			$crud->unset_delete();
 			$crud->unset_edit();
-
+			
 			$state = $crud->getState();
 			if ($state == 'add') {
 				if (!$this->session->has_userdata('id_incidencia')) {
 					redirect('gestor/inci');
 				}
 			}
-
+			
 			$crud->callback_before_insert(array($this, 'tasques_before_insert'));
 			$crud->set_relation('id_user', 'users', 'username');
 			$state = $crud->getState();
@@ -246,13 +233,12 @@ class Grocery_controller extends Private_controller
 				$_SESSION['tasca'] = $tasca;
 			}
 			$output = $crud->render();
-
+			
 			$data["css_files"] = $output->css_files;
 			$data["grocery"] = true;
-
-			$crud->callback_before_insert(array($this, 'tasques_before_insert'));
-
-
+			
+			
+			
 			$this->load->view('templates/header', $data);
 			$this->load->view('grocery/index.php', (array)$output);
 			$this->load->view('templates/footer', $data);
@@ -260,28 +246,21 @@ class Grocery_controller extends Private_controller
 			redirect(base_url('home'));
 		}
 	}
-
-	function tasques_before_insert($post_array)
-	{
-
-		$post_array["id_inci"] = $_SESSION['id_incidencia'];
-		unset($_SESSION['id_incidencia']);
-
-		return $post_array;
-	}
-
-
-
-
+	
+	
+	
+	
+	
+	
 	public function incidencies()
 	{
 		$this->load->library('session');
 		$this->load->library('session');
 		$this->load->library('ion_auth');
 		if ($this->ion_auth->is_admin() || $this->ion_auth->in_group('gestor')) {
-
+			
 			$crud = new grocery_CRUD();
-
+			
 			$crud->set_theme('adminlte_incidencia');
 			$crud->set_table('incidencies');
 			$crud->set_relation('id_user_propietari', 'users', 'username');
@@ -293,37 +272,34 @@ class Grocery_controller extends Private_controller
 			$crud->order_by('entry_date', 'desc');
 			$crud->set_language("catalan");
 			$crud->required_fields('nom_propietari', 'marca', 'model', 'tlf', 'numero_serie', 'desc_averia', 'diagnosis_prev');
-			//$crud->add_action('PDF','' , "Pdf_controller/" . $this->inci_model->get_incidencia("uuid"),'fa fa-download');
-
-			//print_r($this);
-			//die;
-
+			
+			
 			$state = $crud->getState();
 			if ($state == 'list' || $state == 'read' || $state == 'success') {
 				$crud->set_relation('id_estat', 'status', 'desc');
 			}
 			$crud->callback_before_insert(array($this, 'add_date_callback'));
 			$crud->columns(['id_estat', 'id_user_propietari', 'nom_propietari', 'tlf', 'entry_date', 'out_date']);
-
+			
 			$crud->change_field_type('out_date', 'invisible');
 			$crud->change_field_type('entry_date', 'invisible');
 			$crud->change_field_type('id_estat', 'invisible');
 			$crud->change_field_type('uuid', 'invisible');
-
-
+			
+			
 			$state = $crud->getState();
 			$state_info = $crud->getStateInfo();
-
+			
 			if ($state == 'read') {
 				$this->session->set_flashdata('id_incidencia', $state_info->primary_key);
 			}
-
+			
 			$output = $crud->render();
-
-
+			
+			
 			$data["css_files"] = $output->css_files;
 			$data["grocery"] = true;
-
+			
 			$this->load->view('templates/header', $data);
 			$this->load->view('grocery/index.php', (array)$output);
 			$this->load->view('templates/footer', $data);
@@ -331,16 +307,16 @@ class Grocery_controller extends Private_controller
 			redirect(base_url('home'));
 		}
 	}
-
-
+	
+	
 	public function user()
 	{
 		$this->load->library('session');
 		$this->load->library('ion_auth');
 		if ($this->ion_auth->is_admin()) {
-
+			
 			$crud = new grocery_CRUD();
-
+			
 			$crud->set_theme('adminlte_user_admin');
 			$crud->set_table('users');
 			$crud->fields('username', 'password', 'email', 'first_name', 'last_name', 'phone', 'city');
@@ -357,12 +333,12 @@ class Grocery_controller extends Private_controller
 			$crud->callback_after_update(array($this, 'hash_pass'));
 			$output = $crud->render();
 			$state = $crud->getState();
-
 			
-
+			
+			
 			$data["css_files"] = $output->css_files;
 			$data["grocery"] = true;
-
+			
 			$this->load->view('templates/header', $data);
 			$this->load->view('grocery/index.php', (array)$output);
 			$this->load->view('templates/footer', $data);
@@ -375,19 +351,19 @@ class Grocery_controller extends Private_controller
 		$this->load->library('session');
 		$this->load->library('ion_auth');
 		if ($this->ion_auth->is_admin()) {
-
+			
 			$crud = new grocery_CRUD();
-
+			
 			$crud->set_theme('adminlte');
 			$crud->set_table('tipus_consulta');
 			$crud->set_language("catalan");
 			$crud->required_fields('consulta');
-
+			
 			$output = $crud->render();
-
+			
 			$data["css_files"] = $output->css_files;
 			$data["grocery"] = true;
-
+			
 			$this->load->view('templates/header', $data);
 			$this->load->view('grocery/index.php', (array)$output);
 			$this->load->view('templates/footer', $data);
@@ -400,19 +376,19 @@ class Grocery_controller extends Private_controller
 		$this->load->library('session');
 		$this->load->library('ion_auth');
 		if ($this->ion_auth->is_admin()) {
-
+			
 			$crud = new grocery_CRUD();
-
+			
 			$crud->set_theme('adminlte');
 			$crud->set_table('datos_about');
 			$crud->set_language("catalan");
 			$crud->required_fields('date', 'titol', 'content');
-
+			
 			$output = $crud->render();
-
+			
 			$data["css_files"] = $output->css_files;
 			$data["grocery"] = true;
-
+			
 			$this->load->view('templates/header', $data);
 			$this->load->view('grocery/index.php', (array)$output);
 			$this->load->view('templates/footer', $data);
@@ -420,15 +396,15 @@ class Grocery_controller extends Private_controller
 			redirect(base_url('home'));
 		}
 	}
-
+	
 	public function user_inci()
 	{
 		$this->load->library('session');
 		$this->load->library('ion_auth');
 		if ($this->ion_auth->in_group('user')) {
-
+			
 			$crud = new grocery_CRUD();
-
+			
 			$crud->set_language("catalan");
 			$this->load->model('inci_model');
 			$crud->set_theme('adminlte_user');
@@ -437,219 +413,251 @@ class Grocery_controller extends Private_controller
 			$crud->columns(['id_estat', 'marca', 'model', 'numero_serie', 'entry_date']);
 			$crud->display_as('id_estat', 'Estat');
 			$crud->display_as('entry_date', "Data d'entrada");
-
+			
 			$crud->unset_add();
 			$crud->unset_edit();
 			$crud->unset_delete();
-
+			
 			$crud->change_field_type('out_date', 'invisible');
 			$crud->change_field_type('entry_date', 'invisible');
 			$crud->change_field_type('id_estat', 'invisible');
 			$crud->change_field_type('uuid', 'invisible');
-
+			
 			$userinfo = $this->ion_auth->user()->row();
 			$id = $userinfo->id;
 			$crud->where('id_user_propietari', $id);
-
+			
 			$output = $crud->render();
-
+			
 			$data["css_files"] = $output->css_files;
 			$data["grocery"] = true;
-
+			
 			//print_r($this);
 			//die;
-
-
+			
+			
 			//$data["uuid"] = $this->inci_model->get_uuidbyid($crud->primary_key);
-
+			
 			//print_r($data);
 			//die;
-
+			
 			$state = $crud->getState();
 			$state_info = $crud->getStateInfo();
-
+			
 			//	if ($state == 'read') {
-			//		$this->session->set_flashdata('id_incidencia', $state_info->primary_key);
-			//	}
-			//$data = $this->session->set_flashdata('incidencies', $state_info->primary_key);
-
-			//$data["uuid"] = '1234';
-
-
-
-			$this->load->view('templates/header', $data);
-			$this->load->view('grocery/index.php', (array)$output);
-			$this->load->view('templates/footer', $data);
-		} else {
-			redirect(base_url('home'));
-		}
-	}
-
-
-	public function group()
-	{
-		$this->load->library('session');
-		$this->load->library('ion_auth');
-		if ($this->ion_auth->is_admin()) {
-
-			$crud = new grocery_CRUD();
-
-			$crud->set_language("catalan");
-			$crud->required_fields('desc', 'id_user');
-			$crud->unset_delete();
-			$crud->set_theme('adminlte');
-			$crud->set_table('users_groups');
-			$crud->display_as('user_id', "Nom d'usuari");
-			$crud->display_as('group_id', 'Rol');
-			$crud->set_relation('user_id', 'users', 'username');
-			$state = $crud->getState();
-			if ($state != 'add') {
-
-				$crud->field_type("user_id", 'readonly');
+				//		$this->session->set_flashdata('id_incidencia', $state_info->primary_key);
+				//	}
+				//$data = $this->session->set_flashdata('incidencies', $state_info->primary_key);
+				
+				//$data["uuid"] = '1234';
+				
+				
+				
+				$this->load->view('templates/header', $data);
+				$this->load->view('grocery/index.php', (array)$output);
+				$this->load->view('templates/footer', $data);
+			} else {
+				redirect(base_url('home'));
 			}
-			$crud->set_relation('group_id', 'groups', 'description');
-
-
-			$output = $crud->render();
-
-
-			$data["css_files"] = $output->css_files;
-			$data["grocery"] = true;
-
-			$this->load->view('templates/header', $data);
-			$this->load->view('grocery/index.php', (array)$output);
-			$this->load->view('templates/footer', $data);
-		} else {
-			redirect(base_url('home'));
 		}
-	}
-
-	public function mail()
-	{
-		$this->load->library('session');
-		$this->load->library('ion_auth');
-		if ($this->ion_auth->is_admin()) {
-
-			$crud = new grocery_CRUD();
-
-			$crud->unset_delete();
-			$crud->unset_add();
-			$crud->unset_edit();
-
-			$crud->display_as('send_date', 'Dia envio');
-			$crud->display_as('send_hour', 'Hora envio');
-			$crud->display_as('recive_date', 'Recibido dia');
-			$crud->display_as('recive_hour', 'Recibido hora');
-			$crud->display_as('about', 'Assumpte');
-
-			$crud->columns(['from', 'to', 'about', 'send_date', 'send_hour', 'recive_date', 'recive_hour']);
-			$crud->set_theme('adminlte');
-			$crud->set_table('messages');
-
-			$crud->set_language("catalan");
-			$output = $crud->render();
-
-			$data["css_files"] = $output->css_files;
-			$data["grocery"] = true;
-
-			$this->load->view('templates/header', $data);
-			$this->load->view('grocery/index.php', (array)$output);
-			$this->load->view('templates/footer', $data);
-		} else {
-			redirect(base_url('home'));
+		
+		
+		public function group()
+		{
+			$this->load->library('session');
+			$this->load->library('ion_auth');
+			if ($this->ion_auth->is_admin()) {
+				
+				$crud = new grocery_CRUD();
+				
+				$crud->set_language("catalan");
+				$crud->required_fields('desc', 'id_user');
+				$crud->unset_delete();
+				$crud->set_theme('adminlte');
+				$crud->set_table('users_groups');
+				$crud->display_as('user_id', "Nom d'usuari");
+				$crud->display_as('group_id', 'Rol');
+				$crud->set_relation('user_id', 'users', 'username');
+				$state = $crud->getState();
+				if ($state != 'add') {
+					
+					$crud->field_type("user_id", 'readonly');
+				}
+				$crud->set_relation('group_id', 'groups', 'description');
+				
+				
+				$output = $crud->render();
+				
+				
+				$data["css_files"] = $output->css_files;
+				$data["grocery"] = true;
+				
+				$this->load->view('templates/header', $data);
+				$this->load->view('grocery/index.php', (array)$output);
+				$this->load->view('templates/footer', $data);
+			} else {
+				redirect(base_url('home'));
+			}
 		}
-	}
-	public function material()
-	{
-		$this->load->library('session');
-		$this->load->library('ion_auth');
-		if ($this->ion_auth->is_admin()) {
-
-			$crud = new grocery_CRUD();
-
-			$crud->unset_delete();
-			$crud->unset_add();
-			$crud->unset_edit();
-
-			$crud->display_as('send_date', 'Dia envio');
-			$crud->display_as('send_hour', 'Hora envio');
-			$crud->display_as('recive_date', 'Recibido dia');
-			$crud->display_as('recive_hour', 'Recibido hora');
-			$crud->display_as('about', 'Assumpte');
-
-			$crud->columns(['from', 'to', 'about', 'send_date', 'send_hour', 'recive_date', 'recive_hour']);
-			$crud->set_theme('adminlte');
-			$crud->set_table('material');
-
-			$crud->set_language("catalan");
-			$output = $crud->render();
-
-			$data["css_files"] = $output->css_files;
-			$data["grocery"] = true;
-
-			$this->load->view('templates/header', $data);
-			$this->load->view('grocery/index.php', (array)$output);
-			$this->load->view('templates/footer', $data);
-		} else {
-			redirect(base_url('home'));
+		
+		public function mail()
+		{
+			$this->load->library('session');
+			$this->load->library('ion_auth');
+			if ($this->ion_auth->is_admin()) {
+				
+				$crud = new grocery_CRUD();
+				
+				$crud->unset_delete();
+				$crud->unset_add();
+				$crud->unset_edit();
+				
+				$crud->display_as('send_date', 'Dia envio');
+				$crud->display_as('send_hour', 'Hora envio');
+				$crud->display_as('recive_date', 'Recibido dia');
+				$crud->display_as('recive_hour', 'Recibido hora');
+				$crud->display_as('about', 'Assumpte');
+				
+				$crud->columns(['from', 'to', 'about', 'send_date', 'send_hour', 'recive_date', 'recive_hour']);
+				$crud->set_theme('adminlte');
+				$crud->set_table('messages');
+				
+				$crud->set_language("catalan");
+				$output = $crud->render();
+				
+				$data["css_files"] = $output->css_files;
+				$data["grocery"] = true;
+				
+				$this->load->view('templates/header', $data);
+				$this->load->view('grocery/index.php', (array)$output);
+				$this->load->view('templates/footer', $data);
+			} else {
+				redirect(base_url('home'));
+			}
 		}
-	}
-	public function material_admin()
-	{
-		$this->load->library('session');
-		$this->load->library('ion_auth');
-		if ($this->ion_auth->is_admin()) {
-
-			$crud = new grocery_CRUD();
-
-
-			$crud->display_as('send_date', 'Dia envio');
-			$crud->display_as('descri', 'Descripcio');
-			$crud->display_as('num_serie', 'Numero de serie');
-			$crud->display_as('amount', 'Cantitat disponible');
-
-			$crud->required_fields('nom', 'descri', 'num_serie', 'amount');
-
-			$crud->set_theme('adminlte');
-			$crud->set_table('materials');
-
-			$crud->set_language("catalan");
-			$output = $crud->render();
-
-			$data["css_files"] = $output->css_files;
-			$data["grocery"] = true;
-
-			$this->load->view('templates/header', $data);
-			$this->load->view('grocery/index.php', (array)$output);
-			$this->load->view('templates/footer', $data);
-		} else {
-			redirect(base_url('home'));
+		public function material()
+		{
+			$this->load->library('session');
+			$this->load->library('ion_auth');
+			if ($this->ion_auth->is_admin()) {
+				
+				$crud = new grocery_CRUD();
+				
+				$crud->unset_delete();
+				$crud->unset_add();
+				$crud->unset_edit();
+				
+				$crud->display_as('send_date', 'Dia envio');
+				$crud->display_as('send_hour', 'Hora envio');
+				$crud->display_as('recive_date', 'Recibido dia');
+				$crud->display_as('recive_hour', 'Recibido hora');
+				$crud->display_as('about', 'Assumpte');
+				
+				$crud->columns(['from', 'to', 'about', 'send_date', 'send_hour', 'recive_date', 'recive_hour']);
+				$crud->set_theme('adminlte');
+				$crud->set_table('material');
+				
+				$crud->set_language("catalan");
+				$output = $crud->render();
+				
+				$data["css_files"] = $output->css_files;
+				$data["grocery"] = true;
+				
+				$this->load->view('templates/header', $data);
+				$this->load->view('grocery/index.php', (array)$output);
+				$this->load->view('templates/footer', $data);
+			} else {
+				redirect(base_url('home'));
+			}
 		}
-	}
+		public function material_admin()
+		{
+			$this->load->library('session');
+			$this->load->library('ion_auth');
+			if ($this->ion_auth->is_admin()) {
+				
+				$crud = new grocery_CRUD();
+				
+				
+				$crud->display_as('send_date', 'Dia envio');
+				$crud->display_as('descri', 'Descripcio');
+				$crud->display_as('num_serie', 'Numero de serie');
+				$crud->display_as('amount', 'Cantitat disponible');
+				
+				$crud->required_fields('nom', 'descri', 'num_serie', 'amount');
+				
+				$crud->set_theme('adminlte');
+				$crud->set_table('materials');
+				
+				$crud->set_language("catalan");
+				$output = $crud->render();
+				
+				$data["css_files"] = $output->css_files;
+				$data["grocery"] = true;
+				
+				$this->load->view('templates/header', $data);
+				$this->load->view('grocery/index.php', (array)$output);
+				$this->load->view('templates/footer', $data);
+			} else {
+				redirect(base_url('home'));
+			}
+		}
+		
+		function add_date_callback($post_array)
+		{
+			$this->load->library('uuid');
+			$post_array['uuid'] = str_replace("-", "", $this->uuid->v4());
+			$post_array["entry_date"] = date("Y-m-d");
+			$post_array["id_estat"] = '1';
+			return $post_array;
+		}
+		function hash_pass($post_array, $primary_key)
+		{
+			$passwordHashed = $this->ion_auth_model->hash_password($post_array['password'], FALSE, FALSE);
+			$username = $post_array['username'];
+			$this->db->set('password', $passwordHashed);
+			$this->db->where('username', $username);
+			$this->db->update('users');
+			return true;
+		}
+		function tasques_before_insert($post_array)
+		{
+			
+			$post_array["id_inci"] = $_SESSION['id_incidencia'];
+			unset($_SESSION['id_incidencia']);
+			$post_array = $this->xss_clean($post_array);
+			
+			return $post_array;
+		}
+		
+		function xss_clean($post_array, $primary_key = null)
+		{
+			foreach ($post_array as $key => $value) {
+				$post_array[$key] = $this->security->xss_clean($value);
+			}
+			print_r("entra");
+			die;
+			return $post_array;
+		}
 
-	function add_date_callback($post_array)
-	{
-		$this->load->library('uuid');
-		$post_array['uuid'] = str_replace("-", "", $this->uuid->v4());
-		$post_array["entry_date"] = date("Y-m-d");
-		$post_array["id_estat"] = '1';
-		return $post_array;
-	}
-	function hash_pass($post_array, $primary_key)
-	{
-		$passwordHashed = $this->ion_auth_model->hash_password($post_array['password'], FALSE, FALSE);
-		$username = $post_array['username'];
-		$this->db->set('password', $passwordHashed);
-		$this->db->where('username', $username);
-		$this->db->update('users');
-		return true;
-	}
-
-	function xss_clean($post_array, $primary_key = null){
-		foreach ($post_array as $key => $value) {
-			$post_array[$key] = $this->security->xss_clean($value);
+		function callback_insert_id_inci($post_array)
+		{
+			$post_array["id_inci"] = $_SESSION['inci']['id_inci'];
+	
+	
+			return $post_array;
+		}
+		function callback_insert_after_id_inci($post_array, $primary_key)
+		{
+			redirect(base_url('tecnic/update_inci'));
+			return true;
 		}
 	
-		return $post_array;
+	
+	
+		function field_callback_1($value = '', $primary_key = null)
+		{
+			return '<input type="number" min="0" maxlength="50"  value="0" class="form-control" name="amount" style="width:462px">';
+		}
 	}
-}
+	

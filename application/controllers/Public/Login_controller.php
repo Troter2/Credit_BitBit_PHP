@@ -66,21 +66,15 @@ class Login_controller extends Public_controller
         $this->form_validation->set_rules(
             'username',
             "Nom d'usuari",
-            'is_unique[users.username]||required',
-            array('required' => 'usuari obligatori','is_unique' => 'Usuari existent')
+            'is_unique[users.username]|required',
+            array('required' => 'usuari obligatori', 'is_unique' => 'Usuari existent')
         );
 
         $this->form_validation->set_rules(
             'email',
             "Correu electronic",
-            'is_unique[users.email]',
-            array('required' => 'Correu ja existent')
-        );
-        $this->form_validation->set_rules(
-            'email',
-            "Correu electronic",
-            'required',
-            array('required' => 'Correu obligatori')
+            'is_unique[users.email]|required',
+            array('required' => 'Correu obligatori', 'is_unique' => 'Correu ja registrat')
         );
         $this->form_validation->set_rules(
             'pass',
@@ -106,6 +100,14 @@ class Login_controller extends Public_controller
             'required',
             array('required' => 'Ciutat obligatori')
         );
+
+        $this->form_validation->set_rules(
+            'politica',
+            "politica",
+            'required',
+            array('required' => 'Es necessari acceptar la politica de privacitat')
+        );
+
         if ($this->form_validation->run() === FALSE) {
 
             $this->load->view('templates/header');
