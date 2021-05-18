@@ -63,8 +63,7 @@ class Tecnic_controller extends Private_controller
                         'id_tasca' => $_SESSION['tasca']['id_tasca']
                     );
                     $this->db->insert('documents_tasques', $data);
-                    print_r($data);
-                    die;
+                    
                     
                 }
             }
@@ -113,7 +112,6 @@ class Tecnic_controller extends Private_controller
         $this->db->set('canvas', $canvas);
         $this->db->where('id_tasca', $idTasca);
         $this->db->update('tasques');
-die('finito');
         redirect(base_url('tecnic/tasques/success/'));
     }
 }
