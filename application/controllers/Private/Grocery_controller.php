@@ -456,17 +456,17 @@ class Grocery_controller extends Private_controller
 			//die;
 
 			//$data["uuid"] = $this->inci_model->get_uuidbyid($crud->primary_key);
-			
+
 
 			$state = $crud->getState();
 			$state_info = $crud->getStateInfo();
 
-		//	if ($state == 'read') {
-		//		$this->session->set_flashdata('id_incidencia', $state_info->primary_key);
-		//	}
-				//$data = $this->session->set_flashdata('incidencies', $state_info->primary_key);
-			
-		 	//$data["uuid"] = '1234';
+			//	if ($state == 'read') {
+			//		$this->session->set_flashdata('id_incidencia', $state_info->primary_key);
+			//	}
+			//$data = $this->session->set_flashdata('incidencies', $state_info->primary_key);
+
+			//$data["uuid"] = '1234';
 
 
 
@@ -490,13 +490,16 @@ class Grocery_controller extends Private_controller
 			$crud->set_language("catalan");
 			$crud->required_fields('desc', 'id_user');
 			$crud->unset_delete();
-			$crud->unset_add();
 			$crud->set_theme('adminlte');
 			$crud->set_table('users_groups');
 			$crud->display_as('user_id', "Nom d'usuari");
 			$crud->display_as('group_id', 'Rol');
 			$crud->set_relation('user_id', 'users', 'username');
-			$crud->field_type("user_id", 'readonly');
+			$state = $crud->getState();
+			if ($state != 'add') {
+
+				$crud->field_type("user_id", 'readonly');
+			}
 			$crud->set_relation('group_id', 'groups', 'description');
 
 
@@ -597,7 +600,7 @@ class Grocery_controller extends Private_controller
 			$crud->display_as('descri', 'Descripcio');
 			$crud->display_as('num_serie', 'Numero de serie');
 			$crud->display_as('amount', 'Cantitat disponible');
-			
+
 			$crud->required_fields('nom', 'descri', 'num_serie', 'amount');
 
 			$crud->set_theme('adminlte');
