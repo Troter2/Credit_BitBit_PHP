@@ -206,6 +206,7 @@ class Grocery_controller extends Private_controller
 			$crud->set_theme('adminlte_tecnic');
 			$crud->set_table('tasques');
 			$crud->unset_delete();
+			$crud->unset_edit();
 
 			$state = $crud->getState();
 			if ($state == 'add') {
@@ -340,21 +341,24 @@ class Grocery_controller extends Private_controller
 
 			$crud = new grocery_CRUD();
 
-			$crud->set_theme('adminlte');
+			$crud->set_theme('adminlte_user_admin');
 			$crud->set_table('users');
+			$crud->fields('username', 'password', 'email', 'first_name', 'last_name', 'phone', 'city');
 			$crud->set_language("catalan");
 			$crud->required_fields('username', 'email', 'first_name', 'last_name', 'email', 'city');
 			$crud->display_as('username', "Nom d'usuari");
 			$crud->display_as('first_name', "Nom");
 			$crud->display_as('last_name', "Cognom");
-			$crud->display_as('company', "Comanyia");
+			$crud->display_as('company', "Companyia");
 			$crud->display_as('phone', "Telefon");
 			$crud->display_as('city', "Ciutat");
 			$crud->columns(['username', 'email', 'first_name', 'last_name', 'company', 'phone', 'city']);
 			$crud->callback_after_insert(array($this, 'hash_pass'));
 			$crud->callback_after_update(array($this, 'hash_pass'));
 			$output = $crud->render();
-			//////////////////////////////////////////
+			$state = $crud->getState();
+
+			
 
 			$data["css_files"] = $output->css_files;
 			$data["grocery"] = true;
@@ -455,7 +459,7 @@ class Grocery_controller extends Private_controller
 			//print_r($this);
 			//die;
 
-			
+
 			//$data["uuid"] = $this->inci_model->get_uuidbyid($crud->primary_key);
 
 			//print_r($data);
@@ -639,5 +643,13 @@ class Grocery_controller extends Private_controller
 		$this->db->where('username', $username);
 		$this->db->update('users');
 		return true;
+	}
+
+	function xss_clean($post_array, $primary_key = null){
+		foreach ($post_array as $key => $value) {
+			$post_array[$key] = $this->security->xss_clean($value);
+		}
+	
+		return $post_array;
 	}
 }
