@@ -446,9 +446,6 @@ class Grocery_controller extends Private_controller
 			$output = $crud->render();
 			$data["css_files"] = $output->css_files;
 			
-			
-
-
 			$this->load->view('templates/header', $data);
 			$this->load->view('grocery/index.php', (array)$output);
 			$this->load->view('templates/footer', $data);
@@ -553,8 +550,8 @@ class Grocery_controller extends Private_controller
                 $crud->columns(['from', 'to', 'about', 'send_date', 'send_hour', 'recive_date', 'recive_hour']);
                 $crud->set_theme('adminlte');
                 $crud->set_table('messages');
-                $crud->set_relation('to','users_groups','user_id',array('group_id!=' => '4'));
-                $crud->set_relation('to','users','username');
+                $crud->set_relation('to','qrynomusuari','id',array('group_id!=' => '4'));
+                // $crud->set_relation('to','qrynomusuari','id');
                 // $crud->set_relation_n_n('to', 'users_groups', 'users', 'id', 'id',null, 'username',array('group_id!=' => '4'));
                 // Tinc que agafar el nom d'usuari en el select del afegir, aixi filtro que no ho puguin passar entre usuaris, noomes de usuaris a 
                 // admins gestors i tecnics, tinc que fer que me tregui el nom
@@ -567,7 +564,7 @@ class Grocery_controller extends Private_controller
 				// la millor manera es, enlloc de fer-ho es: enlloc de linkar amb la taula, linka amb una vista (entenem vista per
 				// una sql que desaras al mysql)
 
-                $crud->set_relation('user_id','users','id',array('group_id!=' => '4'));
+                // $crud->set_relation('user_id','users','id',array('group_id!=' => '4'));
                 $crud->set_language("catalan");
                 
                 $crud->field_type("send_date", 'hidden');
