@@ -402,9 +402,9 @@ class Grocery_controller extends Private_controller
 		$this->load->library('session');
 		$this->load->library('ion_auth');
 		if ($this->ion_auth->in_group('user')) {
-			
+
 			$crud = new grocery_CRUD();
-			
+
 			$crud->set_language("catalan");
 			$this->load->model('inci_model');
 			$crud->set_theme('adminlte_user');
@@ -413,53 +413,61 @@ class Grocery_controller extends Private_controller
 			$crud->columns(['id_estat', 'marca', 'model', 'numero_serie', 'entry_date']);
 			$crud->display_as('id_estat', 'Estat');
 			$crud->display_as('entry_date', "Data d'entrada");
-			
+
 			$crud->unset_add();
 			$crud->unset_edit();
 			$crud->unset_delete();
-			
+
 			$crud->change_field_type('out_date', 'invisible');
 			$crud->change_field_type('entry_date', 'invisible');
 			$crud->change_field_type('id_estat', 'invisible');
 			$crud->change_field_type('uuid', 'invisible');
-			
+
 			$userinfo = $this->ion_auth->user()->row();
 			$id = $userinfo->id;
 			$crud->where('id_user_propietari', $id);
-			
+
 			$output = $crud->render();
 			
 			$data["css_files"] = $output->css_files;
 			$data["grocery"] = true;
+
+
+			$state = $crud->getState();
+			$state_info = $crud->getStateInfo();
+
+
+			//print_r($crud->get_primary_key());
+			//die;
+			
+			$_SESSION["uuid_url"] = $this->inci_model->get_uuidbyid($crud->get_primary_key());
 			
 			//print_r($this);
 			//die;
+
 			
-			
-			//$data["uuid"] = $this->inci_model->get_uuidbyid($crud->primary_key);
-			
+
 			//print_r($data);
 			//die;
+
 			
-			$state = $crud->getState();
-			$state_info = $crud->getStateInfo();
-			
+
 			//	if ($state == 'read') {
-				//		$this->session->set_flashdata('id_incidencia', $state_info->primary_key);
-				//	}
-				//$data = $this->session->set_flashdata('incidencies', $state_info->primary_key);
-				
-				//$data["uuid"] = '1234';
-				
-				
-				
-				$this->load->view('templates/header', $data);
-				$this->load->view('grocery/index.php', (array)$output);
-				$this->load->view('templates/footer', $data);
-			} else {
-				redirect(base_url('home'));
-			}
+			//		$this->session->set_flashdata('id_incidencia', $state_info->primary_key);
+			//	}
+			//$data = $this->session->set_flashdata('incidencies', $state_info->primary_key);
+
+			//$data["uuid"] = '1234';
+
+
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('grocery/index.php', (array)$output);
+			$this->load->view('templates/footer', $data);
+		} else {
+			redirect(base_url('home'));
 		}
+	}
 		
 		
 		public function group()

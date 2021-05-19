@@ -18,6 +18,8 @@ class Pdf_controller extends Private_controller
 
         $tasca = $this->Inci_model->get_tasca($id);
 
+        $material = $this->Inci_model->get_material();
+
         //  print_r($tasca);
         //  die;
 
@@ -57,21 +59,37 @@ class Pdf_controller extends Private_controller
         }
 
         $totesAccions = '';
+        $TotElMaterial='';
 
-
+        
         foreach ($tasca as $task) {
             $accioRealitzada = '<p style="text-align: justify;text-justify: inter-word;">Tasca: ' . $task['desc'] . '</p>
                             <p style="text-align: justify;text-justify: inter-word;">Acció necessaria: <br/>' . $task['accions'] . '</p>';
 
             if (isset($task['canvas']) && $task['canvas']!='') {
-
-                $accioRealitzada .= '<img src="@'. $task['canvas'] .'"><hr>';
+               
+                $accioRealitzada = '<img src="@'.$task['canvas'] .'"><hr>';
             }
+        //$id = $task['id_inci'];
+        //$document = $this->Inci_model->get_document($id);
 
-            $totesAccions = $totesAccions . $accioRealitzada;
+            //foreach($document as $doc){
+            //    $DocumentAccio = '<img src="/assets/uploads/files'.$task['id_inci'].'/'. $doc['image'] .'">';
+            //}
+            $totesAccions = $totesAccions . $accioRealitzada ;//$DocumentAccio;
+}
 
-            //echo '<p style="text-align: justify;text-justify: inter-word;">Tasca: ' . $task['desc'] . '</p>';
+
+
+
+        foreach ($material as $mat) {
+            $materialUtilitzat = '<p style="text-align: justify;text-justify: inter-word;">' . $mat['nom'] . '</p>';
+
+            $TotElMaterial = $TotElMaterial . $materialUtilitzat;
         }
+
+
+
 
         $html = '
         <div><img src="/Credit_BitBit_PHP/assets/img/logo/LogoPDF.svg" alt="" width:"50" height:"50"></div>
@@ -83,13 +101,12 @@ class Pdf_controller extends Private_controller
         <div><p>Descripcio de la avaria: ' . $incidencia['desc_averia'] . '</p></div>
         <div><p>Diagnosi previ: ' . $incidencia['diagnosis_prev'] . '</p></div>
         <div><p>' . $totesAccions . '</p></div>
+        <div><p>Material utilitzat: ' . $TotElMaterial . '</p></div>
         <div><p>Data entrada: <br/><br/>' . $incidencia['entry_date'] . '</p></div>
         <div><p>' . $date_out . '</p></div>
         
         ';
-        // Print text using writeHTMLCell()
-        $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
-
+        //$pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
         $pdf->writeHTML($html, true, false, false, false, '');
 
 

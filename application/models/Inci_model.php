@@ -42,11 +42,6 @@ class Inci_model extends CI_Model
         return $query->result_array();
     }
     
-    public function get_material(){
-        
-        $query=$this->db->query("SELECT * FROM materials");
-        return $query->result_array();
-    }
     public function get_uuid(){
         
         $query=$this->db->query("SELECT * FROM status");
@@ -65,13 +60,13 @@ class Inci_model extends CI_Model
         return $query->result_array();
     }
 
-    public function get_eines($id_tasca, $id_inci)
+    public function get_material()
     {
         // $tascaID=$this->db->query("SELECT * FROM tasques where id_tasca = $id_tasca");
         //$inciID=$this->db->query("SELECT * FROM incidencies where id_inci = $id_inci");
        // $id_material=$this->db->query("SELECT * FROM mat_inci where id_inci = $id_inci");
-        //return $query->result_array();
-        $tascaID=$this->db->query("SELECT * FROM materials where id_tasca = $id_tasca");
+        $query=$this->db->query("SELECT * FROM ((materials INNER JOIN mat_inci ON materials.id_mat = mat_inci.id_mat) INNER JOIN incidencies ON incidencies.id_inci = mat_inci.id_inci)");
+        return $query->result_array();
 
     }
     // public function get_tasca()
@@ -80,7 +75,10 @@ class Inci_model extends CI_Model
         
     //     return $query->result_array();
     // }
-
+    public function get_document(){
+        $query=$this->db->query("SELECT * FROM ((documents_tasques INNER JOIN tasques ON documents_tasques.id_tasca = tasques.id_tasca) INNER JOIN incidencies ON incidencies.id_inci = tasques.id_inci)");
+        return $query->result_array();
+    }
 
 
 
