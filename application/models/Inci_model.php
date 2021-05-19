@@ -83,8 +83,10 @@ class Inci_model extends CI_Model
 
 
     public function get_uuidbyid($uuid){
-        
-        $query = $this->db->get_where('incidencies', array('id_inci' => $uuid));
-        return $query->row_array();
+        $this->db->select("uuid");
+        $this->db->from("incidencies");
+        $this->db->where(array('id_inci' => $uuid));
+        $query = $this->db->get();
+        return $query->row()->uuid;
     }
 }

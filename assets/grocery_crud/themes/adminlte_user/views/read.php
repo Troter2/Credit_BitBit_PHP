@@ -94,9 +94,12 @@ if ($this->config->environment == 'production') {
 //                             }
 //                             echo "<br>";
 // //<?php echo base_url('incidencia/pdf/').$input_fields['uuid']->input; 
+
+//$_SESSION["uuid_url"]
                             ?>
 
-                            <a class="btn btn-default cancel-button" type="button" href='<?php echo base_url('incidencia/pdf/' . $input_fields['uuid']->input)?>'>
+
+                            <a class="btn btn-default cancel-button" type="button" href='<?php echo base_url('incidencia/pdf/'.$_SESSION["uuid_url"])?>'>
                                     <i class=" fa fa-download"></i>
                                 Descargar PDF 
                             </a>

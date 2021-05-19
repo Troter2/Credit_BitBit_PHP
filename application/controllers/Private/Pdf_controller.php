@@ -70,13 +70,15 @@ class Pdf_controller extends Private_controller
                
                 $accioRealitzada = '<img src="@'.$task['canvas'] .'"><hr>';
             }
-        //$id = $task['id_inci'];
-        //$document = $this->Inci_model->get_document($id);
+        $id = $task['id_inci'];
+        $document = $this->Inci_model->get_document($id);
 
-            //foreach($document as $doc){
-            //    $DocumentAccio = '<img src="/assets/uploads/files'.$task['id_inci'].'/'. $doc['image'] .'">';
-            //}
-            $totesAccions = $totesAccions . $accioRealitzada ;//$DocumentAccio;
+        //print_r($document);
+        //die;
+            foreach($document as $doc){
+                $DocumentAccio = '<p>Imatge: <img src="'. base_url() . '/' . $doc['path'].'/'. $doc['image'] .'"></p>';
+            }
+            $totesAccions = $totesAccions . $accioRealitzada . $DocumentAccio;
 }
 
 
