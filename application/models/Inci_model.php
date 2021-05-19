@@ -87,6 +87,10 @@ class Inci_model extends CI_Model
         $this->db->from("incidencies");
         $this->db->where(array('id_inci' => $uuid));
         $query = $this->db->get();
-        return $query->row()->uuid;
+
+        $row=$query->row();
+
+        if (isset($row)) return $row->uuid;
+        else return null;
     }
 }

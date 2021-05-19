@@ -14,7 +14,10 @@ if ($this->config->environment == 'production') {
     $this->set_js_lib($this->default_theme_path . '/bootstrap/js/common/cache-library.js');
     $this->set_js_lib($this->default_theme_path . '/bootstrap/js/common/common.js');
 }
+
+
 ?>
+
 <div class="crud-form" data-unique-hash="<?php echo $unique_hash; ?>">
     <div class="container gc-container">
         <div class="row">
@@ -96,6 +99,9 @@ if ($this->config->environment == 'production') {
 // //<?php echo base_url('incidencia/pdf/').$input_fields['uuid']->input; 
 
 //$_SESSION["uuid_url"]
+
+
+                            
                             ?>
 
 

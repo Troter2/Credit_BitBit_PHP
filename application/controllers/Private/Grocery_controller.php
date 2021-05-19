@@ -424,38 +424,29 @@ class Grocery_controller extends Private_controller
 			$id = $userinfo->id;
 			$crud->where('id_user_propietari', $id);
 
-			$output = $crud->render();
 			
-			$data["css_files"] = $output->css_files;
 			$data["grocery"] = true;
-
-
+			
+			
 			$state = $crud->getState();
 			$state_info = $crud->getStateInfo();
-
-
-			//print_r($crud->get_primary_key());
-			//die;
 			
-			$_SESSION["uuid_url"] = $this->inci_model->get_uuidbyid($crud->get_primary_key());
 			
-			//print_r($this);
-			//die;
-
+			//$_SESSION["uuid_url"] = $this->inci_model->get_uuidbyid($crud->get_primary_key());
 			
-
-			//print_r($data);
-			//die;
-
+			if($state == 'read')
+			{
+				$primary_key = $state_info->primary_key;
+				$_SESSION["uuid_url"] = $this->inci_model->get_uuidbyid($primary_key);
+				
+			} else  {
+				$_SESSION["uuid_url"] = "";
+			}
 			
-
-			//	if ($state == 'read') {
-			//		$this->session->set_flashdata('id_incidencia', $state_info->primary_key);
-			//	}
-			//$data = $this->session->set_flashdata('incidencies', $state_info->primary_key);
-
-			//$data["uuid"] = '1234';
-
+			$output = $crud->render();
+			$data["css_files"] = $output->css_files;
+			
+			
 
 
 			$this->load->view('templates/header', $data);
@@ -527,7 +518,6 @@ class Grocery_controller extends Private_controller
 				$crud->set_theme('adminlte');
 				$crud->set_table('messages');
 				
-				
 				$crud->set_language("catalan");
 				$output = $crud->render();
 				
@@ -541,50 +531,63 @@ class Grocery_controller extends Private_controller
 				redirect(base_url('home'));
 			}
 		}
+
+
 		public function public_mail()
-		{
-			$this->load->library('session');
-			$this->load->library('ion_auth');
-			if ($this->ion_auth->in_group('user')) {
-				
-				$crud = new grocery_CRUD();
-				
-				$crud->unset_delete();
-				$crud->unset_edit();
-				
-				$crud->display_as('send_date', 'Dia envio');
-				$crud->display_as('send_hour', 'Hora envio');
-				$crud->display_as('recive_date', 'Recibido dia');
-				$crud->display_as('recive_hour', 'Recibido hora');
-				$crud->display_as('about', 'Assumpte');
-				
-				$crud->columns(['from', 'to', 'about', 'send_date', 'send_hour', 'recive_date', 'recive_hour']);
-				$crud->set_theme('adminlte');
-				$crud->set_table('messages');
-				$crud->set_relation('to','users_groups','user_id',array('group_id!=' => '4'));
-				$crud->set_relation('to','users','username');
-				// $crud->set_relation_n_n('to', 'users_groups', 'users', 'id', 'id',null, 'username',array('group_id!=' => '4'));
-				// Tinc que agafar el nom d'usuari en el select del afegir, aixi filtro que no ho puguin passar entre usuaris, noomes de usuaris a 
-				// admins gestors i tecnics, tinc que fer que me tregui el nom
-				$crud->set_relation('user_id','users','id',array('group_id!=' => '4'));
-				$crud->set_language("catalan");
-				
-				$crud->field_type("send_date", 'hidden');
-				$crud->field_type("send_hour", 'hidden');
-				$crud->field_type("recive_date", 'hidden');
-				$crud->field_type("recive_hour", 'hidden');
-				$output = $crud->render();
-				
-				$data["css_files"] = $output->css_files;
-				$data["grocery"] = true;
-				
-				$this->load->view('templates/header', $data);
-				$this->load->view('grocery/index.php', (array)$output);
-				$this->load->view('templates/footer', $data);
-			} else {
-				redirect(base_url('home'));
-			}
-		}
+        {
+            $this->load->library('session');
+            $this->load->library('ion_auth');
+            if ($this->ion_auth->in_group('user')) {
+                
+                $crud = new grocery_CRUD();
+                
+                $crud->unset_delete();
+                $crud->unset_edit();
+                
+                $crud->display_as('send_date', 'Dia envio');
+                $crud->display_as('send_hour', 'Hora envio');
+                $crud->display_as('recive_date', 'Recibido dia');
+                $crud->display_as('recive_hour', 'Recibido hora');
+                $crud->display_as('about', 'Assumpte');
+                
+                $crud->columns(['from', 'to', 'about', 'send_date', 'send_hour', 'recive_date', 'recive_hour']);
+                $crud->set_theme('adminlte');
+                $crud->set_table('messages');
+                $crud->set_relation('to','users_groups','user_id',array('group_id!=' => '4'));
+                $crud->set_relation('to','users','username');
+                // $crud->set_relation_n_n('to', 'users_groups', 'users', 'id', 'id',null, 'username',array('group_id!=' => '4'));
+                // Tinc que agafar el nom d'usuari en el select del afegir, aixi filtro que no ho puguin passar entre usuaris, noomes de usuaris a 
+                // admins gestors i tecnics, tinc que fer que me tregui el nom
+
+				//Al camp to te que surtir el nom del usuari, ara nomes se mostren els ids de el 
+				//usuaris que no estan dins dels usuaris generics
+				//nomes me falte que me trego el nom dels usuaris no les id
+
+
+				// la millor manera es, enlloc de fer-ho es: enlloc de linkar amb la taula, linka amb una vista (entenem vista per
+				// una sql que desaras al mysql)
+
+                $crud->set_relation('user_id','users','id',array('group_id!=' => '4'));
+                $crud->set_language("catalan");
+                
+                $crud->field_type("send_date", 'hidden');
+                $crud->field_type("send_hour", 'hidden');
+                $crud->field_type("recive_date", 'hidden');
+                $crud->field_type("recive_hour", 'hidden');
+                $output = $crud->render();
+                
+                $data["css_files"] = $output->css_files;
+                $data["grocery"] = true;
+                
+                $this->load->view('templates/header', $data);
+                $this->load->view('grocery/index.php', (array)$output);
+                $this->load->view('templates/footer', $data);
+            } else {
+                redirect(base_url('home'));
+            }
+        }
+
+
 		public function material()
 		{
 			$this->load->library('session');
