@@ -30,8 +30,6 @@ class Grocery_controller extends Private_controller
 			$crud->display_as('image', 'Imatge');
 			$crud->display_as('date', 'Data');
 			$crud->required_fields('title', 'content', 'image', 'content');
-			$crud->callback_before_update(array($this, 'xss_clean'));
-			$crud->callback_before_insert(array($this, 'xss_clean'));
 
 
 			$crud->set_field_upload('image', 'assets/uploads/files');
@@ -166,7 +164,6 @@ class Grocery_controller extends Private_controller
 			$crud->change_field_type('start_date', 'invisible');
 			$crud->change_field_type('end_date', 'invisible');
 			$crud->callback_before_insert(array($this, 'tasques_before_insert'));
-			$crud->callback_before_update(array($this, 'xss_clean'));
 			$output = $crud->render();
 			
 			$data["css_files"] = $output->css_files;
@@ -633,21 +630,10 @@ class Grocery_controller extends Private_controller
 			
 			$post_array["id_inci"] = $_SESSION['id_incidencia'];
 			unset($_SESSION['id_incidencia']);
-			$post_array = $this->xss_clean($post_array);
 			
 			return $post_array;
 		}
 		
-		function xss_clean($post_array, $primary_key = null)
-		{
-			foreach ($post_array as $key => $value) {
-				$post_array[$key] = $this->security->xss_clean($value);
-			}
-			print_r("entra");
-			die;
-			return $post_array;
-		}
-
 		function callback_insert_id_inci($post_array)
 		{
 			$post_array["id_inci"] = $_SESSION['inci']['id_inci'];
