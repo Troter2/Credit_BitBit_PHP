@@ -93,7 +93,6 @@
                                     <!-- Dropdown menu links -->
                                     <ul class="pl-1">
                                         <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('tecnic/tasques') ?>">Tasques</a></li>
-                                        <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('gestor/tasques') ?>">Gestor de tasques </a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -104,6 +103,7 @@
 
                         <li>
                             <a href="<?php echo base_url('user/incidencies') ?>"><span class="fa fa-sticky-note"></span> Incidencias</a>
+                            <a href="<?php echo base_url('user/mail') ?>"><span class="fa fa-sticky-note"></span> Mail</a>
                         </li>
 
                     <?php

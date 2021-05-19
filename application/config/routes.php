@@ -146,6 +146,10 @@ $route['user/incidencies'] = 'Private/Grocery_controller/user_inci';
 $route['user/incidencies/(:any)'] = 'Private/Grocery_controller/user_inci/$1';
 $route['user/incidencies/(:any)/(:any)'] = 'Private/Grocery_controller/user_inci/$1/$2';
 
+$route['user/mail'] = 'Private/Grocery_controller/public_mail';
+$route['user/mail/(:any)'] = 'Private/Grocery_controller/public_mail/$1';
+$route['user/mail/(:any)/(:any)'] = 'Private/Grocery_controller/public_mail/$1/$2';
+
 
 $route['user/save_incidencia'] = 'Private/Incidencia_controller/save_incidencia_page';
 $route['user/save_incidencia_bd'] = 'Private/Incidencia_controller/save_incidencia';
