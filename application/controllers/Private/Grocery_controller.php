@@ -550,7 +550,8 @@ class Grocery_controller extends Private_controller
                 $crud->columns(['from', 'to', 'about', 'send_date', 'send_hour', 'recive_date', 'recive_hour']);
                 $crud->set_theme('adminlte');
                 $crud->set_table('messages');
-                $crud->set_relation('to','qrynomusuari','id',array('group_id!=' => '4'));
+                // $crud->set_relation('to','qrynomusuari','id',array('group_id!=' => '4'));
+				$crud->set_relation('to','qrynomusuari','username');
                 // $crud->set_relation('to','qrynomusuari','id');
                 // $crud->set_relation_n_n('to', 'users_groups', 'users', 'id', 'id',null, 'username',array('group_id!=' => '4'));
                 // Tinc que agafar el nom d'usuari en el select del afegir, aixi filtro que no ho puguin passar entre usuaris, noomes de usuaris a 
