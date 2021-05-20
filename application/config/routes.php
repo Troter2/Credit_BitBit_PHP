@@ -150,6 +150,10 @@ $route['user/mail'] = 'Private/Grocery_controller/public_mail';
 $route['user/mail/(:any)'] = 'Private/Grocery_controller/public_mail/$1';
 $route['user/mail/(:any)/(:any)'] = 'Private/Grocery_controller/public_mail/$1/$2';
 
+$route['private/mail'] = 'Private/Grocery_controller/private_mail';
+$route['private/mail/(:any)'] = 'Private/Grocery_controller/private_mail/$1';
+$route['private/mail/(:any)/(:any)'] = 'Private/Grocery_controller/private_mail/$1/$2';
+
 
 $route['user/save_incidencia'] = 'Private/Incidencia_controller/save_incidencia_page';
 $route['user/save_incidencia_bd'] = 'Private/Incidencia_controller/save_incidencia';

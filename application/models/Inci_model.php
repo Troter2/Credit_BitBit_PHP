@@ -53,6 +53,16 @@ class Inci_model extends CI_Model
         $query = $this->db->get_where('incidencies', array('uuid' => $uuid));
         return $query->row_array();
     }
+    public function getInciId($id = FALSE)
+    {
+        $query = $this->db->get_where('incidencies', array('id_inci' => $id));
+        return $query->row_array();
+    }
+    public function getTasquesId($id = FALSE)
+    {
+        $query = $this->db->get_where('tasques', array('id_tasca' => $id));
+        return $query->row_array();
+    }
     public function get_tasca($id)
     {
         $query=$this->db->query("SELECT * FROM tasques where id_inci = $id");

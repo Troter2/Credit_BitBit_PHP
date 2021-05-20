@@ -43,8 +43,7 @@ class Login_controller extends Public_controller
 
         $identity = $this->input->post('user');
         $password = $this->input->post('userpass');
-        $remember = $this->input->post('remember'); // remember the user
-        $is_logged = $this->ion_auth->login($identity, $password, $remember);
+        $is_logged = $this->ion_auth->login($identity, $password);
 
 
         $this->load->view('templates/header');

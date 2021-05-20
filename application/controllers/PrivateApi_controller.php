@@ -62,7 +62,7 @@ class PrivateApi_controller extends JwtAPI_Controller
 
     public function news_post()
     {
-        $this->load->model('newsmodel');
+        $this->load->model('Api_model');
         $this->load->library('form_validation');
 
         if ($this->auth_request()) {

@@ -43,7 +43,9 @@
                     </li>
                     <?php
                     if ($this->ion_auth->is_admin()) { ?>
-                        <li style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                        <li style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);"> 
+                        <a href="<?php echo base_url('private/mail') ?>"><span class="fa fa-envelope"></span> Mail</a>
+
                             <div class="btn-group dropright">
                                 <a type="button" class="dropdown-toggle " style="width: 100%;border-bottom: 0px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="fa fa-user"></span> Admin
@@ -83,27 +85,22 @@
                         </li>
                     <?php
                     }
-                    if ($this->ion_auth->in_group('tecnic') || $this->ion_auth->is_admin()) { ?>
+                    if ($this->ion_auth->in_group('tecnic') || $this->ion_auth->in_group('gestor')) { ?>
                         <li style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-                            <div class="btn-group dropright">
-                                <a type="button" class="dropdown-toggle " style="width: 100%;border-bottom: 0px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="fa fa-wrench"></span> Tecnic
-                                </a>
-                                <div class="dropdown-menu">
-                                    <!-- Dropdown menu links -->
-                                    <ul class="pl-1">
-                                        <li class="dropdown-item"><a class="text-dark" href="<?php echo base_url('tecnic/tasques') ?>">Tasques</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+
+                        <li>
+                            <a href="<?php echo base_url('tecnic/tasques') ?>"><span class="fa fa-sticky-note"></span> Tasques</a>
+
+                            <a href="<?php echo base_url('private/mail') ?>"><span class="fa fa-envelope"></span> Mail</a>
                         </li>
+
                     <?php
                     }
                     if ($this->ion_auth->in_group('user')) { ?>
 
                         <li>
                             <a href="<?php echo base_url('user/incidencies') ?>"><span class="fa fa-sticky-note"></span> Incidencias</a>
-                            <a href="<?php echo base_url('user/mail') ?>"><span class="fa fa-sticky-note"></span> Mail</a>
+                            <a href="<?php echo base_url('user/mail') ?>"><span class="fa fa-envelope"></span> Mail</a>
                         </li>
 
                     <?php
