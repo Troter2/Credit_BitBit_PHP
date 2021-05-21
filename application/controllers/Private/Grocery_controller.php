@@ -309,6 +309,8 @@ class Grocery_controller extends Private_controller
 
 			$crud->change_field_type('out_date', 'invisible');
 			$crud->change_field_type('entry_date', 'invisible');
+			$crud->change_field_type('out_hour', 'invisible');
+			$crud->change_field_type('entry_hour', 'invisible');
 			$crud->change_field_type('id_estat', 'invisible');
 			$crud->change_field_type('uuid', 'invisible');
 
@@ -473,7 +475,7 @@ class Grocery_controller extends Private_controller
 			$crud->change_field_type('entry_date', 'invisible');
 			$crud->change_field_type('id_estat', 'invisible');
 			$crud->change_field_type('uuid', 'invisible');
-			
+
 			$crud->order_by('id_inci', 'desc');
 
 			$userinfo = $this->ion_auth->user()->row();
@@ -712,6 +714,8 @@ class Grocery_controller extends Private_controller
 			$crud->where('to', $username);
 
 			$crud->set_language("catalan");
+			$crud->set_primary_key('username', 'users');
+			$crud->set_relation('to', 'users', 'username');
 
 			$crud->field_type("send_date", 'hidden');
 			$crud->field_type("send_hour", 'hidden');
