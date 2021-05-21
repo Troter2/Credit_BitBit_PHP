@@ -20,18 +20,9 @@ class Home_controller extends Public_controller
         $new = $this->news_model->getNew();
         $data['news'] = $new;
 
-        if ($this->ion_auth->logged_in()) {
-            $userinfo = $this->ion_auth->user()->row();
-            $user = $userinfo->username;
 
+        $this->load->view('pages/home', $data);
 
-            $msg = $this->msg_model->getMsg($user);
-            $data['messages'] = $msg;
-
-            $this->load->view('pages/home', $data);
-        } else {
-            $this->load->view('pages/home', $data);
-        }
         $this->load->view('templates/footer');
     }
 

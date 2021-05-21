@@ -5,9 +5,7 @@ class News_model extends CI_Model
     public function getNew()
     {
         $num_limit=8;
-        if ($this->ion_auth->logged_in()) {
-            $num_limit=6;
-        }
+        
         $this->db->order_by("date DESC");
         $query = $this->db->get('news', $num_limit, 0);
 
