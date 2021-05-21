@@ -60,12 +60,32 @@
             <div class="col col-sm-9 text-primary font-weight-bold py-1" style="font-size:18px;">
                 <input type="file" name="doc3" id="doc3" size="20" />
             </div>
+            <div class="col col-sm-3 text-primary font-weight-bold py-1" style="font-size:18px;"></div>
+            <div class="col col-sm-9 row text-primary" >
+                <?php
+                if (isset($images)) {
+
+                    foreach ($images as $image) {
+                ?>
+                        <div class="col col">
+                        <img height="128" width="128" src="<?php echo base_url($image['path'] . '/' . $image['image']) ?>" alt="">
+                        <br><a href="<?php echo base_url('delete_img/' . $image['image']) ?>">Borrar Imatge</a>
+                        </div>
+
+
+                <?php
+                    }
+                }
+                ?>
+            </div>
 
 
             <div class="col col-sm-3 font-weight-bold">
                 <span>Esquema</span>
             </div>
             <div id="divGeneral" class="col col-sm-9 text-primary font-weight-bold py-1"></div>
+
+
 
             <script>
                 var x = new PhotoDAW("divGeneral", true);
@@ -74,6 +94,8 @@
                     var strData = document.getElementById("canvas1").toDataURL().replace("data:image/png;base64,", "");
 
                     document.getElementById("CFILE").value = strData;
+
+
                 }
             </script>
             <input name="CFILE" type="hidden" id="CFILE" value="">

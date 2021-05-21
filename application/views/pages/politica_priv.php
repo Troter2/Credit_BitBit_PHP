@@ -1,15 +1,14 @@
 <h2 id="plantilla-de-poltica-de-privacidad">Plantilla de Política de Privacidad</h2>
-<p><span class="resaltar">TITULAR</span> te informa sobre su Política de Privacidad respecto del tratamiento y protección de los datos de carácter personal de los usuarios y clientes que puedan ser recabados por la navegación o contratación de servicios a través del sitio Web <span class="resaltar">DIRECCIÓN-WEB</span>.</p>
+<p>BitBit te informa sobre su Política de Privacidad respecto del tratamiento y protección de los datos de carácter personal de los usuarios y clientes que puedan ser recabados por la navegación o contratación de servicios a través del sitio Web bitbit.com.</p>
 <p>En este sentido, el Titular garantiza el cumplimiento de la normativa vigente en materia de protección de datos personales, reflejada en la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y de Garantía de Derechos Digitales (LOPD GDD). Cumple también con el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de 2016 relativo a la protección de las personas físicas (RGPD).</p>
 <p>El uso de sitio Web implica la aceptación de esta Política de Privacidad así como las condiciones incluidas en el Aviso Legal.</p>
 <h3 id="identidad-del-responsable">Identidad del responsable</h3>
 <ul>
-    <li>Titular: <span class="resaltar">TITULAR</span></li>
-    <li><span class="resaltar">DATOS-DEL-COLEGIO-PROFESIONAL</span></li>
-    <li>NIF/CIF: <span class="resaltar">NIF</span></li>
-    <li>Domicilio: <span class="resaltar">DIRECCIÓN-POSTAL</span></li>
-    <li>Correo electrónico: <span class="resaltar">CORREO-ELECTRÓNICO</span></li>
-    <li>Sitio Web: <span class="resaltar">DIRECCIÓN-WEB</span></li>
+    <li>Titular: Sergi Vila i Joel Lopoez</li>
+    <li>NIF/CIF: 789654123S</li>
+    <li>Domicilio: AV: Caparrella 21</li>
+    <li>Correo electrónico: Caparrella@caparrella.com</li>
+    <li>Sitio Web: bitbit.com</li>
 </ul>
 <h3 id="principios-aplicados-en-el-tratamiento-de-datos">Principios aplicados en el tratamiento de datos</h3>
 <p>En el tratamiento de tus datos personales, el Titular aplicará los siguientes principios que se ajustan a las exigencias del nuevo reglamento europeo de protección de datos:</p>
@@ -22,8 +21,8 @@
         Debes saber que el Titular toma las precauciones necesarias para evitar el acceso no autorizado o uso indebido de los datos de sus usuarios por parte de terceros.</li>
 </ul>
 <h3 id="obtencin-de-datos-personales">Obtención de datos personales</h3>
-<p>Para navegar por <span class="resaltar">SITIO-WEB</span> no es necesario que facilites ningún dato personal. Los casos en los que sí proporcionas tus datos personales son los siguientes:</p>
-<p><span class="resaltar">ELIMINA LOS QUE NO USES:</span></p>
+<p>Para navegar por Bitbit.com no es necesario que facilites ningún dato personal. Los casos en los que sí proporcionas tus datos personales son los siguientes:</p>
+<p>ELIMINA LOS QUE NO USES:</p>
 <ul>
     <li>Al contactar a través de los formularios de contacto o enviar un correo electrónico.</li>
     <li>Al realizar un comentario en un artículo o página.</li>
@@ -41,12 +40,12 @@
     <li>Solicitar la portabilidad de tus datos.</li>
 </ul>
 <p>El ejercicio de estos derechos es personal y por tanto debe ser ejercido directamente por el interesado, solicitándolo directamente al Titular, lo que significa que cualquier cliente, suscriptor o colaborador que haya facilitado sus datos en algún momento puede dirigirse al Titular y pedir información sobre los datos que tiene almacenados y cómo los ha obtenido, solicitar la rectificación de los mismos, solicitar la portabilidad de sus datos personales, oponerse al tratamiento, limitar su uso o solicitar la cancelación de esos datos en los ficheros del Titular.</p>
-<p>Para ejercitar tus derechos de acceso, rectificación, cancelación, portabilidad y oposición tienes que enviar un correo electrónico a <span class="resaltar">CORREO ELECTRÓNICO</span> junto con la prueba válida en derecho como una fotocopia del D.N.I. o equivalente.</p>
+<p>Para ejercitar tus derechos de acceso, rectificación, cancelación, portabilidad y oposición tienes que enviar un correo electrónico a caparrella@caparrella.com junto con la prueba válida en derecho como una fotocopia del D.N.I. o equivalente.</p>
 <p>Tienes derecho a la tutela judicial efectiva y a presentar una reclamación ante la autoridad de control, en este caso, la Agencia Española de Protección de Datos, si consideras que el tratamiento de datos personales que te conciernen infringe el Reglamento.</p>
 <h3 id="finalidad-del-tratamiento-de-datos-personales">Finalidad del tratamiento de datos personales</h3>
 <p>Cuando te conectas al sitio Web para mandar un correo al Titular, te suscribes a su boletín o realizas una contratación, estás facilitando información de carácter personal de la que el responsable es el Titular. Esta información puede incluir datos de carácter personal como pueden ser tu dirección IP, nombre y apellidos, dirección física, dirección de correo electrónico, número de teléfono, y otra información. Al facilitar esta información, das tu consentimiento para que tu información sea recopilada, utilizada, gestionada y almacenada por superadmin.es , sólo como se describe en el Aviso Legal y en la presente Política de Privacidad.</p>
 <p>Los datos personales y la finalidad del tratamiento por parte del Titular es diferente según el sistema de captura de información:</p>
-<p><span class="resaltar">ELIMINA LOS QUE NO USES:</span></p>
+<p>ELIMINA LOS QUE NO USES:</p>
 <ul>
     <li><strong>Formularios de contacto:</strong> El Titular solicita datos personales entre los que pueden estar: Nombre y apellidos, dirección de correo electrónico, número de teléfono y dirección de tu sitio Web con la finalidad de responder a tus consultas.<br>Por ejemplo, el Titular utiliza esos datos para dar respuesta a tus mensajes, dudas, quejas, comentarios o inquietudes que puedas tener relativas a la información incluida en el sitio Web, los servicios que se prestan a través del sitio Web, el tratamiento de tus datos personales, cuestiones referentes a los textos legales incluidos en el sitio Web, así como cualquier otra consulta que puedas tener y que no esté sujeta a las condiciones del sitio Web o de la contratación.</li>
     <li><strong>Formularios de suscripción a contenidos:</strong> El Titular solicita los siguientes datos personales: Nombre y apellidos, dirección de correo electrónico, número de teléfono y dirección de tu sitio web para gestionar la lista de suscripciones, enviar boletines, promociones y ofertas especiales.<br>Los datos que facilites al Titular estarán ubicados en los servidores de The Rocket Science Group LLC d/b/a, con domicilio en EEUU. (Mailchimp).</li>
@@ -59,7 +58,7 @@
     <li>Para gestionar las redes sociales. el Titular tiene presencia en redes sociales. Si te haces seguidor en las redes sociales del Titular el tratamiento de los datos personales se regirá por este apartado, así como por aquellas condiciones de uso, políticas de privacidad y normativas de acceso que pertenezcan a la red social que proceda en cada caso y que has aceptado previamente.</li>
 </ul>
 <p>Puedes consultar las políticas de privacidad de las principales redes sociales en estos enlaces:</p>
-<p><span class="resaltar">ELIMINA LOS QUE NO USES:</span></p>
+<p>ELIMINA LOS QUE NO USES:</p>
 <ul>
     <li>Facebook</li>
     <li>Twitter</li>
@@ -71,7 +70,7 @@
 <p>En ningún caso el Titular utilizará los perfiles de seguidores en redes sociales para enviar publicidad de manera individual.</p>
 <h3 id="seguridad-de-los-datos-personales">Seguridad de los datos personales</h3>
 <p>Para proteger tus datos personales, el Titular toma todas las precauciones razonables y sigue las mejores prácticas de la industria para evitar su pérdida, mal uso, acceso indebido, divulgación, alteración o destrucción de los mismos.</p>
-<p>El sitio Web está alojado en <span class="resaltar">PROVEEDOR DE ALOJAMIENTO WEB</span>. La seguridad de tus datos está garantizada, ya que toman todas las medidas de seguridad necesarias para ello. Puedes consultar su política de privacidad para tener más información.</p>
+<p>El sitio Web está alojado en PROVEEDOR DE ALOJAMIENTO WEB. La seguridad de tus datos está garantizada, ya que toman todas las medidas de seguridad necesarias para ello. Puedes consultar su política de privacidad para tener más información.</p>
 <h3 id="contenido-de-otros-sitios-web">Contenido de otros sitios web</h3>
 <p>Las páginas de este sitio Web pueden incluir contenido incrustado (por ejemplo, vídeos, imágenes, artículos, etc.). El contenido incrustado de otras web se comporta exactamente de la misma manera que si hubieras visitado la otra web.</p>
 <p>Estos sitios Web pueden recopilar datos sobre ti, utilizar cookies, incrustar un código de seguimiento adicional de terceros, y supervisar tu interacción usando este código.</p>
@@ -89,7 +88,7 @@
 <h3 id="conservacin-de-datos-personales">Conservación de datos personales</h3>
 <p>Los datos personales que proporciones al Titular se conservarán hasta que solicites su supresión.</p>
 <h3 id="destinatarios-de-datos-personales">Destinatarios de datos personales</h3>
-<p><span class="resaltar">ELIMINA LOS QUE NO USES:</span></p>
+<p>ELIMINA LOS QUE NO USES:</p>
 <ul>
     <li><strong>Mailrelay</strong> CPC Servicios Informáticos Aplicados a Nuevas Tecnologías S.L. (en adelante “CPC”) , con domicilio social en C/ Nardo, 12 28250 – Torrelodones – Madrid.<br>Encontrarás más información en:
         <b><a target="_blank" href="https://mailrelay.com" rel="nofollow">https://mailrelay.com</a></b><br>CPC trata los datos con la finalidad de prestar sus servicios de email el Titulareting al Titular.
@@ -111,9 +110,9 @@
 </ul>
 <p>También puedes ver una lista de los tipos de cookies que utiliza Google y sus colaboradores y toda la información relativa al uso que hacen de cookies publicitarias.</p>
 <h3 id="navegacin-web">Navegación Web</h3>
-<p>Al navegar por <span class="resaltar">SITIO WEB</span> se pueden recoger datos no identificativos, que pueden incluir, la dirección IP, geolocalización, un registro de cómo se utilizan los servicios y sitios, hábitos de navegación y otros datos que no pueden ser utilizados para identificarte.</p>
+<p>Al navegar por SITIO WEB se pueden recoger datos no identificativos, que pueden incluir, la dirección IP, geolocalización, un registro de cómo se utilizan los servicios y sitios, hábitos de navegación y otros datos que no pueden ser utilizados para identificarte.</p>
 <p>El sitio Web utiliza los siguientes servicios de análisis de terceros:</p>
-<p><span class="resaltar">ELIMINA LOS QUE NO USES:</span></p>
+<p>ELIMINA LOS QUE NO USES:</p>
 <ul>
     <li>Google Analytics</li>
     <li>DoubleClick por Google</li>
@@ -125,7 +124,7 @@
 <h3 id="aceptacin-y-consentimiento">Aceptación y consentimiento</h3>
 <p>Como Usuario del sitio Web declaras haber sido informado de las condiciones sobre protección de datos de carácter personal, aceptas y consientes el tratamiento de los mismos por parte de el Titular en la forma y para las finalidades indicadas en esta Política de Privacidad.</p>
 <h3 id="revocabilidad">Revocabilidad</h3>
-<p>Para ejercitar tus derechos de acceso, rectificación, cancelación, portabilidad y oposición tienes que enviar un correo electrónico a <span class="resaltar">CORREO ELECTRÓNICO</span> junto con la prueba válida en derecho como una fotocopia del D.N.I. o equivalente.</p>
+<p>Para ejercitar tus derechos de acceso, rectificación, cancelación, portabilidad y oposición tienes que enviar un correo electrónico a caparrella@caparrella.com junto con la prueba válida en derecho como una fotocopia del D.N.I. o equivalente.</p>
 <p>El ejercicio de tus derechos no incluye ningún dato que el Titular esté obligado a conservar con fines administrativos, legales o de seguridad.</p>
 <h3 id="cambios-en-la-poltica-de-privacidad">Cambios en la Política de Privacidad</h3>
 <p>El Titular se reserva el derecho a modificar la presente Política de Privacidad para adaptarla a novedades legislativas o jurisprudenciales, así como a prácticas de la industria.</p>

@@ -12,8 +12,9 @@ class Tecnic_controller extends Private_controller
         $this->load->library('ion_auth');
         $this->load->library('form_validation');
         $this->load->model('inci_model');
-        
-        if($this->ion_auth->in_group('gestor') || $this->ion_auth->in_group('tecnic')){
+
+        if ($this->ion_auth->in_group('gestor') || $this->ion_auth->in_group('tecnic')) {
+        } else {
             redirect(base_url('home'));
         }
 
@@ -23,11 +24,23 @@ class Tecnic_controller extends Private_controller
         $data['tasca'] = $_SESSION['tasca'];
         $data['inci'] = $_SESSION['inci'];
 
+        $data['images']= $this->inci_model->getImgTasca($_SESSION['tasca']['id_tasca']);
+        
+        $data['inci'] = $_SESSION['inci'];
+
 
 
         $this->load->view('templates/header');
         $this->load->view('tecnic/add_inci', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function delete_image_page($id)
+    {
+        
+        $this->load->model('inci_model');
+        $this->inci_model->deleteImg($id);
+        redirect(base_url('tecnic/update_inci'));
     }
 
 
@@ -38,8 +51,9 @@ class Tecnic_controller extends Private_controller
         $this->load->helper('url');
         $this->load->helper('form');
         $path = "assets/uploads/incidencies/" . $_SESSION['inci']['id_inci'];
-        
-        if($this->ion_auth->in_group('gestor') || $this->ion_auth->in_group('tecnic')){
+
+        if ($this->ion_auth->in_group('gestor') || $this->ion_auth->in_group('tecnic')) {
+        } else {
             redirect(base_url('home'));
         }
         if (!is_dir($path))
@@ -60,7 +74,7 @@ class Tecnic_controller extends Private_controller
                     $data = array('upload_data' => $this->upload->data());
                     $data = array(
                         'image' => $data['upload_data']['file_name'],
-                        'path' => "assets/test/uploads/incidencies/" . $_SESSION['inci']['id_inci'],
+                        'path' => "assets/uploads/incidencies/" . $_SESSION['inci']['id_inci'],
                         'id_tasca' => $_SESSION['tasca']['id_tasca']
                     );
                     $this->db->insert('documents_tasques', $data);
@@ -96,6 +110,12 @@ class Tecnic_controller extends Private_controller
 
         $idTasca = $_SESSION['tasca']['id_tasca'];
         $estatus = $this->input->post('estatus');
+        if ($estatus == '3') {
+            $this->db->set("end_date", date('Y-m-d'));
+            $this->db->set("end_hour", date("h:i:s"));
+            $this->db->where("id_tasca", $idTasca);
+            $this->db->update('tasques');
+        }
         $this->db->set('id_estat', $estatus);
         $this->db->where('id_inci', $_SESSION['inci']['id_inci']);
         $this->db->update('incidencies');
@@ -112,4 +132,6 @@ class Tecnic_controller extends Private_controller
         $this->db->update('tasques');
         redirect(base_url('tecnic/tasques/success/'));
     }
+
+
 }
