@@ -61,7 +61,7 @@ class Grocery_controller extends Private_controller
 			$crud->unset_list();
 			$crud->set_table('mat_inci');
 			$crud->set_language("catalan");
-			$crud->display_as('amount', 'Disponible');
+			$crud->display_as('amount', 'Consumit');
 			$crud->display_as('id_mat', 'Material');
 			$crud->set_relation('id_mat', 'materials', 'nom');
 			$crud->change_field_type('id_mat_inci', 'invisible');
@@ -157,7 +157,7 @@ class Grocery_controller extends Private_controller
 			$crud->columns(['id_user', 'id_inci', 'desc', 'start_date', 'end_date']);
 			$crud->fields(['id_user', 'id_inci', 'desc', 'accions', 'start_date']);
 			$crud->set_primary_key('username', 'qrynomusuari');
-			$crud->set_relation('id_user', 'qrynomusuari', 'username', array('group_id >' => '1'));
+			//$crud->set_relation('id_user', 'qrynomusuari', 'username');
 			$crud->required_fields('desc', 'id_user');
 			$crud->change_field_type('id_inci', 'invisible');
 			$crud->display_as('id_user', 'Tecnic');
@@ -241,7 +241,6 @@ class Grocery_controller extends Private_controller
 			$crud->display_as('desc', 'Descripcio');
 			$crud->display_as('start_date', 'Data inici');
 			$crud->display_as('end_date', 'Data fi');
-			$crud->change_field_type('start_date', 'invisible');
 			$crud->change_field_type('start_date', 'invisible');
 			$crud->change_field_type('end_date', 'invisible');
 			$crud->columns(['id_user', 'desc', 'start_date', 'start_hour']);
