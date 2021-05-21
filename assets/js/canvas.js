@@ -39,7 +39,7 @@ class PhotoDAW {
         x.id = "canvas1";
         x.style = "border:1px solid #000000";
         x.height = 300;
-        x.width = 700;
+        x.width = 300;
 
         document.getElementById(this.divId).appendChild(x);
 
