@@ -11,13 +11,7 @@
             <?php echo form_open('updateUser'); ?>
 
             <div class="row container">
-                <div class="col col-sm-6 font-weight-bold align-middle">
-                    <span class="">Nom d'usuari</span>
-                </div>
-
-                <div class="col col-sm-6 text-primary font-weight-bold py-1" style="font-size:18px;">
-                    <input type="text"  class="form-control" name="username" id="username" value="<?php echo $user->username ?>">
-                </div>
+                
 
                 <div class="col col-sm-6 font-weight-bold">
                     <span>Nom</span>

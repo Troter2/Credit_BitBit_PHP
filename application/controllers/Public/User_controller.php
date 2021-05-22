@@ -47,7 +47,6 @@ class User_controller extends Public_controller
         $data = array(
             'first_name' => $this->input->post('first_name'),
             'last_name' => $this->input->post('last_name'),
-            'username' => $this->input->post('username'),
             'phone' => $this->input->post('phone'),
             'email' => $this->input->post('email'),
         );
