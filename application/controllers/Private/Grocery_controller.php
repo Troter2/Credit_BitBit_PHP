@@ -71,14 +71,16 @@ class Grocery_controller extends Private_controller
 			$crud->callback_field('amount', array($this, 'field_callback_1'));
 			$crud->unset_back_to_list();
 
+
 			$crud->callback_before_insert(array($this, 'callback_insert_id_inci'));
+
 			//$crud->callback_after_insert(array($this, 'callback_insert_after_id_inci'));
 
 			$crud->set_lang_string(
 				'insert_success_message',
 				'Your data has been successfully stored into the database.<br/>Please wait while you are redirecting to the list page.
 			<script type="text/javascript">
-				window.location = "' . base_url('tecnic/update_inci') . '";
+				window.location = "' . base_url('tecnic/tasques') . '";
 			</script>
 			<div style="display:none">'
 			);
@@ -614,7 +616,7 @@ class Grocery_controller extends Private_controller
 			$state_info = $crud->getStateInfo();
 			$userinfo = $this->ion_auth->user()->row();
 			$username = $userinfo->username;
-			
+
 			if ($state == 'read') {
 				$primary_key = $state_info->primary_key;
 				$msg = $this->Msg_model->getMsgId($primary_key);
@@ -634,7 +636,7 @@ class Grocery_controller extends Private_controller
 					$this->Msg_model->setMsgRecived($primary_key);
 				}
 			}
-			if($state == 'add'){
+			if ($state == 'add') {
 				$crud->set_relation('to', 'qrynomusuari', 'username');
 			}
 
@@ -644,7 +646,7 @@ class Grocery_controller extends Private_controller
 			$crud->set_theme('adminlte');
 			$crud->set_table('messages');
 			$crud->set_primary_key('username', 'qrynomusuari');
-			
+
 			$userinfo = $this->ion_auth->user()->row();
 			$username = $userinfo->username;
 			$crud->where('to', $username);
@@ -855,6 +857,19 @@ class Grocery_controller extends Private_controller
 	function callback_insert_id_inci($post_array)
 	{
 		$post_array["id_inci"] = $_SESSION['inci']['id_inci'];
+		$id_mat = $post_array['id_mat'];
+		$this->db->select("amount");
+		$this->db->from("materials");
+		$this->db->where(array('id_mat' => $id_mat));
+		$query = $this->db->get();
+		$total_amount = $query->row_array()['amount'];
+		$total_amount = $total_amount - $post_array['amount'];
+
+
+		$this->db->set("amount", $total_amount);
+		$this->db->where("id_mat", $id_mat);
+		$this->db->update('materials');
+
 
 
 		return $post_array;
