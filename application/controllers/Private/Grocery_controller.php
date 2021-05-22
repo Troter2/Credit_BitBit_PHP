@@ -440,6 +440,12 @@ class Grocery_controller extends Private_controller
 			$crud->columns(['id_estat', 'marca', 'model', 'numero_serie', 'entry_date']);
 			$crud->display_as('id_estat', 'Estat');
 			$crud->display_as('entry_date', "Data d'entrada");
+			$crud->display_as('tlf', "Telefon");
+			$crud->display_as('desc_averia', "Descripcio averia");
+			$crud->display_as('diagnosis_prev', "Diagnosis previa");
+			$crud->display_as('entry_hour', "Hora d'entrada");
+			$crud->display_as('out_hour', "Hora de sortida");
+			$crud->display_as('out_date', "data de sortida");
 
 			$crud->unset_add();
 			$crud->unset_edit();
