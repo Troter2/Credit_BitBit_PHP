@@ -589,11 +589,11 @@ class Grocery_controller extends Private_controller
 	{
 		$this->load->library('session');
 		$this->load->library('ion_auth');
+		$this->load->model('Msg_model');
 		if ($this->ion_auth->in_group('user')) {
 
 			$crud = new grocery_CRUD();
 
-			$crud->unset_delete();
 			$crud->unset_edit();
 
 			$crud->display_as('send_date', 'Dia envio');
@@ -608,6 +608,7 @@ class Grocery_controller extends Private_controller
 			$state_info = $crud->getStateInfo();
 			$userinfo = $this->ion_auth->user()->row();
 			$username = $userinfo->username;
+			
 			if ($state == 'read') {
 				$primary_key = $state_info->primary_key;
 				$msg = $this->Msg_model->getMsgId($primary_key);
@@ -627,6 +628,9 @@ class Grocery_controller extends Private_controller
 					$this->Msg_model->setMsgRecived($primary_key);
 				}
 			}
+			if($state == 'add'){
+				$crud->set_relation('to', 'qrynomusuari', 'username');
+			}
 
 
 
@@ -634,7 +638,7 @@ class Grocery_controller extends Private_controller
 			$crud->set_theme('adminlte');
 			$crud->set_table('messages');
 			$crud->set_primary_key('username', 'qrynomusuari');
-			$crud->set_relation('to', 'qrynomusuari', 'username');
+			
 			$userinfo = $this->ion_auth->user()->row();
 			$username = $userinfo->username;
 			$crud->where('to', $username);

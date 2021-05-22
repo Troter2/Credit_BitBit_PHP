@@ -37,16 +37,28 @@ if ($this->config->environment == 'production') {
                 <div class="form-container table-container">
                     <?php echo form_open($update_url, 'method="post" id="crudForm"  enctype="multipart/form-data" class="form-horizontal"'); ?>
 
-                    <?php foreach ($fields as $field) { ?>
-                        <div class="form-group row">
-                            <label class="col-sm-3 control-label">
-                                <?php echo $input_fields[$field->field_name]->display_as ?>:
-                            </label>
-                            <div class="col-sm-9 read-row">
-                                <?php echo $input_fields[$field->field_name]->input; ?>
+                    <?php
+                    $noRead = [
+                        'id_user_propietari', 'uuid', 'activation_selector', 'activation_code',
+                        'forgotten_password_selector', 'forgotten_password_code',
+                        'forgotten_password_time', 'remember_selector', 'remember_code',
+                        'created_on', 'last_login', 'active'
+                    ];
+                    foreach ($fields as $field) {
+
+                        if (in_array($field->field_name, $noRead)) {
+                        } else {
+                    ?>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">
+                                    <?php echo $input_fields[$field->field_name]->display_as ?>:
+                                </label>
+                                <div class="col-sm-9 read-row">
+                                    <?php echo $input_fields[$field->field_name]->input; ?>
+                                </div>
                             </div>
-                        </div>
-                    <?php } ?>
+                    <?php }
+                    } ?>
 
                     <?php if (!empty($hidden_fields)) { ?>
                         <!-- Start of hidden inputs -->
