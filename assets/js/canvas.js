@@ -80,14 +80,14 @@ class PhotoDAW {
         document.getElementById("Cercle_ple").addEventListener('click', this.setCircleFill);
 
         input = document.createElement("p");
-        input.innerHTML = '<i class="fa fa-square" aria-hidden="true"></i>';
+        input.innerHTML = '<i class="fa fa-square-o" aria-hidden="true"></i>';
         input.id = "Cuadrat";
         input.classList = "btn btn-primary ml-4";
         document.getElementById(this.divId).appendChild(input);
         document.getElementById("Cuadrat").addEventListener('click', this.setSquare);
 
         input = document.createElement("p");
-        input.innerHTML = '<i class="fa fa-square-o" aria-hidden="true"></i>';
+        input.innerHTML = '<i class="fa fa-square" aria-hidden="true"></i>';
         input.id = "Cuadrat_fill";
         input.classList = "btn btn-primary ml-4";
         document.getElementById(this.divId).appendChild(input);

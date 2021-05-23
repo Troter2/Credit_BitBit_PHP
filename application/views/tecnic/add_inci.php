@@ -35,7 +35,7 @@
             </div>
 
             <div class="col col-sm-9 text-primary font-weight-bold py-1" id='textarea' style="font-size:18px;">
-                <textarea id="action" name="action"></textarea>
+                <textarea id="action" name="action"><?php echo $tasca['accions']; ?></textarea>
                 <script>
                     tinymce.init({
                         selector: '#action'
