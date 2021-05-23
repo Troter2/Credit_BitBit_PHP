@@ -446,6 +446,7 @@ class Grocery_controller extends Private_controller
 			$crud->set_table('incidencies');
 			$crud->set_relation('id_estat', 'status', 'desc');
 			$crud->columns(['id_estat', 'marca', 'model', 'numero_serie', 'entry_date']);
+			$crud->order_by('entry_date', 'desc');
 			$crud->display_as('id_estat', 'Estat');
 			$crud->display_as('entry_date', "Data d'entrada");
 			$crud->display_as('tlf', "Telefon");
@@ -489,7 +490,6 @@ class Grocery_controller extends Private_controller
 			$crud->change_field_type('id_estat', 'invisible');
 			$crud->change_field_type('uuid', 'invisible');
 
-			$crud->order_by('id_inci', 'desc');
 
 			$userinfo = $this->ion_auth->user()->row();
 			$id = $userinfo->id;
