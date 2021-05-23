@@ -298,6 +298,9 @@ class Grocery_controller extends Private_controller
 			$crud->display_as('entry_date', 'Entrada');
 			$crud->display_as('out_date', 'Sortida');
 			$crud->display_as('tlf', 'Telefon');
+			$crud->display_as('entry_hour', "Hora d'entrada");
+
+			$crud->display_as('out_hour', 'Hora de sortida');
 			$crud->order_by('entry_date', 'desc');
 			$crud->set_language("catalan");
 			$crud->required_fields('nom_propietari', 'marca', 'model', 'tlf', 'numero_serie', 'desc_averia', 'diagnosis_prev');
