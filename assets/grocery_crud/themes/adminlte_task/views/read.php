@@ -34,7 +34,17 @@ if ($this->config->environment == 'production') {
                 <div class="form-container table-container">
                     <?php echo form_open( $update_url, 'method="post" id="crudForm"  enctype="multipart/form-data" class="form-horizontal"'); ?>
 
-                    <?php foreach($fields as $field) { ?>
+                    <?php 
+                    
+                    $noRead = [
+                        'canvas', 'start_hour',
+                        'end_hour'
+                    ];
+                    
+                    foreach($fields as $field) { 
+                        
+                        if (in_array($field->field_name, $noRead)) {
+                        } else {?>
                         <div class="form-group row">
                             <label class="col-sm-3 control-label">
                                 <?php echo $input_fields[$field->field_name]->display_as?>:
@@ -43,7 +53,7 @@ if ($this->config->environment == 'production') {
                                 <?php echo $input_fields[$field->field_name]->input; ?>
                             </div>
                         </div>
-                    <?php }?>
+                    <?php }}?>
 
                     <?php if(!empty($hidden_fields)){?>
                         <!-- Start of hidden inputs -->
