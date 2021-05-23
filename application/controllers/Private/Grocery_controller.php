@@ -160,6 +160,8 @@ class Grocery_controller extends Private_controller
 			$crud->fields(['id_user', 'id_inci', 'desc', 'accions', 'start_date']);
 			$crud->set_primary_key('username', 'qrynomusuari');
 			//$crud->set_relation('id_user', 'qrynomusuari', 'username');
+
+			$crud->order_by('start_date', 'desc');
 			$crud->required_fields('desc', 'id_user');
 			$crud->change_field_type('id_inci', 'invisible');
 			$crud->display_as('id_user', 'Tecnic');
@@ -198,6 +200,7 @@ class Grocery_controller extends Private_controller
 			$crud->set_table('tasques');
 			$crud->unset_delete();
 			$crud->unset_edit();
+			$crud->order_by('start_date', 'desc');
 
 			$state = $crud->getState();
 			if ($state == 'add') {
