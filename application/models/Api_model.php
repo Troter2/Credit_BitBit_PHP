@@ -6,5 +6,4 @@ class Api_model extends CI_Model
         $query = $this->db->get('datos_about');
         return $query->result_array();
     }
-
 }

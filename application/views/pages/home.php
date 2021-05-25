@@ -33,16 +33,12 @@
         <div class="col col-sm-12 col-md-12 row">
             <?php
         }
+
+
         if (isset($news)) {
             foreach ($news as $new) {
             ?>
-
-
                 <div class="col col-sm-12 col-md-4 col-lg-3">
-
-
-
-
                     <div class="card m-2 " onclick=" location.href='<?php echo base_url('news/view/' . $new['id']) ?>'">
                         <img src="<?php echo base_url('assets/uploads/files/' . $new['image']); ?>" class="card-img-top" alt="Sample image" />
                         <div class="p-2">
@@ -60,6 +56,6 @@
             }
         }
         ?>
-
         </div>
+    <img src="http://localhost/Credit_BitBit_PHP/images/1/0728b19799860297d82fdfd3ae6d8f09.jpg" class="card-img-top" alt="Sample image" />
 </div>

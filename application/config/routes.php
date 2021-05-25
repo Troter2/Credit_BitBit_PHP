@@ -162,6 +162,9 @@ $route['user/save_incidencia_bd'] = 'Private/Incidencia_controller/save_incidenc
 $route['upload'] = 'Upload_controller/index';
 $route['upload/do_upload'] = 'Upload_controller/do_upload';
 
+$route['images/(:any)/(:any)'] = 'Public/Image_controller/show_inci_img/$1/$2'; 
+
+
 $route['contact/sendConsult'] = 'Public/Contact_controller/sendConsult';
 $route['incidencia/pdf/(:any)'] = 'Private/Pdf_controller/generatePDF/$1/$2';
 

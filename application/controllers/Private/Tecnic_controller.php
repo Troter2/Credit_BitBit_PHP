@@ -50,7 +50,7 @@ class Tecnic_controller extends Private_controller
         $this->load->library('ion_auth');
         $this->load->helper('url');
         $this->load->helper('form');
-        $path = "assets/uploads/incidencies/" . $_SESSION['inci']['id_inci'];
+        $path = "../../uploads/incidencies/" . $_SESSION['inci']['id_inci'];
 
         if ($this->ion_auth->in_group('gestor') || $this->ion_auth->in_group('tecnic')) {
         } else {
