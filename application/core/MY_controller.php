@@ -20,10 +20,6 @@ class Public_controller extends CI_Controller
     }
 }
 
-
-
-
-
 class Private_controller extends CI_Controller
 {
     public function __construct()

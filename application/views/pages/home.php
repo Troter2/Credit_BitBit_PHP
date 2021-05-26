@@ -57,5 +57,4 @@
         }
         ?>
         </div>
-    <img src="http://localhost/Credit_BitBit_PHP/images/1/0728b19799860297d82fdfd3ae6d8f09.jpg" class="card-img-top" alt="Sample image" />
 </div>

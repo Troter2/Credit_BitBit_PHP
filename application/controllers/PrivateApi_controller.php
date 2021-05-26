@@ -21,7 +21,7 @@ class PrivateApi_controller extends JwtAPI_Controller
     }
 
 
-    
+
     public function about_get()
     {
         $this->load->model('About_model');
@@ -60,12 +60,12 @@ class PrivateApi_controller extends JwtAPI_Controller
         $this->login($user, $pass);
     }
 
-    public function news_post()
+    public function getIncidencies_post()
     {
         $this->load->model('Api_model');
         $this->load->library('form_validation');
 
-        if ($this->auth_request()) {
+        if ($this->auth_request(['admin','gestor'])) {
 
             $this->renewJWT();
 
@@ -82,13 +82,15 @@ class PrivateApi_controller extends JwtAPI_Controller
                 ];
                 $this->set_response($message, RestController::HTTP_BAD_REQUEST); // BAD_REQUEST (400)
             } else {
-                $this->newsmodel->set_news($this->post('title'), $this->post('text'));
+                $this->load->model('News_model');
+                $news = $this->News_model->getNew();
 
                 $message = [
+                    'Token' => $this->renewJWT(),
                     'title' => $this->post('title'),
                     'text' => $this->post('text'),
                     'status' => RestController::HTTP_CREATED,
-                    'message' => 'Added a resource'
+                    'message' => json_encode($news)
                 ];
 
                 $this->set_response($message, RestController::HTTP_CREATED); // CREATED (201) being the HTTP response code
