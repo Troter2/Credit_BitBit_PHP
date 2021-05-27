@@ -76,7 +76,8 @@ class Pdf_controller extends Private_controller
         //print_r($document);
         //die;
             foreach($document as $doc){
-                $DocumentAccio = '<p>Imatge: <img src="'. base_url() . '/' . $doc['path'].'/'. $doc['image'] .'"></p>';
+                //$DocumentAccio = '<p>Imatge: <img src="'. base_url() . '/' . $doc['path'].'/'. $doc['image'] .'"></p>';
+                $DocumentAccio = '<p>Imatge: <img src="http://localhost/Credit_BitBit_PHP/images/' . $task['id_inci'] .'/'. $doc['image'] .'"></p>';
             }
             $totesAccions = $totesAccions . $accioRealitzada . $DocumentAccio;
 }
