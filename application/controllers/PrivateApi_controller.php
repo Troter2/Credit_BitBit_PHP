@@ -26,9 +26,26 @@ class PrivateApi_controller extends JwtAPI_Controller
     {
         $this->load->model('About_model');
 
-        $query = $this->About_model->getEvent();
+        $event = json_encode($this->About_model->getEvent());
+        $message = [
+            'status' => RestController::HTTP_OK,
+            'message' => json_encode($event)
+        ];
 
-        $this->response($query, RestController::HTTP_OK); // OK (200) being the HTTP response code
+        $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
+    }
+
+    public function tipusConsulta_get()
+    {
+        $this->load->model('Api_model');
+
+        $consultes = ($this->Api_model->getTipusConsulta());
+        $message = [
+            'status' => RestController::HTTP_OK,
+            'message' => json_encode($consultes)
+        ];
+
+        $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
     }
 
 
@@ -36,9 +53,13 @@ class PrivateApi_controller extends JwtAPI_Controller
     public function status_get()
     {
         $this->load->model('Inci_model');
-        $news = $this->Inci_model->get_status();
+        $status = ($this->Inci_model->get_status());
+        $message = [
+            'status' => RestController::HTTP_OK,
+            'message' => json_encode($status)
+        ];
 
-        $this->response($news, RestController::HTTP_OK); // OK (200) being the HTTP response code
+        $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
     }
 
 
@@ -47,8 +68,12 @@ class PrivateApi_controller extends JwtAPI_Controller
     {
         $this->load->model('News_model');
         $news = $this->News_model->getNew();
+        $message = [
+            'status' => RestController::HTTP_OK,
+            'message' => json_encode($news)
+        ];
 
-        $this->response($news, RestController::HTTP_OK); // OK (200) being the HTTP response code
+        $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
     }
 
 
@@ -65,36 +90,76 @@ class PrivateApi_controller extends JwtAPI_Controller
         $this->load->model('Api_model');
         $this->load->library('form_validation');
 
-        if ($this->auth_request(['admin','gestor'])) {
+        if ($this->auth_request(['admin', 'gestor'])) {
 
             $this->renewJWT();
 
             // ##########################################################################################
-            $this->form_validation->set_rules('title', 'Title', 'required');
-            $this->form_validation->set_rules('text', 'Text', 'required');
+            // $this->form_validation->set_rules('title', 'Title', 'required');
+            // $this->form_validation->set_rules('text', 'Text', 'required');
 
-            if ($this->form_validation->run() === FALSE) {
-                $message = [
-                    'title' => $this->post('title'),
-                    'text' => $this->post('text'),
-                    'status' => RestController::HTTP_BAD_REQUEST,
-                    'message' => validation_errors()
-                ];
-                $this->set_response($message, RestController::HTTP_BAD_REQUEST); // BAD_REQUEST (400)
-            } else {
-                $this->load->model('News_model');
-                $news = $this->News_model->getNew();
+            // if ($this->form_validation->run() === FALSE) {
+            //     $message = [
+            //         'status' => RestController::HTTP_BAD_REQUEST,
+            //         'message' => validation_errors()
+            //     ];
+            //     $this->set_response($message, RestController::HTTP_BAD_REQUEST); // BAD_REQUEST (400)
+            // } else {
+            $this->load->model('Api_model');
+            $news = $this->Api_model->getInci();
+            // $this->token_data->usr
 
-                $message = [
-                    'Token' => $this->renewJWT(),
-                    'title' => $this->post('title'),
-                    'text' => $this->post('text'),
-                    'status' => RestController::HTTP_CREATED,
-                    'message' => json_encode($news)
-                ];
+            $message = [
+                'Token' => $this->renewJWT(),
+                'status' => RestController::HTTP_OK,
+                'message' => json_encode($news)
+            ];
 
-                $this->set_response($message, RestController::HTTP_CREATED); // CREATED (201) being the HTTP response code
-            }
+            $this->set_response($message, RestController::HTTP_OK); // CREATED (201) being the HTTP response code
+            // }
+            // ##########################################################################################
+
+        } else {
+            $message = [
+                'status' => $this->auth_code,
+                'token' => "",
+                'message' => 'Bad auth information. ' . $this->error_message
+            ];
+            $this->set_response($message, $this->auth_code); // 400 / 401 / 419 / 500
+        }
+    }
+    public function getMyTask_post()
+    {
+        $this->load->model('Api_model');
+        $this->load->library('form_validation');
+
+        if ($this->auth_request(['admin', 'gestor'])) {
+
+            $this->renewJWT();
+
+            // ##########################################################################################
+            // $this->form_validation->set_rules('title', 'Title', 'required');
+            // $this->form_validation->set_rules('text', 'Text', 'required');
+
+            // if ($this->form_validation->run() === FALSE) {
+            //     $message = [
+            //         'status' => RestController::HTTP_BAD_REQUEST,
+            //         'message' => validation_errors()
+            //     ];
+            //     $this->set_response($message, RestController::HTTP_BAD_REQUEST); // BAD_REQUEST (400)
+            // } else {
+            $this->load->model('Api_model');
+            $news = $this->Api_model->getInci();
+            // $this->token_data->usr
+
+            $message = [
+                'Token' => $this->renewJWT(),
+                'status' => RestController::HTTP_OK,
+                'message' => json_encode($news)
+            ];
+
+            $this->set_response($message, RestController::HTTP_OK); // CREATED (201) being the HTTP response code
+            // }
             // ##########################################################################################
 
         } else {
