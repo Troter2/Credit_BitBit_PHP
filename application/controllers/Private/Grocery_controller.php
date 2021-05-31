@@ -73,6 +73,7 @@ class Grocery_controller extends Private_controller
 
 
 			$crud->callback_before_insert(array($this, 'callback_insert_id_inci'));
+			// $crud->callback_before_insert(array($this, 'insert_if_amount_available'));
 
 			//$crud->callback_after_insert(array($this, 'callback_insert_after_id_inci'));
 
@@ -875,16 +876,43 @@ class Grocery_controller extends Private_controller
 		$this->db->where(array('id_mat' => $id_mat));
 		$query = $this->db->get();
 		$total_amount = $query->row_array()['amount'];
-		$total_amount = $total_amount - $post_array['amount'];
+
+		if ($post_array['amount'] <= $total_amount) {
+
+			$total_amount = $total_amount - $post_array['amount'];
+
+			$this->db->set("amount", $total_amount);
+			$this->db->where("id_mat", $id_mat);
+			$this->db->update('materials');
+
+			return $post_array;
+		} else {
+			exit();
+		}
+	}
+	function insert_if_amount_available($post_array)
+	{
+		$post_array["id_inci"] = $_SESSION['inci']['id_inci'];
+		$id_mat = $post_array['id_mat'];
+		$this->db->select("amount");
+		$this->db->from("materials");
+		$this->db->where(array('id_mat' => $id_mat));
+		$query = $this->db->get();
+		$total_amount = $query->row_array()['amount'];
 
 
-		$this->db->set("amount", $total_amount);
-		$this->db->where("id_mat", $id_mat);
-		$this->db->update('materials');
+		if ($post_array['amount'] <= $total_amount) {
+			$total_amount = $total_amount - $post_array['amount'];
 
 
+			$this->db->set("amount", $total_amount);
+			$this->db->where("id_mat", $id_mat);
+			$this->db->update('materials');
 
-		return $post_array;
+			return $post_array;
+		} else {
+			exit();
+		}
 	}
 	function callback_insert_after_id_inci($post_array, $primary_key)
 	{
