@@ -32,6 +32,11 @@ class PhotoDAW {
         this.clear = this.clear.bind(this);
         this.createDiv(base);
     }
+    loadImatge(imgbase64) {
+        var image = new Image();
+        image.src = imgbase64;
+        this.ctx.drawImage(image, 0, 0);
+    }
 
     createDiv() {
         //genera el canvas, amb els botons i tot

@@ -89,15 +89,19 @@
 
             <script>
                 var x = new PhotoDAW("divGeneral", true);
-
+<?php
+$database64="data:image/png;base64,".$tasca['canvas'];
+?>
+                x.loadImatge('<?php echo $database64; ?>');
                 function saveCanvas() {
                     var strData = document.getElementById("canvas1").toDataURL().replace("data:image/png;base64,", "");
 
                     document.getElementById("CFILE").value = strData;
 
-
                 }
+
             </script>
+            
             <input name="CFILE" type="hidden" id="CFILE" value="">
 
             <div class="col col-sm-3 font-weight-bold">
