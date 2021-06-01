@@ -352,7 +352,7 @@ class Grocery_controller extends Private_controller
 		if ($this->ion_auth->is_admin()) {
 
 			$crud = new grocery_CRUD();
-
+			$crud->unset_delete();
 			$crud->set_theme('adminlte_user_admin');
 			$crud->set_table('users');
 			$crud->fields('username', 'password', 'email', 'first_name', 'last_name', 'phone', 'city');

@@ -75,15 +75,25 @@ class PrivateApi_controller extends JwtAPI_Controller
 
         $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
     }
+    public function login_options()
+    {
+        $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+        $this->output->set_header("Access-Control-Allow-Methods: GET, DELETE, OPTIONS");
+        $this->output->set_header("Access-Control-Allow-Origin: *");
 
+        $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
+    }
 
 
     public function login_post()
     {
+        $this->output->set_header("Access-Control-Allow-Origin: *");
         $user = $this->post('user');
         $pass = $this->post('pass');
         $this->login($user, $pass);
     }
+
+
 
     public function getIncidencies_post()
     {
@@ -170,5 +180,18 @@ class PrivateApi_controller extends JwtAPI_Controller
             ];
             $this->set_response($message, $this->auth_code); // 400 / 401 / 419 / 500
         }
+    }
+    
+    protected function _parse_post()
+    {
+
+        if ($this->request->format === 'json') {
+
+            //Truc per tal que el JSON quedi ben carregat (parsejat) a $_POST
+
+            $_POST = json_decode(file_get_contents('php://input'), true);
+        }
+
+        parent::_parse_post();
     }
 }
