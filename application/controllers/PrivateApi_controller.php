@@ -62,18 +62,26 @@ class PrivateApi_controller extends JwtAPI_Controller
         $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
     }
 
+    public function news_options()
+    {
+        $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+        $this->output->set_header("Access-Control-Allow-Methods: GET, DELETE, OPTIONS");
+        $this->output->set_header("Access-Control-Allow-Origin: *");
 
+        $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
+    }
 
     public function news_get()
     {
+        $this->output->set_header("Access-Control-Allow-Origin: *");
         $this->load->model('News_model');
         $news = $this->News_model->getNew();
         $message = [
-            'status' => RestController::HTTP_OK,
-            'message' => json_encode($news)
+            // 'status' => RestController::HTTP_OK,
+            'message' => $news
         ];
 
-        $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
+        $this->response($news, RestController::HTTP_OK); // OK (200) being the HTTP response code
     }
     public function login_options()
     {

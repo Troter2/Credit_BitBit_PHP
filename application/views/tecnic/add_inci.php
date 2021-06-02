@@ -68,7 +68,7 @@
                     foreach ($images as $image) {
                 ?>
                         <div class="col col">
-                        <img height="128" width="128" src="<?php echo base_url($image['path'] . '/' . $image['image']) ?>" alt="">
+                        <img height="128" width="128" src="http://localhost/Credit_BitBit_PHP/images/<?php echo $image['path'] . '/' . $image['image'] ?>" alt="">
                         <br><a href="<?php echo base_url('delete_img/' . $image['image']) ?>">Borrar Imatge</a>
                         </div>
 

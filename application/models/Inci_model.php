@@ -54,7 +54,15 @@ class Inci_model extends CI_Model
     }
     public function deleteImg($id)
     {
-        $result = $this->db->delete('documents_tasques', array('image' => $id));
+
+        $query = $this->db->get_where('documents_tasques', array('image' => $id));
+
+        $row = $query->row();
+        $file_pointer = "../../uploads/incidencies/" . $row->path . '/' . $row->image;
+        unlink($file_pointer);
+
+
+        $this->db->delete('documents_tasques', array('image' => $id));
 
 
         return;

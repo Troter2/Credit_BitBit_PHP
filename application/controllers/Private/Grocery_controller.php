@@ -255,6 +255,7 @@ class Grocery_controller extends Private_controller
 			$crud->where('id_user', $id);
 			if ($state == 'read') {
 				$id = $this->grocery_crud->getStateInfo()->primary_key;
+				
 				$tasca = $this->db->get_where('tasques', array('id_tasca' => $id));
 				$tasca = $tasca->row_array();
 				$inci = $this->db->get_where('incidencies', array('id_inci' => $tasca['id_inci']));
@@ -352,7 +353,9 @@ class Grocery_controller extends Private_controller
 		if ($this->ion_auth->is_admin()) {
 
 			$crud = new grocery_CRUD();
-			$crud->unset_delete();
+			/////////////////////////////////////////////////////////////////////////////////
+			$crud->callback_before_delete(array($this, 'no_admin_delete'));
+			/////////////////////////////////////////////////////////////////////////////////
 			$crud->set_theme('adminlte_user_admin');
 			$crud->set_table('users');
 			$crud->fields('username', 'password', 'email', 'first_name', 'last_name', 'phone', 'city');
@@ -365,8 +368,9 @@ class Grocery_controller extends Private_controller
 			$crud->display_as('phone', "Telefon");
 			$crud->display_as('city', "Ciutat");
 			$crud->columns(['username', 'email', 'first_name', 'last_name', 'company', 'phone', 'city']);
-			$crud->callback_after_insert(array($this, 'hash_pass'));
+			$crud->callback_after_insert(array($this, 'hash_pass_insert'));
 			$crud->callback_after_update(array($this, 'hash_pass'));
+
 			$output = $crud->render();
 			$state = $crud->getState();
 
@@ -381,6 +385,11 @@ class Grocery_controller extends Private_controller
 		} else {
 			redirect(base_url('home'));
 		}
+	}
+	public function no_admin_delete($primary_key)
+	{
+		if ($this->ion_auth->in_group('admin', $primary_key))
+			exit();
 	}
 	public function tipus_consulta()
 	{
@@ -830,6 +839,29 @@ class Grocery_controller extends Private_controller
 		$post_array["id_estat"] = '1';
 		return $post_array;
 	}
+
+
+
+	function hash_pass_insert($post_array, $primary_key)
+	{
+		$userinfo = $this->ion_auth->user($primary_key)->row();
+		if ($userinfo->password == $post_array['password']) {
+			$passwordHashed = $this->ion_auth_model->hash_password($post_array['password'], FALSE, FALSE);
+			$username = $post_array['username'];
+			$this->db->set('password', $passwordHashed);
+			$this->db->where('username', $username);
+			$this->db->update('users');
+		}
+		$data = array(
+			'user_id' => $userinfo->id,
+			'group_id' => 4
+		);
+
+		$this->db->insert('users_groups', $data);
+
+		return true;
+	}
+
 	function hash_pass($post_array, $primary_key)
 	{
 		$userinfo = $this->ion_auth->user()->row();
@@ -840,8 +872,6 @@ class Grocery_controller extends Private_controller
 			$this->db->where('username', $username);
 			$this->db->update('users');
 		}
-
-
 
 		return true;
 	}

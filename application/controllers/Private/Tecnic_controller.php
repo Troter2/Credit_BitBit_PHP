@@ -59,6 +59,8 @@ class Tecnic_controller extends Private_controller
         if (!is_dir($path))
             mkdir($path);
 
+
+
         $config['upload_path']          = $path;
         $config['allowed_types']        = 'gif|jpg|png';
         $config['encrypt_name']         = true;
@@ -74,13 +76,15 @@ class Tecnic_controller extends Private_controller
                     $data = array('upload_data' => $this->upload->data());
                     $data = array(
                         'image' => $data['upload_data']['file_name'],
-                        'path' => "assets/uploads/incidencies/" . $_SESSION['inci']['id_inci'],
+                        'path' =>  $_SESSION['inci']['id_inci'],
                         'id_tasca' => $_SESSION['tasca']['id_tasca']
                     );
                     $this->db->insert('documents_tasques', $data);
                 }
             }
+
         }
+        
 
 
 
