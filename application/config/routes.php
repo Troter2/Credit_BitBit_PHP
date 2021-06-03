@@ -176,4 +176,5 @@ $route['privateApi/about'] = 'PrivateApi_controller/about';
 $route['privateApi/news'] = 'PrivateApi_controller/news'; 
 $route['privateApi/getIncidencies'] = 'PrivateApi_controller/getIncidencies'; 
 $route['privateApi/tipusConsulta'] = 'PrivateApi_controller/tipusConsulta'; 
+$route['privateApi/consulta'] = 'PrivateApi_controller/consulta'; 
 

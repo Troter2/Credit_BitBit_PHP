@@ -899,6 +899,7 @@ class Grocery_controller extends Private_controller
 
 	function callback_insert_id_inci($post_array)
 	{
+		
 		$post_array["id_inci"] = $_SESSION['inci']['id_inci'];
 		$id_mat = $post_array['id_mat'];
 		$this->db->select("amount");

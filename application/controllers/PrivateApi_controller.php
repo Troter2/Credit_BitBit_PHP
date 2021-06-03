@@ -8,6 +8,7 @@ class PrivateApi_controller extends JwtAPI_Controller
 
     public function __construct()
     {
+
         parent::__construct();
 
         $config = [
@@ -20,33 +21,99 @@ class PrivateApi_controller extends JwtAPI_Controller
         // $this->init($config); // configuration + auth timeout is configured from JWT config file
     }
 
+    public function about_options()
+    {
+        $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+        $this->output->set_header("Access-Control-Allow-Methods: GET, DELETE, OPTIONS");
+        $this->output->set_header("Access-Control-Allow-Origin: *");
 
+        $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
+    }
 
     public function about_get()
     {
+        $this->output->set_header("Access-Control-Allow-Origin: *");
         $this->load->model('About_model');
 
-        $event = json_encode($this->About_model->getEvent());
-        $message = [
-            'status' => RestController::HTTP_OK,
-            'message' => json_encode($event)
-        ];
+        $event = $this->About_model->getEvent();
 
-        $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
+        $this->response($event, RestController::HTTP_OK); // OK (200) being the HTTP response code
+    }
+    public function tipusConsulta_options()
+    {
+        $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+        $this->output->set_header("Access-Control-Allow-Methods: GET, DELETE, OPTIONS");
+        $this->output->set_header("Access-Control-Allow-Origin: *");
+
+        $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
     }
 
     public function tipusConsulta_get()
     {
+        $this->output->set_header("Access-Control-Allow-Origin: *");
         $this->load->model('Api_model');
-
-        $consultes = ($this->Api_model->getTipusConsulta());
+        $news = $this->Api_model->getTipusConsulta();
         $message = [
-            'status' => RestController::HTTP_OK,
-            'message' => json_encode($consultes)
+            // 'status' => RestController::HTTP_OK,
+            'message' => $news
         ];
 
-        $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
+        $this->response($news, RestController::HTTP_OK); // OK (200) being the HTTP response code
     }
+
+
+    public function consulta_options()
+    {
+        $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+        $this->output->set_header("Access-Control-Allow-Methods: GET, DELETE, OPTIONS");
+        $this->output->set_header("Access-Control-Allow-Origin: *");
+
+        $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
+    }
+
+    public function consulta_post()
+    {
+        $this->output->set_header("Access-Control-Allow-Origin: *");
+        $this->load->model('Api_model');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('nom', 'nom', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
+        $this->form_validation->set_rules('assumpte', 'assumpte', 'required');
+        $this->form_validation->set_rules('content', 'content', 'required');
+        $this->form_validation->set_rules('id_consulta', 'id_consulta', 'required');
+
+        if ($this->form_validation->run() === FALSE) {
+            $message = [
+                'nom' => $this->input->post('nom'),
+                'email' => $this->input->post('email'),
+                'assumpte' => $this->input->post('assumpte'),
+                'contingut' => $this->input->post('content'),
+                'id_consulta' => $this->input->post('id_consulta'),
+                'status' => RestController::HTTP_BAD_REQUEST,
+                'message' => validation_errors()
+            ];
+            $this->set_response($message, RestController::HTTP_BAD_REQUEST); // BAD_REQUEST (400)
+        } else {
+            $this->Api_model->setConsult();
+
+            $message = [
+                'nom' => $this->input->post('nom'),
+                'email' => $this->input->post('email'),
+                'assumpte' => $this->input->post('assumpte'),
+                'contingut' => $this->input->post('content'),
+                'id_consulta' => $this->input->post('id_consulta'),
+                'status' => RestController::HTTP_CREATED,
+                'message' => 'Added a resource'
+            ];
+
+            $this->set_response($message, RestController::HTTP_CREATED); // CREATED (201) being the HTTP response code
+        }
+
+
+        // $this->response($consultes, RestController::HTTP_OK); // OK (200) being the HTTP response code
+    }
+
+
 
 
 
@@ -189,7 +256,7 @@ class PrivateApi_controller extends JwtAPI_Controller
             $this->set_response($message, $this->auth_code); // 400 / 401 / 419 / 500
         }
     }
-    
+
     protected function _parse_post()
     {
 
