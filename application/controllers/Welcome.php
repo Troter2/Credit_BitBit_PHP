@@ -21,9 +21,9 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		
-		$this->load->view('flix');
-        // $this->load->helper('url');
+		// $this->load->view('flix');
+        $this->load->helper('url');
 
-		// redirect(base_url('/home'));
+		redirect(base_url('/home'));
 	}
 }

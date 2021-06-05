@@ -97,8 +97,10 @@ class JwtAPI_Controller extends API_Controller
     {
         if ($this->ion_auth->login($usr, $pass)) {
             $user = $this->ion_auth->user()->row();
+            $group = $this->ion_auth->get_users_groups($user->id)->row();
 
             $this->token_data->usr = $user->id;
+            $this->token_data->group = $group->id;
 
             $jwt = $this->renewJWT(); // Get new Token and set to HTTP header
 

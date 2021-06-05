@@ -255,7 +255,7 @@ class Grocery_controller extends Private_controller
 			$crud->where('id_user', $id);
 			if ($state == 'read') {
 				$id = $this->grocery_crud->getStateInfo()->primary_key;
-				
+
 				$tasca = $this->db->get_where('tasques', array('id_tasca' => $id));
 				$tasca = $tasca->row_array();
 				$inci = $this->db->get_where('incidencies', array('id_inci' => $tasca['id_inci']));
@@ -593,7 +593,13 @@ class Grocery_controller extends Private_controller
 			$crud->columns(['from', 'to', 'about', 'send_date', 'send_hour', 'recive_date', 'recive_hour']);
 			$crud->set_theme('adminlte');
 			$crud->set_table('messages');
-
+			$state = $crud->getState();
+			$state_info = $crud->getStateInfo();
+			if ($state == 'list'||$state == 'success') {
+				$crud->set_relation('from', 'users', 'username');
+				$crud->set_relation('to', 'users', 'username');
+			}
+		
 			$crud->set_language("catalan");
 			$output = $crud->render();
 
@@ -618,6 +624,7 @@ class Grocery_controller extends Private_controller
 
 			$crud = new grocery_CRUD();
 
+			$crud->unset_delete();
 			$crud->unset_edit();
 
 			$crud->display_as('send_date', 'Dia envio');
@@ -626,12 +633,12 @@ class Grocery_controller extends Private_controller
 			$crud->display_as('recive_hour', 'Recibido hora');
 			$crud->order_by('id_msg', 'desc');
 			$crud->display_as('about', 'Assumpte');
-			// $crud->field_type("from", 'hidden');
+			$crud->field_type("from", 'hidden');
 			$crud->callback_before_insert(array($this, 'public_mail_before_insert'));
 			$state = $crud->getState();
 			$state_info = $crud->getStateInfo();
 			$userinfo = $this->ion_auth->user()->row();
-			$username = $userinfo->username;
+			$username = $userinfo->id;
 
 			if ($state == 'read') {
 				$primary_key = $state_info->primary_key;
@@ -652,19 +659,22 @@ class Grocery_controller extends Private_controller
 					$this->Msg_model->setMsgRecived($primary_key);
 				}
 			}
+			$crud->set_primary_key('id', 'qrynomusuari');
 			if ($state == 'add') {
 				$crud->set_relation('to', 'qrynomusuari', 'username');
 			}
+			
 
+			if ($state == 'list'||$state == 'success') {
+				$crud->set_relation('from', 'qrynomusuari', 'username');
+			}
 
-
-			$crud->columns(['from', 'to', 'about', 'send_date', 'send_hour', 'recive_date', 'recive_hour']);
+			$crud->columns(['from', 'about', 'send_date', 'send_hour', 'recive_date', 'recive_hour']);
 			$crud->set_theme('adminlte');
 			$crud->set_table('messages');
-			$crud->set_primary_key('username', 'qrynomusuari');
 
 			$userinfo = $this->ion_auth->user()->row();
-			$username = $userinfo->username;
+			$username = $userinfo->id;
 			$crud->where('to', $username);
 
 			$crud->set_language("catalan");
@@ -710,8 +720,11 @@ class Grocery_controller extends Private_controller
 			$state = $crud->getState();
 			$state_info = $crud->getStateInfo();
 			$userinfo = $this->ion_auth->user()->row();
-			$username = $userinfo->username;
+			$username = $userinfo->id;
 			$this->load->model('Msg_model');
+			if ($state == 'list'||$state == 'success') {
+				$crud->set_relation('from', 'users', 'username');
+			}
 			if ($state == 'read') {
 				$primary_key = $state_info->primary_key;
 				$msg = $this->Msg_model->getMsgId($primary_key);
@@ -733,15 +746,13 @@ class Grocery_controller extends Private_controller
 			}
 
 
-			$crud->columns(['from', 'to', 'about', 'send_date', 'send_hour', 'recive_date', 'recive_hour']);
+			$crud->columns(['from', 'about', 'send_date', 'send_hour', 'recive_date', 'recive_hour']);
 			$crud->set_theme('adminlte');
 			$crud->set_table('messages');
-			$userinfo = $this->ion_auth->user()->row();
-			$username = $userinfo->username;
 			$crud->where('to', $username);
 
 			$crud->set_language("catalan");
-			$crud->set_primary_key('username', 'users');
+			$crud->set_primary_key('id', 'users');
 			$crud->set_relation('to', 'users', 'username');
 
 			$crud->field_type("send_date", 'hidden');
@@ -887,19 +898,17 @@ class Grocery_controller extends Private_controller
 	function public_mail_before_insert($post_array)
 	{
 		$userinfo = $this->ion_auth->user()->row();
-		$username = $userinfo->username;
+		$username = $userinfo->id;
 		$post_array["from"] = $username;
 		$post_array["send_date"] = date('Y-m-d');
 		$post_array["send_hour"] = date("h:i:s");
-
-		//$post_array["send_hour"] = time();
 
 		return $post_array;
 	}
 
 	function callback_insert_id_inci($post_array)
 	{
-		
+
 		$post_array["id_inci"] = $_SESSION['inci']['id_inci'];
 		$id_mat = $post_array['id_mat'];
 		$this->db->select("amount");
