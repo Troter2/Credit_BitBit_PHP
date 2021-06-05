@@ -140,19 +140,19 @@ class PrivateApi_controller extends JwtAPI_Controller
 
     public function news_get()
     {
-        if($this->input->get('id')!=null){
-            $id=$this->input->get('id');
+        if ($this->input->get('id') != null) {
+            $id = $this->input->get('id');
             $this->output->set_header("Access-Control-Allow-Origin: *");
             $this->load->model('News_model');
             $new = $this->News_model->getNewId($id);
-   
+
             $this->response($new, RestController::HTTP_OK); // OK (200) being the HTTP response code
 
-        }else{
+        } else {
             $this->output->set_header("Access-Control-Allow-Origin: *");
             $this->load->model('News_model');
             $news = $this->News_model->getNew();
-    
+
             $this->response($news, RestController::HTTP_OK); // OK (200) being the HTTP response code
 
         }
@@ -169,8 +169,17 @@ class PrivateApi_controller extends JwtAPI_Controller
     public function mail_get()
     {
         $this->output->set_header("Access-Control-Allow-Origin: *");
-        $this->load->model('Api_model');
-        $mails = $this->Api_model->getMails();
+        if($this->input->get('token')!=null)
+        {
+            $token=$this->input->get('token');
+            $key='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmUuand0LmRhdy';
+            $decoded=JWT::decode($token, $key, array('HS256'));
+            
+            $this->load->model('Api_model');
+            $mails = $this->Api_model->getMails($decoded->usr);
+        }else{
+            
+        }
 
 
         $this->response($mails, RestController::HTTP_OK); // OK (200) being the HTTP response code

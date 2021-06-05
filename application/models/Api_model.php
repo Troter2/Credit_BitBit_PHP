@@ -17,9 +17,9 @@ class Api_model extends CI_Model
         $query = $this->db->get('tipus_consulta');
         return $query->result_array();
     }
-    public function getMails()
+    public function getMails($id)
     {
-        $query = $this->db->get('messages');
+        $query = $this->db->get_where('messages', array('to' => $id));
         return $query->result_array();
     }
 
@@ -36,7 +36,7 @@ class Api_model extends CI_Model
 
     public function setConsult()
     {
-        
+
         $this->load->library('form_validation');
 
         $data = array(
@@ -49,6 +49,5 @@ class Api_model extends CI_Model
         );
 
         return $this->db->insert('consultes', $data);
-        
     }
 }
