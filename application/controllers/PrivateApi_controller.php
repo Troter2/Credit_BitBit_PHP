@@ -140,15 +140,40 @@ class PrivateApi_controller extends JwtAPI_Controller
 
     public function news_get()
     {
-        $this->output->set_header("Access-Control-Allow-Origin: *");
-        $this->load->model('News_model');
-        $news = $this->News_model->getNew();
-        $message = [
-            // 'status' => RestController::HTTP_OK,
-            'message' => $news
-        ];
+        if($this->input->get('id')!=null){
+            $id=$this->input->get('id');
+            $this->output->set_header("Access-Control-Allow-Origin: *");
+            $this->load->model('News_model');
+            $new = $this->News_model->getNewId($id);
+   
+            $this->response($new, RestController::HTTP_OK); // OK (200) being the HTTP response code
 
-        $this->response($news, RestController::HTTP_OK); // OK (200) being the HTTP response code
+        }else{
+            $this->output->set_header("Access-Control-Allow-Origin: *");
+            $this->load->model('News_model');
+            $news = $this->News_model->getNew();
+    
+            $this->response($news, RestController::HTTP_OK); // OK (200) being the HTTP response code
+
+        }
+    }
+    public function mail_options()
+    {
+        $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+        $this->output->set_header("Access-Control-Allow-Methods: GET, DELETE, OPTIONS");
+        $this->output->set_header("Access-Control-Allow-Origin: *");
+
+        $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
+    }
+
+    public function mail_get()
+    {
+        $this->output->set_header("Access-Control-Allow-Origin: *");
+        $this->load->model('Api_model');
+        $mails = $this->Api_model->getMails();
+
+
+        $this->response($mails, RestController::HTTP_OK); // OK (200) being the HTTP response code
     }
     public function login_options()
     {

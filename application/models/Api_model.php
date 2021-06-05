@@ -17,6 +17,11 @@ class Api_model extends CI_Model
         $query = $this->db->get('tipus_consulta');
         return $query->result_array();
     }
+    public function getMails()
+    {
+        $query = $this->db->get('messages');
+        return $query->result_array();
+    }
 
     public function getInci()
     {
