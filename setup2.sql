@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.4.18-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         10.4.17-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             11.1.0.6116
+-- HeidiSQL Versión:             11.2.0.6213
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.login_attempts: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.login_attempts: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `login_attempts` DISABLE KEYS */;
 /*!40000 ALTER TABLE `login_attempts` ENABLE KEYS */;
 
@@ -207,8 +207,8 @@ INSERT INTO `mat_inci` (`id_mat_inci`, `id_mat`, `id_inci`, `amount`) VALUES
 -- Volcando estructura para tabla bitbit.messages
 CREATE TABLE IF NOT EXISTS `messages` (
   `id_msg` int(11) NOT NULL AUTO_INCREMENT,
-  `from` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `to` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `from` int(11) unsigned NOT NULL,
+  `to` int(11) unsigned NOT NULL,
   `about` varchar(50) NOT NULL,
   `content` longtext NOT NULL,
   `send_date` date NOT NULL,
@@ -217,22 +217,21 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `recive_hour` time DEFAULT NULL,
   PRIMARY KEY (`id_msg`),
   KEY `FK_messages_users` (`from`),
-  KEY `FK_messages_users_2` (`to`),
-  CONSTRAINT `FK_messages_users` FOREIGN KEY (`from`) REFERENCES `users` (`username`),
-  CONSTRAINT `FK_messages_users_2` FOREIGN KEY (`to`) REFERENCES `users` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
+  KEY `FK_messages_users_2` (`to`)
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.messages: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.messages: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
 INSERT INTO `messages` (`id_msg`, `from`, `to`, `about`, `content`, `send_date`, `send_hour`, `recive_date`, `recive_hour`) VALUES
-	(23, 'admin', 'tecnic', 'Actualitzacio de software', '\n	Hem contractat una empresa per a que ens generi un software que ens faciliti el fet de mantenir un registre de les maquines que hem arreglat i estem arreglant i facilitar el fet d&#39;informar a l&#39;usuari\n', '2021-05-21', '10:52:52', NULL, NULL),
-	(24, 'admin', 'gestor', 'Actualitzacio de software', '\n	Hem contractat una empresa per a que ens generi un software que ens faciliti el fet de mantenir un registre de les maquines que hem arreglat i estem arreglant i facilitar el fet d&#39;informar a l&#39;usuari\n', '2021-05-21', '10:53:30', NULL, NULL),
-	(25, 'admin', 'user', 'Actualitzacio de software', '\n	Hem actualitzat el nostre software per a que et sigui mes facil saber quin problema tenia el teu ordinador!\n', '2021-05-21', '10:54:48', '2021-05-22', '19:55:58'),
-	(26, 'tecnic', 'admin', 'Falta material', '\n	Necesitem mes GPU&#39;s\n', '2021-05-21', '10:56:21', NULL, NULL),
-	(27, 'tecnic', 'gestor', 'Mas faena', '\n	Me estoy quedando sin incidencias que resolver, puedes mandarme mas?\n', '2021-05-21', '10:57:03', NULL, NULL),
-	(28, 'tecnic', 'admin', 'Falta material', '\n	Necessitem mes RAM\n', '2021-05-21', '11:03:48', NULL, NULL),
-	(29, 'tecnic', 'admin', 'Falta material', '\n	Necesitamos mas tornillos\n', '2021-05-21', '11:05:54', NULL, NULL),
-	(30, 'gestor', 'tecnic', 'Fot-li canya', '\n	Fot-li canya que s&#39;acumula la feina\n', '2021-05-21', '11:07:05', NULL, NULL);
+	(55, 0, 0, 'test', '\n	test\n', '2021-06-29', '12:25:47', '2021-06-22', '12:25:47'),
+	(56, 21, 0, 'test', '\n	test\n', '2021-06-04', '11:50:37', '2021-06-15', '12:25:47'),
+	(57, 21, 22, 'test', '\n	test\n', '2021-06-04', '11:51:21', '2021-06-21', '12:25:47'),
+	(58, 21, 22, 'test', '\n	test\n', '2021-06-04', '11:51:41', '2021-06-07', '12:25:47'),
+	(59, 21, 22, 'tea', '\n	tea\n', '2021-06-04', '11:52:16', '2021-06-21', '12:25:47'),
+	(60, 21, 22, 'test', '\n	test\n', '2021-06-04', '11:52:58', NULL, NULL),
+	(61, 21, 22, 'test', '\n	teste\n', '2021-06-04', '11:53:13', NULL, NULL),
+	(62, 19, 21, 'test', '\n	12213131231231231231231\n', '2021-06-04', '11:53:54', NULL, NULL),
+	(63, 21, 19, 'test', '\n	123123123123\n', '2021-06-04', '11:56:19', '2021-06-05', '13:43:49');
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.news
@@ -246,7 +245,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.news: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.news: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `news` DISABLE KEYS */;
 INSERT INTO `news` (`id`, `title`, `content`, `image`, `date`) VALUES
 	(19, 'AMD patenta la tecnología FidelityFX, pero no como tú piensa', '\n	\n		No hay duda que el DLSS se ha convertido en uno de los valores diferenciales a favor de NVIDIA, dado que esta t&eacute;cnica de super resoluci&oacute;n a trav&eacute;s de inteligencia artificial permite conseguir mayores resoluciones de las im&aacute;genes. Lo cual es gracias a la implementaci&oacute;n de los Tensor Cores y AMD podr&iacute;a tener su propia implementaci&oacute;n seg&uacute;n una patente.\n\n\n	\n		Antes de nada hemos de aclarar que se trata de una patente incompleta, ya que no es posible por el momento acceder a las im&aacute;genes que la acompa&ntilde;an y que resultan esenciales para la total comprensi&oacute;n de la misma. Hay que recordar que una patente describe primero los componentes de una tecnolog&iacute;a o servicio, para luego explicar su funcionamiento a trav&eacute;s de la relaci&oacute;n entre componentes. Lo cual hace a trav&eacute;s de referencias numeradas a los dibujos de la misma.\n	\n		Por lo que esperamos una versi&oacute;n completa de la patente de AMD para poder tratarla con m&aacute;s detalle.\n\n\n	&nbsp;\n', '397e8-captura.png', '2021-05-18'),
@@ -394,9 +393,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Volcando datos para la tabla bitbit.users: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `city`) VALUES
-	(19, '::1', 'tecnic', '$2y$10$TC/JcRgl4OlgQWe8bfecTOIvsj5dVjtdaiptLApFFzk9z3yOJdbNi', 'tecnic@tecnic.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814433, 1621962501, 1, 'tecnic', 'tecnic', '', NULL, 'test'),
-	(20, '::1', 'admin', '$2y$10$kkhDR3aKoCUqxIUGPmI/cOk1aOFzSrUM6xd75oVY8VqoxLTkdRgrS', 'admin@admin.comm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814495, 1622048761, 1, 'admin', 'admin', 'admin', NULL, 'admin'),
-	(21, '::1', 'user', '$2y$10$6CYfjRdPmKkOZ3292WEMcugoWK13xFd6az2VW2Wr3heUm1jvkowW.', 'user@user.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814520, 1621866549, 1, 'user', 'user', 'user', '', 'user'),
+	(19, '::1', 'tecnic', '$2y$10$TC/JcRgl4OlgQWe8bfecTOIvsj5dVjtdaiptLApFFzk9z3yOJdbNi', 'tecnic@tecnic.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814433, 1622893280, 1, 'tecnic', 'tecnic', '', NULL, 'test'),
+	(20, '::1', 'admin', '$2y$10$kkhDR3aKoCUqxIUGPmI/cOk1aOFzSrUM6xd75oVY8VqoxLTkdRgrS', 'admin@admin.comm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814495, 1622843830, 1, 'admin', 'admin', 'admin', NULL, 'admin'),
+	(21, '::1', 'user', '$2y$10$6CYfjRdPmKkOZ3292WEMcugoWK13xFd6az2VW2Wr3heUm1jvkowW.', 'user@user.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814520, 1622842690, 1, 'user', 'user', 'user', '', 'user'),
 	(22, '::1', 'gestor', '$2y$10$9g65AByvczLx.4fK6ebFeej5/VcTHEjP3hndeSkFJin758YDf0kiy', 'gestor@gestor.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814555, 1621949980, 1, 'gestor', 'gestor', 'gestor', NULL, 'gesto');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
@@ -433,6 +432,6 @@ DROP TABLE IF EXISTS `tasques_tecnic`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `tasques_tecnic` AS SELECT id_tasca,status.`desc` 'status', tasques.id_inci, id_user, tasques.`desc`, accions,start_date, end_date, canvas FROM tasques INNER JOIN incidencies ON tasques.id_inci=incidencies.id_inci INNER JOIN status ON incidencies.id_estat=status.id_estatus ;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
