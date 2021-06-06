@@ -79,7 +79,9 @@ class Tecnic_controller extends Private_controller
                         'path' =>  $_SESSION['inci']['id_inci'],
                         'id_tasca' => $_SESSION['tasca']['id_tasca']
                     );
-                    $this->db->insert('documents_tasques', $data);
+
+		            $this->Tecnic_model->insert_document_tasques($data);
+                    //$this->db->insert('documents_tasques', $data);
                 }
             }
 
@@ -115,25 +117,35 @@ class Tecnic_controller extends Private_controller
         $idTasca = $_SESSION['tasca']['id_tasca'];
         $estatus = $this->input->post('estatus');
         if ($estatus == '3') {
-            $this->db->set("end_date", date('Y-m-d'));
-            $this->db->set("end_hour", date("h:i:s"));
-            $this->db->where("id_tasca", $idTasca);
-            $this->db->update('tasques');
-        }
-        $this->db->set('id_estat', $estatus);
-        $this->db->where('id_inci', $_SESSION['inci']['id_inci']);
-        $this->db->update('incidencies');
+			$this->GroceryController_model->insertar_TascData($idTasca);
 
+            //$this->db->set("end_date", date('Y-m-d'));
+            //$this->db->set("end_hour", date("h:i:s"));
+            //$this->db->where("id_tasca", $idTasca);
+            //$this->db->update('tasques');
+        }
+
+		$this->GroceryController_model->insertar_estat($estatus, $_SESSION);
+
+        //$this->db->set('id_estat', $estatus);
+        //$this->db->where('id_inci', $_SESSION['inci']['id_inci']);
+        //$this->db->update('incidencies');
+
+
+		
         $action = $this->input->post('action');
-        $this->db->set('accions', $action);
-        $this->db->where('id_tasca', $idTasca);
-        $this->db->update('tasques');
+        $this->GroceryController_model->insertar_accio($action, $idTasca);
+        //$this->db->set('accions', $action);
+        //$this->db->where('id_tasca', $idTasca);
+        //$this->db->update('tasques');
 
         $canvas = $this->input->post('CFILE');
 
-        $this->db->set('canvas', $canvas);
-        $this->db->where('id_tasca', $idTasca);
-        $this->db->update('tasques');
+        $this->GroceryController_model->insertar_canvas($canvas, $idTasca);
+
+        //$this->db->set('canvas', $canvas);
+        //$this->db->where('id_tasca', $idTasca);
+        //$this->db->update('tasques');
 
         redirect(base_url('tecnic/tasques/success/'));
     }

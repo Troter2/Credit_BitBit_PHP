@@ -10,6 +10,7 @@ class Grocery_controller extends Private_controller
 		$this->load->helper('url');
 		$this->load->library('grocery_CRUD');
 		$this->load->library('ion_auth');
+		$this->load->model('GroceryController_model');
 	}
 
 
@@ -255,10 +256,11 @@ class Grocery_controller extends Private_controller
 			$crud->where('id_user', $id);
 			if ($state == 'read') {
 				$id = $this->grocery_crud->getStateInfo()->primary_key;
-
-				$tasca = $this->db->get_where('tasques', array('id_tasca' => $id));
+				$tasca= $this->GroceryController_model->get_tasques($id);
+				//$tasca = $this->db->get_where('tasques', array('id_tasca' => $id));
 				$tasca = $tasca->row_array();
-				$inci = $this->db->get_where('incidencies', array('id_inci' => $tasca['id_inci']));
+				$inci= $this->GroceryController_model->get_incidencies($tasca);
+				//$inci = $this->db->get_where('incidencies', array('id_inci' => $tasca['id_inci']));
 				$inci = $inci->row_array();
 				$_SESSION['inci'] = $inci;
 				$_SESSION['tasca'] = $tasca;
@@ -859,16 +861,18 @@ class Grocery_controller extends Private_controller
 		if ($userinfo->password == $post_array['password']) {
 			$passwordHashed = $this->ion_auth_model->hash_password($post_array['password'], FALSE, FALSE);
 			$username = $post_array['username'];
-			$this->db->set('password', $passwordHashed);
-			$this->db->where('username', $username);
-			$this->db->update('users');
+			$this->GroceryController_model->insertar_pass_hashed($passwordHashed, $username);
+			//$this->db->set('password', $passwordHashed);
+			//$this->db->where('username', $username);
+			//$this->db->update('users');
 		}
 		$data = array(
 			'user_id' => $userinfo->id,
 			'group_id' => 4
 		);
 
-		$this->db->insert('users_groups', $data);
+		$this->GroceryController_model->insert_userGroups($data);
+		//$this->db->insert('users_groups', $data);
 
 		return true;
 	}
@@ -879,9 +883,11 @@ class Grocery_controller extends Private_controller
 		if ($userinfo->password == $post_array['password']) {
 			$passwordHashed = $this->ion_auth_model->hash_password($post_array['password'], FALSE, FALSE);
 			$username = $post_array['username'];
-			$this->db->set('password', $passwordHashed);
-			$this->db->where('username', $username);
-			$this->db->update('users');
+			$this->GroceryController_model->pass_hashed($passwordHashed, $username);
+			
+			//$this->db->set('password', $passwordHashed);
+			//$this->db->where('username', $username);
+			//$this->db->update('users');
 		}
 
 		return true;
@@ -911,19 +917,23 @@ class Grocery_controller extends Private_controller
 
 		$post_array["id_inci"] = $_SESSION['inci']['id_inci'];
 		$id_mat = $post_array['id_mat'];
-		$this->db->select("amount");
-		$this->db->from("materials");
-		$this->db->where(array('id_mat' => $id_mat));
-		$query = $this->db->get();
+		$this->GroceryController_model->cantidad_material($id_mat);
+
+		//$this->db->select("amount");
+		//$this->db->from("materials");
+		//$this->db->where(array('id_mat' => $id_mat));
+		$query= $this->GroceryController_model->get_amount();
+		//$query = $this->db->get();
 		$total_amount = $query->row_array()['amount'];
 
 		if ($post_array['amount'] <= $total_amount) {
 
 			$total_amount = $total_amount - $post_array['amount'];
 
-			$this->db->set("amount", $total_amount);
-			$this->db->where("id_mat", $id_mat);
-			$this->db->update('materials');
+			$this->GroceryController_model->cantidad_materialTotal($total_amount, $id_mat);
+			//$this->db->set("amount", $total_amount);
+			//$this->db->where("id_mat", $id_mat);
+			//$this->db->update('materials');
 
 			return $post_array;
 		} else {
@@ -934,20 +944,22 @@ class Grocery_controller extends Private_controller
 	{
 		$post_array["id_inci"] = $_SESSION['inci']['id_inci'];
 		$id_mat = $post_array['id_mat'];
-		$this->db->select("amount");
-		$this->db->from("materials");
-		$this->db->where(array('id_mat' => $id_mat));
-		$query = $this->db->get();
+		$this->GroceryController_model->materialUsado($id_mat);
+		//$this->db->select("amount");
+		//$this->db->from("materials");
+		//$this->db->where(array('id_mat' => $id_mat));
+		$query= $this->GroceryController_model->get_amount();
+		//$query = $this->db->get();
 		$total_amount = $query->row_array()['amount'];
 
 
 		if ($post_array['amount'] <= $total_amount) {
 			$total_amount = $total_amount - $post_array['amount'];
 
-
-			$this->db->set("amount", $total_amount);
-			$this->db->where("id_mat", $id_mat);
-			$this->db->update('materials');
+			$this->GroceryController_model->update_cantidad_material($total_amount, $id_mat);
+			//$this->db->set("amount", $total_amount);
+			//$this->db->where("id_mat", $id_mat);
+			//$this->db->update('materials');
 
 			return $post_array;
 		} else {
