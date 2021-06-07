@@ -20,10 +20,10 @@ class Tecnic_model extends CI_Model {
         $this->db->update('tasques');
     }
 
-    public function insertar_estat($estatus, $_SESSION){
+    public function insertar_estat($estatus, $dades){
 
         $this->db->set('id_estat', $estatus);
-        $this->db->where('id_inci', $_SESSION['inci']['id_inci']);
+        $this->db->where('id_inci', $dades['inci']['id_inci']);
         $this->db->update('incidencies');
     }
 

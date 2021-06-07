@@ -89,15 +89,15 @@ class Tecnic_controller extends Private_controller
         $idTasca = $_SESSION['tasca']['id_tasca'];
         $estatus = $this->input->post('estatus');
         if ($estatus == '3') {
-			$this->GroceryController_model->insertar_TascData($idTasca);
+			$this->Tecnic_model->insertar_TascData($idTasca);
 
             //$this->db->set("end_date", date('Y-m-d'));
             //$this->db->set("end_hour", date("h:i:s"));
             //$this->db->where("id_tasca", $idTasca);
             //$this->db->update('tasques');
         }
-
-		$this->GroceryController_model->insertar_estat($estatus, $_SESSION);
+        $dades =  $_SESSION['inci']['id_inci'];
+		$this->Tecnic_model->insertar_estat($estatus, $dades);
 
         //$this->db->set('id_estat', $estatus);
         //$this->db->where('id_inci', $_SESSION['inci']['id_inci']);
@@ -106,14 +106,14 @@ class Tecnic_controller extends Private_controller
 
 		
         $action = $this->input->post('action');
-        $this->GroceryController_model->insertar_accio($action, $idTasca);
+        $this->Tecnic_model->insertar_accio($action, $idTasca);
         //$this->db->set('accions', $action);
         //$this->db->where('id_tasca', $idTasca);
         //$this->db->update('tasques');
 
         $canvas = $this->input->post('CFILE');
 
-        $this->GroceryController_model->insertar_canvas($canvas, $idTasca);
+        $this->Tecnic_model->insertar_canvas($canvas, $idTasca);
 
         //$this->db->set('canvas', $canvas);
         //$this->db->where('id_tasca', $idTasca);
