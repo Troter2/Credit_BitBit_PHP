@@ -84,34 +84,6 @@ class Tecnic_controller extends Private_controller
             }
 
         }
-        
-
-
-
-
-
-
-        /*
-
-        if (!$this->upload->do_upload('doc2')) {
-            $error = array('error' => $this->upload->display_errors());
-            echo "2222222222222";
-            print_r($error);
-            die;
-        } else {
-            $data = array('upload_data' => $this->upload->data());
-        }
-        
-        if (!$this->upload->do_upload('doc3')) {
-            $error = array('error' => $this->upload->display_errors());
-            echo "3333333333333";
-            print_r($error);
-            die;
-        } else {
-            $data = array('upload_data' => $this->upload->data());
-        }
-*/
-
         $idTasca = $_SESSION['tasca']['id_tasca'];
         $estatus = $this->input->post('estatus');
         if ($estatus == '3') {

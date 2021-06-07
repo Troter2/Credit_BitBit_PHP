@@ -163,6 +163,7 @@ class Grocery_controller extends Private_controller
 			//$crud->set_relation('id_user', 'qrynomusuari', 'username');
 
 			$crud->order_by('start_date', 'desc');
+			// $crud->set_relation('id_user', 'qrynomusuari', 'username', array('group_id >' => '1'));
 			$crud->required_fields('desc', 'id_user');
 			$crud->change_field_type('id_inci', 'invisible');
 			$crud->display_as('id_user', 'Tecnic');

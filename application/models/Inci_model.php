@@ -85,6 +85,11 @@ class Inci_model extends CI_Model
         $query = $this->db->get_where('incidencies', array('id_inci' => $id));
         return $query->row_array();
     }
+    public function getMaterialsId($id = FALSE)
+    {
+        $query = $this->db->get_where('materials', array('id_mat' => $id));
+        return $query->row_array();
+    }
     public function getTasquesId($id = FALSE)
     {
         $query = $this->db->get_where('tasques', array('id_tasca' => $id));
