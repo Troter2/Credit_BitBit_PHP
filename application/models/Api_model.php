@@ -19,8 +19,15 @@ class Api_model extends CI_Model
     }
     public function getMails($id)
     {
-        $query = $this->db->get_where('messages', array('to' => $id));
+        $query = $this->db->get_where('mail_username', array('to' => $id));
         return $query->result_array();
+    }
+    public function getMail($id_user, $id_msg)
+    {
+        
+
+        $query = $this->db->get_where('mail_username', array('id_msg' => $id_msg));
+        return $query->row_array();
     }
 
     public function getInci()

@@ -169,20 +169,33 @@ class PrivateApi_controller extends JwtAPI_Controller
     public function mail_get()
     {
         $this->output->set_header("Access-Control-Allow-Origin: *");
-        if($this->input->get('token')!=null)
-        {
-            $token=$this->input->get('token');
-            $key='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmUuand0LmRhdy';
-            $decoded=JWT::decode($token, $key, array('HS256'));
-            
-            $this->load->model('Api_model');
-            $mails = $this->Api_model->getMails($decoded->usr);
-        }else{
-            
+        if ($this->input->get('token') != null) {
+            $token = $this->input->get('token');
+            if ($this->input->get('id') == null) {
+                $key = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmUuand0LmRhdy';
+                $decoded = JWT::decode($token, $key, array('HS256'));
+                $jwt = $this->renewJWT(); // Get new Token and set to HTTP header
+                $this->load->model('Api_model');
+                $mails = $this->Api_model->getMails($decoded->usr);
+
+                $message = [
+                    'status' => RestController::HTTP_OK,
+                    'token' => $jwt,
+                    'mails' => $mails
+                ];
+            } else {
+                $id = $this->input->get('id');
+                $key = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmUuand0LmRhdy';
+                $decoded = JWT::decode($token, $key, array('HS256'));
+
+                $this->load->model('Api_model');
+                $mails = $this->Api_model->getMail($decoded->usr, $id);
+            }
+        } else {
         }
 
 
-        $this->response($mails, RestController::HTTP_OK); // OK (200) being the HTTP response code
+        $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
     }
     public function login_options()
     {
