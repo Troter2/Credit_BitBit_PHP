@@ -187,4 +187,71 @@ class JwtAPI_Controller extends API_Controller
             $this->tokens_m->purge();
         }
     }
+    protected function auth_request_get($memberof = null)
+    {
+        try {
+            $token = $this->input->get('token');
+            // token + password used to sign + array of allowed algorithms
+
+            if (count($token) != 2) {
+                $this->auth_code = 400;
+                $this->error_message = "Token no present or wrong format";
+                return false;
+            }
+            $this->token_data = JWT::decode($token, $this->config->item('jwt_key'), array('HS256'));
+
+            if ($this->config->item("jwt_autorenew")) {
+                if ($this->tokens_m->revoked($this->token_data)) {
+                    $this->auth_code = 401;
+                    $this->error_message = "Token revoked";
+                    return false;
+                } else {
+                    $this->tokens_m->revoke($this->token_data);
+                }
+            }
+
+            $user = $this->ion_auth->user($this->token_data->usr)->row();
+            if ($user->active) {     // user exists && is active
+                if ($memberof !== null) {   //chek if user is member of a group or groups
+                    if ($this->ion_auth->in_group($memberof, $this->token_data->usr)) {
+                        $this->auth_code = 200;
+                        return true;
+                    } else {
+                        $this->error_message = "User NOT MEMBER of valid groups";
+                        $this->auth_code = 401;
+                        return false;
+                    }
+                } else {
+                    $this->auth_code = 200;
+                    return true;
+                }
+            } else {
+                $this->auth_code = 401;
+                $this->error_message = "User disabled";
+                return false;
+            }
+        } catch (SignatureInvalidException $e) {     // to get exception message => $e->getMessage()
+            $this->error_message = print_r($e->getMessage(), true);
+            $this->auth_code = 400;
+            return false;
+        } catch (BeforeValidException $e) {     // to get exception message => $e->getMessage()
+            $this->error_message = print_r($e->getMessage(), true);
+            $this->auth_code = 400;
+            return false;
+        } catch (UnexpectedValueException $e) {     // to get exception message => $e->getMessage()
+            $this->error_message = print_r($e->getMessage(), true);
+            $this->auth_code = 400;
+            return false;
+        } catch (ExpiredException $e) {     // to get exception message => $e->getMessage()
+            $this->error_message = print_r($e->getMessage(), true);
+            $this->auth_code = 400;
+            return false;
+        } catch (Exception $e) {
+            $this->error_message = print_r($e->getMessage(), true);
+            $this->auth_code = 400;
+            return false;
+        } finally {
+            $this->tokens_m->purge();
+        }
+    }
 }

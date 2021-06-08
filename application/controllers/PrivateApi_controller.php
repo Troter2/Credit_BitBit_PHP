@@ -159,21 +159,78 @@ class PrivateApi_controller extends JwtAPI_Controller
     }
     public function mail_options()
     {
-        $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-        $this->output->set_header("Access-Control-Allow-Methods: GET, DELETE, OPTIONS");
+        $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
+        $this->output->set_header("Access-Control-Allow-Methods: GET, DELETE, OPTIONS, POST");
         $this->output->set_header("Access-Control-Allow-Origin: *");
 
         $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
     }
 
-    public function mail_get()
+
+    public function mail_post()
     {
         $this->output->set_header("Access-Control-Allow-Origin: *");
-        if ($this->input->get('token') != null) {
-            $token = $this->input->get('token');
+        $this->load->model('Api_model');
+        $this->load->library('form_validation');
+
+        if ($this->auth_request()) {
+
+            $this->renewJWT();
+
+            // ##########################################################################################
+            $this->form_validation->set_rules('to', 'to', 'required');
+            $this->form_validation->set_rules('about', 'About', 'required');
+            $this->form_validation->set_rules('content', 'Content', 'required');
+
+            if ($this->form_validation->run() === FALSE)
+            {
+                $message=[
+                    'to' => $this->post('to'),
+                    'about' => $this->post('about'),
+                    'status' => RestController::HTTP_BAD_REQUEST,
+                    'message' => validation_errors()
+                ];
+                $this->set_response($message, RestController::HTTP_OK); // BAD_REQUEST (400)
+            }
+            else
+            {
+                /////////////////////////////////////////////////////////////////////////////////////
+                //                             FALTA MIRAR LA CRIDA                                //
+                /////////////////////////////////////////////////////////////////////////////////////
+                //- ES TE QUE PASSAR EL ID DEL USUARI QUE ESTA AL TOKEN
+                $this->Api_model->set_mail($this->post('content'),$this->post('to'),$this->post('about'),$this->post('text'));
+
+                $message = [
+                    'title' => $this->post('title'),
+                    'text' => $this->post('text'),
+                    'status' => RestController::HTTP_CREATED,
+                    'message' => 'Added a resource'
+                ];
+
+                $this->set_response($message, RestController::HTTP_CREATED); // CREATED (201) being the HTTP response code
+            }
+            // ##########################################################################################
+
+        } else {
+            $message = [
+                'status' => $this->auth_code,
+                'token' => "",
+                'message' => 'Bad auth information. ' . $this->error_message
+            ];
+            $this->set_response($message, $this->auth_code); // 400 / 401 / 419 / 500
+        }
+    }
+
+
+    public function mail_get()
+    {
+
+        $this->output->set_header("Access-Control-Allow-Origin: *");
+        if ($this->head("Authorization") != null) {
+            $token = explode(" ", $this->head("Authorization"));
             if ($this->input->get('id') == null) {
                 $key = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmUuand0LmRhdy';
-                $decoded = JWT::decode($token, $key, array('HS256'));
+                $decoded = JWT::decode($token[1], $key, array('HS256'));
                 $jwt = $this->renewJWT(); // Get new Token and set to HTTP header
                 $this->load->model('Api_model');
                 $mails = $this->Api_model->getMails($decoded->usr);
@@ -183,19 +240,56 @@ class PrivateApi_controller extends JwtAPI_Controller
                     'token' => $jwt,
                     'mails' => $mails
                 ];
+                $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
             } else {
                 $id = $this->input->get('id');
                 $key = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmUuand0LmRhdy';
-                $decoded = JWT::decode($token, $key, array('HS256'));
+                $decoded = JWT::decode($token[1], $key, array('HS256'));
 
                 $this->load->model('Api_model');
                 $mails = $this->Api_model->getMail($decoded->usr, $id);
+                $this->response($mails, RestController::HTTP_OK); // OK (200) being the HTTP response code
             }
         } else {
+
+            $this->response('error', RestController::HTTP_BAD_REQUEST); // OK (200) being the HTTP response code
         }
+    }
 
+    public function mailtest_get()
+    {
+        $this->output->set_header("Access-Control-Allow-Origin: *");
 
-        $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
+        if ($this->auth_request_get()) {
+
+            $this->renewJWT();
+            if ($this->input->get('token') != null) {
+                $token = $this->input->get('token');
+                if ($this->input->get('id') == null) {
+                    $key = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmUuand0LmRhdy';
+                    $decoded = JWT::decode($token, $key, array('HS256'));
+                    $jwt = $this->renewJWT(); // Get new Token and set to HTTP header
+                    $this->load->model('Api_model');
+                    $mails = $this->Api_model->getMails($decoded->usr);
+
+                    $message = [
+                        'status' => RestController::HTTP_OK,
+                        'token' => $jwt,
+                        'mails' => $mails
+                    ];
+                    $message = "entra";
+                    $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
+                } else {
+                    $id = $this->input->get('id');
+                    $key = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmUuand0LmRhdy';
+                    $decoded = JWT::decode($token, $key, array('HS256'));
+
+                    $this->load->model('Api_model');
+                    $mails = $this->Api_model->getMail($decoded->usr, $id);
+                    $this->response('boom', RestController::HTTP_OK); // OK (200) being the HTTP response code
+                }
+            }
+        }
     }
     public function login_options()
     {

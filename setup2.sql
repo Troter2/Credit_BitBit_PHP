@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.4.17-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         10.4.18-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             11.2.0.6213
+-- HeidiSQL Versión:             11.1.0.6116
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -155,6 +155,16 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
 -- Volcando datos para la tabla bitbit.login_attempts: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `login_attempts` DISABLE KEYS */;
 /*!40000 ALTER TABLE `login_attempts` ENABLE KEYS */;
+
+-- Volcando estructura para vista bitbit.mail_username
+-- Creando tabla temporal para superar errores de dependencia de VIEW
+CREATE TABLE `mail_username` (
+	`id_msg` INT(11) NOT NULL,
+	`to` INT(11) UNSIGNED NOT NULL,
+	`about` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`content` LONGTEXT NOT NULL COLLATE 'utf8mb4_general_ci',
+	`from` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci'
+) ENGINE=MyISAM;
 
 -- Volcando estructura para tabla bitbit.materials
 CREATE TABLE IF NOT EXISTS `materials` (
@@ -352,12 +362,8 @@ CREATE TABLE IF NOT EXISTS `tokens` (
   PRIMARY KEY (`tokenid`,`subject`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.tokens: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.tokens: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tokens` DISABLE KEYS */;
-INSERT INTO `tokens` (`tokenid`, `subject`, `expiration`) VALUES
-	('28d3bcc8-92d0-519f-ba5c-ef3f47f18a13', 'secure.jwt.daw.local', 1622048859),
-	('59a7c4b7-78c0-54cb-90f5-0b4a87092d6f', 'secure.jwt.daw.local', 1622049061),
-	('d0904f38-8774-5c8a-b507-337960f07194', 'secure.jwt.daw.local', 1622049005);
 /*!40000 ALTER TABLE `tokens` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.users
@@ -396,7 +402,7 @@ INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activ
 	(19, '::1', 'tecnic', '$2y$10$TC/JcRgl4OlgQWe8bfecTOIvsj5dVjtdaiptLApFFzk9z3yOJdbNi', 'tecnic@tecnic.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814433, 1622893280, 1, 'tecnic', 'tecnic', '', NULL, 'test'),
 	(20, '::1', 'admin', '$2y$10$kkhDR3aKoCUqxIUGPmI/cOk1aOFzSrUM6xd75oVY8VqoxLTkdRgrS', 'admin@admin.comm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814495, 1622843830, 1, 'admin', 'admin', 'admin', NULL, 'admin'),
 	(21, '::1', 'user', '$2y$10$6CYfjRdPmKkOZ3292WEMcugoWK13xFd6az2VW2Wr3heUm1jvkowW.', 'user@user.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814520, 1622842690, 1, 'user', 'user', 'user', '', 'user'),
-	(22, '::1', 'gestor', '$2y$10$9g65AByvczLx.4fK6ebFeej5/VcTHEjP3hndeSkFJin758YDf0kiy', 'gestor@gestor.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814555, 1621949980, 1, 'gestor', 'gestor', 'gestor', NULL, 'gesto');
+	(22, '::1', 'gestor', '$2y$10$9g65AByvczLx.4fK6ebFeej5/VcTHEjP3hndeSkFJin758YDf0kiy', 'gestor@gestor.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814555, 1623158430, 1, 'gestor', 'gestor', 'gestor', NULL, 'gesto');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.users_groups
@@ -421,6 +427,12 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 	(12, 22, 2);
 /*!40000 ALTER TABLE `users_groups` ENABLE KEYS */;
 
+-- Volcando estructura para vista bitbit.mail_username
+-- Eliminando tabla temporal y crear estructura final de VIEW
+DROP TABLE IF EXISTS `mail_username`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `mail_username` AS SELECT messages.id_msg, messages.`to`,messages.about,messages.content, users.username AS 'from' FROM messages INNER JOIN users
+ON messages.from = users.id ;
+
 -- Volcando estructura para vista bitbit.qrynomusuari
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `qrynomusuari`;
@@ -432,6 +444,6 @@ DROP TABLE IF EXISTS `tasques_tecnic`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `tasques_tecnic` AS SELECT id_tasca,status.`desc` 'status', tasques.id_inci, id_user, tasques.`desc`, accions,start_date, end_date, canvas FROM tasques INNER JOIN incidencies ON tasques.id_inci=incidencies.id_inci INNER JOIN status ON incidencies.id_estat=status.id_estatus ;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
