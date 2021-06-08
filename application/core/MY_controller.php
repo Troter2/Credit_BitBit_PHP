@@ -107,6 +107,7 @@ class JwtAPI_Controller extends API_Controller
             $message = [
                 'status' => RestController::HTTP_OK,
                 'token' => $jwt,
+                'group' => $group->name,
                 'message' => 'User logged'
             ];
             $this->set_response($message, RestController::HTTP_OK); // 200
