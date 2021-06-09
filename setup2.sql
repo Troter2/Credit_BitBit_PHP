@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.4.17-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         10.4.18-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             11.2.0.6213
+-- HeidiSQL Versión:             11.1.0.6116
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -124,23 +124,29 @@ CREATE TABLE IF NOT EXISTS `incidencies` (
   KEY `FK_user` (`id_user_propietari`),
   CONSTRAINT `FK_incidencies_status` FOREIGN KEY (`id_estat`) REFERENCES `status` (`id_estatus`),
   CONSTRAINT `FK_user` FOREIGN KEY (`id_user_propietari`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.incidencies: ~12 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.incidencies: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `incidencies` DISABLE KEYS */;
 INSERT INTO `incidencies` (`id_inci`, `id_estat`, `id_user_propietari`, `nom_propietari`, `marca`, `model`, `numero_serie`, `tlf`, `desc_averia`, `diagnosis_prev`, `uuid`, `entry_date`, `entry_hour`, `out_date`, `out_hour`) VALUES
-	(1, 2, NULL, 'Josep', 'ACER', 'Aspire TC', '7738234823649', '630487456', '<p>\n	S\'apaga de manera sobtada</p>\n', '<p>Podria ser la font d\'alimentacio</p>', 'd7a39daf641b4679a87c2b6a691ef1ce', '2021-05-19', '00:00:00', '2021-05-11', NULL),
-	(6, 2, NULL, 'Manolo', 'LENOVO', 'ThinkCentre M90t Tower', '2342063496525', '601845878', '<p>\n	S\'apaga de manera sobtada</p>\n', '<p>Podria ser la font d\'alimentacio</p>', '1243', '2021-05-17', '00:00:00', '2021-05-02', NULL),
-	(8, 1, NULL, 'Edgar', 'ASUS', 'ASUS S425MC', '3894232342345', '660854258', '<p>\n	L\'ordinador fa sorolls</p>\n', '<p>\n	Podria ser el ventilador</p>\n', '12345', '2021-05-17', '00:00:00', '2021-05-08', NULL),
-	(17, 1, NULL, 'Sofia', 'HP', 'Omen X', '7564320524479', '660456889', '<p>\n	L\'ordinador s\'apaga al jugar al Cyberpunk</p>\n', '<p>\n	Podria ser la grafica</p>\n', 'a2de7ff3c713430cb17c95782ea06203', '2021-05-10', '00:00:00', NULL, NULL),
-	(18, 1, NULL, 'Adria', 'LENOVO', 'ThinkCentre M80t Tower', '7856235235768', '630789563', '<p>\n	L\'ordinador fa soroll</p>\n', '<p>\n	Podria ser el ventilador</p>\n', '5b850d8b39e545129986f8afb1128be0', '2021-05-10', '00:00:00', NULL, NULL),
+	(1, 2, 21, 'Josep', 'ACER', 'Aspire TC', '7738234823649', '630487456', '<p>\n	S\'apaga de manera sobtada</p>\n', '<p>Podria ser la font d\'alimentacio</p>', 'd7a39daf641b4679a87c2b6a691ef1ce', '2021-05-19', '00:00:00', '2021-05-11', NULL),
+	(6, 2, 21, 'Manolo', 'LENOVO', 'ThinkCentre M90t Tower', '2342063496525', '601845878', '<p>\n	S\'apaga de manera sobtada</p>\n', '<p>Podria ser la font d\'alimentacio</p>', '1243', '2021-05-17', '00:00:00', '2021-05-02', NULL),
+	(8, 1, 21, 'Edgar', 'ASUS', 'ASUS S425MC', '3894232342345', '660854258', '<p>\n	L\'ordinador fa sorolls</p>\n', '<p>\n	Podria ser el ventilador</p>\n', '12345', '2021-05-17', '00:00:00', '2021-05-08', NULL),
+	(17, 1, 21, 'Sofia', 'HP', 'Omen X', '7564320524479', '660456889', '<p>\n	L\'ordinador s\'apaga al jugar al Cyberpunk</p>\n', '<p>\n	Podria ser la grafica</p>\n', 'a2de7ff3c713430cb17c95782ea06203', '2021-05-10', '00:00:00', NULL, NULL),
+	(18, 1, 21, 'Adria', 'LENOVO', 'ThinkCentre M80t Tower', '7856235235768', '630789563', '<p>\n	L\'ordinador fa soroll</p>\n', '<p>\n	Podria ser el ventilador</p>\n', '5b850d8b39e545129986f8afb1128be0', '2021-05-10', '00:00:00', NULL, NULL),
 	(19, 1, 21, 'Sergi', 'ACER', 'Aspire XC', '1939283541934', '660455745', '<p>\n	S\'apaga de manera sobtada</p>\n', '<p>Podria ser la font d\'alimentacio</p>', 'b949b7131d3a49c3bb1e767f01d5281a', '2021-05-11', '00:00:00', NULL, NULL),
-	(20, 1, NULL, 'Joel', 'HP', 'HP Spectre', '93728567928589', '601845648', '<p>\n	L\'ordinador fa sorolls</p>\n', '<p>\n	Podria ser el ventilador</p>\n', '9533382c95ee42d391a8e57a6594284e', '2021-05-11', '00:00:00', NULL, NULL),
+	(20, 1, 21, 'Joel', 'HP', 'HP Spectre', '93728567928589', '601845648', '<p>\n	L\'ordinador fa sorolls</p>\n', '<p>\n	Podria ser el ventilador</p>\n', '9533382c95ee42d391a8e57a6594284e', '2021-05-11', '00:00:00', NULL, NULL),
 	(21, 1, 21, 'Laura', 'LENOVO', 'ThinkCentre M70t Tower', '21867492589123', '601846548', '<p>\n	L\'ordinador fa sorolls</p>\n', '<p>\n	Podria ser el ventilador</p>\n', 'd6a39daf641b4679a87c2b6a691ef1ce', '2021-05-11', '00:00:00', NULL, NULL),
 	(22, 1, 21, 'Victor', 'ACER', 'Nitro 50', '67834659823572', '630456886', '<p>\n	L\'ordinador s\'apaga al jugar al Cyberpunk</p>\n', '<p>\n	Podria ser la grafica</p>\n', '5402b14d62f54cc087f62490e5fb28a8', '2021-05-11', '00:00:00', NULL, NULL),
 	(23, 1, 21, 'Pau', 'ACER', 'Aspire TC', '89434734598892', '630456886', '<p>\n	S\'apaga de manera sobtada</p>\n', '<p>Podria ser la font d\'alimentacio</p>', 'b00cf224c3b04e69b309cc93a463e242', '2021-05-11', '00:00:00', NULL, NULL),
 	(24, 1, 21, 'Marc', 'LENOVO', 'ThinkCentre M90t Tower', '23459234078290', '601894568', '<p>\n	L\'ordinador fa sorolls</p>\n', '<p>\n	Podria ser el ventilador</p>\n', '8571bf8c5a594ae5a1bc8a1d27665c7a', '2021-05-11', '00:00:00', NULL, NULL),
-	(27, 2, NULL, 'Irene', 'HP', '15s-eq1076ns', '789789789', '325496', '\n	La pantalla parpadeja depenent de la posicio de la pantalla\n', '\n	Possible mala conexio del cable de la pantalla\n', '8417d0bc4f254fdab83647be7164bc78', '2021-05-24', '16:32:39', NULL, NULL);
+	(27, 2, 21, 'Irene', 'HP', '15s-eq1076ns', '789789789', '325496', '\n	La pantalla parpadeja depenent de la posicio de la pantalla\n', '\n	Possible mala conexio del cable de la pantalla\n', '8417d0bc4f254fdab83647be7164bc78', '2021-05-24', '16:32:39', NULL, NULL),
+	(29, 1, 21, 'Laura', 'LENOVO', 'ThinkCentre M70t Tower', '21867492589123', '601846548', '<p>\n	L\'ordinador fa sorolls</p>\n', '<p>\n	Podria ser el ventilador</p>\n', 'd6a39daf641b4679a87c2b6a691ef1ce', '2021-05-11', '00:00:00', NULL, NULL),
+	(30, 1, 21, 'Laura', 'LENOVO', 'ThinkCentre M70t Tower', '21867492589123', '601846548', '<p>\n	L\'ordinador fa sorolls</p>\n', '<p>\n	Podria ser el ventilador</p>\n', 'd6a39daf641b4679a87c2b6a691ef1ce', '2021-05-11', '00:00:00', NULL, NULL),
+	(31, 1, 21, 'Laura', 'LENOVO', 'ThinkCentre M70t Tower', '21867492589123', '601846548', '<p>\n	L\'ordinador fa sorolls</p>\n', '<p>\n	Podria ser el ventilador</p>\n', 'd6a39daf641b4679a87c2b6a691ef1ce', '2021-05-11', '00:00:00', NULL, NULL),
+	(32, 1, 21, 'Laura', 'LENOVO', 'ThinkCentre M70t Tower', '21867492589123', '601846548', '<p>\n	L\'ordinador fa sorolls</p>\n', '<p>\n	Podria ser el ventilador</p>\n', 'd6a39daf641b4679a87c2b6a691ef1ce', '2021-05-11', '00:00:00', NULL, NULL),
+	(33, 1, 21, 'Laura', 'LENOVO', 'ThinkCentre M70t Tower', '21867492589123', '601846548', '<p>\n	L\'ordinador fa sorolls</p>\n', '<p>\n	Podria ser el ventilador</p>\n', 'd6a39daf641b4679a87c2b6a691ef1ce', '2021-05-11', '00:00:00', NULL, NULL),
+	(34, 1, 21, 'Laura', 'LENOVO', 'ThinkCentre M70t Tower', '21867492589123', '601846548', '<p>\n	L\'ordinador fa sorolls</p>\n', '<p>\n	Podria ser el ventilador</p>\n', 'd6a39daf641b4679a87c2b6a691ef1ce', '2021-05-11', '00:00:00', NULL, NULL);
 /*!40000 ALTER TABLE `incidencies` ENABLE KEYS */;
 
 -- Volcando estructura para vista bitbit.inci_user_app
@@ -247,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   KEY `FK_messages_users_2` (`to`)
 ) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.messages: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.messages: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
 INSERT INTO `messages` (`id_msg`, `from`, `to`, `about`, `content`, `send_date`, `send_hour`, `recive_date`, `recive_hour`) VALUES
 	(57, 21, 22, 'test', '\n	test\n', '2021-06-04', '11:51:21', '2021-06-21', '12:25:47'),
@@ -361,7 +367,7 @@ CREATE TABLE IF NOT EXISTS `tipus_consulta` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.tipus_consulta: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.tipus_consulta: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tipus_consulta` DISABLE KEYS */;
 INSERT INTO `tipus_consulta` (`id`, `consulta`) VALUES
 	(0, 'Solicitar nova reparació'),
@@ -377,11 +383,14 @@ CREATE TABLE IF NOT EXISTS `tokens` (
   PRIMARY KEY (`tokenid`,`subject`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.tokens: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.tokens: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tokens` DISABLE KEYS */;
 INSERT INTO `tokens` (`tokenid`, `subject`, `expiration`) VALUES
-	('115e28a0-4476-5659-9103-280dc0344014', 'secure.jwt.daw.local', 1623225718),
-	('c3174911-08c2-55e0-b334-66023da9b3df', 'secure.jwt.daw.local', 1623225713);
+	('0a1fd1e8-cad9-53d0-b92b-287370e690ab', 'secure.jwt.daw.local', 1623258174),
+	('8af8bbeb-a6c1-5aed-82c6-c4166698eeac', 'secure.jwt.daw.local', 1623258094),
+	('a2fe3f36-8c9e-5e95-bd34-3fb1181410a0', 'secure.jwt.daw.local', 1623258103),
+	('c2abb2cc-0d31-5f44-8fe5-11c80a2028ad', 'secure.jwt.daw.local', 1623258158),
+	('c7f46767-afdb-5e36-8329-d6df7ad7067f', 'secure.jwt.daw.local', 1623258154);
 /*!40000 ALTER TABLE `tokens` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.users
@@ -414,13 +423,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `uc_remember_selector` (`remember_selector`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.users: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.users: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `city`) VALUES
 	(19, '::1', 'tecnic', '$2y$10$TC/JcRgl4OlgQWe8bfecTOIvsj5dVjtdaiptLApFFzk9z3yOJdbNi', 'tecnic@tecnic.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814433, 1622893280, 1, 'tecnic', 'tecnic', '', NULL, 'test'),
 	(20, '::1', 'admin', '$2y$10$kkhDR3aKoCUqxIUGPmI/cOk1aOFzSrUM6xd75oVY8VqoxLTkdRgrS', 'admin@admin.comm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814495, 1622914720, 1, 'admin', 'admin', 'admin', NULL, 'admin'),
-	(21, '::1', 'user', '$2y$10$6CYfjRdPmKkOZ3292WEMcugoWK13xFd6az2VW2Wr3heUm1jvkowW.', 'user@user.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814520, 1623225413, 1, 'user', 'user', 'user', '', 'user'),
-	(22, '::1', 'gestor', '$2y$10$9g65AByvczLx.4fK6ebFeej5/VcTHEjP3hndeSkFJin758YDf0kiy', 'gestor@gestor.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814555, 1623225462, 1, 'gestor', 'gestor', 'gestor', NULL, 'gesto');
+	(21, '::1', 'user', '$2y$10$6CYfjRdPmKkOZ3292WEMcugoWK13xFd6az2VW2Wr3heUm1jvkowW.', 'user@user.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814520, 1623257854, 1, 'user', 'user', 'user', '', 'user'),
+	(22, '::1', 'gestor', '$2y$10$9g65AByvczLx.4fK6ebFeej5/VcTHEjP3hndeSkFJin758YDf0kiy', 'gestor@gestor.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814555, 1623257794, 1, 'gestor', 'gestor', 'gestor', NULL, 'gesto');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.users_groups
@@ -436,7 +445,7 @@ CREATE TABLE IF NOT EXISTS `users_groups` (
   CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.users_groups: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.users_groups: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `users_groups` DISABLE KEYS */;
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 	(9, 19, 3),
@@ -467,6 +476,6 @@ DROP TABLE IF EXISTS `tasques_tecnic`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `tasques_tecnic` AS SELECT id_tasca,status.`desc` 'status', tasques.id_inci, id_user, tasques.`desc`, accions,start_date, end_date, canvas FROM tasques INNER JOIN incidencies ON tasques.id_inci=incidencies.id_inci INNER JOIN status ON incidencies.id_estat=status.id_estatus ;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
