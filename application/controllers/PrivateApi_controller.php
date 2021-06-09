@@ -244,7 +244,7 @@ class PrivateApi_controller extends JwtAPI_Controller
 
             if ($this->head("Authorization") != null) {
                 $token = explode(" ", $this->head("Authorization"));
-                if ($this->input->get('limit') != null||$this->input->get('offset') != null) {
+                if ($this->input->get('limit') != null || $this->input->get('offset') != null && $this->input->get('id') == null) {
                     $key = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmUuand0LmRhdy';
                     $decoded = JWT::decode($token[1], $key, array('HS256'));
                     $limit = $this->input->get('limit');
@@ -259,14 +259,21 @@ class PrivateApi_controller extends JwtAPI_Controller
                         'incidencies' => $incidencies
                     ];
                     $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
-                } else {
+                } else if ($this->input->get('id') != null) {
                     $id = $this->input->get('id');
                     $key = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmUuand0LmRhdy';
                     $decoded = JWT::decode($token[1], $key, array('HS256'));
+                    $jwt = $this->renewJWT(); // Get new Token and set to HTTP header
 
                     $this->load->model('Api_model');
-                    $mails = $this->Api_model->getMail($decoded->usr, $id);
-                    $this->response($mails, RestController::HTTP_OK); // OK (200) being the HTTP response code
+                    $inci = $this->Api_model->getInciById($id);
+                    $message = [
+                        'status' => RestController::HTTP_OK,
+                        'token' => $jwt,
+                        'incidencia' => $inci,
+                        'id' => $id
+                    ];
+                    $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
                 }
             } else {
 
@@ -279,11 +286,11 @@ class PrivateApi_controller extends JwtAPI_Controller
         $this->load->model('Api_model');
         $this->load->library('form_validation');
 
+        $this->output->set_header("Access-Control-Allow-Origin: *");
         if ($this->auth_request()) {
 
             $this->renewJWT();
 
-            $this->output->set_header("Access-Control-Allow-Origin: *");
             if ($this->head("Authorization") != null) {
                 $token = explode(" ", $this->head("Authorization"));
                 if ($this->input->get('id') == null) {
@@ -303,10 +310,15 @@ class PrivateApi_controller extends JwtAPI_Controller
                     $id = $this->input->get('id');
                     $key = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmUuand0LmRhdy';
                     $decoded = JWT::decode($token[1], $key, array('HS256'));
-
+                    $jwt = $this->renewJWT(); // Get new Token and set to HTTP header
+                    $mail = $this->Api_model->getMail($decoded->usr, $id);
+                    $message = [
+                        'status' => RestController::HTTP_OK,
+                        'token' => $jwt,
+                        'mails' => $mail
+                    ];
                     $this->load->model('Api_model');
-                    $mails = $this->Api_model->getMail($decoded->usr, $id);
-                    $this->response($mails, RestController::HTTP_OK); // OK (200) being the HTTP response code
+                    $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
                 }
             } else {
 
@@ -341,7 +353,7 @@ class PrivateApi_controller extends JwtAPI_Controller
                 $jwt = $this->renewJWT(); // Get new Token and set to HTTP header
 
                 $this->load->model('Api_model');
-                $user=$this->Api_model->get_user_by_id($decoded->usr);
+                $user = $this->Api_model->get_user_by_id($decoded->usr);
 
                 $message = [
                     'status' => RestController::HTTP_OK,
@@ -357,7 +369,7 @@ class PrivateApi_controller extends JwtAPI_Controller
         }
     }
 
-    
+
     public function login_options()
     {
         $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
