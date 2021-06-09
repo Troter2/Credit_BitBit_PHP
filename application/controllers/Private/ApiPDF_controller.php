@@ -1,5 +1,5 @@
 <?php
-class Pdf_controller extends Private_controller
+class ApiPDF_controller extends Public_controller
 {
     public function __construct()
     {
@@ -10,10 +10,9 @@ class Pdf_controller extends Private_controller
 
 
 
-    public function generatePDF($uuid, $tasca)
+    public function generatePDF($uuid)
     {
 
-        
         $this->load->helper('url');
         $incidencia = $this->Inci_model->get_incidencia($uuid);
         $id = $incidencia['id_inci'];
@@ -122,6 +121,4 @@ class Pdf_controller extends Private_controller
         // This method has several options, check the source code documentation for more information.
         $pdf->Output('example_001.pdf', 'I');
     }
-
-    
 }
