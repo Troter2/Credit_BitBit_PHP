@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.4.18-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         10.4.17-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             11.1.0.6116
+-- HeidiSQL Versión:             11.2.0.6213
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -143,6 +143,23 @@ INSERT INTO `incidencies` (`id_inci`, `id_estat`, `id_user_propietari`, `nom_pro
 	(27, 2, NULL, 'Irene', 'HP', '15s-eq1076ns', '789789789', '325496', '\n	La pantalla parpadeja depenent de la posicio de la pantalla\n', '\n	Possible mala conexio del cable de la pantalla\n', '8417d0bc4f254fdab83647be7164bc78', '2021-05-24', '16:32:39', NULL, NULL);
 /*!40000 ALTER TABLE `incidencies` ENABLE KEYS */;
 
+-- Volcando estructura para vista bitbit.inci_user_app
+-- Creando tabla temporal para superar errores de dependencia de VIEW
+CREATE TABLE `inci_user_app` (
+	`id_inci` INT(10) UNSIGNED NOT NULL,
+	`desc` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`id_user_propietari` INT(10) UNSIGNED NULL,
+	`nom_propietari` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`marca` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`model` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`numero_serie` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`tlf` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`desc_averia` LONGTEXT NOT NULL COLLATE 'utf8mb4_general_ci',
+	`diagnosis_prev` LONGTEXT NOT NULL COLLATE 'utf8mb4_general_ci',
+	`entry_date` DATE NOT NULL,
+	`out_date` DATE NULL
+) ENGINE=MyISAM;
+
 -- Volcando estructura para tabla bitbit.login_attempts
 CREATE TABLE IF NOT EXISTS `login_attempts` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -160,10 +177,10 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `mail_username` (
 	`id_msg` INT(11) NOT NULL,
+	`from` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
 	`to` INT(11) UNSIGNED NOT NULL,
 	`about` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
-	`content` LONGTEXT NOT NULL COLLATE 'utf8mb4_general_ci',
-	`from` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci'
+	`content` LONGTEXT NOT NULL COLLATE 'utf8mb4_general_ci'
 ) ENGINE=MyISAM;
 
 -- Volcando estructura para tabla bitbit.materials
@@ -230,11 +247,9 @@ CREATE TABLE IF NOT EXISTS `messages` (
   KEY `FK_messages_users_2` (`to`)
 ) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.messages: ~9 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.messages: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
 INSERT INTO `messages` (`id_msg`, `from`, `to`, `about`, `content`, `send_date`, `send_hour`, `recive_date`, `recive_hour`) VALUES
-	(55, 0, 0, 'test', '\n	test\n', '2021-06-29', '12:25:47', '2021-06-22', '12:25:47'),
-	(56, 21, 0, 'test', '\n	test\n', '2021-06-04', '11:50:37', '2021-06-15', '12:25:47'),
 	(57, 21, 22, 'test', '\n	test\n', '2021-06-04', '11:51:21', '2021-06-21', '12:25:47'),
 	(58, 21, 22, 'test', '\n	test\n', '2021-06-04', '11:51:41', '2021-06-07', '12:25:47'),
 	(59, 21, 22, 'tea', '\n	tea\n', '2021-06-04', '11:52:16', '2021-06-21', '12:25:47'),
@@ -362,8 +377,11 @@ CREATE TABLE IF NOT EXISTS `tokens` (
   PRIMARY KEY (`tokenid`,`subject`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.tokens: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.tokens: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `tokens` DISABLE KEYS */;
+INSERT INTO `tokens` (`tokenid`, `subject`, `expiration`) VALUES
+	('115e28a0-4476-5659-9103-280dc0344014', 'secure.jwt.daw.local', 1623225718),
+	('c3174911-08c2-55e0-b334-66023da9b3df', 'secure.jwt.daw.local', 1623225713);
 /*!40000 ALTER TABLE `tokens` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.users
@@ -400,9 +418,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `city`) VALUES
 	(19, '::1', 'tecnic', '$2y$10$TC/JcRgl4OlgQWe8bfecTOIvsj5dVjtdaiptLApFFzk9z3yOJdbNi', 'tecnic@tecnic.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814433, 1622893280, 1, 'tecnic', 'tecnic', '', NULL, 'test'),
-	(20, '::1', 'admin', '$2y$10$kkhDR3aKoCUqxIUGPmI/cOk1aOFzSrUM6xd75oVY8VqoxLTkdRgrS', 'admin@admin.comm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814495, 1622843830, 1, 'admin', 'admin', 'admin', NULL, 'admin'),
-	(21, '::1', 'user', '$2y$10$6CYfjRdPmKkOZ3292WEMcugoWK13xFd6az2VW2Wr3heUm1jvkowW.', 'user@user.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814520, 1622842690, 1, 'user', 'user', 'user', '', 'user'),
-	(22, '::1', 'gestor', '$2y$10$9g65AByvczLx.4fK6ebFeej5/VcTHEjP3hndeSkFJin758YDf0kiy', 'gestor@gestor.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814555, 1623158430, 1, 'gestor', 'gestor', 'gestor', NULL, 'gesto');
+	(20, '::1', 'admin', '$2y$10$kkhDR3aKoCUqxIUGPmI/cOk1aOFzSrUM6xd75oVY8VqoxLTkdRgrS', 'admin@admin.comm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814495, 1622914720, 1, 'admin', 'admin', 'admin', NULL, 'admin'),
+	(21, '::1', 'user', '$2y$10$6CYfjRdPmKkOZ3292WEMcugoWK13xFd6az2VW2Wr3heUm1jvkowW.', 'user@user.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814520, 1623225413, 1, 'user', 'user', 'user', '', 'user'),
+	(22, '::1', 'gestor', '$2y$10$9g65AByvczLx.4fK6ebFeej5/VcTHEjP3hndeSkFJin758YDf0kiy', 'gestor@gestor.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814555, 1623225462, 1, 'gestor', 'gestor', 'gestor', NULL, 'gesto');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.users_groups
@@ -427,10 +445,15 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 	(12, 22, 2);
 /*!40000 ALTER TABLE `users_groups` ENABLE KEYS */;
 
+-- Volcando estructura para vista bitbit.inci_user_app
+-- Eliminando tabla temporal y crear estructura final de VIEW
+DROP TABLE IF EXISTS `inci_user_app`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `inci_user_app` AS SELECT incidencies.id_inci,status.`desc`,incidencies.id_user_propietari, incidencies.nom_propietari, incidencies.marca, incidencies.model, incidencies.numero_serie, incidencies.tlf, incidencies.desc_averia,incidencies.diagnosis_prev, incidencies.entry_date,incidencies.out_date FROM incidencies INNER JOIN status ON incidencies.id_estat = status.id_estatus ;
+
 -- Volcando estructura para vista bitbit.mail_username
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `mail_username`;
-CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `mail_username` AS SELECT messages.id_msg, messages.`to`,messages.about,messages.content, users.username AS 'from' FROM messages INNER JOIN users
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `mail_username` AS SELECT messages.id_msg,users.username AS `from`,messages.`to`,messages.about,messages.content  FROM messages INNER JOIN users
 ON messages.from = users.id ;
 
 -- Volcando estructura para vista bitbit.qrynomusuari
@@ -444,6 +467,6 @@ DROP TABLE IF EXISTS `tasques_tecnic`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `tasques_tecnic` AS SELECT id_tasca,status.`desc` 'status', tasques.id_inci, id_user, tasques.`desc`, accions,start_date, end_date, canvas FROM tasques INNER JOIN incidencies ON tasques.id_inci=incidencies.id_inci INNER JOIN status ON incidencies.id_estat=status.id_estatus ;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
