@@ -47,6 +47,7 @@ class Tecnic_controller extends Private_controller
     public function update_inci()
     {
         $this->load->model('inci_model');
+        $this->load->model('Tecnic_model');
         $this->load->library('ion_auth');
         $this->load->helper('url');
         $this->load->helper('form');
