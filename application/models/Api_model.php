@@ -64,7 +64,7 @@ class Api_model extends CI_Model
     public function getTaquesByTecnic($id, $limit, $offset)
     {
         $this->db->limit($limit, $offset);
-        $query = $this->db->get_where('inci_user_app', array('id_user_propietari' => $id));
+        $query = $this->db->get_where('tasques_tecnic_app', array('id_user' => $id));
         return $query->result_array();
     }
     public function getInciById($id)

@@ -314,7 +314,7 @@ class PrivateApi_controller extends JwtAPI_Controller
                     $message = [
                         'status' => RestController::HTTP_OK,
                         'token' => $jwt,
-                        'incidencies' => $incidencies
+                        'tasques' => $incidencies
                     ];
                     $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
                 } else if ($this->input->get('id') != null) {
