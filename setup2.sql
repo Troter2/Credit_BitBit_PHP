@@ -436,7 +436,7 @@ CREATE TABLE IF NOT EXISTS `tokens` (
   PRIMARY KEY (`tokenid`,`subject`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.tokens: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.tokens: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `tokens` DISABLE KEYS */;
 INSERT INTO `tokens` (`tokenid`, `subject`, `expiration`) VALUES
 	('ad59047e-3d2c-5575-b0b1-87a71c6a5826', 'secure.jwt.daw.local', 1623346216);
