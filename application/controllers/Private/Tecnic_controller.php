@@ -92,33 +92,22 @@ class Tecnic_controller extends Private_controller
         if ($estatus == '3') {
 			$this->Tecnic_model->insertar_TascData($idTasca);
 
-            //$this->db->set("end_date", date('Y-m-d'));
-            //$this->db->set("end_hour", date("h:i:s"));
-            //$this->db->where("id_tasca", $idTasca);
-            //$this->db->update('tasques');
         }
         $dades =  $_SESSION['inci']['id_inci'];
+        
 		$this->Tecnic_model->insertar_estat($estatus, $dades);
 
-        //$this->db->set('id_estat', $estatus);
-        //$this->db->where('id_inci', $_SESSION['inci']['id_inci']);
-        //$this->db->update('incidencies');
+
 
 
 		
         $action = $this->input->post('action');
         $this->Tecnic_model->insertar_accio($action, $idTasca);
-        //$this->db->set('accions', $action);
-        //$this->db->where('id_tasca', $idTasca);
-        //$this->db->update('tasques');
 
         $canvas = $this->input->post('CFILE');
 
         $this->Tecnic_model->insertar_canvas($canvas, $idTasca);
 
-        //$this->db->set('canvas', $canvas);
-        //$this->db->where('id_tasca', $idTasca);
-        //$this->db->update('tasques');
 
         redirect(base_url('tecnic/tasques/success/'));
     }
