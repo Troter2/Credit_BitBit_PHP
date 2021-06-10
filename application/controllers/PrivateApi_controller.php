@@ -339,6 +339,7 @@ class PrivateApi_controller extends JwtAPI_Controller
             }
         }
     }
+
     public function mail_get()
     {
         $this->load->model('Api_model');
@@ -388,7 +389,7 @@ class PrivateApi_controller extends JwtAPI_Controller
     public function getUser_options()
     {
         $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
-        $this->output->set_header("Access-Control-Allow-Methods: GET, DELETE, OPTIONS, POST");
+        $this->output->set_header("Access-Control-Allow-Methods: GET, DELETE, OPTIONS, POST, PUT");
         $this->output->set_header("Access-Control-Allow-Origin: *");
 
         $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
@@ -424,6 +425,57 @@ class PrivateApi_controller extends JwtAPI_Controller
 
                 $this->response('error', RestController::HTTP_BAD_REQUEST); // OK (200) being the HTTP response code
             }
+        }
+    }
+
+    public function getUser_put()
+    {
+        $this->output->set_header("Access-Control-Allow-Origin: *");
+        $this->load->model('Api_model');
+        $this->load->library('form_validation');
+
+        if ($this->auth_request()) {
+
+            $token = explode(" ", $this->head("Authorization"));
+            $key = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmUuand0LmRhdy';
+            $decoded = JWT::decode($token[1], $key, array('HS256'));
+
+            $username = $this->put('username', true);
+
+            $email = $this->put('email', true);
+
+            $company = $this->put('company', true);
+
+            $tlf = $this->put('tlf', true);
+
+            $city = $this->put('city', true);
+            $first_name = $this->put('first_name', true);
+            $last_name = $this->put('last_name', true);
+
+            $affected_rows = $this->Api_model->api_update_user($decoded->usr, $username, $email, $company, $tlf, $city,$first_name,$last_name);
+
+            $jwt = $this->renewJWT(); // Get new Token and set to HTTP header
+
+            if ($affected_rows > 0) {
+                $message = [
+                    'status' => RestController::HTTP_OK,
+                    'token' => $jwt
+                ];
+                $this->set_response($message, 200); // CREATED (200) being the HTTP response code
+            } else {
+                $message = [
+                    'token' => $jwt,
+                    'status' => RestController::HTTP_BAD_REQUEST,
+                    'message' => 'No existeix el recurs'
+                ];
+                $this->set_response($message, 400); // CREATED (200) being the HTTP response code
+            }
+        } else {
+            $message = [
+                'message' => $this->error_message,
+                'status' => $this->auth_code,
+            ];
+            $this->set_response($message, $this->auth_code);
         }
     }
 

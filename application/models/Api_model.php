@@ -50,6 +50,20 @@ class Api_model extends CI_Model
         $query = $this->db->get_where('users', array('username' => $username));
         return $query->row_array();
     }
+    public function api_update_user($user_id, $username, $email, $company, $tlf, $city, $first_name, $last_name)
+    {
+        if ($username!=null) $this->db->set("username",$username);
+        if ($email!=null) $this->db->set("email",$email);
+        if ($company!=null) $this->db->set("company",$company);
+        if ($tlf!=null) $this->db->set("phone",$tlf);
+        if ($city!=null) $this->db->set("city",$city);
+        if ($city!=null) $this->db->set("first_name",$first_name);
+        if ($city!=null) $this->db->set("last_name",$last_name);
+        
+        $this->db->where("id",$user_id);
+        $this->db->update('users');
+        return $this->db->affected_rows(); 
+    }
     public function get_user_by_id($id)
     {
         $query = $this->db->get_where('users', array('id' => $id));
