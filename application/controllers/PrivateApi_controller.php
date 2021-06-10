@@ -281,6 +281,64 @@ class PrivateApi_controller extends JwtAPI_Controller
             }
         }
     }
+    public function tasques_options()
+    {
+        $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
+        $this->output->set_header("Access-Control-Allow-Methods: GET, DELETE, OPTIONS, POST");
+        $this->output->set_header("Access-Control-Allow-Origin: *");
+
+        $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
+    }
+
+    public function tasques_get()
+    {
+        $this->load->model('Api_model');
+        $this->load->library('form_validation');
+        $this->output->set_header("Access-Control-Allow-Origin: *");
+
+        if ($this->auth_request()) {
+
+            $this->renewJWT();
+
+            if ($this->head("Authorization") != null) {
+                $token = explode(" ", $this->head("Authorization"));
+                if ($this->input->get('limit') != null || $this->input->get('offset') != null && $this->input->get('id') == null) {
+                    $key = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmUuand0LmRhdy';
+                    $decoded = JWT::decode($token[1], $key, array('HS256'));
+                    $limit = $this->input->get('limit');
+                    $offset = $this->input->get('offset');
+                    $jwt = $this->renewJWT(); // Get new Token and set to HTTP header
+                    $this->load->model('Api_model');
+                    $incidencies = $this->Api_model->getTaquesByTecnic($decoded->usr, $limit, $offset);
+
+                    $message = [
+                        'status' => RestController::HTTP_OK,
+                        'token' => $jwt,
+                        'incidencies' => $incidencies
+                    ];
+                    $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
+                } else if ($this->input->get('id') != null) {
+                    $id = $this->input->get('id');
+                    $key = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmUuand0LmRhdy';
+                    $decoded = JWT::decode($token[1], $key, array('HS256'));
+                    $jwt = $this->renewJWT(); // Get new Token and set to HTTP header
+
+                    $this->load->model('Api_model');
+                    $inci = $this->Api_model->getInciById($id);
+                    $message = [
+                        'status' => RestController::HTTP_OK,
+                        'token' => $jwt,
+                        'incidencia' => $inci,
+                        'id' => $id
+                    ];
+                    $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
+                }
+            } else {
+
+                $this->response('error', RestController::HTTP_BAD_REQUEST); // OK (200) being the HTTP response code
+            }
+        }
+    }
     public function mail_get()
     {
         $this->load->model('Api_model');

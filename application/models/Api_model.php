@@ -61,6 +61,12 @@ class Api_model extends CI_Model
         $query = $this->db->get_where('inci_user_app', array('id_user_propietari' => $id));
         return $query->result_array();
     }
+    public function getTaquesByTecnic($id, $limit, $offset)
+    {
+        $this->db->limit($limit, $offset);
+        $query = $this->db->get_where('inci_user_app', array('id_user_propietari' => $id));
+        return $query->result_array();
+    }
     public function getInciById($id)
     {
         $query = $this->db->get_where('inci_user_app', array('id_inci' => $id));
