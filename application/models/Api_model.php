@@ -17,11 +17,18 @@ class Api_model extends CI_Model
         $query = $this->db->get('tipus_consulta');
         return $query->result_array();
     }
-    public function getMails($id)
+    public function getMails($id, $limit,$offset)
     {
+        $this->db->limit($limit, $offset);
         $this->db->order_by('id_msg', 'DESC');
         $query = $this->db->get_where('mail_username', array('to' => $id));
         return $query->result_array();
+    }
+    public function getMailAmount($id)
+    {
+        $this->db->where('to', $id);
+        $query = $this->db->count_all_results('mail_username'); 
+        return $query;
     }
     public function getMail($id_user, $id_msg)
     {
@@ -81,9 +88,26 @@ class Api_model extends CI_Model
         $query = $this->db->get_where('tasques_tecnic_app', array('id_user' => $id));
         return $query->result_array();
     }
+    public function getTaquesAmount($id)
+    {
+        $this->db->where('id_user', $id);
+        $query = $this->db->count_all_results('tasques_tecnic_app'); 
+        return $query;
+    }
+    public function countInciByOwner($id)
+    {
+        $this->db->where('id_user_propietari', $id);
+        $query = $this->db->count_all_results('inci_user_app'); 
+        return $query;
+    }
     public function getInciById($id)
     {
         $query = $this->db->get_where('inci_user_app', array('id_inci' => $id));
+        return $query->row_array();
+    }
+    public function getTascaById($id)
+    {
+        $query = $this->db->get_where('tasques_tecnic_app', array('id_tasca' => $id));
         return $query->row_array();
     }
 
