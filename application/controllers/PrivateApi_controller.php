@@ -292,9 +292,9 @@ class PrivateApi_controller extends JwtAPI_Controller
 
     public function tasques_get()
     {
+        $this->output->set_header("Access-Control-Allow-Origin: *");
         $this->load->model('Api_model');
         $this->load->library('form_validation');
-        $this->output->set_header("Access-Control-Allow-Origin: *");
 
         if ($this->auth_request()) {
 
