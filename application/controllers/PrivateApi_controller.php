@@ -354,7 +354,7 @@ class PrivateApi_controller extends JwtAPI_Controller
     public function tasques_options()
     {
         $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
-        $this->output->set_header("Access-Control-Allow-Methods: GET, DELETE, OPTIONS, POST");
+        $this->output->set_header("Access-Control-Allow-Methods: GET, DELETE, OPTIONS, POST, PUT");
         $this->output->set_header("Access-Control-Allow-Origin: *");
 
         $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
