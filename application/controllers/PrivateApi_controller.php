@@ -47,6 +47,8 @@ class PrivateApi_controller extends JwtAPI_Controller
 
         $this->response($event, RestController::HTTP_OK); // OK (200) being the HTTP response code
     }    
+
+ 
     /**
      * tipusConsulta_options
      * Retorna els motius de consulta
@@ -142,8 +144,15 @@ class PrivateApi_controller extends JwtAPI_Controller
     }
 
 
-
-
+    public function status_options()
+    {
+        $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+        $this->output->set_header("Access-Control-Allow-Methods: GET, DELETE, OPTIONS");
+        $this->output->set_header("Access-Control-Allow-Origin: *");
+        
+        $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
+    }
+    
     
     /**
      * status_get
@@ -152,11 +161,12 @@ class PrivateApi_controller extends JwtAPI_Controller
      */
     public function status_get()
     {
+        $this->output->set_header("Access-Control-Allow-Origin: *");
         $this->load->model('Inci_model');
         $status = ($this->Inci_model->get_status());
         $message = [
-            'status' => RestController::HTTP_OK,
-            'message' => json_encode($status)
+            'response' => RestController::HTTP_OK,
+            'status' => $status
         ];
 
         $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
