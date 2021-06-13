@@ -597,12 +597,8 @@ class Grocery_controller extends Private_controller
 			$crud->columns(['from', 'to', 'about', 'send_date', 'send_hour', 'recive_date', 'recive_hour']);
 			$crud->set_theme('adminlte');
 			$crud->set_table('messages');
-			$state = $crud->getState();
-			$state_info = $crud->getStateInfo();
-			if ($state == 'list' || $state == 'success') {
-				$crud->set_relation('from', 'users', 'username');
-				$crud->set_relation('to', 'users', 'username');
-			}
+			$crud->set_relation('from', 'users', 'username');
+			$crud->set_relation('to', 'users', 'username');
 
 			$crud->set_language("catalan");
 			$output = $crud->render();
@@ -648,6 +644,7 @@ class Grocery_controller extends Private_controller
 				$primary_key = $state_info->primary_key;
 				$msg = $this->Msg_model->getMsgId($primary_key);
 
+				$crud->set_relation('to', 'users', 'username');
 
 				if ($msg->to != $username) {
 					$crud->set_lang_string(
@@ -732,6 +729,7 @@ class Grocery_controller extends Private_controller
 			if ($state == 'read') {
 				$primary_key = $state_info->primary_key;
 				$msg = $this->Msg_model->getMsgId($primary_key);
+				
 
 
 				if ($msg->to != $username) {
