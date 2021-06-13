@@ -30,6 +30,14 @@ class PrivateApi_controller extends JwtAPI_Controller
         $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
     }
 
+    /**
+     * about_get
+     * 
+     * Retorna totes les dades del about
+     * @param Int id
+     * 
+     * @return About
+     */
     public function about_get()
     {
         $this->output->set_header("Access-Control-Allow-Origin: *");
@@ -38,7 +46,12 @@ class PrivateApi_controller extends JwtAPI_Controller
         $event = $this->About_model->getEvent();
 
         $this->response($event, RestController::HTTP_OK); // OK (200) being the HTTP response code
-    }
+    }    
+    /**
+     * tipusConsulta_options
+     * Retorna els motius de consulta
+     * @return void
+     */
     public function tipusConsulta_options()
     {
         $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
@@ -47,7 +60,12 @@ class PrivateApi_controller extends JwtAPI_Controller
 
         $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
     }
-
+    
+    /**
+     * tipusConsulta_get
+     * Agafa els tipus de consulta
+     * @return void
+     */
     public function tipusConsulta_get()
     {
         $this->output->set_header("Access-Control-Allow-Origin: *");
@@ -61,7 +79,12 @@ class PrivateApi_controller extends JwtAPI_Controller
         $this->response($news, RestController::HTTP_OK); // OK (200) being the HTTP response code
     }
 
-
+    
+    /**
+     * consulta_options
+     * Retorna els diferents tipus de consulta
+     * @return void
+     */
     public function consulta_options()
     {
         $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
@@ -70,7 +93,12 @@ class PrivateApi_controller extends JwtAPI_Controller
 
         $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
     }
-
+    
+    /**
+     * consulta_post
+     * Agafa els valors necessariris de la consulta
+     * @return void
+     */
     public function consulta_post()
     {
         $this->output->set_header("Access-Control-Allow-Origin: *");
@@ -116,7 +144,12 @@ class PrivateApi_controller extends JwtAPI_Controller
 
 
 
-
+    
+    /**
+     * status_get
+     * Retorna el estat en el de les incidencies
+     * @return void
+     */
     public function status_get()
     {
         $this->load->model('Inci_model');
@@ -128,7 +161,12 @@ class PrivateApi_controller extends JwtAPI_Controller
 
         $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
     }
-
+    
+    /**
+     * news_options
+     * Retorna les noticies
+     * @return void
+     */
     public function news_options()
     {
         $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
@@ -137,7 +175,12 @@ class PrivateApi_controller extends JwtAPI_Controller
 
         $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
     }
-
+    
+    /**
+     * news_get
+     * Agafa les noticies disponibles
+     * @return void
+     */
     public function news_get()
     {
         if ($this->input->get('id') != null) {
@@ -156,7 +199,12 @@ class PrivateApi_controller extends JwtAPI_Controller
             $this->response($news, RestController::HTTP_OK); // OK (200) being the HTTP response code
 
         }
-    }
+    }    
+    /**
+     * mail_options
+     * Retona els missatges
+     * @return void
+     */
     public function mail_options()
     {
         $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
@@ -166,7 +214,12 @@ class PrivateApi_controller extends JwtAPI_Controller
         $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
     }
 
-
+    
+    /**
+     * mail_post
+     * Agafa els valors necessaris dels missatges
+     * @return void
+     */
     public function mail_post()
     {
         $this->output->set_header("Access-Control-Allow-Origin: *");
@@ -222,7 +275,12 @@ class PrivateApi_controller extends JwtAPI_Controller
             $this->set_response($message, $this->auth_code); // 400 / 401 / 419 / 500
         }
     }
-
+    
+    /**
+     * incidencies_options
+     * Retorna les dades de les incidencies
+     * @return void
+     */
     public function incidencies_options()
     {
         $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
@@ -231,7 +289,12 @@ class PrivateApi_controller extends JwtAPI_Controller
 
         $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
     }
-
+    
+    /**
+     * incidencies_get
+     * Agafa els valors necessaris de les incidencies
+     * @return void
+     */
     public function incidencies_get()
     {
         $this->load->model('Api_model');
@@ -282,7 +345,12 @@ class PrivateApi_controller extends JwtAPI_Controller
                 $this->response('error', RestController::HTTP_BAD_REQUEST); // OK (200) being the HTTP response code
             }
         }
-    }
+    }    
+    /**
+     * tasques_options
+     * Retorna les dades de les tasques
+     * @return void
+     */
     public function tasques_options()
     {
         $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
@@ -292,7 +360,12 @@ class PrivateApi_controller extends JwtAPI_Controller
         $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
     }
 
-
+    
+    /**
+     * tasques_put
+     * Agafa les dades necessaries de les tasques
+     * @return void
+     */
     public function tasques_put()
     {
         $this->output->set_header("Access-Control-Allow-Origin: *");
@@ -345,7 +418,12 @@ class PrivateApi_controller extends JwtAPI_Controller
     }
 
 
-
+    
+    /**
+     * tasques_get
+     * Agafa les tasques
+     * @return void
+     */
     public function tasques_get()
     {
         $this->output->set_header("Access-Control-Allow-Origin: *");
@@ -395,7 +473,12 @@ class PrivateApi_controller extends JwtAPI_Controller
             }
         }
     }
-
+    
+    /**
+     * mail_get
+     * Agafa els correus
+     * @return void
+     */
     public function mail_get()
     {
         $this->load->model('Api_model');
@@ -445,7 +528,12 @@ class PrivateApi_controller extends JwtAPI_Controller
             }
         }
     }
-
+    
+    /**
+     * getUser_options
+     * Retorna les dades del usuari
+     * @return void
+     */
     public function getUser_options()
     {
         $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
@@ -454,7 +542,12 @@ class PrivateApi_controller extends JwtAPI_Controller
 
         $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
     }
-
+    
+    /**
+     * getUser_get
+     * Agafa els usuaris
+     * @return void
+     */
     public function getUser_get()
     {
         $this->output->set_header("Access-Control-Allow-Origin: *");
@@ -487,7 +580,12 @@ class PrivateApi_controller extends JwtAPI_Controller
             }
         }
     }
-
+    
+    /**
+     * getUser_put
+     * Comproba les dades del usuari
+     * @return void
+     */
     public function getUser_put()
     {
         $this->output->set_header("Access-Control-Allow-Origin: *");
@@ -539,7 +637,12 @@ class PrivateApi_controller extends JwtAPI_Controller
         }
     }
 
-
+    
+    /**
+     * login_options
+     * Retorna les dades del login
+     * @return void
+     */
     public function login_options()
     {
         $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
@@ -549,7 +652,12 @@ class PrivateApi_controller extends JwtAPI_Controller
         $this->response(null, API_Controller::HTTP_OK); // OK (200) being the HTTP response code
     }
 
-
+    
+    /**
+     * login_post
+     * Comproba les dades introduides en el login
+     * @return void
+     */
     public function login_post()
     {
         $this->output->set_header("Access-Control-Allow-Origin: *");
@@ -558,7 +666,12 @@ class PrivateApi_controller extends JwtAPI_Controller
         $this->login($user, $pass);
     }
 
-
+    
+    /**
+     * _parse_post
+     * Parseja les dades
+     * @return void
+     */
     protected function _parse_post()
     {
 
