@@ -57,6 +57,35 @@ class Api_model extends CI_Model
         $query = $this->db->get_where('users', array('username' => $username));
         return $query->row_array();
     }
+
+    public function insertar_estat($estatus, $dades)
+    {
+        $this->db->set('id_estat', $estatus);
+        $this->db->where('id_inci', $dades);
+        $this->db->update('incidencies');
+        return $this->db->affected_rows();
+    }
+
+    public function insertar_accio($action, $idTasca)
+    {
+        $this->db->set('accions', $action);
+        $this->db->where('id_tasca', $idTasca);
+        $this->db->update('tasques');
+        return $this->db->affected_rows();
+    }
+    public function insertar_desc($desc, $idTasca)
+    {
+        $this->db->set('desc', $desc);
+        $this->db->where('id_tasca', $idTasca);
+        $this->db->update('tasques');
+        return $this->db->affected_rows();
+    }
+
+    public function getIdInci($idTasca)
+    {
+        $query = $this->db->get_where('tasques', array('id_tasca' => $idTasca));
+        return $query->row_array();
+    }
     public function api_update_user($user_id, $username, $email, $company, $tlf, $city, $first_name, $last_name)
     {
         if ($username!=null) $this->db->set("username",$username);

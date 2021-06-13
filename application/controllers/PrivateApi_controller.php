@@ -297,6 +297,7 @@ class PrivateApi_controller extends JwtAPI_Controller
     {
         $this->output->set_header("Access-Control-Allow-Origin: *");
         $this->load->model('Api_model');
+        $this->load->model('Tecnic_model');
         $this->load->library('form_validation');
 
         if ($this->auth_request()) {
@@ -305,29 +306,35 @@ class PrivateApi_controller extends JwtAPI_Controller
             $key = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmUuand0LmRhdy';
             $decoded = JWT::decode($token[1], $key, array('HS256'));
 
-            $username = $this->put('username', true);
+            $id_tasca = $this->put('id_tasca', true);
 
-            $email = $this->put('email', true);
+            $estat = $this->put('estat', true);
 
-            $company = $this->put('company', true);
+            $descripcio = $this->put('descripcio', true);
 
-            $tlf = $this->put('tlf', true);
+            $accions = $this->put('accions', true);
 
-            $city = $this->put('city', true);
-            $first_name = $this->put('first_name', true);
-            $last_name = $this->put('last_name', true);
+            $affected_rows = 0;
 
-            $affected_rows = $this->Api_model->api_update_user($decoded->usr, $username, $email, $company, $tlf, $city, $first_name, $last_name);
+            if ($estat == '3') {
+                $this->Tecnic_model->insertar_TascData($id_tasca);
+            }
+            $tasca = $this->Api_model->getIdInci($id_tasca);
+            if ($tasca != null) {
+                $idInci = $tasca['id_inci'];
+                $affected_rows = $affected_rows + $this->Tecnic_model->insertar_estat($estat, $idInci);
+                $affected_rows = $affected_rows + $this->Tecnic_model->insertar_accio($accions, $id_tasca);
+                $affected_rows = $affected_rows + $this->Tecnic_model->insertar_desc($descripcio, $id_tasca);
 
-            $jwt = $this->renewJWT(); // Get new Token and set to HTTP header
+                $jwt = $this->renewJWT(); // Get new Token and set to HTTP header
 
-            if ($affected_rows > 0) {
                 $message = [
                     'status' => RestController::HTTP_OK,
                     'token' => $jwt
                 ];
                 $this->set_response($message, 200); // CREATED (200) being the HTTP response code
             } else {
+                $jwt = $this->renewJWT(); // Get new Token and set to HTTP header
                 $message = [
                     'token' => $jwt,
                     'status' => RestController::HTTP_BAD_REQUEST,

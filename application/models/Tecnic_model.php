@@ -35,6 +35,12 @@ class Tecnic_model extends CI_Model
         $this->db->where('id_tasca', $idTasca);
         $this->db->update('tasques');
     }
+    public function insertar_desc($desc, $idTasca)
+    {
+        $this->db->set('desc', $desc);
+        $this->db->where('id_tasca', $idTasca);
+        $this->db->update('tasques');
+    }
 
     public function insertar_canvas($canvas, $idTasca)
     {
