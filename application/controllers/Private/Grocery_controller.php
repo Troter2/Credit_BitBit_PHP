@@ -257,10 +257,10 @@ class Grocery_controller extends Private_controller
 			$crud->where('id_user', $id);
 			if ($state == 'read') {
 				$id = $this->grocery_crud->getStateInfo()->primary_key;
-				$tasca= $this->GroceryController_model->get_tasques($id);
+				$tasca = $this->GroceryController_model->get_tasques($id);
 				//$tasca = $this->db->get_where('tasques', array('id_tasca' => $id));
 				$tasca = $tasca->row_array();
-				$inci= $this->GroceryController_model->get_incidencies($tasca);
+				$inci = $this->GroceryController_model->get_incidencies($tasca);
 				//$inci = $this->db->get_where('incidencies', array('id_inci' => $tasca['id_inci']));
 				$inci = $inci->row_array();
 				$_SESSION['inci'] = $inci;
@@ -372,6 +372,7 @@ class Grocery_controller extends Private_controller
 			$crud->display_as('city', "Ciutat");
 			$crud->columns(['username', 'email', 'first_name', 'last_name', 'company', 'phone', 'city']);
 			$crud->callback_after_insert(array($this, 'hash_pass_insert'));
+			$crud->callback_before_insert(array($this, 'hash_pass_before'));
 			$crud->callback_after_update(array($this, 'hash_pass'));
 
 			$output = $crud->render();
@@ -598,11 +599,11 @@ class Grocery_controller extends Private_controller
 			$crud->set_table('messages');
 			$state = $crud->getState();
 			$state_info = $crud->getStateInfo();
-			if ($state == 'list'||$state == 'success') {
+			if ($state == 'list' || $state == 'success') {
 				$crud->set_relation('from', 'users', 'username');
 				$crud->set_relation('to', 'users', 'username');
 			}
-		
+
 			$crud->set_language("catalan");
 			$output = $crud->render();
 
@@ -666,9 +667,9 @@ class Grocery_controller extends Private_controller
 			if ($state == 'add') {
 				$crud->set_relation('to', 'qrynomusuari', 'username');
 			}
-			
 
-			if ($state == 'list'||$state == 'success') {
+
+			if ($state == 'list' || $state == 'success') {
 				$crud->set_relation('from', 'qrynomusuari', 'username');
 			}
 
@@ -725,7 +726,7 @@ class Grocery_controller extends Private_controller
 			$userinfo = $this->ion_auth->user()->row();
 			$username = $userinfo->id;
 			$this->load->model('Msg_model');
-			if ($state == 'list'||$state == 'success') {
+			if ($state == 'list' || $state == 'success') {
 				$crud->set_relation('from', 'users', 'username');
 			}
 			if ($state == 'read') {
@@ -856,17 +857,25 @@ class Grocery_controller extends Private_controller
 
 
 
+	function hash_pass_before($post_array)
+	{
+		$algo = $this->ion_auth_model->_get_hash_algo();
+		$params = $this->ion_auth_model->_get_hash_parameters();
+		$post_array['password'] = $this->ion_auth_model->hash_password($post_array['password'], $algo, $params);
+		return $post_array;
+	}
 	function hash_pass_insert($post_array, $primary_key)
 	{
 		$userinfo = $this->ion_auth->user($primary_key)->row();
-		if ($userinfo->password == $post_array['password']) {
-			$passwordHashed = $this->ion_auth_model->hash_password($post_array['password'], FALSE, FALSE);
-			$username = $post_array['username'];
-			$this->GroceryController_model->insertar_pass_hashed($passwordHashed, $username);
-			//$this->db->set('password', $passwordHashed);
-			//$this->db->where('username', $username);
-			//$this->db->update('users');
-		}
+		// if ($userinfo->password == $post_array['password']) {
+		// 	$passwordHashed = $this->ion_auth_model->hash_password($post_array['password']);
+		// 	$username = $post_array['username'];
+		// 	$this->GroceryController_model->insertar_pass_hashed($passwordHashed, $username);
+		// 	//$this->db->set('password', $passwordHashed);
+		// 	//$this->db->where('username', $username);
+		// 	//$this->db->update('users');
+		// }
+
 		$data = array(
 			'user_id' => $userinfo->id,
 			'group_id' => 4
@@ -874,21 +883,41 @@ class Grocery_controller extends Private_controller
 
 		$this->GroceryController_model->insert_userGroups($data);
 		//$this->db->insert('users_groups', $data);
+		// $user = $this->groceryController_model->get_user_id($post_array['username']);
 
+		// $newPass = $post_array['password'];
+		// $data = array(
+		// 	'password' => $newPass
+		// );
+		// $this->ion_auth->update($user['id'], $data);
 		return true;
 	}
 
+
+
 	function hash_pass($post_array, $primary_key)
 	{
-		$userinfo = $this->ion_auth->user()->row();
-		if ($userinfo->password == $post_array['password']) {
-			$passwordHashed = $this->ion_auth_model->hash_password($post_array['password'], FALSE, FALSE);
-			$username = $post_array['username'];
-			$this->GroceryController_model->pass_hashed($passwordHashed, $username);
-			
-			//$this->db->set('password', $passwordHashed);
-			//$this->db->where('username', $username);
-			//$this->db->update('users');
+		$this->load->model('ion_auth_model');
+		$this->load->model('groceryController_model');
+		$user = $this->groceryController_model->get_user_id($post_array['username']);
+		if ($user['password'] == $post_array['password']) {
+			// $passwordHashed = $this->ion_auth_model->hash_password($post_array['password'], FALSE);
+			// $username = $post_array['username'];
+
+			// $this->GroceryController_model->pass_hashed($passwordHashed, $username);
+
+
+			//////////////////////////////////////
+			$user = $this->groceryController_model->get_user_id($post_array['username']);
+			$newPass = $post_array['password'];
+			$data = array(
+				'password' => $newPass
+			);
+			$this->ion_auth->update($user['id'], $data);
+			//////////////////////////////////////
+			// $this->db->set('password', $passwordHashed);
+			// $this->db->where('username', $username);
+			// $this->db->update('users');
 		}
 
 		return true;
@@ -923,7 +952,7 @@ class Grocery_controller extends Private_controller
 		//$this->db->select("amount");
 		//$this->db->from("materials");
 		//$this->db->where(array('id_mat' => $id_mat));
-		$query= $this->GroceryController_model->get_amount();
+		$query = $this->GroceryController_model->get_amount();
 		//$query = $this->db->get();
 		$total_amount = $query->row_array()['amount'];
 
@@ -949,7 +978,7 @@ class Grocery_controller extends Private_controller
 		//$this->db->select("amount");
 		//$this->db->from("materials");
 		//$this->db->where(array('id_mat' => $id_mat));
-		$query= $this->GroceryController_model->get_amount();
+		$query = $this->GroceryController_model->get_amount();
 		//$query = $this->db->get();
 		$total_amount = $query->row_array()['amount'];
 

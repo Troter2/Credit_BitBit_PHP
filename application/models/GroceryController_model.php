@@ -20,6 +20,12 @@ class GroceryController_model extends CI_Model {
         return $inci;
     } 
     
+    public function get_user_id ($username) 
+    { 
+        $query = $this->db->get_where('users', array('username' => $username));
+        return $query->row_array();
+    } 
+    
 
     public function insertar_pass_hashed ($passwordHashed, $username) 
     { 
