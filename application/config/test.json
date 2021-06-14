@@ -1,6 +1,0 @@
-{
-    "status": 200,
-    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmUuand0LmRhdy5sb2NhbCIsImp0aSI6ImU3NjAxYjFhLTRmZDMtNTAxNC05ZWNmLTJiMzQ0YjhjZTA5YyIsInVzciI6IjIxIiwiZ3JvdXAiOiI0IiwiaWF0IjoxNjIzNjgyMDk1LCJleHAiOjE2MjM2ODIzOTV9.uztiNvxOy0wvJVbjt0bHEzXYNncxdokx0dOolNkZ8nM",
-    "group": "user",
-    "message": "User logged"
-}

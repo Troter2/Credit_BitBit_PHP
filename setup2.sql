@@ -29,9 +29,9 @@ CREATE TABLE IF NOT EXISTS `consultes` (
   PRIMARY KEY (`id`),
   KEY `id_consulta` (`id_consulta`),
   CONSTRAINT `id_consulta` FOREIGN KEY (`id_consulta`) REFERENCES `tipus_consulta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.consultes: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.consultes: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `consultes` DISABLE KEYS */;
 INSERT INTO `consultes` (`id`, `id_consulta`, `nom`, `email`, `assumpte`, `contingut`, `date`) VALUES
 	(1, 0, 'Miquel', 'miquel@hotmail.com', 'El meu ordinador no funciona correctament', 'El meu ordinador no funciona correctament i no se per que', '2021-05-04'),
@@ -39,7 +39,8 @@ INSERT INTO `consultes` (`id`, `id_consulta`, `nom`, `email`, `assumpte`, `conti
 	(3, 2, 'Bruno', 'bruno@gmail.com', 'Mi ordenador hace mucho ruido', 'Hace dias que mi ordenador hace mucho ruido, creo que es por el ventilador', '2021-05-05'),
 	(4, 0, 'Joel', 'SoyJoel@gmail.com', 'Mi ordenador falla', 'Hace unos dias que me falla el ordenador y no se por que.', '2021-05-21'),
 	(5, 0, 'Manolo', 'ManoloPerales@gmail.com', 'Mi ordenador se apaga solo.', 'El otro dia intente jugar al cyberounk y mi ordenador se apagó', '2021-05-21'),
-	(6, 2, 'Miriam', 'iesEducatiu@gmail.com', 'Quisiera solicitar una reunion', 'Quisiera solicitar una reunion para solicitar una reparacion de multiples ordenadores de nuestro centro educativo.', '2021-05-21');
+	(6, 2, 'Miriam', 'iesEducatiu@gmail.com', 'Quisiera solicitar una reunion', 'Quisiera solicitar una reunion para solicitar una reparacion de multiples ordenadores de nuestro centro educativo.', '2021-05-21'),
+	(8, 1, 'ppatata', 'patata@patata.com', 'patata', 'CRISTIANCRISTIANCRISTIANCRISTIANCRISTIANCRISTIANCRISTIANCRISTIAN', '2021-06-14');
 /*!40000 ALTER TABLE `consultes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.datos_about
@@ -49,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `datos_about` (
   `titol` varchar(50) NOT NULL,
   `content` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla bitbit.datos_about: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `datos_about` DISABLE KEYS */;
@@ -70,16 +71,12 @@ CREATE TABLE IF NOT EXISTS `documents_tasques` (
   PRIMARY KEY (`id_document`),
   KEY `FK_documents_tasques_tasques` (`id_tasca`),
   CONSTRAINT `FK_documents_tasques_tasques` FOREIGN KEY (`id_tasca`) REFERENCES `tasques` (`id_tasca`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.documents_tasques: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.documents_tasques: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `documents_tasques` DISABLE KEYS */;
 INSERT INTO `documents_tasques` (`id_document`, `id_tasca`, `image`, `path`) VALUES
-	(1, 5, '932400f517048a6832036e1db69f2963.PNG', 'assets/uploads/incidencies/6'),
-	(2, 6, 'ecf4a80c8cdc04aac1423ee4633951ab.PNG', 'assets/uploads/incidencies/1'),
-	(3, 8, '3d48be4f2f7d54b1a3aff148042248a3.PNG', 'assets/uploads/incidencies/1'),
-	(8, 4, 'c08c19c61bedac0c5966c815e7425d78.jpg', 'assets/uploads/incidencies/1'),
-	(9, 4, '0728b19799860297d82fdfd3ae6d8f09.jpg', 'assets/uploads/incidencies/1');
+	(21, 36, '3dab16d0231fce54724c0c9b30502fbd.jpg', '27');
 /*!40000 ALTER TABLE `documents_tasques` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.group-news
@@ -151,7 +148,7 @@ INSERT INTO `incidencies` (`id_inci`, `id_estat`, `id_user_propietari`, `nom_pro
 	(22, 1, 21, 'Victor', 'ACER', 'Nitro 50', '67834659823572', '630456886', '<p>\n	L\'ordinador s\'apaga al jugar al Cyberpunk</p>\n', '<p>\n	Podria ser la grafica</p>\n', '5402b14d62f54cc087f62490e5fb28a8', '2021-05-11', '00:00:00', NULL, NULL),
 	(23, 1, 21, 'Pau', 'ACER', 'Aspire TC', '89434734598892', '630456886', '<p>\n	S\'apaga de manera sobtada</p>\n', '<p>Podria ser la font d\'alimentacio</p>', 'b00cf224c3b04e69b309cc93a463e242', '2021-05-11', '00:00:00', NULL, NULL),
 	(24, 1, 21, 'Marc', 'LENOVO', 'ThinkCentre M90t Tower', '23459234078290', '601894568', '<p>\n	L\'ordinador fa sorolls</p>\n', '<p>\n	Podria ser el ventilador</p>\n', '8571bf8c5a594ae5a1bc8a1d27665c7a', '2021-05-11', '00:00:00', NULL, NULL),
-	(27, 2, 21, 'Irene', 'HP', '15s-eq1076ns', '789789789', '325496', '\n	La pantalla parpadeja depenent de la posicio de la pantalla\n', '\n	Possible mala conexio del cable de la pantalla\n', '8417d0bc4f254fdab83647be7164bc78', '2021-05-24', '16:32:39', NULL, NULL),
+	(27, 2, 21, 'Irenes', 'HPs', '15s-eq1076nss', '789789789s', '325496s', '\n	La pantalla parpadeja depenent de la posicio de la pantallsssssssa\n', '\n	Possible mala conexio del cable de la pantallassss\n', '8417d0bc4f254fdab83647be7164bc78', '2021-05-24', '16:32:39', NULL, NULL),
 	(29, 1, 21, 'Laura', 'LENOVO', 'ThinkCentre M70t Tower', '21867492589123', '601846548', '<p>\n	L\'ordinador fa sorolls</p>\n', '<p>\n	Podria ser el ventilador</p>\n', 'd6a39daf641b4679a87c2b6a691ef1ce', '2021-05-11', '00:00:00', NULL, NULL),
 	(30, 1, 21, 'Laura', 'LENOVO', 'ThinkCentre M70t Tower', '21867492589123', '601846548', '<p>\n	L\'ordinador fa sorolls</p>\n', '<p>\n	Podria ser el ventilador</p>\n', 'd6a39daf641b4679a87c2b6a691ef1ce', '2021-05-11', '00:00:00', NULL, NULL),
 	(31, 1, 21, 'Laura', 'LENOVO', 'ThinkCentre M70t Tower', '21867492589123', '601846548', '<p>\n	L\'ordinador fa sorolls</p>\n', '<p>\n	Podria ser el ventilador</p>\n', 'd6a39daf641b4679a87c2b6a691ef1ce', '2021-05-11', '00:00:00', NULL, NULL),
@@ -164,6 +161,7 @@ INSERT INTO `incidencies` (`id_inci`, `id_estat`, `id_user_propietari`, `nom_pro
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `inci_user_app` (
 	`id_inci` INT(10) UNSIGNED NOT NULL,
+	`uuid` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
 	`desc` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
 	`id_user_propietari` INT(10) UNSIGNED NULL,
 	`nom_propietari` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
@@ -184,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   `login` varchar(100) NOT NULL,
   `time` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bitbit.login_attempts: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `login_attempts` DISABLE KEYS */;
@@ -208,9 +206,9 @@ CREATE TABLE IF NOT EXISTS `materials` (
   `num_serie` varchar(50) NOT NULL,
   `amount` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_mat`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.materials: ~13 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.materials: ~14 rows (aproximadamente)
 /*!40000 ALTER TABLE `materials` DISABLE KEYS */;
 INSERT INTO `materials` (`id_mat`, `nom`, `descri`, `num_serie`, `amount`) VALUES
 	(7, 'RAM Crucial de 16 gb a 3200mhz', '\n	RAM Crucial de 16 gb a 3200mhz\n', '64645646468416Z', 25),
@@ -223,9 +221,10 @@ INSERT INTO `materials` (`id_mat`, `nom`, `descri`, `num_serie`, `amount`) VALUE
 	(14, 'Gigabyte GeForce GT 1030 Low Profile D4 2GB GDDR4', '\n	Tatgeta grafica\n', '987635912', 36),
 	(15, 'Kingston HyperX Fury Black DDR4 3200Mhz PC-25600 1', '\n	Memoria RAM\n', '123970613267-B', 27),
 	(16, 'Creative Sound Blaster Audigy FX PCI Express', '\n	Targeta d&#39;&agrave;udio\n', 'XA-21930470912', 26),
-	(17, 'Nfortec Lynx Cristal Templado USB 3.0 RGB Negra', '\n	Caixa PC\n', 'PA-9172346812213', 17),
+	(17, 'Nfortec Lynx Cristal Templado USB 3.0 RGB Negra', '\n	Caixa PC\n', 'PA-9172346812213', 10),
 	(18, 'Cooler Master Hyper 212 Black Edition', '\n	Ventilador/Disipador\n', '7823941324', 41),
-	(19, 'Digitus Adaptador Alimentación Molex/SATA 15cm', '\n	Cables interns\n', '789243912-IS', 58);
+	(19, 'Digitus Adaptador Alimentación Molex/SATA 15cm', '\n	Cables interns\n', '789243912-IS', 58),
+	(20, 'CRISTIAN', '\n	CRISTIANCRISTIANCRISTIAN\n', '123CRISTIAN12', 0);
 /*!40000 ALTER TABLE `materials` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.mat_inci
@@ -239,13 +238,14 @@ CREATE TABLE IF NOT EXISTS `mat_inci` (
   KEY `FK_inci` (`id_inci`) USING BTREE,
   CONSTRAINT `FK_mat` FOREIGN KEY (`id_mat`) REFERENCES `materials` (`id_mat`),
   CONSTRAINT `FK_mat_inci_incidencies` FOREIGN KEY (`id_inci`) REFERENCES `incidencies` (`id_inci`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.mat_inci: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.mat_inci: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `mat_inci` DISABLE KEYS */;
 INSERT INTO `mat_inci` (`id_mat_inci`, `id_mat`, `id_inci`, `amount`) VALUES
 	(1, 9, 1, 1),
-	(2, 9, 6, 1);
+	(2, 9, 6, 1),
+	(4, 20, 27, 1);
 /*!40000 ALTER TABLE `mat_inci` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.messages
@@ -262,9 +262,9 @@ CREATE TABLE IF NOT EXISTS `messages` (
   PRIMARY KEY (`id_msg`),
   KEY `FK_messages_users` (`from`),
   KEY `FK_messages_users_2` (`to`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla bitbit.messages: ~22 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.messages: ~26 rows (aproximadamente)
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
 INSERT INTO `messages` (`id_msg`, `from`, `to`, `about`, `content`, `send_date`, `send_hour`, `recive_date`, `recive_hour`) VALUES
 	(57, 21, 22, 'test', '\n	test\n', '2021-06-04', '11:51:21', '2021-06-21', '12:25:47'),
@@ -284,13 +284,15 @@ INSERT INTO `messages` (`id_msg`, `from`, `to`, `about`, `content`, `send_date`,
 	(71, 19, 21, 'test masgoret', 'test', '2021-06-11', '16:00:18', NULL, NULL),
 	(72, 19, 21, 'test masgoret', 'test', '2021-06-11', '16:00:18', NULL, NULL),
 	(73, 19, 21, 'test masgoret', 'test', '2021-06-11', '16:00:18', NULL, NULL),
-	(74, 19, 21, 'test masgoret', 'test', '2021-06-11', '16:00:18', NULL, NULL),
+	(74, 19, 21, 'test masgoret', 'test', '2021-06-11', '16:00:18', '2021-06-14', '01:09:57'),
 	(75, 19, 21, 'test masgoret', 'test', '2021-06-11', '16:00:18', NULL, NULL),
 	(86, 21, 22, 'test', '\n	teste\n', '2021-06-04', '11:53:13', NULL, NULL),
 	(87, 21, 21, 'test', '\n	teste\n', '2021-06-04', '11:53:13', NULL, NULL),
 	(88, 21, 21, 'test', '\n	teste\n', '2021-06-04', '11:53:13', NULL, NULL),
 	(89, 21, 21, 'test', '\n	teste\n', '2021-06-04', '11:53:13', NULL, NULL),
-	(90, 21, 21, 'test', '\n	teste\n', '2021-06-04', '11:53:13', NULL, NULL);
+	(90, 21, 21, 'test', '\n	teste\n', '2021-06-04', '11:53:13', '2021-06-14', '01:09:54'),
+	(91, 21, 19, 'CRISTIAN', '\n	CRISTIANCRISTIANCRISTIANCRISTIANCRISTIANCRISTIAN\n', '2021-06-14', '01:10:08', NULL, NULL),
+	(92, 21, 21, 'prova', 'asdad', '2021-06-14', '19:40:36', NULL, NULL);
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.news
@@ -307,7 +309,7 @@ CREATE TABLE IF NOT EXISTS `news` (
 -- Volcando datos para la tabla bitbit.news: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `news` DISABLE KEYS */;
 INSERT INTO `news` (`id`, `title`, `content`, `image`, `date`) VALUES
-	(19, 'AMD patenta la tecnología FidelityFX, pero no como tú piensa', '\n	\n		No hay duda que el DLSS se ha convertido en uno de los valores diferenciales a favor de NVIDIA, dado que esta t&eacute;cnica de super resoluci&oacute;n a trav&eacute;s de inteligencia artificial permite conseguir mayores resoluciones de las im&aacute;genes. Lo cual es gracias a la implementaci&oacute;n de los Tensor Cores y AMD podr&iacute;a tener su propia implementaci&oacute;n seg&uacute;n una patente.\n\n\n	\n		Antes de nada hemos de aclarar que se trata de una patente incompleta, ya que no es posible por el momento acceder a las im&aacute;genes que la acompa&ntilde;an y que resultan esenciales para la total comprensi&oacute;n de la misma. Hay que recordar que una patente describe primero los componentes de una tecnolog&iacute;a o servicio, para luego explicar su funcionamiento a trav&eacute;s de la relaci&oacute;n entre componentes. Lo cual hace a trav&eacute;s de referencias numeradas a los dibujos de la misma.\n	\n		Por lo que esperamos una versi&oacute;n completa de la patente de AMD para poder tratarla con m&aacute;s detalle.\n\n\n	&nbsp;\n', '397e8-captura.png', '2021-05-18'),
+	(19, 'AMD patenta la tecnología FidelityFX, pero no como tú piensa', '\\n	\\n		No hay duda que el DLSS se ha convertido en uno de los valores diferenciales a favor de NVIDIA, dado que esta t&eacute;cnica de super resoluci&oacute;n a trav&eacute;s de inteligencia artificial permite conseguir mayores resoluciones de las im&aacute;genes. Lo cual es gracias a la implementaci&oacute;n de los Tensor Cores y AMD podr&iacute;a tener su propia implementaci&oacute;n seg&uacute;n una patente.\\n\\n\\n	\\n		Antes de nada hemos de aclarar que se trata de una patente incompleta, ya que no es posible por el momento acceder a las im&aacute;genes que la acompa&ntilde;an y que resultan esenciales para la total comprensi&oacute;n de la misma. Hay que recordar que una patente describe primero los componentes de una tecnolog&iacute;a o servicio, para luego explicar su funcionamiento a trav&eacute;s de la relaci&oacute;n entre componentes. Lo cual hace a trav&eacute;s de referencias numeradas a los dibujos de la misma.\\n	\\n		Por lo que esperamos una versi&oacute;n completa de la patente de AMD para poder tratarla con m&aacute;s detalle.\\n\\n\\n	&nbsp;\\n', '397e8-captura.png', '2021-05-18'),
 	(20, 'NVIDIA lanza nuevos drivers para Days Gone y sus GPUs RTX 30', '\n	\n		\n			Que exista una nueva actualizaci&oacute;n de los drivers gr&aacute;ficos de NVIDIA no nos resulta una sorpresa, ya que siempre que sale un juego puntero en PC y/o el lanzamiento de una de sus nuevas tarjetas gr&aacute;ficas NVIDIA aprovecha para actualizarlos. Esta vez se trata de la versi&oacute;n 466.47 WHQL de los drivers de NVIDIA, incluye los perfiles para el reci&eacute;n lanzado Days Gone y las tarjeta gr&aacute;ficas RTX 30 LHR.\n	\n	\n		\n			El nuevo driver de NVIDIA est&aacute; optimizado para uno de los mejores juegos de PlayStation de los &uacute;ltimos a&ntilde;os,&nbsp;Days Gone, el cual recomendamos desde aqu&iacute; jugar, ya que es una de las mejores experiencias en videojuegos de los &uacute;ltimos a&ntilde;os.\n	\n\n\n	&nbsp;\n', 'adc37-captura.png', '2021-05-19'),
 	(21, 'Filtran la NVIDIA RTX 3090 Ti, ¿real o fake? Todo sobre esta nueva GPU', '\n	\n		Con todas las NVIDIA RTX 30, desde la RTX 3050 a la RTX 3080 recibiendo una versi&oacute;n Ti para este a&ntilde;o excepto la RTX 3090, ya nos parec&iacute;a extra&ntilde;o que la tarjeta gr&aacute;fica tope de gama de NVIDIA no tuviese su versi&oacute;n Ti. Pues bien, parece ser que s&iacute; que vamos a ver una NVIDIA RTX 3090 Ti, algo que en el fondo no nos deber&iacute;a sorprender ya que hab&iacute;an indicios de ello.\n\n\n	\n		Hace unos meses en HardZone publicamos un art&iacute;culo en el que hablamos de los motivos por los cuales pensamos que una&nbsp;RTX 3090 Ti&nbsp;podr&iacute;a ser posible, pero en las &uacute;ltimas horas ha aparecido una noticia que le a&ntilde;ade m&aacute;s validez a nuestras predicciones sobre la existencia de una RTX 30 m&aacute;s potente.\n\n\n	&nbsp;\n', '0686d-captura.png', '2021-05-20'),
 	(22, 'El precio de las NVIDIA RTX 30 se dispara: hasta el triple de su MSRP', '\n	\n		A estas alturas todos somos conscientes de que la&nbsp;escasez de componentes&nbsp;est&aacute; provocando que apenas veamos&nbsp;tarjetas gr&aacute;ficas&nbsp;en los estantes de las tiendas, y que el precio de &eacute;stas en el mercado de segunda mano se haya disparado. Lo que no esper&aacute;bamos ver es la situaci&oacute;n que vivimos ahora, en la que especialmente las&nbsp;NVIDIA RTX 30 Series&nbsp;llegan a costar el&nbsp;triple de su MSRP&nbsp;incluso compr&aacute;ndolas directamente en tiendas de Europa.\n\n\n	\n		Parece que todo el mundo se est&aacute; aprovechando de los&nbsp;problemas de suministro de GPUs, pero debido a una mayor demanda en comparaci&oacute;n con la oferta de AMD, los precios de las GPUs NVIDIA RTX 30 Series se ha disparado mucho m&aacute;s en comparaci&oacute;n. Las AMD Radeon RX 6000 han sido escasas en t&eacute;rminos de suministro, pero siempre ha habido &laquo;algo&raquo; de stock desde el principio. Podemos ver a trav&eacute;s de las cifras de ventas que NVIDIA ha podido enviar m&aacute;s GPUs RTX 30 que AMD sus gr&aacute;ficas RDNA 2 y, a pesar de ello, el&nbsp;precio de las GPUs de NVIDIA&nbsp;es el que se ha disparado ahora hasta el triple de lo que deber&iacute;an costar.\n\n\n	&nbsp;\n', 'e991d-captura.png', '2021-05-21'),
@@ -372,7 +374,7 @@ INSERT INTO `tasques` (`id_tasca`, `id_user`, `id_inci`, `desc`, `accions`, `sta
 	(20, 19, 1, '<p>\n	Cambiar procesador</p>\n<p>\n	&nbsp;</p>\n', NULL, '2021-05-10', '21:59:09', NULL, NULL, NULL),
 	(21, 19, 1, '<p>\n	Ampliar memoria</p>\n<p>\n	&nbsp;</p>\n', '', '2021-05-14', NULL, NULL, NULL, ''),
 	(35, 19, 27, '\n	El client es queixa de que la pantalla parpadeja depenent de la posicio en la que esta, es te que comprovar que el cable fins la pantalla estigui ben conectat\n', '<p>S\'ha desmontat el portatil per a veure la situacio del cable, el cable no feia bona conexio, s\'han fet algunes proves, la pantalla ja no parpadeja.</p>', '2021-05-24', '16:33:22', NULL, NULL, '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'),
-	(36, 19, 27, '\n	test\n', NULL, '2021-06-10', '16:49:46', NULL, NULL, NULL),
+	(36, 19, 27, '\n	test\n', '<p>asas</p>', '2021-06-10', '16:49:46', NULL, NULL, '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'),
 	(37, 19, 27, '\n	test\n', NULL, '2021-06-10', '16:50:25', NULL, NULL, NULL),
 	(38, 19, 27, '\n	tetete\n', NULL, '2021-06-10', '16:52:47', NULL, NULL, NULL),
 	(39, 19, 20, '\n	tetetet\n', NULL, '2021-06-10', '16:53:10', NULL, NULL, NULL),
@@ -464,33 +466,11 @@ CREATE TABLE IF NOT EXISTS `tokens` (
   PRIMARY KEY (`tokenid`,`subject`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bitbit.tokens: ~23 rows (aproximadamente)
+-- Volcando datos para la tabla bitbit.tokens: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `tokens` DISABLE KEYS */;
 INSERT INTO `tokens` (`tokenid`, `subject`, `expiration`) VALUES
-	('01055d27-3337-512f-b312-6fe34418ee26', 'secure.jwt.daw.local', 1623445337),
-	('0505c3d7-2f87-5b45-b4c7-7f0ffa73acff', 'secure.jwt.daw.local', 1623445247),
-	('07b5e0cd-c8ba-5dac-b972-62a978f1d122', 'secure.jwt.daw.local', 1623445252),
-	('0ac9d2ba-6e9f-51cb-b72d-3f721a47d02c', 'secure.jwt.daw.local', 1623445335),
-	('1098ad3a-38f5-5d9c-bc3d-db86fcfce3be', 'secure.jwt.daw.local', 1623445187),
-	('10a4b7d3-e507-5665-afcb-ec39f1318890', 'secure.jwt.daw.local', 1623445246),
-	('18d4bee5-3de7-5978-9d74-c8c253ff5b7c', 'secure.jwt.daw.local', 1623445191),
-	('1a92d784-5bf1-5223-a057-9d308e7b8f51', 'secure.jwt.daw.local', 1623445303),
-	('22db631c-e311-56cd-9944-69ef51727381', 'secure.jwt.daw.local', 1623445189),
-	('37c8eed4-1e73-583c-98e8-085530ae7f54', 'secure.jwt.daw.local', 1623445251),
-	('439da3b3-0681-5ddd-ae40-388db8d85c67', 'secure.jwt.daw.local', 1623445188),
-	('6076d75b-15ff-54d0-a4c5-7c881d1caaaa', 'secure.jwt.daw.local', 1623445246),
-	('670bf283-0398-5a48-abe1-d98b9c683eac', 'secure.jwt.daw.local', 1623445245),
-	('6d4aec67-8483-5087-96a6-21f6631f6f43', 'secure.jwt.daw.local', 1623445243),
-	('84d17cf5-84f2-5924-a9bf-b25e7731cbb9', 'secure.jwt.daw.local', 1623445302),
-	('b4fe1048-49bb-5a34-ac53-10a9964b9469', 'secure.jwt.daw.local', 1623445333),
-	('ba91bbe7-c371-5e03-97d2-5442647d5ba7', 'secure.jwt.daw.local', 1623445249),
-	('bf16c3cf-3f0f-5b17-8a58-723332d1675c', 'secure.jwt.daw.local', 1623445354),
-	('c4b36598-1af9-576a-ac65-5ddf6dfef42e', 'secure.jwt.daw.local', 1623445355),
-	('c7f5672f-df0f-5c0d-91b2-d818a788fa2e', 'secure.jwt.daw.local', 1623445250),
-	('cc9a0c3f-3ca5-538c-858b-1e2ea46a118b', 'secure.jwt.daw.local', 1623445244),
-	('d01059aa-b056-5d8b-8e0e-c3701a0a6da1', 'secure.jwt.daw.local', 1623445338),
-	('ee6cacd5-35ac-5fe0-b7fc-eb9b68bdd9b9', 'secure.jwt.daw.local', 1623445190),
-	('f2867583-08b1-585b-92ef-1acfdc32aa2a', 'secure.jwt.daw.local', 1623445248);
+	('53c24495-076f-5fc0-9bdc-25c885a2bce2', 'secure.jwt.daw.local', 1623706993),
+	('c9f939fa-769f-5828-a736-1edd657a1020', 'secure.jwt.daw.local', 1623707008);
 /*!40000 ALTER TABLE `tokens` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.users
@@ -526,10 +506,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Volcando datos para la tabla bitbit.users: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `city`) VALUES
-	(19, '::1', 'tecnic', '$2y$10$TC/JcRgl4OlgQWe8bfecTOIvsj5dVjtdaiptLApFFzk9z3yOJdbNi', 'tecnic@tecnic.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814433, 1623442909, 1, 'tecnic', 'tecnic', '', NULL, 'test'),
-	(20, '::1', 'admin', '$2y$10$kkhDR3aKoCUqxIUGPmI/cOk1aOFzSrUM6xd75oVY8VqoxLTkdRgrS', 'admin@admin.comm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814495, 1622914720, 1, 'admin', 'admin', 'admin', NULL, 'admin'),
-	(21, '::1', 'user', '$2y$10$6CYfjRdPmKkOZ3292WEMcugoWK13xFd6az2VW2Wr3heUm1jvkowW.', 'user@user.commm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814520, 1623444490, 1, 'user', 'user', 'user', '', 'user'),
-	(22, '::1', 'gestor', '$2y$10$9g65AByvczLx.4fK6ebFeej5/VcTHEjP3hndeSkFJin758YDf0kiy', 'gestor@gestor.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814555, 1623336567, 1, 'gestor', 'gestor', 'gestor', NULL, 'gesto');
+	(19, '::1', 'tecnic', '$2y$10$TC/JcRgl4OlgQWe8bfecTOIvsj5dVjtdaiptLApFFzk9z3yOJdbNi', 'tecnic@tecnic.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814433, 1623706693, 1, 'tecnic', 'tecnic', '', NULL, 'test'),
+	(20, '::1', 'admin', '$2y$10$kkhDR3aKoCUqxIUGPmI/cOk1aOFzSrUM6xd75oVY8VqoxLTkdRgrS', 'admin@admin.comm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814495, 1623627509, 1, 'admin', 'admin', 'admin', NULL, 'admin'),
+	(21, '::1', 'user', '$2y$10$MNUu3Z/TBo/nWkAyzg5TiONka.weFYpGP0IeIDy/aldJocpQUyX6G', 'user@user.commm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814520, 1623705725, 1, 'user', 'user', 'user', NULL, 'user'),
+	(22, '::1', 'gestor', '$2y$10$9g65AByvczLx.4fK6ebFeej5/VcTHEjP3hndeSkFJin758YDf0kiy', 'gestor@gestor.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1620814555, 1623690274, 1, 'gestor', 'gestor', 'gestor', NULL, 'gesto');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bitbit.users_groups
@@ -557,7 +537,7 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 -- Volcando estructura para vista bitbit.inci_user_app
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `inci_user_app`;
-CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `inci_user_app` AS SELECT incidencies.id_inci,status.`desc`,incidencies.id_user_propietari, incidencies.nom_propietari, incidencies.marca, incidencies.model, incidencies.numero_serie, incidencies.tlf, incidencies.desc_averia,incidencies.diagnosis_prev, incidencies.entry_date,incidencies.out_date FROM incidencies INNER JOIN status ON incidencies.id_estat = status.id_estatus ;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `inci_user_app` AS SELECT incidencies.id_inci,incidencies.uuid,status.`desc`,incidencies.id_user_propietari, incidencies.nom_propietari, incidencies.marca, incidencies.model, incidencies.numero_serie, incidencies.tlf, incidencies.desc_averia,incidencies.diagnosis_prev, incidencies.entry_date,incidencies.out_date FROM incidencies INNER JOIN status ON incidencies.id_estat = status.id_estatus ;
 
 -- Volcando estructura para vista bitbit.mail_username
 -- Eliminando tabla temporal y crear estructura final de VIEW

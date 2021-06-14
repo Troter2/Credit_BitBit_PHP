@@ -168,16 +168,16 @@ $route['images/(:any)/(:any)'] = 'Public/Image_controller/show_inci_img/$1/$2';
 $route['contact/sendConsult'] = 'Public/Contact_controller/sendConsult';
 $route['incidencia/pdf/(:any)'] = 'Private/Pdf_controller/generatePDF/$1/$2';
 
-$route['privateApi/status'] = 'PrivateApi_controller/status'; 
-$route['privateApi/login'] = 'PrivateApi_controller/login'; 
+$route['privateApi/status'] = 'PrivateApi_controller/status';
 $route['privateApi/about'] = 'PrivateApi_controller/about'; 
 $route['privateApi/news'] = 'PrivateApi_controller/news'; 
-$route['privateApi/getIncidencies'] = 'PrivateApi_controller/getIncidencies'; 
+$route['privateApi/login'] = 'PrivateApi_controller/login'; 
+$route['privateApi/mail'] = 'PrivateApi_controller/mail'; 
+$route['privateApi/incidencies'] = 'PrivateApi_controller/incidencies'; 
 $route['privateApi/tipusConsulta'] = 'PrivateApi_controller/tipusConsulta'; 
 $route['privateApi/consulta'] = 'PrivateApi_controller/consulta'; 
-$route['privateApi/mail'] = 'PrivateApi_controller/mail'; 
-$route['privateApi/getUser'] = 'PrivateApi_controller/getUser'; 
-$route['privateApi/incidencies'] = 'PrivateApi_controller/incidencies'; 
+
 $route['privateApi/tasques'] = 'PrivateApi_controller/tasques'; 
+$route['privateApi/getUser'] = 'PrivateApi_controller/getUser'; 
 $route['privateApi/PDF/(:any)'] = 'Private/ApiPDF_controller/generatePDF/$1'; 
 

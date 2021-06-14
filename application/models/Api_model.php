@@ -17,7 +17,7 @@ class Api_model extends CI_Model
         $query = $this->db->get('tipus_consulta');
         return $query->result_array();
     }
-    public function getMails($id, $limit,$offset)
+    public function getMails($id, $limit, $offset)
     {
         $this->db->limit($limit, $offset);
         $this->db->order_by('id_msg', 'DESC');
@@ -27,7 +27,7 @@ class Api_model extends CI_Model
     public function getMailAmount($id)
     {
         $this->db->where('to', $id);
-        $query = $this->db->count_all_results('mail_username'); 
+        $query = $this->db->count_all_results('mail_username');
         return $query;
     }
     public function getMail($id_user, $id_msg)
@@ -88,17 +88,17 @@ class Api_model extends CI_Model
     }
     public function api_update_user($user_id, $username, $email, $company, $tlf, $city, $first_name, $last_name)
     {
-        if ($username!=null) $this->db->set("username",$username);
-        if ($email!=null) $this->db->set("email",$email);
-        if ($company!=null) $this->db->set("company",$company);
-        if ($tlf!=null) $this->db->set("phone",$tlf);
-        if ($city!=null) $this->db->set("city",$city);
-        if ($city!=null) $this->db->set("first_name",$first_name);
-        if ($city!=null) $this->db->set("last_name",$last_name);
-        
-        $this->db->where("id",$user_id);
+        if ($username != null) $this->db->set("username", $username);
+        if ($email != null) $this->db->set("email", $email);
+        if ($company != null) $this->db->set("company", $company);
+        if ($tlf != null) $this->db->set("phone", $tlf);
+        if ($city != null) $this->db->set("city", $city);
+        if ($city != null) $this->db->set("first_name", $first_name);
+        if ($city != null) $this->db->set("last_name", $last_name);
+
+        $this->db->where("id", $user_id);
         $this->db->update('users');
-        return $this->db->affected_rows(); 
+        return $this->db->affected_rows();
     }
     public function get_user_by_id($id)
     {
@@ -120,13 +120,13 @@ class Api_model extends CI_Model
     public function getTaquesAmount($id)
     {
         $this->db->where('id_user', $id);
-        $query = $this->db->count_all_results('tasques_tecnic_app'); 
+        $query = $this->db->count_all_results('tasques_tecnic_app');
         return $query;
     }
     public function countInciByOwner($id)
     {
         $this->db->where('id_user_propietari', $id);
-        $query = $this->db->count_all_results('inci_user_app'); 
+        $query = $this->db->count_all_results('inci_user_app');
         return $query;
     }
     public function getInciById($id)
@@ -138,6 +138,12 @@ class Api_model extends CI_Model
     {
         $query = $this->db->get_where('tasques_tecnic_app', array('id_tasca' => $id));
         return $query->row_array();
+    }
+    public function getInciAmount($id)
+    {
+        $this->db->where('id_user_propietari', $id);
+        $query = $this->db->count_all_results('inci_user_app');
+        return $query;
     }
 
     public function getInci()

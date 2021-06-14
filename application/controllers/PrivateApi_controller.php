@@ -325,7 +325,7 @@ class PrivateApi_controller extends JwtAPI_Controller
                     $jwt = $this->renewJWT(); // Get new Token and set to HTTP header
                     $this->load->model('Api_model');
                     $incidencies = $this->Api_model->getInciByOwner($decoded->usr, $limit, $offset);
-                    $amount = $this->Api_model->getInciByOwner($decoded->usr, $limit, $offset);
+                    $amount = $this->Api_model->getInciAmount($decoded->usr);
 
                     $message = [
                         'status' => RestController::HTTP_OK,
@@ -461,11 +461,13 @@ class PrivateApi_controller extends JwtAPI_Controller
                     $jwt = $this->renewJWT(); // Get new Token and set to HTTP header
                     $this->load->model('Api_model');
                     $incidencies = $this->Api_model->getTaquesByTecnic($decoded->usr, $limit, $offset);
+                    $amount = $this->Api_model->getTaquesAmount($decoded->usr);
 
                     $message = [
                         'status' => RestController::HTTP_OK,
                         'token' => $jwt,
-                        'tasques' => $incidencies
+                        'tasques' => $incidencies,
+                        'amount' => $amount
                     ];
                     $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
                 } else if ($this->input->get('id') != null) {
