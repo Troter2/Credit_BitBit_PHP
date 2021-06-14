@@ -168,8 +168,6 @@ $route['images/(:any)/(:any)'] = 'Public/Image_controller/show_inci_img/$1/$2';
 $route['contact/sendConsult'] = 'Public/Contact_controller/sendConsult';
 $route['incidencia/pdf/(:any)'] = 'Private/Pdf_controller/generatePDF/$1/$2';
 
-$route['api/news'] = 'news_api/status'; 
-
 $route['privateApi/status'] = 'PrivateApi_controller/status'; 
 $route['privateApi/login'] = 'PrivateApi_controller/login'; 
 $route['privateApi/about'] = 'PrivateApi_controller/about'; 
