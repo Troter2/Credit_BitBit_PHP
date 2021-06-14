@@ -176,8 +176,8 @@ $route['privateApi/mail'] = 'PrivateApi_controller/mail';
 $route['privateApi/incidencies'] = 'PrivateApi_controller/incidencies'; 
 $route['privateApi/tipusConsulta'] = 'PrivateApi_controller/tipusConsulta'; 
 $route['privateApi/consulta'] = 'PrivateApi_controller/consulta'; 
-
 $route['privateApi/tasques'] = 'PrivateApi_controller/tasques'; 
 $route['privateApi/getUser'] = 'PrivateApi_controller/getUser'; 
 $route['privateApi/PDF/(:any)'] = 'Private/ApiPDF_controller/generatePDF/$1'; 
+
 
