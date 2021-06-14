@@ -70,7 +70,7 @@ class Pdf_controller extends Private_controller
 
             if (isset($task['canvas']) && $task['canvas'] != '') {
 
-                $accioRealitzada = '<img src="@' . $task['canvas'] . '"><hr>';
+                $accioRealitzada = $accioRealitzada.'<img src="@' . $task['canvas'] . '"><hr>';
             }
             $id = $task['id_tasca'];
             $document = $this->Inci_model->get_document($id);
