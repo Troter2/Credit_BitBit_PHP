@@ -81,26 +81,24 @@ class Tecnic_controller extends Private_controller
                         'id_tasca' => $_SESSION['tasca']['id_tasca']
                     );
 
-		            $this->Tecnic_model->insert_document_tasques($data);
+                    $this->Tecnic_model->insert_document_tasques($data);
                     //$this->db->insert('documents_tasques', $data);
                 }
             }
-
         }
         $idTasca = $_SESSION['tasca']['id_tasca'];
         $estatus = $this->input->post('estatus');
         if ($estatus == '3') {
-			$this->Tecnic_model->insertar_TascData($idTasca);
-
+            $this->Tecnic_model->insertar_TascData($idTasca);
         }
         $dades =  $_SESSION['inci']['id_inci'];
-        
-		$this->Tecnic_model->insertar_estat($estatus, $dades);
+
+        $this->Tecnic_model->insertar_estat($estatus, $dades);
 
 
 
 
-		
+
         $action = $this->input->post('action');
         $this->Tecnic_model->insertar_accio($action, $idTasca);
 

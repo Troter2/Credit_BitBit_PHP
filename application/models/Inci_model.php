@@ -116,9 +116,9 @@ class Inci_model extends CI_Model
 
     //     return $query->result_array();
     // }
-    public function get_document()
+    public function get_document($id)
     {
-        $query = $this->db->query("SELECT * FROM ((documents_tasques INNER JOIN tasques ON documents_tasques.id_tasca = tasques.id_tasca) INNER JOIN incidencies ON incidencies.id_inci = tasques.id_inci)");
+        $query = $this->db->get_where('documents_tasques', array('id_tasca' => $id));
         return $query->result_array();
     }
 
