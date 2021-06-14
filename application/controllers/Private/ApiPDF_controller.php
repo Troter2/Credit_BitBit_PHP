@@ -18,7 +18,13 @@ class ApiPDF_controller extends Public_controller
         $id = $incidencia['id_inci'];
 
         $tasca = $this->Inci_model->get_tasca($id);
+        //         $print="";
+        //         foreach($tasca as $task){
+        //             $print=$print.json_encode($task).'<br><br><br>';
 
+        //         }
+        // print_r($print);
+        // die;
         $material = $this->Inci_model->get_material();
 
         //  print_r($tasca);
@@ -68,17 +74,19 @@ class ApiPDF_controller extends Public_controller
                             <p style="text-align: justify;text-justify: inter-word;">Acció necessaria: <br/>' . $task['accions'] . '</p>';
 
             if (isset($task['canvas']) && $task['canvas'] != '') {
+                $database64 = "data:image/png;base64," . $task['canvas'];
 
-                $accioRealitzada = '<img src="@' . $task['canvas'] . '"><hr>';
+                $accioRealitzada = $accioRealitzada . '<img src="@'.$task['canvas'].'"><hr>';
             }
-            $id = $task['id_inci'];
+            $id = $task['id_tasca'];
             $document = $this->Inci_model->get_document($id);
 
             //print_r($document);
             //die;
+            $DocumentAccio = '';
             foreach ($document as $doc) {
                 //$DocumentAccio = '<p>Imatge: <img src="'. base_url() . '/' . $doc['path'].'/'. $doc['image'] .'"></p>';
-                $DocumentAccio = '<p>Imatge: <img src="http://localhost/Credit_BitBit_PHP/images/' . $task['id_inci'] . '/' . $doc['image'] . '"></p>';
+                $DocumentAccio = $DocumentAccio . '<p>Imatge:<br><img src="' . base_url('images/' . $task['id_inci'] . '/' . $doc['image']) . '"></p>';
             }
             $totesAccions = $totesAccions . $accioRealitzada . $DocumentAccio;
         }
