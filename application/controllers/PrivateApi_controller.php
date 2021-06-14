@@ -589,7 +589,7 @@ class PrivateApi_controller extends JwtAPI_Controller
                     'token' => $jwt,
                     'user' => $user
                 ];
-                $this->response($message, RestController::HTTP_CREATED); // OK (200) being the HTTP response code
+                $this->response($message, RestController::HTTP_OK); // OK (200) being the HTTP response code
 
             } else {
 
