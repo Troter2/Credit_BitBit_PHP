@@ -371,8 +371,9 @@ class Grocery_controller extends Private_controller
 			$crud->display_as('phone', "Telefon");
 			$crud->display_as('city', "Ciutat");
 			$crud->columns(['username', 'email', 'first_name', 'last_name', 'company', 'phone', 'city']);
-			$crud->callback_after_insert(array($this, 'hash_pass_insert'));
-			$crud->callback_before_insert(array($this, 'hash_pass_before'));
+			$crud->callback_insert(array($this, 'insert_user'));
+			// $crud->callback_after_insert(array($this, 'hash_pass_insert'));
+			// $crud->callback_before_insert(array($this, 'hash_pass_before'));
 			$crud->callback_after_update(array($this, 'hash_pass'));
 
 			$output = $crud->render();
@@ -389,6 +390,22 @@ class Grocery_controller extends Private_controller
 		} else {
 			redirect(base_url('home'));
 		}
+	}
+	public function insert_user($post_array)
+	{
+		$this->load->library('ion_auth');
+		$username = $post_array['username'];
+		$password = $post_array['password'];
+		$email = $post_array['email'];
+		$additional_data = array(
+			'first_name' => $post_array['first_name'],
+			'last_name' => $post_array['last_name'],
+			'phone' => $post_array['phone'],
+			'city' => $post_array['city'],
+		);
+		$group = array('4'); // Sets user to admin.
+
+		$this->ion_auth->register($username, $password, $email, $additional_data, $group);
 	}
 	public function no_admin_delete($primary_key)
 	{
@@ -729,7 +746,7 @@ class Grocery_controller extends Private_controller
 			if ($state == 'read') {
 				$primary_key = $state_info->primary_key;
 				$msg = $this->Msg_model->getMsgId($primary_key);
-				
+
 
 
 				if ($msg->to != $username) {
