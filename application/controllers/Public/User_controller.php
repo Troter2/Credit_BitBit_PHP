@@ -13,6 +13,7 @@ class User_controller extends Public_controller
 
         $user = $this->ion_auth->user()->row();
         $data["user"] = $user;
+        $data["group"] = $this->ion_auth->get_users_groups($user->id)->result();
         $this->load->view('templates/header');
         $this->load->view('pages/user_profile', $data);
         $this->load->view('templates/footer');

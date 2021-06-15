@@ -5,7 +5,6 @@
         </div>
         <div class="col col-sm-12 col-md-8 col-lg-9 row">
             <div class="font-weight-bold container" style="font-size:26px;"><?php echo $user->username ?></div>
-            <div class="font-weight-bold mt-0 text-primary font-weight-bold container" style="font-size:22px;">Tecnic</div>
 
 
             <?php echo form_open('updateUser'); ?>
